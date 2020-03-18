@@ -10,7 +10,6 @@ function setup() {
   createCanvas(640, 480);
 
   for (let i = 0; i < qty; i++) {
-
     ball = new Mover(random(width), random(height));
     balls.push(ball);
   }
@@ -32,12 +31,12 @@ function setup() {
 
   // console.log(pos);
   colorMode(HSB, 360, 100, 100, 1.0);
-  background(270, 50, 50, .5);
-
+  background(270, 50, 50, 0.5);
 }
 
 function draw() {
-  // background(200);
+  //background(200);
+  background(200, 90, 20, 0.5);
 
   for (let i = 0; i < qty; i++) {
     balls[i].update();

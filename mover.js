@@ -4,7 +4,7 @@ class Mover {
     console.log(x, y);
     this.location = createVector(x, y);
     this.velocity = createVector(0, 0); //p5.Vector.random2D().mult(3);
-    this.size = 2;
+    this.size = 6;
     this.acceleration = p5.Vector.random2D();
     this.acceleration.mult(.02);
     this.topSpeed = 10;
@@ -43,7 +43,7 @@ class Mover {
   display() {
     //console.log(this.location);
     noStroke();
-    fill(55);
+    fill(300, 90, 100, 0.5);
     ellipse(this.location.x, this.location.y, this.size, this.size);
   }
 
