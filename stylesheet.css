@@ -1,0 +1,18 @@
+body {
+  background: black;
+  color: white;
+}
+
+div {
+  color: white;
+  font-family: arial;
+  display: inline;
+}
+
+p {
+  font-family: arial;
+}
+
+input {
+  display: block;
+}
