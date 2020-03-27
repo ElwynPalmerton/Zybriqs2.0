@@ -6,13 +6,14 @@ const qty = 3;
 let liquid, reverseLiquid;
 const liquids = [];
 const reverseLiquids = [];
+let objectType;
 
 
 //Force variabes;
 let xOff = 0;
 let friction; //Can this be a variable inside of the mover class???
 const windC = 0.1;
-const dragCoefficient = 0.005;
+const dragCoefficient = 0.01;
 const gForce = 0.12;
 
 //Grid parameters   --------  I need to re-think it this is how I want this to work.
@@ -38,9 +39,16 @@ function setup() {
   //This needs to be changed so that the liquids are added manually in setup.
   //...or initiated as defaults...
   //...or initiated as defaults automatically and then reset if the user chooses to start over.
-  liquid = new Liquid(gridUnit * 2, gridUnit * 2, gridUnit * 1.5, gridUnit * 1.5, dragCoefficient);
+
+  let liquidStart = createVector(200, 350);
+  let liquidEnd = createVector(350, 500);
+
+  liquid = new Liquid(liquidStart, liquidEnd, dragCoefficient);
   liquids.push(liquid);
-  reverseLiquid = new Liquid(gridUnit * 7, gridUnit * 4, gridUnit * 1.5, gridUnit * 1.5, -dragCoefficient);
+
+  let reverseLiquidStart = createVector(700, 400);
+  let reverseLiquidEnd = createVector(850, 550);
+  reverseLiquid = new Liquid(reverseLiquidStart, reverseLiquidEnd, -dragCoefficient);
   reverseLiquids.push(reverseLiquid);
 
 
@@ -89,11 +97,16 @@ function draw() {
       balls[i].applyForce(gravity);
 
       //Calculate drag if it's in the liquid.   //Create Liquid and Reverse liquid in the same array.
-      if (balls[i].isInside(liquid)) {
-        balls[i].drag(liquid);
-      };
+      //It is only checking the first liquid, not the array.
+      liquids.forEach(l => {
+        if (balls[i].isInside(l)) {
+          balls[i].drag(l);
+        }
+      })
 
-      //Calculate reverse drag if it is in the reverseLiquid.   //See above.
+
+      //Calculate reverse drag
+      //if it is in the reverseLiquid. //See above.
       if (balls[i].isInside(reverseLiquid)) {
         balls[i].drag(reverseLiquid);
       };

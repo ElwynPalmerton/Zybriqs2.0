@@ -17,6 +17,13 @@ function makePlayButton() {
       run = false;
       //It seems like this is working without the if statement to check "run" but I do use run elsewhere.
       playButton.innerHTML = "Resume";
+      console.log("Balls", balls);
+      console.log("Blocks", blocks);
+      console.log("Liquids", liquids);
+      console.log("Reverse Liquids", reverseLiquids);
+      balls.forEach(ball => {
+        console.log(ball.isInside(liquids[0]));
+      });
       drawElementsDuringSetup(); //This function is in the listeners.js file.
       noLoop();
     }
@@ -25,11 +32,12 @@ function makePlayButton() {
 
 
 function makeBlockButton() {
-  let objectType = "Block"
+
   let drawBlockButton = createButton("Draw Block");
   drawBlockButton.mousePressed(() => {
     if (drawButtonOn === false) {
       drawButtonOn = true;
+      objectType = "Block"
       listeners();
     } else {
       drawButtonOn = false;
@@ -38,11 +46,11 @@ function makeBlockButton() {
 }
 
 function makeDragButton() {
-  let objectType = "Drag";
   let drawBlockButton = createButton("Drag Area");
   drawBlockButton.mousePressed(() => {
     if (drawButtonOn === false) {
       drawButtonOn = true;
+      objectType = "Drag";
       listeners();
     } else {
       drawButtonOn = false;

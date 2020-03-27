@@ -1,12 +1,17 @@
-function listeners(NewObjType) {
+function listeners() {
   let startRect, endRect;
   noStroke();
   fill(200);
+  let first = false;
 
   function onMouseDown() {
     if (drawButtonOn) {
       isDrawing = true;
+      //Maybe I need an if (event.target thingie here);
       startRect = createVector(mouseX, mouseY).copy();
+      console.log("in mouseDown");
+
+
     }
   }
 
@@ -49,14 +54,21 @@ function listeners(NewObjType) {
       //Instead of "Outline" the class type should be a varible which is passed in from listeners.
 
 
-      if (run === false) {
+      if (run === false) { //Only lets it add blocks when the program is paused.
 
-        let block = new Outline(startRect, endRect);
-        //Only lets it add blocks when the program is paused.
-        //Check block size before pushing.
-        if (block.width > 15 && block.height > 15) {
+        if (objectType === "Drag") {
+          let newLiquid = new Liquid(startRect, endRect, dragCoefficient);
+          liquids.push(newLiquid);
+          //
+          console.log('Adding Liquid');
+          console.log(liquids);
+
+        } else if (objectType === "Block") {
+          console.log('Adding Block');
+          let block = new Outline(startRect, endRect);
           blocks.push(block);
         }
+
       }
     }
   }); //End event listener.
@@ -67,7 +79,6 @@ function drawElementsDuringSetup() {
   //background(tempBG);
 
   background(tempBG);
-  console.log(bgC);
 
   for (let j = 0; j < blocks.length; j++) {
     blocks[j].display(tempBlockBorderC);

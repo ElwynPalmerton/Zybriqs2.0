@@ -48,7 +48,7 @@ class Mover {
     //The force's magnitude.
     let speed = this.velocity.mag();
     let dragMagnitude = l.c * speed * speed;
-    
+
     //The force's direction: -1 * velocity.
     let drg = this.velocity.copy();
     drg.normalize();
@@ -78,10 +78,10 @@ class Mover {
 
   isInside(l) {
     if (
-      this.location.x > l.x &&
-      this.location.x < l.x + l.w &&
-      this.location.y > l.y &&
-      this.location.y < l.y + l.h
+      this.location.x > l.start.x &&
+      this.location.x < l.start.x + l.width &&
+      this.location.y > l.start.y &&
+      this.location.y < l.start.y + l.width
     ) {
       return true;
     } else {
