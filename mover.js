@@ -1,11 +1,10 @@
 class Mover {
-
   constructor(x, y, c) {
     this.location = createVector(x, y);
     this.velocity = createVector(0, 0); //p5.Vector.random2D().mult(3);
     this.size = 50;
     this.acceleration = createVector(0, 0);
-    this.acceleration.mult(.02); //This isn't doing anything is it? Just take it out?
+    this.acceleration.mult(0.02); //This isn't doing anything is it? Just take it out?
     this.topSpeed = 10; //This is being used as a constant below, fix this.
     this.mass = random(0.5, 2);
     this.size = this.size * this.mass;
@@ -15,7 +14,6 @@ class Mover {
     //There is a different .c (l.c) from the liquid class which is used below.
     //This one should definitely be different.
   }
-
 
   update() {
     //ACCELERATION TOWARDS THE MOUSE.
@@ -50,7 +48,7 @@ class Mover {
     //The force's magnitude.
     let speed = this.velocity.mag();
     let dragMagnitude = l.c * speed * speed;
-
+    
     //The force's direction: -1 * velocity.
     let drg = this.velocity.copy();
     drg.normalize();
@@ -62,7 +60,6 @@ class Mover {
   }
 
   checkEdges(width, height) {
-
     if (this.location.x >= width - this.size / 2) {
       this.velocity.x = this.velocity.x * -1;
       this.location.x = width - this.size / 2;
@@ -80,15 +77,22 @@ class Mover {
   }
 
   isInside(l) {
-    if (this.location.x > l.x && this.location.x < l.x + l.w && this.location.y > l.y && this.location.y < l.y + l.h) {
+    if (
+      this.location.x > l.x &&
+      this.location.x < l.x + l.w &&
+      this.location.y > l.y &&
+      this.location.y < l.y + l.h
+    ) {
       return true;
     } else {
       return false;
     }
   }
+
   collides(b) {
+    var clearance = 1;
     //Checks to see if the mover ("ball[i]) has collided with the element b.
-    //Outline paramenters: 
+    //Outline paramenters:
     //  this.start
     //  this.end
     //  this.width
@@ -101,73 +105,94 @@ class Mover {
 
     //Write one and then see if it works.
     //LEFT EDGE
-    if (this.location.x < b.start.x) { //Cicle is left of the left edge.  LEFT EDGE IS WORKING.
-      if (this.location.y >= b.start.y && // Circle CENTER is BELOW the TOP edge.                   
+    if (this.location.x < b.start.x) {
+      //Cicle is left of the left edge.  LEFT EDGE IS WORKING.
+      if (
+        this.location.y >= b.start.y && // Circle CENTER is BELOW the TOP edge.
         this.location.y <= b.start.y + b.height && //Circle CENTER is ABOVE the BOTTOM edge.
-        (b.start.x - this.location.x <= this.size / 2)
-      ) { //Distance form circle CENTER to LEFT edge is LESS than its RADIUS. 
+        b.start.x - this.location.x <= this.size / 2
+      ) {
+        //Distance form circle CENTER to LEFT edge is LESS than its RADIUS.
         //console.log("Collides!");
         this.velocity.x *= -1;
-        this.location.x = b.start.x - this.size / 2;
+        this.location.x = b.start.x - this.size / 2 - clearance;
       }
       //RIGHT EDGE
-    } else if (this.location.x > b.start.x + b.width) { //Circle is right of the right edge.
-      if (this.location.y >= b.start.y && //Circle center is below the top edge.
+    } else if (this.location.x > b.start.x + b.width) {
+      //Circle is right of the right edge.
+      if (
+        this.location.y >= b.start.y && //Circle center is below the top edge.
         this.location.y <= b.start.y + b.height && //Circle center is above the bottom edge.
-        (this.location.x - this.size / 2 <= b.start.x + b.width) ///THIS!!!???
-      ) { //Distance of the circle center from the RIGHT edge.
+        this.location.x - this.size / 2 <= b.start.x + b.width ///THIS!!!???
+      ) {
+        //Distance of the circle center from the RIGHT edge.
         //console.log("Collides!");
         this.velocity.x *= -1;
-        this.location.x = b.start.x + b.width + this.size / 2;
+        this.location.x = b.start.x + b.width + this.size / 2 + clearance;
       }
     }
     //TOP EDGE
-    if (this.location.y < b.start.y) { // Circle is above the top edge. TOP EDGE IS WORKING
-      if (this.location.x > b.start.x &&
+    if (this.location.y < b.start.y) {
+      // Circle is above the top edge. TOP EDGE IS WORKING
+      if (
+        this.location.x > b.start.x &&
         this.location.x < b.start.x + b.width &&
-        (b.start.y - this.location.y <= this.size / 2)
+        b.start.y - this.location.y <= this.size / 2
       ) {
         //console.log("Collides!");
         this.velocity.y *= -1;
-        this.location.y = b.start.y - this.size / 2 + 1;
+        this.location.y = b.start.y - this.size / 2 - clearance;
       }
       //BOTTOM EDGE
-    } else if (this.location.y > b.start.y + b.height) { //Circle is below the bottom edge.
-      if (this.location.x >= b.start.x &&
+    } else if (this.location.y > b.start.y + b.height) {
+      //Circle is below the bottom edge.
+      if (
+        this.location.x >= b.start.x &&
         this.location.x <= b.start.x + b.width &&
-        (this.location.y - this.size / 2 <= b.start.y + b.height) ///this.size / 2)
+        this.location.y - this.size / 2 <= b.start.y + b.height ///this.size / 2)
       ) {
         //console.log("Collides!");
         this.velocity.y *= -1;
-        this.location.y = b.start.y + b.height + this.size / 2;
-
+        this.location.y = b.start.y + b.height + this.size / 2 + clearance;
       }
     }
 
     //Top-left corner
-    if (dist(this.location.x, this.location.y, b.start.x, b.start.y) <= this.size / 2) {
+    if (
+      dist(this.location.x, this.location.y, b.start.x, b.start.y) <=
+      this.size / 2
+    ) {
       this.velocity.x = Math.abs(this.velocity.x) * -1;
       this.velocity.y = Math.abs(this.velocity.y) * -1;
       //Top-right corner.
-    } else if (dist(this.location.x, this.location.y, b.start.x + b.width, b.start.y) <= this.size / 2) {
+    } else if (
+      dist(this.location.x, this.location.y, b.start.x + b.width, b.start.y) <=
+      this.size / 2
+    ) {
       this.velocity.x = Math.abs(this.velocity.x);
       this.velocity.y = Math.abs(this.velocity.y) * -1;
       //Bottom-left corner.
-    } else if (dist(this.location.x, this.location.y, b.start.x, b.start.y + b.height) <= this.size / 2) {
+    } else if (
+      dist(this.location.x, this.location.y, b.start.x, b.start.y + b.height) <=
+      this.size / 2
+    ) {
       this.velocity.x = Math.abs(this.velocity.x) * -1;
       this.velocity.y = Math.abs(this.velocity.y);
       //Bottom-right corner.
-    } else if (dist(this.location.x, this.location.y, b.start.x + b.width, b.start.y + b.height) <= this.size / 2) {
+    } else if (
+      dist(
+        this.location.x,
+        this.location.y,
+        b.start.x + b.width,
+        b.start.y + b.height
+      ) <=
+      this.size / 2
+    ) {
       this.velocity.x = Math.abs(this.velocity.x);
       this.velocity.y = Math.abs(this.velocity.y);
     }
     //if the distance from the circle center to each corner is less than the size, reverse the x and wide velocities.
   } //End of collides.
-
-
-
-
-
 
   display(c) {
     noStroke(250, 60, 60, 1);

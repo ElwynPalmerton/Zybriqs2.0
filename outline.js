@@ -1,4 +1,4 @@
-class Outline {
+class Outline {                  //Change name to Block.
   constructor(start, end) {
     //I think that this has to be before the assignments below.
     this.start = start; //Vector.
@@ -7,6 +7,7 @@ class Outline {
     this.width = Math.abs(this.start.x - this.end.x);
     this.height = Math.abs(this.start.y - this.end.y);
 
+    //This is weird, rewrite this:
     if (this.start.x < this.end.x) {
       if (this.start.y < this.end.y) {
         //rect(this.start.x, this.start.y, this.width, this.height);
@@ -43,6 +44,8 @@ class Outline {
 
   display() {
     //refactor to put all of the position stuff into the update function?
+    
+    //Make an if-then which does noFill() during setup and fill during run.
     stroke(150, 240, 150);
     strokeWeight(5);
     noFill();

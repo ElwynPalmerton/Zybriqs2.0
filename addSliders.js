@@ -12,7 +12,9 @@ let liquidSlider = {};
 let liquidC;
 
 //Create 'presets' and pass them into the ColorSlider constructor.
-
+//Add these into an object with name: 'classType.' - probably. Name is the name as passed in.
+//Can these got in the function addSliders()?  --yes, I think so? 
+//Make addSliders so that it can use these defaults or have another color object passed in.
 const bgStartColor = {
   h: 230,
   s: 35,
@@ -69,7 +71,10 @@ function addSliders() {
     }
 
   }
-
+ 
+  //The class slider does not need to be in this function (maybe be imported.)
+  //addSliders can take a big color object to start and then the constructor calls below can be passed
+  //the individuals color properties.
 
 
   bgSlider = new ColorSlider('Background Color', bgStartColor);
@@ -78,7 +83,7 @@ function addSliders() {
 }
 
 function readSliders() {
-
+  //These variables are the ones which are accessed when .display() is called.
   bgC = bgSlider.readSlider();
   ballC = ballSlider.readSlider();
   liquidC = liquidSlider.readSlider();

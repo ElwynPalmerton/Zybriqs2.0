@@ -15,6 +15,7 @@ function makePlayButton() {
       loop();
     } else {
       run = false;
+      //It seems like this is working without the if statement to check "run" but I do use run elsewhere.
       playButton.innerHTML = "Resume";
       noLoop();
     }
