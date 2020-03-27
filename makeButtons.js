@@ -1,6 +1,6 @@
 function makePlayButton() {
   let playButton = document.createElement("Button");
-  playButton.textContent = "Start";
+  playButton.textContent = "Pause";
   document.body.appendChild(playButton);
 
   //If the "Draw Block" button is pressed the listeners for drawing blocks
@@ -17,6 +17,7 @@ function makePlayButton() {
       run = false;
       //It seems like this is working without the if statement to check "run" but I do use run elsewhere.
       playButton.innerHTML = "Resume";
+      drawElementsDuringSetup(); //This function is in the listeners.js file.
       noLoop();
     }
   });
@@ -24,7 +25,21 @@ function makePlayButton() {
 
 
 function makeBlockButton() {
+  let objectType = "Block"
   let drawBlockButton = createButton("Draw Block");
+  drawBlockButton.mousePressed(() => {
+    if (drawButtonOn === false) {
+      drawButtonOn = true;
+      listeners();
+    } else {
+      drawButtonOn = false;
+    }
+  });
+}
+
+function makeDragButton() {
+  let objectType = "Drag";
+  let drawBlockButton = createButton("Drag Area");
   drawBlockButton.mousePressed(() => {
     if (drawButtonOn === false) {
       drawButtonOn = true;

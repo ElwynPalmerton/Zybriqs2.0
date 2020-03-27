@@ -4,6 +4,8 @@
 const balls = [];
 const qty = 3;
 let liquid, reverseLiquid;
+const liquids = [];
+const reverseLiquids = [];
 
 
 //Force variabes;
@@ -20,7 +22,7 @@ const gridUnit = 100;
 
 //New vars from other template - move after intgration.
 var drawButtonOn = false;
-var run = false;
+var run = true;
 var blocks = [];
 
 function setup() {
@@ -37,13 +39,16 @@ function setup() {
   //...or initiated as defaults...
   //...or initiated as defaults automatically and then reset if the user chooses to start over.
   liquid = new Liquid(gridUnit * 2, gridUnit * 2, gridUnit * 1.5, gridUnit * 1.5, dragCoefficient);
+  liquids.push(liquid);
   reverseLiquid = new Liquid(gridUnit * 7, gridUnit * 4, gridUnit * 1.5, gridUnit * 1.5, -dragCoefficient);
+  reverseLiquids.push(reverseLiquid);
 
 
   let brk = document.createElement('br');
   document.body.appendChild(brk);
   makePlayButton();
   makeBlockButton();
+  makeDragButton();
 
   addSliders();
   readSliders();
@@ -110,11 +115,16 @@ function draw() {
 
     //Color is just passed in to reverseLiquid so I can just create another set of sliders.
     //   // SO NICE that I refactored it so that I can do this!!!!
-    liquid.display(liquidC); //Liquid and reverseLiquid should be in the same array. See above?
-    reverseLiquid.display(liquidC);
+
+    liquids.forEach((liquid) => {
+      liquid.display(liquidC); //Liquid and reverseLiquid should be in the same array. See above?
+    })
+    reverseLiquids.forEach((reverseLiquid) => {
+      reverseLiquid.display(reverseLiquidC);
+    })
 
     for (let i = 0; i < blocks.length; i++) {
-      blocks[i].display();
+      blocks[i].display(blockBorderC);
     }
   } //end of if (run) loop.
 } //End of draw loop.

@@ -4,6 +4,7 @@
 
 let bgSlider;
 let bgC;
+let tempBG;
 
 let ballSlider = {};
 let ballC;
@@ -34,6 +35,27 @@ const liquidStartColor = {
   s: 62,
   l: 80,
   a: 0.5
+}
+
+const reverseLiquidStartColor = {
+  h: 194,
+  s: 94,
+  l: 49,
+  a: 0.6
+}
+
+const blockStartColor = {
+  h: 194,
+  s: 94,
+  l: 49,
+  a: 0.6
+}
+
+const blockBorderStartColor = {
+  h: 90,
+  s: 240,
+  l: 120,
+  a: 1
 }
 
 function addSliders() {
@@ -70,8 +92,22 @@ function addSliders() {
       return newC;
     }
 
+    createDimmed() {
+      const dimAmt = 15;
+      let newSaturation = this.saturation.value();
+
+      let newC = color(this.hue.value(),
+        newSaturation - dimAmt,
+        this.lightness.value(),
+        this.alpha.value());
+
+      return newC;
+
+
+    }
+
   }
- 
+
   //The class slider does not need to be in this function (maybe be imported.)
   //addSliders can take a big color object to start and then the constructor calls below can be passed
   //the individuals color properties.
@@ -80,6 +116,9 @@ function addSliders() {
   bgSlider = new ColorSlider('Background Color', bgStartColor);
   ballSlider = new ColorSlider('Ball Color', ballStartColor);
   liquidSlider = new ColorSlider('Liquid Color', liquidStartColor);
+  reverseLiquidSlider = new ColorSlider('Accelerator Color', reverseLiquidStartColor);
+  blockSlider = new ColorSlider('Block Color', blockStartColor);
+  blockBorderSlider = new ColorSlider('Block Border Color', blockBorderStartColor);
 }
 
 function readSliders() {
@@ -87,5 +126,17 @@ function readSliders() {
   bgC = bgSlider.readSlider();
   ballC = ballSlider.readSlider();
   liquidC = liquidSlider.readSlider();
+  reverseLiquidC = reverseLiquidSlider.readSlider();
+  blockC = blockSlider.readSlider();
+  blockBorderC = blockBorderSlider.readSlider();
+
+  //Dimmed Background
+  tempBG = bgSlider.createDimmed();
+  tempBallC = ballSlider.createDimmed();
+  tempLiquidC = liquidSlider.createDimmed();
+  tempReverseLiquidC = reverseLiquidSlider.createDimmed();
+  tempBlockC = blockSlider.createDimmed();
+  tempBlockBorderC = blockBorderSlider.createDimmed();
+
 
 }

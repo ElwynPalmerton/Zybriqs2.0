@@ -1,4 +1,4 @@
-class Outline {                  //Change name to Block.
+class Outline { //Change name to Block.
   constructor(start, end) {
     //I think that this has to be before the assignments below.
     this.start = start; //Vector.
@@ -10,9 +10,12 @@ class Outline {                  //Change name to Block.
     //This is weird, rewrite this:
     if (this.start.x < this.end.x) {
       if (this.start.y < this.end.y) {
+
         //rect(this.start.x, this.start.y, this.width, this.height);
       } else {
-        this.start.x = this.end.x
+        this.start.x = this.start.x
+        //idk?
+        this.start.y = this.end.y
         //rect(this.start.x, this.end.y, this.width, this.height);
       }
     } else {
@@ -42,12 +45,15 @@ class Outline {                  //Change name to Block.
     // if (this.start.y > this.end.y) this.start.y = this.end.y;
   }
 
-  display() {
+  display(c, fColor) {
     //refactor to put all of the position stuff into the update function?
-    
+
     //Make an if-then which does noFill() during setup and fill during run.
-    stroke(150, 240, 150);
+    stroke(c);
     strokeWeight(5);
+
+    //fill(fColor);
+
     noFill();
 
     rect(this.start.x, this.start.y, this.width, this.height);
