@@ -1,5 +1,5 @@
 body {
-  background: black;
+  background: #151522;
   color: white;
 }
 
@@ -15,4 +15,12 @@ p {
 
 input {
   display: block;
+}
+
+.active {
+  background: darkgrey;
+}
+
+.notActive {
+  background: default;
 }

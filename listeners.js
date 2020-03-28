@@ -1,21 +1,27 @@
-function listeners() {
+function listeners() { //listeners gets called from the makeBlockButton and the MakeDragButton
   let startRect, endRect;
   noStroke();
   fill(200);
   let first = false;
+  var isDrawing = false;
+
+
+
 
   function onMouseDown() {
     if (drawButtonOn) {
       isDrawing = true;
       //Maybe I need an if (event.target thingie here);
       startRect = createVector(mouseX, mouseY).copy();
-      console.log("in mouseDown");
-
-
     }
   }
 
+
+  //document.addEventListener("mousedown", onMouseDown);
   document.addEventListener("mousedown", onMouseDown);
+
+
+  //document.addEventListener("mousedown", onMouseDown);
 
   document.addEventListener("mousemove", () => {
     if (isDrawing === true) {
@@ -58,7 +64,10 @@ function listeners() {
 
         if (objectType === "Drag") {
           let newLiquid = new Liquid(startRect, endRect, dragCoefficient);
-          liquids.push(newLiquid);
+
+          if (newLiquid.width > minSize && newLiquid.height > minSize) {
+            liquids.push(newLiquid);
+          }
           //
           console.log('Adding Liquid');
           console.log(liquids);
@@ -71,12 +80,11 @@ function listeners() {
 
       }
     }
-  }); //End event listener.
-}
+  }); //End event listener ('mouseup').
+
+} //End listeners().
 
 function drawElementsDuringSetup() {
-
-  //background(tempBG);
 
   background(tempBG);
 
@@ -91,6 +99,7 @@ function drawElementsDuringSetup() {
   liquids.forEach((liquid) => {
     liquid.display(tempLiquidC); //Liquid and reverseLiquid should be in the same array. See above?
   })
+
   reverseLiquids.forEach((reverseLiquid) => {
     reverseLiquid.display(tempReverseLiquidC);
   })

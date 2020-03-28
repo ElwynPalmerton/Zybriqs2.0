@@ -9,6 +9,7 @@ const reverseLiquids = [];
 let objectType;
 
 
+
 //Force variabes;
 let xOff = 0;
 let friction; //Can this be a variable inside of the mover class???
@@ -20,9 +21,12 @@ const gForce = 0.12;
 const w = 10; //Width of grid in terms of square units.
 const h = 8; //height of grid in terms of square units aka 8 x 10 grid.
 const gridUnit = 100;
+const minSize = 50;
 
 //New vars from other template - move after intgration.
 var drawButtonOn = false;
+var buttons = [];
+
 var run = true;
 var blocks = [];
 
@@ -40,8 +44,8 @@ function setup() {
   //...or initiated as defaults...
   //...or initiated as defaults automatically and then reset if the user chooses to start over.
 
-  let liquidStart = createVector(200, 350);
-  let liquidEnd = createVector(350, 500);
+  let liquidStart = createVector(0, 0);
+  let liquidEnd = createVector(minSize, minSize);
 
   liquid = new Liquid(liquidStart, liquidEnd, dragCoefficient);
   liquids.push(liquid);
@@ -60,6 +64,11 @@ function setup() {
 
   addSliders();
   readSliders();
+
+
+  // $(document).mousedown(() => {
+  //   console.log('jQuery works.');
+  // })
 }
 
 /////PPP/////////
