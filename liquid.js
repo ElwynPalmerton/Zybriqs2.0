@@ -17,7 +17,6 @@ class Liquid {
     //This is weird, rewrite this:
     if (this.start.x < this.end.x) {
       if (this.start.y < this.end.y) {
-
         //rect(this.start.x, this.start.y, this.width, this.height);
       } else {
         this.start.x = this.start.x

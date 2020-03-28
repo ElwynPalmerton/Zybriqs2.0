@@ -61,6 +61,7 @@ function setup() {
   makePlayButton();
   makeBlockButton();
   makeDragButton();
+  makeReverseDragButton();
 
   addSliders();
   readSliders();
@@ -114,11 +115,14 @@ function draw() {
       })
 
 
+
       //Calculate reverse drag
       //if it is in the reverseLiquid. //See above.
-      if (balls[i].isInside(reverseLiquid)) {
-        balls[i].drag(reverseLiquid);
-      };
+      reverseLiquids.forEach(rl => {
+        if (balls[i].isInside(rl)) {
+          balls[i].drag(rl);
+        };
+      });
 
       //Check collides.
       for (let j = 0; j < blocks.length; j++) {

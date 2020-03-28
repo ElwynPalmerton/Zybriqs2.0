@@ -24,3 +24,7 @@ input {
 .notActive {
   background: default;
 }
+
+.paused {
+  background: salmon;
+}

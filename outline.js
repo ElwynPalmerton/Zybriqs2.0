@@ -57,18 +57,6 @@ class Outline { //Change name to Block.
     noFill();
 
     rect(this.start.x, this.start.y, this.width, this.height);
-    // if (this.start.x < this.end.x) {
-    //   if (this.start.y < this.end.y) {
-    //     rect(this.start.x, this.start.y, this.width, this.height);
-    //   } else {
-    //     rect(this.start.x, this.end.y, this.width, this.height);
-    //   }
-    // } else {
-    //   if (this.start.y < this.end.y) {
-    //     rect(this.end.x, this.start.y, this.width, this.height);
-    //   } else {
-    //     rect(this.end.x, this.end.y, this.width, this.height);
-    //   }
-    // }
+
   }
 }

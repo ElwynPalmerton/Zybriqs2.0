@@ -64,25 +64,24 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
 
         if (objectType === "Drag") {
           let newLiquid = new Liquid(startRect, endRect, dragCoefficient);
-
           if (newLiquid.width > minSize && newLiquid.height > minSize) {
             liquids.push(newLiquid);
           }
           //
-          console.log('Adding Liquid');
-          console.log(liquids);
 
         } else if (objectType === "Block") {
-          console.log('Adding Block');
           let block = new Outline(startRect, endRect);
           blocks.push(block);
+        } else if (objectType === "Reverse Drag") {
+          let newAccelerator = new Liquid(startRect, endRect, -dragCoefficient);
+          if (newAccelerator.width > minSize && newAccelerator.height > minSize) {
+            reverseLiquids.push(newAccelerator);
+          }
         }
-
-      }
+      }; //End event listener ('mouseup').
     }
-  }); //End event listener ('mouseup').
-
-} //End listeners().
+  }) //End listeners().
+}
 
 function drawElementsDuringSetup() {
 
