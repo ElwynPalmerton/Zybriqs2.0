@@ -44,4 +44,15 @@ class Liquid {
     fill(c);
     rect(this.start.x, this.start.y, this.width, this.height)
   }
+
+  displayRemoveButton() {
+    console.log('Displaying');
+    const xBoxSize = 15;
+    stroke(150);
+    strokeWeight(2);
+    noFill();
+    rect(this.start.x, this.start.y, xBoxSize, xBoxSize);
+
+  }
+
 } //End liquid.

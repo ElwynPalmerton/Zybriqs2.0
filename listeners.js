@@ -1,12 +1,11 @@
 function listeners() { //listeners gets called from the makeBlockButton and the MakeDragButton
+  drawElementsDuringSetup();
+
   let startRect, endRect;
   noStroke();
   fill(200);
   let first = false;
   var isDrawing = false;
-
-
-
 
   function onMouseDown() {
     if (drawButtonOn) {
@@ -16,10 +15,8 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
     }
   }
 
-
   //document.addEventListener("mousedown", onMouseDown);
   document.addEventListener("mousedown", onMouseDown);
-
 
   //document.addEventListener("mousedown", onMouseDown);
 
@@ -27,9 +24,6 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
     if (isDrawing === true) {
       endRect = createVector(mouseX, mouseY);
       //Pass in the background color variable here.
-
-      //Make a separate function which displays everything to encapsulate this.
-      //Draw the balls and liquids here.
 
       drawElementsDuringSetup();
 
@@ -59,7 +53,6 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
       //Make a minimum size for rectangles using an if-then statement here (and a pop-up?)
       //Instead of "Outline" the class type should be a varible which is passed in from listeners.
 
-
       if (run === false) { //Only lets it add blocks when the program is paused.
 
         if (objectType === "Drag") {
@@ -83,7 +76,9 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
   }) //End listeners().
 }
 
+
 function drawElementsDuringSetup() {
+
 
   background(tempBG);
 
@@ -97,6 +92,7 @@ function drawElementsDuringSetup() {
 
   liquids.forEach((liquid) => {
     liquid.display(tempLiquidC); //Liquid and reverseLiquid should be in the same array. See above?
+    //liquid.displayRemoveButton();
   })
 
   reverseLiquids.forEach((reverseLiquid) => {

@@ -1,5 +1,5 @@
 body {
-  background: #151522;
+  background: #222225;
   color: white;
 }
 
@@ -27,4 +27,13 @@ input {
 
 .paused {
   background: salmon;
+}
+
+canvas {
+  position: relative;
+
+}
+
+button {
+  z-index: 2;
 }

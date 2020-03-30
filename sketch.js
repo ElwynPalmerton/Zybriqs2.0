@@ -18,13 +18,16 @@ const dragCoefficient = 0.01;
 const gForce = 0.12;
 
 //Grid parameters   --------  I need to re-think it this is how I want this to work.
+var cnv;
 const w = 10; //Width of grid in terms of square units.
 const h = 8; //height of grid in terms of square units aka 8 x 10 grid.
 const gridUnit = 100;
 const minSize = 50;
 
+
 //New vars from other template - move after intgration.
 var drawButtonOn = false;
+var removeButtonOn = false;
 var buttons = [];
 
 var run = true;
@@ -32,7 +35,7 @@ var blocks = [];
 
 function setup() {
   colorMode(HSB);
-  createCanvas(1000, 800);
+  cnv = createCanvas(1000, 800);
 
   //Create all of the balls.
   for (let i = 0; i < qty; i++) {
@@ -56,12 +59,14 @@ function setup() {
   reverseLiquids.push(reverseLiquid);
 
 
-  let brk = document.createElement('br');
+  let brk = document.createElement('br'); //These two line can just go in the HTML.
   document.body.appendChild(brk);
+  //Put the addButtons functions in a separate function.
   makePlayButton();
   makeBlockButton();
   makeDragButton();
   makeReverseDragButton();
+  makeRemoveButton();
 
   addSliders();
   readSliders();

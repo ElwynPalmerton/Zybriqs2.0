@@ -1,7 +1,7 @@
 class Mover {
   constructor(x, y, c) {
     this.location = createVector(x, y);
-    this.velocity = createVector(0, 0); //p5.Vector.random2D().mult(3);
+    this.velocity = createVector(0, 0);
     this.size = 50;
     this.acceleration = createVector(0, 0);
     this.acceleration.mult(0.02); //This isn't doing anything is it? Just take it out?
