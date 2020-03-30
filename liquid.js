@@ -34,9 +34,9 @@ class Liquid {
         //rect(this.end.x, this.end.y, this.width, this.height);
       }
     }
-
-
   } //End constructor
+
+
 
 
   display(c) {
@@ -45,12 +45,21 @@ class Liquid {
     rect(this.start.x, this.start.y, this.width, this.height)
   }
 
+  displayNumber(number) {
+    textSize(16);
+    fill(20);
+    var insetX = 10;
+    var insetY = 20;
+    text(number, this.start.x + insetX, this.start.y + insetY);
+  }
+
   displayRemoveButton() {
     console.log('Displaying');
     const xBoxSize = 15;
     stroke(150);
     strokeWeight(2);
     noFill();
+
     rect(this.start.x, this.start.y, xBoxSize, xBoxSize);
 
   }

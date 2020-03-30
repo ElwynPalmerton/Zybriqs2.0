@@ -1,5 +1,6 @@
 function listeners() { //listeners gets called from the makeBlockButton and the MakeDragButton
   drawElementsDuringSetup();
+  //showNumbers();
 
   let startRect, endRect;
   noStroke();

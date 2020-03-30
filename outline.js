@@ -47,16 +47,26 @@ class Outline { //Change name to Block.
 
   display(c, fColor) {
     //refactor to put all of the position stuff into the update function?
-
     //Make an if-then which does noFill() during setup and fill during run.
     stroke(c);
     strokeWeight(5);
-
     //fill(fColor);
-
     noFill();
-
     rect(this.start.x, this.start.y, this.width, this.height);
+  }
+
+  displayNumber(number) {
+    textSize(16);
+    text(number, this.start.x, this.start.y);
+  }
+
+  displayRemoveButton() {
+    console.log('Displaying');
+    const xBoxSize = 15;
+    stroke(150);
+    strokeWeight(2);
+    noFill();
+    rect(this.start.x, this.start.y, xBoxSize, xBoxSize);
 
   }
 }

@@ -200,4 +200,10 @@ class Mover {
     fill(c);
     ellipse(this.location.x, this.location.y, this.size, this.size);
   }
+
+  displayNumber(number) {
+    textSize(16);
+    var inset = 5;
+    text(number, this.location.x - inset, this.location.y - inset);
+  }
 }

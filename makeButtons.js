@@ -1,3 +1,16 @@
+function makeButtons() {
+  makePlayButton();
+  makeBlockButton();
+  makeDragButton();
+  makeReverseDragButton();
+  makeRemoveButton();
+  makeAddBallsButton();
+  makeRemoveBallsButton();
+  makeResetButtons();
+  makeNumbersButtons();
+}
+
+
 function makePlayButton() {
   let playButton = document.createElement("Button");
   playButton.textContent = "Pause";
@@ -27,6 +40,7 @@ function makePlayButton() {
       playButton.className = "paused";
       //createRemoveButtons();
       drawElementsDuringSetup(); //This function is in the listeners.js file.
+
       noLoop();
     }
   });
@@ -61,11 +75,11 @@ function makeDragButton() {
 function makeReverseDragButton() {
   let drawReverseDragButton = createButton("Draw Accelerator");
   buttons.push(drawReverseDragButton.elt);
-  drawReverseDragButton.mouseClicked(() => { //Clear function
-    buttons.forEach(b => (b.className = "notActive")); //Clear function
+  drawReverseDragButton.mouseClicked(() => {
+    //buttons.forEach(b => (b.className = "notActive")); //Clear function
     drawReverseDragButton.elt.className = "active";
     drawButtonOn = true;
-    removeButtonOn = false; //Clear function.
+    //removeButtonOn = false; //Clear function.
     objectType = "Reverse Drag";
     listeners();
   });
@@ -83,6 +97,69 @@ function makeRemoveButton() {
     //I don't need this line for this function: objectType = "Reverse Drag";
     showRemoveButtons();
   });
+}
+
+function makeAddBallsButton() {
+  let addBallsButton = createButton("Add Ball");
+  buttons.push(addBallsButton.elt);
+  resetButtons();
+  addBallsButton.mouseClicked(() => {
+    addBallsButton.elt.className = "active";
+    addBalls();
+    drawElementsDuringSetup();
+    //I don't need this line for this function: objectType = "Reverse Drag";
+  });
+}
+
+function makeRemoveBallsButton() {
+  let removeBallsButton = createButton("Remove Ball");
+  buttons.push(removeBallsButton.elt);
+  resetButtons();
+  removeBallsButton.mouseClicked(() => {
+    removeBallsButton.elt.className = "active";
+    if (qty >= 1) {
+      removeBalls();
+    } else {
+      console.log('There are no balls to remove.');
+    }
+    //I don't need this line for this function: objectType = "Reverse Drag";
+  });
+}
+
+
+function makeResetButtons() {
+  let resetButton = createButton("Reset");
+  buttons.push(resetButton.elt);
+  resetButtons();
+  resetButton.mouseClicked(() => {
+    resetButton.elt.className = "active";
+    blocks.splice(0);
+    liquids.splice(0);
+    reverseLiquids.splice(0);
+    balls.splice(0);
+    qty = 0;
+    listeners();
+    //I don't need this line for this function: objectType = "Reverse Drag";
+  });
+}
+
+
+function makeNumbersButtons() {
+  let numbersButton = createButton("Show Numbers");
+  buttons.push(numbersButton.elt);
+  resetButtons();
+  numbersButton.mouseClicked(() => {
+    numbersButton.elt.className = "active";
+    showNumbers();
+    //I don't need this line for this function: objectType = "Reverse Drag";
+  });
+}
+
+
+function resetButtons() { //Change name to clearButtons();
+  drawButtonOn = false; //Clear function.
+  removeButtonOn = false; //Clear function.
+  buttons.forEach(b => (b.className = "notActive")); //Clear function
 }
 
 //Make an "addAllButtons" function so that these don't all need to be referenced in setup();

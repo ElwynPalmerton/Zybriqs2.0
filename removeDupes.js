@@ -15,14 +15,17 @@
 
 function showRemoveButtons() {
   drawElementsDuringSetup();
-
   liquids.forEach((liquid) => {
     liquid.displayRemoveButton(); //Liquid and reverseLiquid should be in the same array. See above?
-    //liquid.displayRemoveButton();
+  })
+  //liquid.displayRemoveButton();
+  reverseLiquids.forEach((r) => {
+    r.displayRemoveButton();
   })
 
-
-
+  blocks.forEach((r) => {
+    r.displayRemoveButton();
+  })
 }
 
 function mouseClicked() {
@@ -31,17 +34,24 @@ function mouseClicked() {
   let y = mouseY;
   if (removeButtonOn) {
     //Check all objects:
-    for (let i = 0; i < liquids.length; i++) {
-      let l = liquids[i];
-      if (x > l.start.x &&
-        x < l.start.x + 15 &&
-        y > l.start.y &&
-        y < l.start.y + 15) {
 
-        liquids.splice(i, 1);
-        showRemoveButtons();
+    function removeObjects(objArray) {
+      for (let i = 0; i < objArray.length; i++) {
+        let l = objArray[i];
+        if (x > l.start.x &&
+          x < l.start.x + 15 &&
+          y > l.start.y &&
+          y < l.start.y + 15) {
 
+          objArray.splice(i, 1);
+          showRemoveButtons();
+
+        }
       }
     }
+
+    removeObjects(liquids)
+    removeObjects(reverseLiquids);
+    removeObjects(blocks);
   }
 }

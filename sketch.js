@@ -2,10 +2,11 @@
 
 //Objects: Balls, liquids/reverseLiquid     //Add Blocks.
 const balls = [];
-const qty = 3;
+var qty = 3;
 let liquid, reverseLiquid;
 const liquids = [];
 const reverseLiquids = [];
+var blocks = [];
 let objectType;
 
 
@@ -31,7 +32,7 @@ var removeButtonOn = false;
 var buttons = [];
 
 var run = true;
-var blocks = [];
+
 
 function setup() {
   colorMode(HSB);
@@ -47,8 +48,8 @@ function setup() {
   //...or initiated as defaults...
   //...or initiated as defaults automatically and then reset if the user chooses to start over.
 
-  let liquidStart = createVector(0, 0);
-  let liquidEnd = createVector(minSize, minSize);
+  let liquidStart = createVector(250, 250);
+  let liquidEnd = createVector(400, 400);
 
   liquid = new Liquid(liquidStart, liquidEnd, dragCoefficient);
   liquids.push(liquid);
@@ -61,13 +62,8 @@ function setup() {
 
   let brk = document.createElement('br'); //These two line can just go in the HTML.
   document.body.appendChild(brk);
-  //Put the addButtons functions in a separate function.
-  makePlayButton();
-  makeBlockButton();
-  makeDragButton();
-  makeReverseDragButton();
-  makeRemoveButton();
 
+  makeButtons();
   addSliders();
   readSliders();
 
