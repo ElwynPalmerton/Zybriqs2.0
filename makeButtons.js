@@ -14,7 +14,10 @@ function makeButtons() {
 function makePlayButton() {
   let playButton = document.createElement("Button");
   playButton.textContent = "Pause";
-  document.body.appendChild(playButton);
+
+  let buttonContainer = document.getElementById('buttonContainer');
+  buttonContainer.appendChild(playButton);
+
 
   //If the "Draw Block" button is pressed the listeners for drawing blocks
   // (And adding newly created Outline objects to the blocks array) is activated.
@@ -48,6 +51,7 @@ function makePlayButton() {
 
 function makeBlockButton() {
   let drawBlockButton = createButton("Draw Block");
+  buttonContainer.appendChild(drawBlockButton.elt);
   buttons.push(drawBlockButton.elt);
   drawBlockButton.mouseClicked(() => {
     buttons.forEach(b => (b.className = "notActive"));
@@ -60,7 +64,8 @@ function makeBlockButton() {
 }
 
 function makeDragButton() {
-  let drawDragButton = createButton("Drag Area");
+  let drawDragButton = createButton("drawDragButton");
+  buttonContainer.appendChild(drawDragButton.elt);
   buttons.push(drawDragButton.elt);
   drawDragButton.mouseClicked(() => {
     buttons.forEach(b => (b.className = "notActive"));
@@ -74,6 +79,7 @@ function makeDragButton() {
 
 function makeReverseDragButton() {
   let drawReverseDragButton = createButton("Draw Accelerator");
+  buttonContainer.appendChild(drawReverseDragButton.elt);
   buttons.push(drawReverseDragButton.elt);
   drawReverseDragButton.mouseClicked(() => {
     //buttons.forEach(b => (b.className = "notActive")); //Clear function
@@ -87,6 +93,7 @@ function makeReverseDragButton() {
 
 function makeRemoveButton() {
   let removeButton = createButton("Remove elements");
+  buttonContainer.appendChild(removeButton.elt);
   buttons.push(removeButton.elt);
   removeButton.mouseClicked(() => {
     buttons.forEach(b => (b.className = "notActive"));
@@ -101,6 +108,7 @@ function makeRemoveButton() {
 
 function makeAddBallsButton() {
   let addBallsButton = createButton("Add Ball");
+  buttonContainer.appendChild(addBallsButton.elt);
   buttons.push(addBallsButton.elt);
   resetButtons();
   addBallsButton.mouseClicked(() => {
@@ -113,6 +121,7 @@ function makeAddBallsButton() {
 
 function makeRemoveBallsButton() {
   let removeBallsButton = createButton("Remove Ball");
+  buttonContainer.appendChild(removeBallsButton.elt);
   buttons.push(removeBallsButton.elt);
   resetButtons();
   removeBallsButton.mouseClicked(() => {
@@ -129,6 +138,7 @@ function makeRemoveBallsButton() {
 
 function makeResetButtons() {
   let resetButton = createButton("Reset");
+  buttonContainer.appendChild(resetButton.elt);
   buttons.push(resetButton.elt);
   resetButtons();
   resetButton.mouseClicked(() => {
@@ -146,6 +156,7 @@ function makeResetButtons() {
 
 function makeNumbersButtons() {
   let numbersButton = createButton("Show Numbers");
+  buttonContainer.appendChild(numbersButton.elt);
   buttons.push(numbersButton.elt);
   resetButtons();
   numbersButton.mouseClicked(() => {

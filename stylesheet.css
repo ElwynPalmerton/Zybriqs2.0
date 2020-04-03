@@ -35,5 +35,11 @@ canvas {
 }
 
 button {
-  z-index: 2;
+  /* z-index: 2; */
+  margin-top: 10px;
+}
+
+#canvasContainer {
+  border-bottom: 20px;
+  border-top: 20px;
 }

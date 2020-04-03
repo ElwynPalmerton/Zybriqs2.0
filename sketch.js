@@ -1,4 +1,4 @@
-//Zone Moment by Elwyn Palmerton
+//Zibbriqs by Elwyn Palmerton
 
 //Objects: Balls, liquids/reverseLiquid     //Add Blocks.
 const balls = [];
@@ -35,8 +35,13 @@ var run = true;
 
 
 function setup() {
+
+  //setup canvas.
   colorMode(HSB);
   cnv = createCanvas(1000, 800);
+  let container = document.getElementById('canvasContainer');
+  container.appendChild(cnv.elt);
+
 
   //Create all of the balls.
   for (let i = 0; i < qty; i++) {
@@ -64,8 +69,17 @@ function setup() {
   document.body.appendChild(brk);
 
   makeButtons();
+
+
   addSliders();
   readSliders();
+
+  addColorSliders();
+  readColorSliders();
+  // readColorSliders();
+
+
+
 
 
   // $(document).mousedown(() => {
@@ -86,12 +100,23 @@ function keyPressed() {
   }
 }
 
+
+
+// let selectionObject = document.getElementsByClassName('objSel')
+// console.log(selectionObject);
+// selectionObject.addEventListener('change', () => {
+//   console.log('Changed!');
+//   ballSlidersArray.updateSelection();
+// });
+
 function draw() {
   if (run) {
     background(bgC);
 
     if (mouseIsPressed) { //Use eventListeners and e.preventDefault();
+
       readSliders();
+      readColorSliders();
     }
 
     for (let i = 0; i < qty; i++) { //Try implementing this with a for-of loop.
@@ -135,7 +160,7 @@ function draw() {
       balls[i].checkEdges(width, height);
 
       //Display the balls, liquid, and reverseLiquid.
-      balls[i].display(ballC); //Create an array of ballCols and pass in ballCols[x[.]
+      balls[i].display(ballColorsArray[i]); //Create an array of ballCols and pass in ballCols[x[.]
 
 
     } //End for loop.
