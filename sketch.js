@@ -75,7 +75,7 @@ function setup() {
   readSliders();
 
   addColorSliders();
-  readColorSliders();
+  readAllSliders();
   // readColorSliders();
 
 
@@ -116,7 +116,7 @@ function draw() {
     if (mouseIsPressed) { //Use eventListeners and e.preventDefault();
 
       readSliders();
-      readColorSliders();
+      readAllSliders();
     }
 
     for (let i = 0; i < qty; i++) { //Try implementing this with a for-of loop.

@@ -52,12 +52,6 @@ function colorSliders(name, initialValues, quantity) {
 
   let optionAll = document.createElement("option");
 
-
-  let blankOption = document.createElement("option");
-  blankOption.value = "-";
-  blankOption.textContent = "-";
-  selections.appendChild(blankOption);
-
   let allOption = document.createElement("option");
   allOption.value = "All";
   allOption.textContent = "All";
@@ -115,7 +109,6 @@ function colorSliders(name, initialValues, quantity) {
   a.type = "range";
   a.min = "0";
   a.max = "1";
-  a.step = "0.01"
   a.value = initialValues.a;
   a.classList.add("slider");
   a.setAttribute("id", "aSlider");
@@ -128,7 +121,7 @@ function colorSliders(name, initialValues, quantity) {
   slideContainer.appendChild(a);
 
   sliderDiv.appendChild(slideContainer);
-  console.log(sliderDiv);
+
   return sliderDiv;
 } //End of ColorSliders.
 
@@ -208,104 +201,8 @@ function readSelector() {
 }
 
 
-function readColorSliders(selection, hslaArray, colorArray) {
-  //Needs the hsla array and the color array as arguments.
-  selection.addEventListener("change", () => {
-    // if (selection.value === "All") {
-    //   console.log("All:", selection.value);
-    //   modifySliders(initBallColors[0]);
-    //   let hSlider = document.getElementById("hSlider");
-    //   hSlider.addEventListener("input", () => {
-    //     initBallColors[0].h = hSlider.value;
-    //     let c = initBallColors[0];
-    //     newColor = color(c.h, c.s, c.l, c.a);
+function readColorSliders() {
 
-    //     // ballColorsArray[0] = newColor;
-    //     console.log(ballColorsArray);
-
-    //   });
-
-    //   let sSlider = document.getElementById("sSlider");
-    //   sSlider.addEventListener("input", () => {
-    //     initBallColors[selection.value].s = sSlider.value;
-    //     let c = initBallColors[0];
-    //     newColor = color(c.h, c.s, c.l, c.a);
-    //     // ballColorsArray[0] = newColor;
-
-    //   });
-
-    //   let lSlider = document.getElementById("lSlider");
-    //   lSlider.addEventListener("input", () => {
-    //     initBallColors[0].l = lSlider.value;
-    //     let c = initBallColors[0];
-    //     newColor = color(c.h, c.s, c.l, c.a);
-    //     // ballColorsArray[0] = newColor;
-
-    //   });
-
-    //   let aSlider = document.getElementById("aSlider");
-    //   aSlider.addEventListener("input", () => {
-    //     initBallColors[0].a = aSlider.value;
-    //     let c = initBallColors[0];
-    //     //I need to google the options for <input> sliders to set the increment
-    //     //to something smaller than one (1). But setting min/max to 0-100 and dividing by 100
-    //     //is a quick and dirty way to accomplish this.
-    //     newColor = color(c.h, c.s, c.l, c.a / 100);
-    //     // ballColorsArray[0] = newColor;
-
-    //   });
-
-    //I need to do this as below also.
-    // } else {
-
-    //Consolidate this into one function and run four times.
-
-    modifySliders(initBallColors[selection.value]);
-    //Put the passed in selector into the get elementsById argument.
-    let hSlider = document.getElementById("hSlider");
-    hSlider.addEventListener("input", () => {
-      initBallColors[selection.value].h = hSlider.value;
-      let c = initBallColors[selection.value];
-      newColor = color(c.h, c.s, c.l, c.a);
-      ballColorsArray[selection.value] = newColor;
-    });
-
-    let sSlider = document.getElementById("sSlider");
-    sSlider.addEventListener("input", () => {
-      initBallColors[selection.value].s = sSlider.value;
-      let c = initBallColors[selection.value];
-      newColor = color(c.h, c.s, c.l, c.a);
-      ballColorsArray[selection.value] = newColor;
-    });
-
-    let lSlider = document.getElementById("lSlider");
-    lSlider.addEventListener("input", () => {
-      initBallColors[selection.value].l = lSlider.value;
-      let c = initBallColors[selection.value];
-      newColor = color(c.h, c.s, c.l, c.a);
-      ballColorsArray[selection.value] = newColor;
-    });
-
-    let aSlider = document.getElementById("aSlider");
-    aSlider.addEventListener("input", () => {
-      initBallColors[selection.value].a = aSlider.value;
-      let c = initBallColors[selection.value];
-
-      let aNum = parseFloat(c.a);
-      //I don't know why c.a is returning a string right here.
-      //Maybe something to do with how I'm using step.
-      //But using parseFloat seems like
-      //an acceptable work-around for now.
-      newColor = color(c.h, c.s, c.l, aNum);
-      ballColorsArray[selection.value] = newColor;
-
-    });
-
-    //initBallColors[selection.value].h = hSlider.value;
-    //console.log(initBallColors[selection.value].h);
-    //currrentSelection = selection.value;
-    // }
-  });
 
 }
 
@@ -315,11 +212,29 @@ function readAllSliders() {
   //The sliders do not incorporate any p5 functionality or use HSLA color. They only select values.
   //These values are used to assign values to the ballColorsArrray.
 
-  let sel = document.getElementById("BallSelect"); //!!!!!!!!!!!!!!!!
-  readColorSliders(sel, initBallColors, ballColorsArray);
+  let selection = document.getElementById("BallSelect"); //!!!!!!!!!!!!!!!!
+  selection.addEventListener("change", () => {
+    console.log(selection.value);
+    if (selection.value === "All") {
+      modifySliders(initBallColors[0]);
 
+      //I need to do this as below also.
+    } else {
+      modifySliders(initBallColors[selection.value]);
+      let hSlider = document.getElementById("hSlider");
+      hSlider.addEventListener("change", () => {
+        initBallColors[selection.value].h = hSlider.value;
+        let c = initBallColors[selection.value];
+        newColor = color(c.h, c.s, c.l, c.a);
+        ballColorsArray[selection.value] = newColor;
+      });
 
+      initBallColors[selection.value].h = hSlider.value;
+      console.log(initBallColors[selection.value].h);
+      //currrentSelection = selection.value;
+    }
+  });
   // modifySliders(initBallColors[0]);
-  //let itemNumber = document.getElementById("BallSelect");
-  //console.log("objectNumber", sel.value);
+  let itemNumber = document.getElementById("BallSelect");
+  console.log("objectNumber", selection.value);
 }

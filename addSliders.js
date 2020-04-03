@@ -96,7 +96,10 @@ function addSliders() {
 
       let sliderContainer1 = document.getElementById('sliderContainer1');
       cDiv.classList.add('sliderGroup');
-      sliderContainer1.appendChild(cDiv); //Create a specific div in the html to append this to?
+      //
+      //sliderContainer1.appendChild(cDiv); //Create a specific div in the html to append this to?
+      //
+
 
       //Move this into a separate method.
       //return the div so that I can control when/where it is displayed in a separate function?  (Probably...?)
