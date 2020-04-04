@@ -59,12 +59,14 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
         if (objectType === "Drag") {
           let newLiquid = new Liquid(startRect, endRect, dragCoefficient);
           if (newLiquid.width > minSize && newLiquid.height > minSize) {
+            addDragBox();
             liquids.push(newLiquid);
           }
           //
 
         } else if (objectType === "Block") {
           let block = new Outline(startRect, endRect);
+          addBlock();
           blocks.push(block);
         } else if (objectType === "Reverse Drag") {
           let newAccelerator = new Liquid(startRect, endRect, -dragCoefficient);

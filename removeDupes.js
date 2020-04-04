@@ -44,14 +44,40 @@ function mouseClicked() {
           y < l.start.y + 15) {
 
           objArray.splice(i, 1);
+          if (objArray === liquids) {
+            removeDragBox();
+          }
+          if (objArray === blocks) {
+            removeBlocks();
+          }
           showRemoveButtons();
 
         }
       }
     }
 
-    removeObjects(liquids)
+    removeObjects(liquids);
     removeObjects(reverseLiquids);
     removeObjects(blocks);
   }
+}
+
+
+
+
+function removeDragBox() {
+
+  initDragColors.pop();
+  dragColorsArray.pop();
+  dragSelection = document.getElementById("DragSelect");
+  dragSelection.removeChild(dragSelection.lastChild);
+}
+
+
+function removeBlocks() {
+
+  initBlockColors.pop();
+  blockColorsArray.pop();
+  blockSelection = document.getElementById("BlockSelect");
+  blockSelection.removeChild(blockSelection.lastChild);
 }

@@ -189,6 +189,7 @@ function clearDuplicates() {
       liquids[i].start.y === liquids[i - 1].start.y
     ) {
       liquids.splice(i, 1);
+      removeDragBox();
     }
   }
 
@@ -207,6 +208,7 @@ function clearDuplicates() {
       blocks[i].start.y === blocks[i - 1].start.y
     ) {
       blocks.splice(i, 1);
+      removeBlocks();
     }
   }
 } //End of clearDuplicates();

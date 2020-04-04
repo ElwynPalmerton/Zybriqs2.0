@@ -55,7 +55,6 @@ function setup() {
 
   let liquidStart = createVector(250, 250);
   let liquidEnd = createVector(400, 400);
-
   liquid = new Liquid(liquidStart, liquidEnd, dragCoefficient);
   liquids.push(liquid);
 
@@ -63,6 +62,10 @@ function setup() {
   let reverseLiquidEnd = createVector(850, 550);
   reverseLiquid = new Liquid(reverseLiquidStart, reverseLiquidEnd, -dragCoefficient);
   reverseLiquids.push(reverseLiquid);
+
+
+  // let blockStart = createVector(100, 600);
+  // let blockEnd = createVector(200, 600);
 
 
   let brk = document.createElement('br'); //These two line can just go in the HTML.
@@ -168,15 +171,15 @@ function draw() {
     //Color is just passed in to reverseLiquid so I can just create another set of sliders.
     //   // SO NICE that I refactored it so that I can do this!!!!
 
-    liquids.forEach((liquid) => {
-      liquid.display(liquidC); //Liquid and reverseLiquid should be in the same array. See above?
+    liquids.forEach((liquid, i) => {
+      liquid.display(dragColorsArray[i]); //Liquid and reverseLiquid should be in the same array. See above?
     })
     reverseLiquids.forEach((reverseLiquid) => {
       reverseLiquid.display(reverseLiquidC);
     })
 
     for (let i = 0; i < blocks.length; i++) {
-      blocks[i].display(blockBorderC);
+      blocks[i].display(blockColorsArray[i]);
     }
   } //end of if (run) loop.
 } //End of draw loop.
