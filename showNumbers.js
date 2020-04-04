@@ -1,18 +1,18 @@
 function showNumbers() {
   //drawElementsDuringSetup();
   liquids.forEach((l, i) => {
-    l.displayNumber(i + 1); //Liquid and reverseLiquid should be in the same array. See above?
+    l.displayNumber(i); //Liquid and reverseLiquid should be in the same array. See above?
   })
   //liquid.displayRemoveButton();
   reverseLiquids.forEach((r, i) => {
-    r.displayNumber(i + 1);
+    r.displayNumber(i);
   })
 
   blocks.forEach((b, i) => {
-    b.displayNumber(i + 1);
+    b.displayNumber(i);
   });
 
   balls.forEach((b, i) => {
-    b.displayNumber(i + 1);
+    b.displayNumber(i);
   })
 }

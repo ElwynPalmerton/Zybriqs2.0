@@ -65,15 +65,12 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
           //
 
         } else if (objectType === "Block") {
-
-          //Block needs to have minimum size.
-          addBlock();
           let block = new Outline(startRect, endRect);
+          addBlock();
           blocks.push(block);
         } else if (objectType === "Reverse Drag") {
           let newAccelerator = new Liquid(startRect, endRect, -dragCoefficient);
           if (newAccelerator.width > minSize && newAccelerator.height > minSize) {
-            addAccelBox();
             reverseLiquids.push(newAccelerator);
           }
         }

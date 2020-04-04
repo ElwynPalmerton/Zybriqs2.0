@@ -1,12 +1,11 @@
 class Liquid {
 
   constructor(start, end, c) {
-    //Liquid constructor is called from setup or from listeners.
-    //Make a default hsla color object. Set this equal to a default value.
-    //Create a p5 color object.
-    //Use the p5 color object in display.
-    //Call the constructor with a value from the initDragColors array.
- 
+    //If I calculate vectors for all four corners I can refactor .collides???
+    // this.x = x;
+    // this.y = y;
+    // this.w = w;
+    // this.h = h;
     this.c = c || 0.3;
 
     this.start = start; //Vector.
