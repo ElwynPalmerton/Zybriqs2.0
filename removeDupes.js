@@ -50,6 +50,9 @@ function mouseClicked() {
           if (objArray === blocks) {
             removeBlocks();
           }
+          if (objArray === reverseLiquids) {
+            removeAccelBox();
+          }
           showRemoveButtons();
 
         }
@@ -73,6 +76,14 @@ function removeDragBox() {
   dragSelection.removeChild(dragSelection.lastChild);
 }
 
+
+function removeAccelBox() {
+
+  initAccelColors.pop();
+  accelColorsArray.pop();
+  accelSelection = document.getElementById("AcceleratorSelect");
+  accelSelection.removeChild(accelSelection.lastChild);
+}
 
 function removeBlocks() {
 

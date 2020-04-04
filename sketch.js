@@ -174,8 +174,8 @@ function draw() {
     liquids.forEach((liquid, i) => {
       liquid.display(dragColorsArray[i]); //Liquid and reverseLiquid should be in the same array. See above?
     })
-    reverseLiquids.forEach((reverseLiquid) => {
-      reverseLiquid.display(reverseLiquidC);
+    reverseLiquids.forEach((reverseLiquid, i) => {
+      reverseLiquid.display(accelColorsArray[i]);
     })
 
     for (let i = 0; i < blocks.length; i++) {

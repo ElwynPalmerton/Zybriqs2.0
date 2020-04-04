@@ -94,10 +94,10 @@ function addSliders() {
       cDiv.appendChild(this.lightness.elt);
       cDiv.appendChild(this.alpha.elt);
 
-      let sliderContainer1 = document.getElementById('sliderContainer1');
+      let sliderContainer1 = document.getElementById('sliderContainer5');
       cDiv.classList.add('sliderGroup');
       //
-      //sliderContainer1.appendChild(cDiv); //Create a specific div in the html to append this to?
+      sliderContainer1.appendChild(cDiv); //Create a specific div in the html to append this to?
       //
 
 
@@ -159,6 +159,7 @@ function readSliders() {
   //ballColors = ballSlider.readSliderArray();
 
   //Dimmed Background
+  //drawElementsDuringSetup is at the bottom of listeners();
   tempBG = bgSlider.createDimmed();
   tempBallC = ballSlider.createDimmed();
   tempLiquidC = liquidSlider.createDimmed();

@@ -32,16 +32,17 @@ function colorSliders(name, initialValues, quantity) {
   blankOption.textContent = "-";
   selections.appendChild(blankOption);
 
-  let allOption = document.createElement("option");
-  allOption.value = "All";
-  allOption.textContent = "All";
+  // let allOption = document.createElement("option");
+  // allOption.value = "All";
+  // allOption.textContent = "All";
 
-  selections.appendChild(allOption);
+  // selections.appendChild(allOption);
+
 
   for (let i = 0; i < quantity; i++) {
     let option = document.createElement("option");
     option.value = i;
-    option.textContent = i;
+    option.textContent = i + 1;
     selections.appendChild(option);
   }
 
@@ -106,7 +107,7 @@ function colorSliders(name, initialValues, quantity) {
 
   sliderDiv.appendChild(slideContainer);
 
-  console.log(sliderDiv);
+
   return sliderDiv;
 } //End of ColorSliders.
 

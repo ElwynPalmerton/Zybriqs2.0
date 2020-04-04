@@ -199,6 +199,7 @@ function clearDuplicates() {
       reverseLiquids[i].start.y === reverseLiquids[i - 1].start.y
     ) {
       reverseLiquids.splice(i, 1);
+      removeAccelBox();
     }
   }
 
