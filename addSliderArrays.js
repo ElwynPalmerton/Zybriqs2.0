@@ -81,10 +81,10 @@
     //How do I select an element which is inside another element.
     //Also, I can put the colorSliders function in a different file since it is a freestanding function.
     //How do I change the value when the Option is selcted.
-    let hSlider = document.getElementsByClassName(".BallDiv .hSlider");
-    let sSlider = document.getElementsByClassName(".BallDiv .sSlider");
-    let lSlider = document.getElementsByClassName(".BallDiv .lSlider");
-    let aSlider = document.getElementsByClassName(".BallDiv .aSlider");
+    let hSlider = document.getElementsByClassName(".BallSliders .hSlider");
+    let sSlider = document.getElementsByClassName(".BallSliders .sSlider");
+    let lSlider = document.getElementsByClassName(".BallSliders .lSlider");
+    let aSlider = document.getElementsByClassName(".BallSliders .aSlider");
 
     hSlider.value = newColor.h;
     sSlider.value = newColor.s;

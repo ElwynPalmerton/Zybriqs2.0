@@ -6,21 +6,22 @@ function addBalls() {
     a: 0.5
   };
 
-  let ball = new Mover(random(width), height / 5);
+  let ball = new Mover(random(width), height / 5, defaultBallColor);
+  console.log(ball);
   balls.push(ball);
   qty++;
 
   //Modify the initialBallColor;
-  initBallColors[initBallColors.length] = initBallColors[initBallColors.length - 1] || defaultBallColor;
-  let d = defaultBallColor;
-  let dColor = color(d.h, d.s, d.l, d.a);
-  ballColorsArray[ballColorsArray.length] = ballColorsArray[ballColorsArray.length - 1]; // || dColor;
+  // initBallColors[initBallColors.length] = initBallColors[initBallColors.length - 1] || defaultBallColor;
+  // let d = defaultBallColor;
+  // let dColor = color(d.h, d.s, d.l, d.a);
+  // ballColorsArray[ballColorsArray.length] = ballColorsArray[ballColorsArray.length - 1]; // || dColor;
 
   //Add the option.
   //This needs to be generalized into another function to apply to other objects.
 
   ballSelect = document.getElementById("BallSelect");
-  let newBallNumber = ballColorsArray.length - 1;
+  let newBallNumber = balls.length - 1;
   addOption(ballSelect, newBallNumber);
 }
 
@@ -28,7 +29,7 @@ function addBalls() {
 function addOption(elt, number) {
   let newOption = document.createElement("option");
   newOption.value = number;
-  newOption.textContent = number;
+  newOption.textContent = number + 1;
   elt.appendChild(newOption);
 }
 
@@ -46,14 +47,14 @@ function removeBalls() {
 function addDragBox() {
 
   dragSelections = document.getElementById("DragSelect");
-  let dragCount = liquids.length;
+  let dragCount = liquids.length - 1;
   addOption(dragSelections, dragCount);
 }
 
 function addAccelBox() {
 
   accelSelections = document.getElementById("AcceleratorSelect");
-  let accelCount = reverseLiquids.length;
+  let accelCount = reverseLiquids.length - 1;
   addOption(accelSelections, accelCount);
 }
 
@@ -61,7 +62,7 @@ function addAccelBox() {
 function addBlock() {
 
   blockSelections = document.getElementById("BlockSelect");
-  let blockCount = blocks.length;
+  let blockCount = blocks.length - 1;
   addOption(blockSelections, blockCount);
 }
 

@@ -53,8 +53,9 @@ function addColorSliders2() {
 function readColorSliders2(selection, slideSelector, objects) {
   //Needs the hsla array and the color array as arguments.
   selection.addEventListener("change", () => {
+    console.log(selection.value);
 
-    modifySliders(initBallColors[selection.value]);
+    modifySliders(objects[selection.value].color);
 
     let hSlider = document.querySelector(slideSelector + " .hSlider");
 
@@ -97,7 +98,7 @@ function readAllSliders2() {
   readColorSliders2(ballSel, ".BallSliders", balls);
 
   let blockSel = document.getElementById("BlockSelect"); //!!!!!!!!!!!!!!!!
-  readColorSliders2(blockSel, initBlockColors, blockColorsArray, ".BlockSliders");
+  readColorSliders2(blockSel, ".BlockSliders", blocks);
 
 
 
