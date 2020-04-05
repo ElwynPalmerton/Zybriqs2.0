@@ -1,13 +1,21 @@
 class Liquid {
 
-  constructor(start, end, c) {
-    //If I calculate vectors for all four corners I can refactor .collides???
-    // this.x = x;
-    // this.y = y;
-    // this.w = w;
-    // this.h = h;
+  constructor(start, end, c, color) {
+
+
+    //Color variables.
+    let assignColor = color || defaultColor;
+    let thisColor = {};
+    Object.assign(thisColor, assignColor);
+    this.color = thisColor;
+
+    // this.p5Color = color(this.color.h, this.color.s, this.color.l, this.color.a);
+
+    //Coefficient of drag.
     this.c = c || 0.3;
 
+
+    //positioning.
     this.start = start; //Vector.
     this.end = end; //Vector.
 
@@ -40,8 +48,16 @@ class Liquid {
 
 
   display(c) {
+    let {
+      h,
+      s,
+      l,
+      a
+    } = this.color;
+
+    let p5Color = color(h, s, l, parseFloat(a));
     noStroke();
-    fill(c);
+    fill(p5Color);
     rect(this.start.x, this.start.y, this.width, this.height)
   }
 
@@ -54,7 +70,6 @@ class Liquid {
   }
 
   displayRemoveButton() {
-    console.log('Displaying');
     const xBoxSize = 15;
     stroke(150);
     strokeWeight(2);

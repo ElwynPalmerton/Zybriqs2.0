@@ -57,21 +57,20 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
       if (run === false) { //Only lets it add blocks when the program is paused.
 
         if (objectType === "Drag") {
-          let newLiquid = new Liquid(startRect, endRect, dragCoefficient);
+          let newLiquid = new Liquid(startRect, endRect, dragCoefficient, defaultDragColor);
           if (newLiquid.width > minSize && newLiquid.height > minSize) {
-            addDragBox();
             liquids.push(newLiquid);
+            addDragBox();
           }
-          //
-
         } else if (objectType === "Block") {
-          let block = new Outline(startRect, endRect);
-          addBlock();
+          let block = new Outline(startRect, endRect, initBlockColors[0]);
           blocks.push(block);
+          addBlock();
         } else if (objectType === "Reverse Drag") {
-          let newAccelerator = new Liquid(startRect, endRect, -dragCoefficient);
+          let newAccelerator = new Liquid(startRect, endRect, -dragCoefficient, defaultAccelColor);
           if (newAccelerator.width > minSize && newAccelerator.height > minSize) {
             reverseLiquids.push(newAccelerator);
+            addAccelBox();
           }
         }
       }; //End event listener ('mouseup').

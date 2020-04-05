@@ -1,18 +1,3 @@
-// function createRemoveButtons() {
-//   var removeButtons = [];
-//   for (let i = 0; i < liquids.length; i++) {
-//     let rmvBtn = document.createElement('button');
-//     rmvBtn.style.positon = "absolute";
-//     cnv.elt.appendChild(rmvBtn);
-//     rmvBtn.style.left = liquids[i].start.x + "px";
-//     rmvBtn.style.top = liquids[i].start.y + "px";
-//     removeButtons.push(rmvBtn);
-//   }
-//   console.log(liquids);
-//   console.log(removeButtons);
-// }
-
-
 function showRemoveButtons() {
   drawElementsDuringSetup();
   liquids.forEach((liquid) => {
@@ -45,7 +30,10 @@ function mouseClicked() {
 
           objArray.splice(i, 1);
           if (objArray === liquids) {
-            removeDragBox();
+            removeDragBoxSelector();
+          }
+          if (objArray === reverseLiquids) {
+            removeAccelBoxSelector();
           }
           if (objArray === blocks) {
             removeBlocks();
@@ -56,6 +44,7 @@ function mouseClicked() {
       }
     }
 
+    //Refactor this so that it passes in the correct object?
     removeObjects(liquids);
     removeObjects(reverseLiquids);
     removeObjects(blocks);
@@ -65,17 +54,22 @@ function mouseClicked() {
 
 
 
-function removeDragBox() {
-
-  initDragColors.pop();
-  dragColorsArray.pop();
+function removeDragBoxSelector() {
+  //Refactor this so that it passes in the correct object?
+  //I just need to put the name into the Class definitation 
+  //Then I can call colorSliders with the name as a variable
+  //... instead of hard-coded.
   dragSelection = document.getElementById("DragSelect");
   dragSelection.removeChild(dragSelection.lastChild);
 }
 
+function removeAccelBoxSelector() {
+  accelSelection = document.getElementById("AcceleratorSelect");
+  accelSelection.removeChild(accelSelection.lastChild);
+}
+
 
 function removeBlocks() {
-
   initBlockColors.pop();
   blockColorsArray.pop();
   blockSelection = document.getElementById("BlockSelect");

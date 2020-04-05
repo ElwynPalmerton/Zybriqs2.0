@@ -40,7 +40,7 @@ function makePlayButton() {
       run = false;
       //It seems like this is working without the if statement to check "run" but I do use run elsewhere.
       playButton.innerHTML = "Resume";
-      playButton.className = "paused";
+      playButton.className = "Paused";
       //createRemoveButtons();
       drawElementsDuringSetup(); //This function is in the listeners.js file.
 
@@ -64,7 +64,7 @@ function makeBlockButton() {
 }
 
 function makeDragButton() {
-  let drawDragButton = createButton("drawDragButton");
+  let drawDragButton = createButton("Drag");
   buttonContainer.appendChild(drawDragButton.elt);
   buttons.push(drawDragButton.elt);
   drawDragButton.mouseClicked(() => {
@@ -78,7 +78,7 @@ function makeDragButton() {
 }
 
 function makeReverseDragButton() {
-  let drawReverseDragButton = createButton("Draw Accelerator");
+  let drawReverseDragButton = createButton("Accelerator");
   buttonContainer.appendChild(drawReverseDragButton.elt);
   buttons.push(drawReverseDragButton.elt);
   drawReverseDragButton.mouseClicked(() => {
@@ -189,7 +189,7 @@ function clearDuplicates() {
       liquids[i].start.y === liquids[i - 1].start.y
     ) {
       liquids.splice(i, 1);
-      removeDragBox();
+      removeDragBoxSelector();
     }
   }
 
@@ -199,6 +199,7 @@ function clearDuplicates() {
       reverseLiquids[i].start.y === reverseLiquids[i - 1].start.y
     ) {
       reverseLiquids.splice(i, 1);
+      removeAccelBoxSelector();
     }
   }
 

@@ -38,7 +38,7 @@ function colorSliders(name, initialValues, quantity) {
 
   selections.appendChild(allOption);
 
-  for (let i = 0; i < quantity; i++) {
+  for (let i = 1; i <= quantity; i++) {
     let option = document.createElement("option");
     option.value = i;
     option.textContent = i;

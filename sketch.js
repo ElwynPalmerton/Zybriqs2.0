@@ -45,7 +45,7 @@ function setup() {
 
   //Create all of the balls.
   for (let i = 0; i < qty; i++) {
-    let ball = new Mover(random(width), height / 5);
+    let ball = new Mover(random(width), height / 5, initBallColors[i]);
     balls.push(ball);
   }
 
@@ -55,12 +55,12 @@ function setup() {
 
   let liquidStart = createVector(250, 250);
   let liquidEnd = createVector(400, 400);
-  liquid = new Liquid(liquidStart, liquidEnd, dragCoefficient);
+  liquid = new Liquid(liquidStart, liquidEnd, dragCoefficient, initDragColors[0]);
   liquids.push(liquid);
 
   let reverseLiquidStart = createVector(700, 400);
   let reverseLiquidEnd = createVector(850, 550);
-  reverseLiquid = new Liquid(reverseLiquidStart, reverseLiquidEnd, -dragCoefficient);
+  reverseLiquid = new Liquid(reverseLiquidStart, reverseLiquidEnd, -dragCoefficient, initAccelColors[0]);
   reverseLiquids.push(reverseLiquid);
 
 
@@ -77,8 +77,10 @@ function setup() {
   addSliders();
   readSliders();
 
-  addColorSliders();
-  readAllSliders();
+  //addColorSliders();
+  addColorSliders2();
+  //readAllSliders();
+  readAllSliders2();
   // readColorSliders();
 
 
@@ -119,7 +121,8 @@ function draw() {
     if (mouseIsPressed) { //Use eventListeners and e.preventDefault();
 
       readSliders();
-      readAllSliders();
+      //readAllSliders();
+      readAllSliders2();
     }
 
     for (let i = 0; i < qty; i++) { //Try implementing this with a for-of loop.

@@ -1,5 +1,16 @@
 class Outline { //Change name to Block.
-  constructor(start, end) {
+  constructor(start, end, color) {
+    //Color variables.
+    //Color variables.
+    let assignColor = color || defaultColor;
+    let thisColor = {};
+    Object.assign(thisColor, assignColor);
+    this.color = thisColor;
+
+
+
+
+
     //I think that this has to be before the assignments below.
     this.start = start; //Vector.
     this.end = end; //Vector.
@@ -48,7 +59,15 @@ class Outline { //Change name to Block.
   display(c, fColor) {
     //refactor to put all of the position stuff into the update function?
     //Make an if-then which does noFill() during setup and fill during run.
-    stroke(c);
+    let {
+      h,
+      s,
+      l,
+      a
+    } = this.color;
+
+    let p5Color = color(h, s, l, parseFloat(a));
+    stroke(p5Color);
     strokeWeight(5);
     //fill(fColor);
     noFill();
