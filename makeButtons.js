@@ -6,56 +6,88 @@ function makeButtons() {
   makeRemoveButton();
   makeAddBallsButton();
   makeRemoveBallsButton();
-  makeResetButtons();
+  //makeResetButtons();
   makeNumbersButtons();
+  makeZenModeButtons()
+  //makeFullscreenButtons()
 }
 
 
+/////PPP/////////
+function keyPressed(e) {
+  if (keyCode === 80) {
+    //"P" - Makes all the balls move spasstically updward.
+    console.log("pressed");
+    let bounce = createVector(0, -1);
+
+    for (let i = 0; i < qty; i++) {
+      bounce.mult(balls[i].mass);
+      balls[i].applyForce(bounce);
+    }
+  }
+
+  if (key = " ") {
+    e.preventDefault();
+    pausePlay();
+  }
+}
+
+let playButton = document.createElement("Button");
+
+function pausePlay() {
+  buttons.forEach(b => (b.className = "notActive"));
+
+  clearDuplicates(); //Clears any identical duplicate objects.
+
+  if (run === false) {
+    run = true;
+    playButton.innerHTML = "Pause";
+    playButton.className = "notActive";
+    loop();
+  } else {
+    run = false;
+    //It seems like this is working without the if statement to check "run" but I do use run elsewhere.
+    playButton.innerHTML = "Resume";
+    playButton.className = "paused";
+    //createRemoveButtons();
+    drawElementsDuringSetup(); //This function is in the listeners.js file.
+    noLoop();
+  }
+}
+
+
+
 function makePlayButton() {
-  let playButton = document.createElement("Button");
+
   playButton.textContent = "Pause";
 
   let buttonContainer = document.getElementById('buttonContainer');
   buttonContainer.appendChild(playButton);
-
-
   //If the "Draw Block" button is pressed the listeners for drawing blocks
   // (And adding newly created Outline objects to the blocks array) is activated.
   //Creating btn and btn2 and adding the eventlisteners should be wrapped in a separate function.
-
   playButton.addEventListener("click", e => {
     //If the play/resume button is hit it plays.
+    //Also add stopPropagation.
     e.preventDefault();
-
-    buttons.forEach(b => (b.className = "notActive"));
-
-    clearDuplicates(); //Clears any identical duplicate objects.
-
-    if (run === false) {
-      run = true;
-      playButton.innerHTML = "Pause";
-      playButton.className = "notActive";
-      loop();
-    } else {
-      run = false;
-      //It seems like this is working without the if statement to check "run" but I do use run elsewhere.
-      playButton.innerHTML = "Resume";
-      playButton.className = "Paused";
-      //createRemoveButtons();
-      drawElementsDuringSetup(); //This function is in the listeners.js file.
-
-      noLoop();
-    }
+    e.stopPropagation();
+    pausePlay();
   });
 }
 
 function makeBlockButton() {
-  let drawBlockButton = createButton("Draw Block");
+  let drawBlockButton = createButton("Block");
   buttonContainer.appendChild(drawBlockButton.elt);
   buttons.push(drawBlockButton.elt);
-  drawBlockButton.mouseClicked(() => {
+  drawBlockButton.mouseClicked((e) => {
+    e.stopPropagation();
+    console.log('test')
     buttons.forEach(b => (b.className = "notActive"));
-    drawBlockButton.elt.className = "active";
+    if (run === true) {
+      drawBlockButton.elt.className = "notActive";
+    } else {
+      drawBlockButton.elt.className = "active";
+    }
     drawButtonOn = true;
     removeButtonOn = false;
     objectType = "Block";
@@ -67,9 +99,14 @@ function makeDragButton() {
   let drawDragButton = createButton("Drag");
   buttonContainer.appendChild(drawDragButton.elt);
   buttons.push(drawDragButton.elt);
-  drawDragButton.mouseClicked(() => {
+  drawDragButton.mouseClicked((e) => {
+    e.stopPropagation();
     buttons.forEach(b => (b.className = "notActive"));
-    drawDragButton.elt.className = "active";
+    if (run === true) {
+      drawDragButton.elt.className = "notActive";
+    } else {
+      drawDragButton.elt.className = "active";
+    }
     drawButtonOn = true;
     removeButtonOn = false;
     objectType = "Drag";
@@ -81,9 +118,15 @@ function makeReverseDragButton() {
   let drawReverseDragButton = createButton("Accelerator");
   buttonContainer.appendChild(drawReverseDragButton.elt);
   buttons.push(drawReverseDragButton.elt);
-  drawReverseDragButton.mouseClicked(() => {
+  drawReverseDragButton.mouseClicked((e) => {
+    e.stopPropagation();
+    resetButtons();
     //buttons.forEach(b => (b.className = "notActive")); //Clear function
-    drawReverseDragButton.elt.className = "active";
+    if (run === true) {
+      drawReverseDragButton.elt.className = "notActive";
+    } else {
+      drawReverseDragButton.elt.className = "active";
+    }
     drawButtonOn = true;
     //removeButtonOn = false; //Clear function.
     objectType = "Reverse Drag";
@@ -92,12 +135,17 @@ function makeReverseDragButton() {
 }
 
 function makeRemoveButton() {
-  let removeButton = createButton("Remove elements");
+  let removeButton = createButton("Remove");
   buttonContainer.appendChild(removeButton.elt);
   buttons.push(removeButton.elt);
-  removeButton.mouseClicked(() => {
+  removeButton.mouseClicked((e) => {
+    e.stopPropagation();
     buttons.forEach(b => (b.className = "notActive"));
-    removeButton.elt.className = "active";
+    if (run === true) {
+      removeButton.elt.className = "notActive";
+    } else {
+      removeButton.elt.className = "active";
+    }
     drawButtonOn = false; //Clear function.
     removeButtonOn = true;
 
@@ -111,8 +159,11 @@ function makeAddBallsButton() {
   buttonContainer.appendChild(addBallsButton.elt);
   buttons.push(addBallsButton.elt);
   resetButtons();
-  addBallsButton.mouseClicked(() => {
-    addBallsButton.elt.className = "active";
+  addBallsButton.mouseClicked((e) => {
+    e.stopPropagation();
+    //addBallsButton.elt.className = "active";
+    resetButtons();
+    //addBallsButton.elt.className = "active";
     addBalls();
     drawElementsDuringSetup();
     //I don't need this line for this function: objectType = "Reverse Drag";
@@ -124,9 +175,10 @@ function makeRemoveBallsButton() {
   buttonContainer.appendChild(removeBallsButton.elt);
   buttons.push(removeBallsButton.elt);
   resetButtons();
-  removeBallsButton.mouseClicked(() => {
-    removeBallsButton.elt.className = "active";
-    if (qty >= 1) {
+  removeBallsButton.mouseClicked((e) => {
+    e.stopPropagation();
+    //removeBallsButton.elt.className = "active";
+    if (qty > 0) {
       removeBalls();
     } else {
       console.log('There are no balls to remove.');
@@ -141,12 +193,15 @@ function makeResetButtons() {
   buttonContainer.appendChild(resetButton.elt);
   buttons.push(resetButton.elt);
   resetButtons();
-  resetButton.mouseClicked(() => {
+  resetButton.mouseClicked((e) => {
+    e.stopPropagation();
     resetButton.elt.className = "active";
+    removeAll();
     blocks.splice(0);
     liquids.splice(0);
     reverseLiquids.splice(0);
     balls.splice(0);
+    //
     qty = 0;
     listeners();
     //I don't need this line for this function: objectType = "Reverse Drag";
@@ -155,17 +210,85 @@ function makeResetButtons() {
 
 
 function makeNumbersButtons() {
-  let numbersButton = createButton("Show Numbers");
+  let numbersButton = createButton("Numbers");
   buttonContainer.appendChild(numbersButton.elt);
   buttons.push(numbersButton.elt);
-  resetButtons();
-  numbersButton.mouseClicked(() => {
+  numbersButton.mouseClicked((e) => {
+    e.stopPropagation();
+    pausePlay();
+    resetButtons();
+    console.log(buttons);
+    console.log("clicked");
     numbersButton.elt.className = "active";
+    if (run === true) {
+      numbersButton.elt.className = "notActive";
+    }
     showNumbers();
     //I don't need this line for this function: objectType = "Reverse Drag";
   });
 }
 
+function makeZenModeButtons() {
+  let zenButton = createButton("Zen Mode");
+  buttonContainer.appendChild(zenButton.elt);
+  buttons.push(zenButton.elt);
+
+  zenButton.mouseClicked((e) => {
+    e.stopPropagation();
+    let elem = document.querySelector('body');
+    resetButtons();
+    zenButton.elt.className = "active";
+
+
+    openFullScreen();
+
+    function openFullScreen() {
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (elem.mozRequestFullScreen) {
+        /* Firefox */
+        elem.mozRequestFullScreen();
+      } else if (elem.webkitRequestFullscreen) {
+        /* Chrome, Safari & Opera */
+        elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) {
+        /* IE/Edge */
+        elem.msRequestFullscreen();
+      }
+    }
+    //I don't need this line for this function: objectType = "Reverse Drag";
+  });
+}
+
+
+// function makeFullscreenButtons() {
+//   let fullscreenButton = createButton("Fullscreen");
+//   buttonContainer.appendChild(fullscreenButton.elt);
+//   buttons.push(fullscreenButton.elt);
+
+//   zenButton.mouseClicked((e) => {
+//     e.stopPropagation();
+//     let elem = document.querySelector('body');
+
+//     openFullScreen();
+
+//     function openFullScreen() {
+//       if (elem.requestFullscreen) {
+//         elem.requestFullscreen();
+//       } else if (elem.mozRequestFullScreen) {
+//         /* Firefox */
+//         elem.mozRequestFullScreen();
+//       } else if (elem.webkitRequestFullscreen) {
+//         /* Chrome, Safari & Opera */
+//         elem.webkitRequestFullscreen();
+//       } else if (elem.msRequestFullscreen) {
+//         /* IE/Edge */
+//         elem.msRequestFullscreen();
+//       }
+//     }
+//     //I don't need this line for this function: objectType = "Reverse Drag";
+//   });
+// }
 
 function resetButtons() { //Change name to clearButtons();
   drawButtonOn = false; //Clear function.

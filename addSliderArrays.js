@@ -15,7 +15,7 @@
     h: 180,
     s: 50,
     l: 50,
-    a: 1
+    a: 0.5
   };
 
   let defaultDragColor = {

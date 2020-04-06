@@ -73,6 +73,7 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
             addAccelBox();
           }
         }
+        drawElementsDuringSetup()
       }; //End event listener ('mouseup').
     }
   }) //End listeners().
@@ -85,19 +86,19 @@ function drawElementsDuringSetup() {
   background(tempBG);
 
   for (let j = 0; j < blocks.length; j++) {
-    blocks[j].display(tempBlockBorderC);
+    blocks[j].displayDimmed();
   }
 
   balls.forEach((ball) => {
-    ball.display(tempBallC);
+    ball.displayDimmed();
   })
 
   liquids.forEach((liquid) => {
-    liquid.display(tempLiquidC); //Liquid and reverseLiquid should be in the same array. See above?
+    liquid.displayDimmed(); //Liquid and reverseLiquid should be in the same array. See above?
     //liquid.displayRemoveButton();
   })
 
   reverseLiquids.forEach((reverseLiquid) => {
-    reverseLiquid.display(tempReverseLiquidC);
+    reverseLiquid.displayDimmed(tempReverseLiquidC);
   })
 }

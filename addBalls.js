@@ -1,6 +1,6 @@
 function addBalls() {
   const defaultBallColor = {
-    h: 100,
+    h: random(360),
     s: 35,
     l: 100,
     a: 0.5
@@ -36,12 +36,14 @@ function addOption(elt, number) {
 function removeBalls() {
   balls.pop();
   qty--;
-  initBallColors.pop();
-  ballColorsArray.pop();
+  // initBallColors.pop();
+  // ballColorsArray.pop();
 
   //This removes the option from the drop-down in the Div for the Ball Color Sliders.
-  ballSelections = document.getElementById("BallSelect");
+  let ballSelections = document.getElementById("BallSelect");
+  console.log(ballSelections);
   ballSelections.removeChild(ballSelections.lastChild);
+
 }
 
 function addDragBox() {

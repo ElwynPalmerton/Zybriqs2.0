@@ -45,6 +45,20 @@ class Liquid {
   } //End constructor
 
 
+  displayDimmed() {
+    let {
+      h,
+      s,
+      l,
+      a
+    } = this.color;
+
+    let p5Color = color(h, s - dimAmt, l, parseFloat(a));
+    noStroke();
+    fill(p5Color);
+    rect(this.start.x, this.start.y, this.width, this.height)
+  }
+
 
 
   display(c) {

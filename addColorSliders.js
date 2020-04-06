@@ -4,25 +4,25 @@ function addColorSliders2() {
 
 
   let ballSliderDiv = colorSliders(
-    "Ball Colors",
+    "Ball",
     initBallColors[0],
     initBallColors.length
   );
 
   let dragSliderDiv = colorSliders(
-    "Drag Colors",
+    "Drag",
     initDragColors[0],
     initDragColors.length
   );
 
   let accelSliderDiv = colorSliders(
-    "Accelerator Colors",
+    "Accelerator",
     initAccelColors[0],
     initAccelColors.length
   );
 
   let blockSliderDiv = colorSliders(
-    "Block Colors",
+    "Block",
     initBlockColors[0],
     initBlockColors.length
   );

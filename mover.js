@@ -204,6 +204,27 @@ class Mover {
     //if the distance from the circle center to each corner is less than the size, reverse the x and wide velocities.
   } //End of collides.
 
+  displayDimmed() {
+    let {
+      h,
+      s,
+      l,
+      a
+    } = this.color;
+
+    let p5Color = color(h, s - dimAmt, l, parseFloat(a));
+    noStroke(250, 60, 60, 1);
+    strokeWeight(2);
+    fill(p5Color);
+    ellipse(this.location.x, this.location.y, this.size, this.size);
+  }
+
+  displayNumber(number) {
+    textSize(16);
+    var inset = 5;
+    text(number, this.location.x - inset, this.location.y - inset);
+  }
+
   display(c) {
     let {
       h,

@@ -15,11 +15,15 @@ function colorSliders(name, initialValues, quantity) {
   // let classLabel = label[0];
 
   //add the id to the div.    id = name + 'Div';   === ballDiv
-  let sliderDiv = document.createElement("div");
+  let sliderDiv = document.createElement("card");
+  sliderDiv.classList.add('column');
   sliderDiv.classList.add(label + "Div");
-  let nameElt = document.createElement("p");
+  let nameElt = document.createElement("h2");
   nameElt.textContent = name;
-  sliderDiv.appendChild(nameElt);
+  let titleDiv = document.createElement('div');
+  titleDiv.classList.add('title');
+  titleDiv.appendChild(nameElt);
+  sliderDiv.appendChild(titleDiv);
 
   // Create the selection and four option elements options:
   let selections = document.createElement("select");
