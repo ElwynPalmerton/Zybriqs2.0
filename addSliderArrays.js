@@ -30,42 +30,42 @@
   let blockColorsArray = [];
 
   let initDragColors = [{
-    h: 0,
-    s: 62,
-    l: 80,
-    a: 0.5
+    h: 330,
+    s: 35,
+    l: 60,
+    a: 0.4
   }];
 
 
   let initAccelColors = [{
-    h: 180,
-    s: 50,
-    l: 50,
-    a: 0.5
+    h: 300,
+    s: 55,
+    l: 70,
+    a: 0.6
   }];
 
   const initBlockColors = [{
-    h: 90,
-    s: 100,
-    l: 50,
+    h: 160,
+    s: 70,
+    l: 70,
     a: 1
   }];
 
 
   let initBallColors = [{
-      h: 100,
+      h: 180,
       s: 35,
-      l: 100,
+      l: 75,
       a: 0.5
     },
     {
-      h: 200,
+      h: 220,
       s: 35,
-      l: 100,
+      l: 75,
       a: 0.5
     },
     {
-      h: 300,
+      h: 260,
       s: 35,
       l: 100,
       a: 0.5

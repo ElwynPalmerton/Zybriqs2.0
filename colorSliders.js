@@ -29,18 +29,18 @@ function colorSliders(name, initialValues, quantity) {
   let selections = document.createElement("select");
   selections.setAttribute("id", label + "Select");
 
-  let optionAll = document.createElement("option");
+  // let optionAll = document.createElement("option");
 
-  let blankOption = document.createElement("option");
-  blankOption.value = "-";
-  blankOption.textContent = "-";
-  selections.appendChild(blankOption);
+  // let blankOption = document.createElement("option");
+  // blankOption.value = "-";
+  // blankOption.textContent = "-";
+  // selections.appendChild(blankOption);
 
-  let allOption = document.createElement("option");
-  allOption.value = "All";
-  allOption.textContent = "All";
+  // let allOption = document.createElement("option");
+  // allOption.value = "All";
+  // allOption.textContent = "All";
 
-  selections.appendChild(allOption);
+  // selections.appendChild(allOption);
 
   for (let i = 0; i < quantity; i++) {
     let option = document.createElement("option");

@@ -12,10 +12,14 @@ function makeButtons() {
   //makeFullscreenButtons()
 }
 
+function lastActive() {
+  return buttons.some((btn) => btn.className === "active");
+}
 
 /////PPP/////////
 function keyPressed(e) {
   if (keyCode === 80) {
+    e.preventDefault();
     //"P" - Makes all the balls move spasstically updward.
     console.log("pressed");
     let bounce = createVector(0, -1);
@@ -26,13 +30,34 @@ function keyPressed(e) {
     }
   }
 
-  if (key = " ") {
-    e.preventDefault();
-    pausePlay();
-  }
 }
 
+
+// function keyPressed(e) {
+//   if (key = " ") {
+//     e.preventDefault();
+//     pausePlay();
+//   }
+// }
+
 let playButton = document.createElement("Button");
+
+function play() {
+  run = true;
+  playButton.innerHTML = "Pause";
+  playButton.className = "notActive";
+  clearDuplicates();
+  loop();
+}
+
+function pause() {
+  run = false;
+  playButton.innerHTML = "Resume";
+  playButton.className = "paused";
+  //createRemoveButtons();
+  drawElementsDuringSetup(); //This function is in the listeners.js file.
+  noLoop();
+}
 
 function pausePlay() {
   buttons.forEach(b => (b.className = "notActive"));
@@ -40,18 +65,10 @@ function pausePlay() {
   clearDuplicates(); //Clears any identical duplicate objects.
 
   if (run === false) {
-    run = true;
-    playButton.innerHTML = "Pause";
-    playButton.className = "notActive";
-    loop();
+    play();
   } else {
-    run = false;
     //It seems like this is working without the if statement to check "run" but I do use run elsewhere.
-    playButton.innerHTML = "Resume";
-    playButton.className = "paused";
-    //createRemoveButtons();
-    drawElementsDuringSetup(); //This function is in the listeners.js file.
-    noLoop();
+    pause();
   }
 }
 
@@ -79,15 +96,25 @@ function makeBlockButton() {
   let drawBlockButton = createButton("Block");
   buttonContainer.appendChild(drawBlockButton.elt);
   buttons.push(drawBlockButton.elt);
+
   drawBlockButton.mouseClicked((e) => {
     e.stopPropagation();
-    console.log('test')
+
+    let current = drawBlockButton.elt.className === "active";
+    let lastActive = buttons.some((btn) => btn.className === "active");
+
     buttons.forEach(b => (b.className = "notActive"));
     if (run === true) {
-      drawBlockButton.elt.className = "notActive";
+      pause();
+      drawBlockButton.elt.className = "active";
+    } else if (lastActive && !current && run === false) {
+      drawBlockButton.elt.className = "active";
+    } else if (current && run === false) {
+      play();
     } else {
       drawBlockButton.elt.className = "active";
     }
+
     drawButtonOn = true;
     removeButtonOn = false;
     objectType = "Block";
@@ -99,11 +126,22 @@ function makeDragButton() {
   let drawDragButton = createButton("Drag");
   buttonContainer.appendChild(drawDragButton.elt);
   buttons.push(drawDragButton.elt);
+
+
   drawDragButton.mouseClicked((e) => {
-    e.stopPropagation();
+    let current = drawDragButton.elt.className === "active";
+    let lastActive = buttons.some((btn) => btn.className === "active");
+
     buttons.forEach(b => (b.className = "notActive"));
+    e.stopPropagation();
+    //buttons.forEach(b => (b.className = "notActive"));
     if (run === true) {
-      drawDragButton.elt.className = "notActive";
+      pause();
+      drawDragButton.elt.className = "active";
+    } else if (lastActive && !current && run === false) {
+      drawDragButton.elt.className = "active";
+    } else if (current && run === false) {
+      play();
     } else {
       drawDragButton.elt.className = "active";
     }
@@ -119,11 +157,20 @@ function makeReverseDragButton() {
   buttonContainer.appendChild(drawReverseDragButton.elt);
   buttons.push(drawReverseDragButton.elt);
   drawReverseDragButton.mouseClicked((e) => {
+
+    let current = drawReverseDragButton.elt.className === "active";
+    let lastActive = buttons.some((btn) => btn.className === "active");
+
     e.stopPropagation();
     resetButtons();
     //buttons.forEach(b => (b.className = "notActive")); //Clear function
     if (run === true) {
-      drawReverseDragButton.elt.className = "notActive";
+      pause();
+      drawReverseDragButton.elt.className = "active";
+    } else if (lastActive && !current && run === false) {
+      drawReverseDragButton.elt.className = "active";
+    } else if (current && run === false) {
+      play();
     } else {
       drawReverseDragButton.elt.className = "active";
     }
@@ -139,13 +186,26 @@ function makeRemoveButton() {
   buttonContainer.appendChild(removeButton.elt);
   buttons.push(removeButton.elt);
   removeButton.mouseClicked((e) => {
-    e.stopPropagation();
+
+    let current = removeButton.elt.className === "active";
+    let lastActive = buttons.some((btn) => btn.className === "active");
     buttons.forEach(b => (b.className = "notActive"));
+    e.stopPropagation();
+    resetButtons();
+
     if (run === true) {
-      removeButton.elt.className = "notActive";
+      pause();
+      removeButton.elt.className = "active";
+    } else if (lastActive && !current && run === false) {
+      removeButton.elt.className = "active";
+    } else if (current && run === false) {
+      play();
     } else {
       removeButton.elt.className = "active";
     }
+
+
+
     drawButtonOn = false; //Clear function.
     removeButtonOn = true;
 
@@ -175,8 +235,11 @@ function makeRemoveBallsButton() {
   buttonContainer.appendChild(removeBallsButton.elt);
   buttons.push(removeBallsButton.elt);
   resetButtons();
+
+
+
   removeBallsButton.mouseClicked((e) => {
-    e.stopPropagation();
+
     //removeBallsButton.elt.className = "active";
     if (qty > 0) {
       removeBalls();
@@ -214,15 +277,29 @@ function makeNumbersButtons() {
   buttonContainer.appendChild(numbersButton.elt);
   buttons.push(numbersButton.elt);
   numbersButton.mouseClicked((e) => {
+
+    let current = numbersButton.elt.className === "active";
+    let lastActive = buttons.some((btn) => btn.className === "active");
+
     e.stopPropagation();
-    pausePlay();
     resetButtons();
-    console.log(buttons);
-    console.log("clicked");
+
+    if (run === true) {
+      pause();
+      numbersButton.elt.className = "active";
+    } else if (lastActive && !current && run === false) {
+      numbersButton.elt.className = "active";
+    } else if (current && run === false) {
+      play();
+    } else {
+      numbersButton.elt.className = "active";
+    }
     numbersButton.elt.className = "active";
     if (run === true) {
       numbersButton.elt.className = "notActive";
     }
+
+    drawElementsDuringSetup()
     showNumbers();
     //I don't need this line for this function: objectType = "Reverse Drag";
   });

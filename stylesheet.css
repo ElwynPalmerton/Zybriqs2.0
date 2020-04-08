@@ -87,7 +87,7 @@ button {
   margin-left: 10px;
   margin-right: 6px;
   /* margin: 10px; */
-  border: #3f5a63 2px solid;
+  border: #3f5a63 1px solid;
   vertical-align: middle;
 }
 
@@ -154,7 +154,7 @@ option {
   /* padding: 20 10px; */
   margin-left: 14px;
   margin-bottom: 50px;
-  border: #3f5a63 2px solid;
+  border: #3f5a63 1px solid;
   padding: 10px 10px 10px 10px;
 }
 
