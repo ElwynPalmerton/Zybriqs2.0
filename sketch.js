@@ -1,4 +1,4 @@
-//Zibbriqs by Elwyn Palmerton
+//Zibriqs by Elwyn Palmerton
 
 //Objects: Balls, liquids/reverseLiquid     //Add Blocks.
 const balls = [];
@@ -78,12 +78,17 @@ function setup() {
 
   addSliders();
   readSliders();
+  //createController();
+
 
   //addColorSliders();
   addColorSliders2();
   //readAllSliders();
   readAllSliders2();
-  // readColorSliders();
+  createController();
+  readController();
+
+  //readColorSliders();
 
   // $(document).mousedown(() => {
   //   console.log('jQuery works.');
@@ -108,6 +113,7 @@ function draw() {
       readSliders();
       //readAllSliders();
       readAllSliders2();
+      readController();
     }
 
     for (let i = 0; i < qty; i++) {

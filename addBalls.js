@@ -11,21 +11,16 @@ function addBalls() {
   balls.push(ball);
   qty++;
 
-  //Modify the initialBallColor;
-  // initBallColors[initBallColors.length] = initBallColors[initBallColors.length - 1] || defaultBallColor;
-  // let d = defaultBallColor;
-  // let dColor = color(d.h, d.s, d.l, d.a);
-  // ballColorsArray[ballColorsArray.length] = ballColorsArray[ballColorsArray.length - 1]; // || dColor;
-
-  //Add the option.
-  //This needs to be generalized into another function to apply to other objects.
-
+  //If this is accomplished with a modifyOptions function then it does not
+  //...and should not happen here aat all.
+  //Almost everything from here down, except for removeBalls can be entirely removed.
   ballSelect = document.getElementById("BallSelect");
   let newBallNumber = balls.length - 1;
   addOption(ballSelect, newBallNumber);
 }
 
-
+//If this is accomplished with a modifyOptions function then it does not
+//...and should not happen here aat all.
 function addOption(elt, number) {
   let newOption = document.createElement("option");
   newOption.value = number;

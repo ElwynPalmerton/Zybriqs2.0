@@ -22,7 +22,7 @@
     h: 0,
     s: 62,
     l: 80,
-    a: 0.5
+    a: 0.4
   };
 
   let ballColorsArray = [];
@@ -86,7 +86,7 @@
     let lSlider = document.getElementsByClassName(".BallSliders .lSlider");
     let aSlider = document.getElementsByClassName(".BallSliders .aSlider");
 
-    hSlider.value = newColor.h;
+    hSlider.value = newColor.h; //modifySliders should set the sliders equal to color on each object.
     sSlider.value = newColor.s;
     lSlider.value = newColor.l;
     aSlider.value = newColor.a;

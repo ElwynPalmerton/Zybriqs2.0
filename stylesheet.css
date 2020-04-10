@@ -122,7 +122,10 @@ option {
   display: inline;
 }
 
-#sliders h2 {
+
+
+
+h2 {
   color: #aaaabf;
   font-size: 1.5em;
   text-align: center;
@@ -130,6 +133,27 @@ option {
   margin: 3% 0 6% 0;
 }
 
+#colorController {
+  margin-top: 20px;
+  width: 165px;
+  float: left;
+  /* width: 20%; */
+  /* padding: 20 10px; */
+  margin-left: 14px;
+  margin-bottom: 20px;
+  border: #3f5a63 1px solid;
+  border-radius: 7px;
+  padding: 3px 10px 5px 10px;
+  /* text-align: center; */
+}
+
+#objectSelector {
+  margin: 0px 5px 7px 10px;
+}
+
+#numberSelector {
+  margin-left: 10px;
+}
 
 
 #sliders {

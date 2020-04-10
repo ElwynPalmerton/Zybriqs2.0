@@ -16,10 +16,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <!--  -->
   <script src="makeButtons.js"></script>
+  <script src="createController.js"></script>
   <script src="listeners.js"></script>
   <script src="outline.js"></script>
   <script src="makeRectangle.js"></script>
-  <script src="removeDupes.js"></script>
+  <script src="removeObjects.js"></script>
   <script src="showNumbers.js"></script>
   <script src="addSliderArrays.js"></script>
   <script src="addColorSliders.js"></script>
@@ -40,9 +41,38 @@
 <body>
   <div id="wrapper">
     <div id="canvasContainer"></div>
-    <br />
+
+    <!-- ll -->
+    <div id="rightColumn">
+
+
+    </div>
+    <!-- ll -->
+    </br>
     <div id="buttonContainer"></div>
     </br>
+    <!-- Integrated Sliderss -->
+    <Card id="colorController">
+      <h2 id="controllerTitle">Color</h2>
+      <select name="ObjectType" id="objectSelector">
+        <option value="Balls">Balls</option>
+        <option value="Drag">Drag</option>
+        <option value="Accelerator">Accelerator</option>
+        <option value="Blocks">Blocks</option>
+        <option value="Background">Background</option>
+
+      </select>
+      </br>
+      <select name="NumberSelect" id="numberSelector">
+      </select>
+      <div class="combinedSliders">
+        <input type="range" class="hSlider" min="0" max="360">
+        <input type="range" class="sSlider" min="0" max="100">
+        <input type="range" class="lSlider" min="0" max="100">
+        <input type="range" class="aSlider" min="0" max="1" step="0.01">
+      </div>
+    </Card>
+    <!-- Old Sliders  -->
     <div id="sliders">
       <div class="colorSliders" id="sliderContainer5"></div>
       <div class="colorSliders" id="sliderContainer1"></div>
