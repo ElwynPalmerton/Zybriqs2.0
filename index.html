@@ -54,7 +54,7 @@
     <!-- Integrated Sliderss -->
     <Card id="colorController">
       <h2 id="controllerTitle">Color</h2>
-      <select name="ObjectType" id="objectSelector">
+      <select onchange="updateSliders()" name="ObjectType" id="objectSelector">
         <option value="Balls">Balls</option>
         <option value="Drag">Drag</option>
         <option value="Accelerator">Accelerator</option>
@@ -63,7 +63,7 @@
 
       </select>
       </br>
-      <select name="NumberSelect" id="numberSelector">
+      <select onchange="updateSliders()" name="NumberSelect" id="numberSelector">
       </select>
       <div class="combinedSliders">
         <input type="range" class="hSlider" min="0" max="360">

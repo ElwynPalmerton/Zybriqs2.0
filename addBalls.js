@@ -7,16 +7,10 @@ function addBalls() {
   };
 
   let ball = new Mover(random(width), height / 5, defaultBallColor);
-  console.log(ball);
+
   balls.push(ball);
   qty++;
-
-  //If this is accomplished with a modifyOptions function then it does not
-  //...and should not happen here aat all.
-  //Almost everything from here down, except for removeBalls can be entirely removed.
-  ballSelect = document.getElementById("BallSelect");
-  let newBallNumber = balls.length - 1;
-  addOption(ballSelect, newBallNumber);
+  createController();
 }
 
 //If this is accomplished with a modifyOptions function then it does not
@@ -31,36 +25,32 @@ function addOption(elt, number) {
 function removeBalls() {
   balls.pop();
   qty--;
-  // initBallColors.pop();
-  // ballColorsArray.pop();
-
-  //This removes the option from the drop-down in the Div for the Ball Color Sliders.
-  let ballSelections = document.getElementById("BallSelect");
-  console.log(ballSelections);
-  ballSelections.removeChild(ballSelections.lastChild);
-
+  createController();
 }
 
 function addDragBox() {
 
-  dragSelections = document.getElementById("DragSelect");
-  let dragCount = liquids.length - 1;
-  addOption(dragSelections, dragCount);
+  createController();
+
+  // dragSelections = document.getElementById("DragSelect");
+  // let dragCount = liquids.length - 1;
+  // addOption(dragSelections, dragCount);
 }
 
 function addAccelBox() {
+  createController();
 
-  accelSelections = document.getElementById("AcceleratorSelect");
-  let accelCount = reverseLiquids.length - 1;
-  addOption(accelSelections, accelCount);
+  // accelSelections = document.getElementById("AcceleratorSelect");
+  // let accelCount = reverseLiquids.length - 1;
+  // addOption(accelSelections, accelCount);
 }
 
 
 function addBlock() {
-
-  blockSelections = document.getElementById("BlockSelect");
-  let blockCount = blocks.length - 1;
-  addOption(blockSelections, blockCount);
+  createController();
+  // blockSelections = document.getElementById("BlockSelect");
+  // let blockCount = blocks.length - 1;
+  // addOption(blockSelections, blockCount);
 }
 
 
