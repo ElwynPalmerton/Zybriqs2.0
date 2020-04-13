@@ -100,7 +100,6 @@ function readController() {
   objectNumber = numberSelector.value;
 
   readSliders(objectNumber, objects)
-
 }
 
 
@@ -117,10 +116,6 @@ function modifySliders2(newColor) {
     }
   }
 
-  console.log('In modify Sliders');
-  //How do I select an element which is inside another element.
-  //Also, I can put the colorSliders function in a different file since it is a freestanding function.
-  //How do I change the value when the Option is selcted.
   let hSlider = document.querySelector(".combinedSliders .hSlider");
   let sSlider = document.querySelector(".combinedSliders .sSlider");
   let lSlider = document.querySelector(".combinedSliders .lSlider");
@@ -151,6 +146,9 @@ function updateSliders() {
 }
 
 function updateSliders2() {
+  //updateSliders2 is the same as updateSliders() except that
+  //... it does NOT call createController() because there was
+  //... an issue where it would reset to the first object selection every time.
 
   //createController();
 
