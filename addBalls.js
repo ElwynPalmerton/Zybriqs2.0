@@ -32,50 +32,16 @@ function addDragBox() {
 
   createController();
 
-  // dragSelections = document.getElementById("DragSelect");
-  // let dragCount = liquids.length - 1;
-  // addOption(dragSelections, dragCount);
 }
 
 function addAccelBox() {
   createController();
-
-  // accelSelections = document.getElementById("AcceleratorSelect");
-  // let accelCount = reverseLiquids.length - 1;
-  // addOption(accelSelections, accelCount);
 }
 
 
 function addBlock() {
   createController();
-  // blockSelections = document.getElementById("BlockSelect");
-  // let blockCount = blocks.length - 1;
-  // addOption(blockSelections, blockCount);
 }
 
 
-
-// function addBlock() {
-//   //init drag colors
-//   //dragColorsArray
-
-//   let defaultBlockColor = {
-//     h: 20,
-//     s: 94,
-//     l: 49,
-//     a: 0.6
-//   };
-
-//   let d = defaultBlockColor;
-
-//   let defaultColor = color(d.h, d.s, d.l, d.a);
-
-//   initBlockColors[initBlockColors.length] = initBlockColors[initBlockColors.length - 1] || defaultBlockColor;
-//   blockColorsArray[blockColorsArray.length] = blockColorsArray[blockColorsArray.length - 1] || defaultColor;
-
-//   //dragColorsArray[dragColorsArray.length] = dragColorsArray[dragColorsArray.length - 1] || defaultColor;
-
-//   blockSelections = document.getElementById("BlockSelect");
-//   let blockCount = blockColorsArray.length - 1;
-//   addOption(blockSelections, blockCount);
-// }
+}

@@ -31,12 +31,13 @@ function createController() {
   let objectSelection = document.getElementById("objectSelector");
   let numberSelector = document.getElementById("numberSelector");
 
-  let obj = objectSelection.value;
-  let objArray = getObjectArray(obj);
+  let objValue = objectSelection.value;
+  let objArray = getObjectArray(objValue);
   addOptions(objArray);
-  console.log(objArray);
+
   if (objArray.length > 0) {
     modifySliders2(objArray[0].color);
+    //Do this with || using the default value instead.
   } else {
     modifySliders2();
   }
@@ -62,17 +63,6 @@ function createController() {
 
   // })
 
-  // let blockSel = document.getElementById("BlockSelect"); //!!!!!!!!!!!!!!!!
-  // readColorSliders2(blockSel, ".BlockSliders", blocks);
-  //let numberSelector = document.getElementById('numberSelector');
-
-  // numberSelector.addEventListener('change', () => {
-  //   objectNumber = numberSelector.value;
-  //   modifySliders2();
-  // })
-
-  //number = 0;
-  // readSliders3(objectNumber, balls);
 } //End of createController.
 
 function readSliders3(objectNumber, objects) {
