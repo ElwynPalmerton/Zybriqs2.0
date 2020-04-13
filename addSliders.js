@@ -6,6 +6,8 @@ let bgSlider;
 let bgC;
 let tempBG;
 
+
+
 let ballSlider = {};
 let ballC;
 
@@ -22,6 +24,14 @@ const bgStartColor = {
   l: 35,
   a: 1.0
 }
+
+
+
+// let bgs = bgStartColor;
+
+// let bgCol;
+
+// bgCol = color(bgs.h, bgs.s, bgs.l, bgs.a);
 
 const ballStartColor = {
   h: 100,
@@ -58,85 +68,4 @@ const blockBorderStartColor = {
   a: 1
 }
 
-function addSliders() {
-
-  class ColorSlider {
-
-    constructor(name, startColor) {
-
-      let cDiv = document.createElement('div');
-
-      this.name = createP(name);
-      this.hue = createSlider(0, 360, startColor.h, 1);
-      this.saturation = createSlider(0, 100, startColor.s, 1);
-      this.lightness = createSlider(0, 100, startColor.l, 1);
-      this.alpha = createSlider(0, 1, startColor.a, 0.01);
-
-      cDiv.appendChild(this.name.elt);
-      cDiv.appendChild(this.hue.elt);
-      cDiv.appendChild(this.saturation.elt);
-      cDiv.appendChild(this.lightness.elt);
-      cDiv.appendChild(this.alpha.elt);
-      document.body.appendChild(cDiv); //Create a specific div in the html to append this to?
-
-      //Move this into a separate method.
-      //return the div so that I can control when/where it is displayed in a separate function?  (Probably...?)
-    }
-
-    readSlider() {
-      let newC = color(this.hue.value(),
-        this.saturation.value(),
-        this.lightness.value(),
-        this.alpha.value());
-
-      return newC;
-    }
-
-    createDimmed() {
-      const dimAmt = 15;
-      let newSaturation = this.saturation.value();
-
-      let newC = color(this.hue.value(),
-        newSaturation - dimAmt,
-        this.lightness.value(),
-        this.alpha.value());
-
-      return newC;
-
-
-    }
-
-  }
-
-  //The class slider does not need to be in this function (maybe be imported.)
-  //addSliders can take a big color object to start and then the constructor calls below can be passed
-  //the individuals color properties.
-
-
-  bgSlider = new ColorSlider('Background Color', bgStartColor);
-  ballSlider = new ColorSlider('Ball Color', ballStartColor);
-  liquidSlider = new ColorSlider('Liquid Color', liquidStartColor);
-  reverseLiquidSlider = new ColorSlider('Accelerator Color', reverseLiquidStartColor);
-  blockSlider = new ColorSlider('Block Color', blockStartColor);
-  blockBorderSlider = new ColorSlider('Block Border Color', blockBorderStartColor);
-}
-
-function readSliders() {
-  //These variables are the ones which are accessed when .display() is called.
-  bgC = bgSlider.readSlider();
-  ballC = ballSlider.readSlider();
-  liquidC = liquidSlider.readSlider();
-  reverseLiquidC = reverseLiquidSlider.readSlider();
-  blockC = blockSlider.readSlider();
-  blockBorderC = blockBorderSlider.readSlider();
-
-  //Dimmed Background
-  tempBG = bgSlider.createDimmed();
-  tempBallC = ballSlider.createDimmed();
-  tempLiquidC = liquidSlider.createDimmed();
-  tempReverseLiquidC = reverseLiquidSlider.createDimmed();
-  tempBlockC = blockSlider.createDimmed();
-  tempBlockBorderC = blockBorderSlider.createDimmed();
-
-
-}
+let ballColors = [];

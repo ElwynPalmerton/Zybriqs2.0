@@ -57,21 +57,23 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
       if (run === false) { //Only lets it add blocks when the program is paused.
 
         if (objectType === "Drag") {
-          let newLiquid = new Liquid(startRect, endRect, dragCoefficient);
+          let newLiquid = new Liquid(startRect, endRect, dragCoefficient, defaultDragColor);
           if (newLiquid.width > minSize && newLiquid.height > minSize) {
             liquids.push(newLiquid);
+            addDragBox();
           }
-          //
-
         } else if (objectType === "Block") {
-          let block = new Outline(startRect, endRect);
+          let block = new Outline(startRect, endRect, initBlockColors[0]);
           blocks.push(block);
+          addBlock();
         } else if (objectType === "Reverse Drag") {
-          let newAccelerator = new Liquid(startRect, endRect, -dragCoefficient);
+          let newAccelerator = new Liquid(startRect, endRect, -dragCoefficient, defaultAccelColor);
           if (newAccelerator.width > minSize && newAccelerator.height > minSize) {
             reverseLiquids.push(newAccelerator);
+            addAccelBox();
           }
         }
+        drawElementsDuringSetup()
       }; //End event listener ('mouseup').
     }
   }) //End listeners().
@@ -81,22 +83,24 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
 function drawElementsDuringSetup() {
 
 
+  tempBG = color(230, 30, 30, 1)
+
   background(tempBG);
 
   for (let j = 0; j < blocks.length; j++) {
-    blocks[j].display(tempBlockBorderC);
+    blocks[j].displayDimmed();
   }
 
   balls.forEach((ball) => {
-    ball.display(tempBallC);
+    ball.displayDimmed();
   })
 
   liquids.forEach((liquid) => {
-    liquid.display(tempLiquidC); //Liquid and reverseLiquid should be in the same array. See above?
+    liquid.displayDimmed(); //Liquid and reverseLiquid should be in the same array. See above?
     //liquid.displayRemoveButton();
   })
 
   reverseLiquids.forEach((reverseLiquid) => {
-    reverseLiquid.display(tempReverseLiquidC);
+    reverseLiquid.displayDimmed();
   })
 }

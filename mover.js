@@ -1,5 +1,15 @@
 class Mover {
-  constructor(x, y, c) {
+  constructor(x, y, color) {
+
+    //Colors:
+    let assignColor = color || defaultColor;
+    let thisColor = {};
+    Object.assign(thisColor, assignColor);
+    this.color = thisColor;
+
+
+
+    //Location variables.
     this.location = createVector(x, y);
     this.velocity = createVector(0, 0);
     this.size = 50;
@@ -8,7 +18,7 @@ class Mover {
     this.topSpeed = 10; //This is being used as a constant below, fix this.
     this.mass = random(0.5, 2);
     this.size = this.size * this.mass;
-    this.c = c; //This isn't ever used except that it is re-assigned to c in this.fricton. I think that it is creating an uninitialized variable which is why it works.
+    //this.c = c; //This isn't ever used except that it is re-assigned to c in this.fricton. I think that it is creating an uninitialized variable which is why it works.
     //But it should be this.c below and passed in as an argument so that it can be user modified.
     //This is the coeffecient of friction, should be called coeffecientOfFriction.
     //There is a different .c (l.c) from the liquid class which is used below.
@@ -194,10 +204,39 @@ class Mover {
     //if the distance from the circle center to each corner is less than the size, reverse the x and wide velocities.
   } //End of collides.
 
-  display(c) {
+  displayDimmed() {
+    let {
+      h,
+      s,
+      l,
+      a
+    } = this.color;
+
+    let p5Color = color(h, s - dimAmt, l, parseFloat(a));
     noStroke(250, 60, 60, 1);
     strokeWeight(2);
-    fill(c);
+    fill(p5Color);
+    ellipse(this.location.x, this.location.y, this.size, this.size);
+  }
+
+  displayNumber(number) {
+    textSize(16);
+    var inset = 5;
+    text(number, this.location.x - inset, this.location.y - inset);
+  }
+
+  display(c) {
+    let {
+      h,
+      s,
+      l,
+      a
+    } = this.color;
+
+    let p5Color = color(h, s, l, parseFloat(a));
+    noStroke(250, 60, 60, 1);
+    strokeWeight(2);
+    fill(p5Color);
     ellipse(this.location.x, this.location.y, this.size, this.size);
   }
 

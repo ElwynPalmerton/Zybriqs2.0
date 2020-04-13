@@ -2,7 +2,7 @@
 
 let sel;
 
-function setup() {
+function selectColor() {
   textAlign(CENTER);
   background(200);
   sel = createSelect();
@@ -13,5 +13,3 @@ function setup() {
   sel.selected('kiwi');
   sel.changed(mySelectEvent);
 }
-
-f
