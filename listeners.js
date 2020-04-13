@@ -60,7 +60,8 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
           let newLiquid = new Liquid(startRect, endRect, dragCoefficient, defaultDragColor);
           if (newLiquid.width > minSize && newLiquid.height > minSize) {
             liquids.push(newLiquid);
-            addDragBox();
+            createController();
+            //addDragBox();
           }
         } else if (objectType === "Block") {
           let block = new Outline(startRect, endRect, initBlockColors[0]);

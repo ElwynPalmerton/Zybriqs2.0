@@ -76,8 +76,8 @@ function setup() {
 
   makeButtons();
 
-  //addSliders();
-  //readSliders();
+  addSliders();
+  readSliders();
   //createController();
 
 
@@ -88,9 +88,11 @@ function setup() {
   createController();
   readController();
 
+  //readColorSliders();
 
-
-
+  // $(document).mousedown(() => {
+  //   console.log('jQuery works.');
+  // })
 }
 
 
@@ -103,14 +105,12 @@ function setup() {
 
 function draw() {
   if (run) {
-
-    let bgCol = color(230, 35, 35, 0.5)
-    background(bgCol);
+    background(bgC);
 
     if (mouseIsPressed) {
       //Use eventListeners and e.preventDefault();
 
-      //readSliders();
+      readSliders();
       //readAllSliders();
       //readAllSliders2();
       readController();

@@ -26,13 +26,14 @@ function createController() {
   addOptions(balls);
   modifySliders2(balls[0].color);
 
-  let objValue = objectSelection.value;
-  let objArray = getObjectArray(objValue);
-  addOptions(objArray);
+  let objectSelect = document.getElementById('objectSelector');
 
+  let obj = objectSelect.value;
+  let objArray = getObjectArray(obj);
+  addOptions(objArray);
+  console.log(objArray);
   if (objArray.length > 0) {
     modifySliders2(objArray[0].color);
-    //Do this with || using the default value instead.
   } else {
     modifySliders2();
   }
@@ -46,9 +47,12 @@ function createController() {
 
     let objArray = getObjectArray(obj);
     addOptions(objArray);
-    modifySliders(objArray[0].color);
+    if (objArray.length > 0) {
+      modifySliders(objArray[0].color);
+    }
 
   })
+
 
 } //End of createController.
 
@@ -114,7 +118,20 @@ function readController() {
 }
 
 
+
+
 function modifySliders2(newColor) {
+
+  if (newColor === undefined) {
+    newColor = {
+      h: 180,
+      s: 50,
+      l: 50,
+      a: .5
+    }
+  }
+
+  console.log('modify Sliders');
   //How do I select an element which is inside another element.
   //Also, I can put the colorSliders function in a different file since it is a freestanding function.
   //How do I change the value when the Option is selcted.
@@ -127,6 +144,27 @@ function modifySliders2(newColor) {
   sSlider.value = newColor.s;
   lSlider.value = newColor.l;
   aSlider.value = newColor.a;
+}
+
+function updateSliders() {
+
+  createController();
+
+  let objectSelector = document.getElementById('objectSelector');
+  console.log(objectSelector.value);
+  let objects = getObjectArray(objectSelector.value);
+  console.log(objects);
+
+  //Gets the number of the object
+
+  let objectNumber = 0;
+  objectNumber = numberSelector.value;
+  if (objects.length > 0) {
+    modifySliders2(objects[objectNumber].color);
+  } else {
+    modifySliders2();
+  }
+
 }
 
 
