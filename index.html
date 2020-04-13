@@ -23,13 +23,13 @@
   <script src="removeObjects.js"></script>
   <script src="showNumbers.js"></script>
   <script src="addSliderArrays.js"></script>
-  <script src="addColorSliders.js"></script>
+  <!-- <script src="addColorSliders.js"></script> -->
   <!--  -->
   <script src="addBalls.js"></script>
   <script src="mover.js"></script>
   <script src="liquid.js"></script>
-  <script src="addSliders.js"></script>
-  <script src="colorSliders.js"></script>
+  <!-- <script src="addSliders.js"></script> -->
+  <!-- <script src="colorSliders.js"></script> -->
   <!--  -->
   <script src="sketch.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400;500&family=Roboto+Slab&display=swap"
@@ -54,7 +54,7 @@
     <!-- Integrated Sliderss -->
     <Card id="colorController">
       <h2 id="controllerTitle">Color</h2>
-      <select onchange="updateSliders()" name="ObjectType" id="objectSelector">
+      <select name="ObjectType" id="objectSelector">
         <option value="Balls">Balls</option>
         <option value="Drag">Drag</option>
         <option value="Accelerator">Accelerator</option>
@@ -63,7 +63,7 @@
 
       </select>
       </br>
-      <select onchange="updateSliders()" name="NumberSelect" id="numberSelector">
+      <select name="NumberSelect" id="numberSelector">
       </select>
       <div class="combinedSliders">
         <input type="range" class="hSlider" min="0" max="360">

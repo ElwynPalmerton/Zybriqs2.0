@@ -7,19 +7,16 @@ function addBalls() {
   };
 
   let ball = new Mover(random(width), height / 5, defaultBallColor);
-  //console.log(ball);
+  console.log(ball);
   balls.push(ball);
   qty++;
-
-  createController();
-  // modifySliders2();
 
   //If this is accomplished with a modifyOptions function then it does not
   //...and should not happen here aat all.
   //Almost everything from here down, except for removeBalls can be entirely removed.
-  //ballSelect = document.getElementById("BallSelect");
-  //let newBallNumber = balls.length - 1;
-  //addOption(ballSelect, newBallNumber);
+  ballSelect = document.getElementById("BallSelect");
+  let newBallNumber = balls.length - 1;
+  addOption(ballSelect, newBallNumber);
 }
 
 //If this is accomplished with a modifyOptions function then it does not
@@ -37,12 +34,10 @@ function removeBalls() {
   // initBallColors.pop();
   // ballColorsArray.pop();
 
-
-  createController();
   //This removes the option from the drop-down in the Div for the Ball Color Sliders.
-  //let ballSelections = document.getElementById("BallSelect");
-  //console.log(ballSelections);
-  //ballSelections.removeChild(ballSelections.lastChild);
+  let ballSelections = document.getElementById("BallSelect");
+  console.log(ballSelections);
+  ballSelections.removeChild(ballSelections.lastChild);
 
 }
 
@@ -55,15 +50,15 @@ function addDragBox() {
 
 function addAccelBox() {
 
-  //accelSelections = document.getElementById("AcceleratorSelect");
-  //let accelCount = reverseLiquids.length - 1;
-  //addOption(accelSelections, accelCount);
+  accelSelections = document.getElementById("AcceleratorSelect");
+  let accelCount = reverseLiquids.length - 1;
+  addOption(accelSelections, accelCount);
 }
 
 
 function addBlock() {
 
-  //blockSelections = document.getElementById("BlockSelect");
-  //let blockCount = blocks.length - 1;
-  // addOption(blockSelections, blockCount);
+  blockSelections = document.getElementById("BlockSelect");
+  let blockCount = blocks.length - 1;
+  addOption(blockSelections, blockCount);
 }
