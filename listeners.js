@@ -74,6 +74,7 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
           updateSliders2();
         } else if (objectType === "Reverse Drag") {
           let newAccelerator = new Liquid(startRect, endRect, -dragCoefficient, defaultAccelColor);
+          console.log(newAccelerator);
           if (newAccelerator.width > minSize && newAccelerator.height > minSize) {
             reverseLiquids.push(newAccelerator);
             clearDuplicates();

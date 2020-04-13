@@ -29,16 +29,20 @@ function removeObjects(objArray, x, y) {
       //default to the last numbered object before the sliced object if the sliced object
       //had previously been the current selection.
 
-      if (objArray === liquids) {
-        removeDragBoxSelector();
 
-      }
-      if (objArray === reverseLiquids) {
-        removeAccelBoxSelector();
-      }
-      if (objArray === blocks) {
-        removeBlocks();
-      }
+      createController();
+      updateSliders2();
+
+      // if (objArray === liquids) {
+      //   removeDragBoxSelector();
+
+      // }
+      // if (objArray === reverseLiquids) {
+      //   removeAccelBoxSelector();
+      // }
+      // if (objArray === blocks) {
+      //   removeBlocks();
+      // }
       showRemoveButtons();
 
     }
@@ -119,22 +123,22 @@ function removeDragBoxSelector() {
   //I just need to put the name into the Class definitation 
   //Then I can call colorSliders with the name as a variable
   //... instead of hard-coded.
-  dragSelection = document.getElementById("DragSelect");
-  dragSelection.removeChild(dragSelection.lastChild);
+  //dragSelection = document.getElementById("DragSelect");
+  //dragSelection.removeChild(dragSelection.lastChild);
 }
 
 function removeAccelBoxSelector() {
-  accelSelection = document.getElementById("AcceleratorSelect");
-  accelSelection.removeChild(accelSelection.lastChild);
+  //accelSelection = document.getElementById("AcceleratorSelect");
+  //accelSelection.removeChild(accelSelection.lastChild);
 }
 
 
 function removeBlocks() {
   //I should be able to remove these two pop() lines and it should still work.
   //Maybe this is why the block colors were weird.
-  initBlockColors.pop();
-  blockColorsArray.pop();
+  //initBlockColors.pop();
+  //blockColorsArray.pop();
   //
-  blockSelection = document.getElementById("BlockSelect");
-  blockSelection.removeChild(blockSelection.lastChild);
+  //blockSelection = document.getElementById("BlockSelect");
+  //blockSelection.removeChild(blockSelection.lastChild);
 }

@@ -10,11 +10,11 @@
     a: 1
   };
 
-  const defaultAccelColor = {
+  let defaultAccelColor = {
     //Aquamarine
-    h: 180,
-    s: 50,
-    l: 50,
+    h: 200,
+    s: 40,
+    l: 40,
     a: 0.5
   };
 
