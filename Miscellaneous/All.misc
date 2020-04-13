@@ -1,0 +1,48 @@
+// if (selection.value === "All") {
+    //   console.log("All:", selection.value);
+    //   modifySliders(initBallColors[0]);
+    //   let hSlider = document.getElementById("hSlider");
+    //   hSlider.addEventListener("input", () => {
+    //     initBallColors[0].h = hSlider.value;
+    //     let c = initBallColors[0];
+    //     newColor = color(c.h, c.s, c.l, c.a);
+
+    //     // ballColorsArray[0] = newColor;
+    //     console.log(ballColorsArray);
+
+    //   });
+
+    //   let sSlider = document.getElementById("sSlider");
+    //   sSlider.addEventListener("input", () => {
+    //     initBallColors[selection.value].s = sSlider.value;
+    //     let c = initBallColors[0];
+    //     newColor = color(c.h, c.s, c.l, c.a);
+    //     // ballColorsArray[0] = newColor;
+
+    //   });
+
+    //   let lSlider = document.getElementById("lSlider");
+    //   lSlider.addEventListener("input", () => {
+    //     initBallColors[0].l = lSlider.value;
+    //     let c = initBallColors[0];
+    //     newColor = color(c.h, c.s, c.l, c.a);
+    //     // ballColorsArray[0] = newColor;
+
+    //   });
+
+    //   let aSlider = document.getElementById("aSlider");
+    //   aSlider.addEventListener("input", () => {
+    //     initBallColors[0].a = aSlider.value;
+    //     let c = initBallColors[0];
+    //     //I need to google the options for <input> sliders to set the increment
+    //     //to something smaller than one (1). But setting min/max to 0-100 and dividing by 100
+    //     //is a quick and dirty way to accomplish this.
+    //     newColor = color(c.h, c.s, c.l, c.a / 100);
+    //     // ballColorsArray[0] = newColor;
+
+    //   });
+
+    //I need to do this as below also.
+    // } else {
+
+    //Consolidate this into one function and run four times.

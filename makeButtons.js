@@ -66,6 +66,7 @@ function pausePlay() {
 
   if (run === false) {
     play();
+    drawButtonOn = false;
   } else {
     //It seems like this is working without the if statement to check "run" but I do use run elsewhere.
     pause();
@@ -102,6 +103,7 @@ function makeBlockButton() {
 
     let current = drawBlockButton.elt.className === "active";
     let lastActive = buttons.some((btn) => btn.className === "active");
+    drawButtonOn = true;
 
     buttons.forEach(b => (b.className = "notActive"));
     if (run === true) {
@@ -111,11 +113,12 @@ function makeBlockButton() {
       drawBlockButton.elt.className = "active";
     } else if (current && run === false) {
       play();
+      drawButtonOn = false;
     } else {
       drawBlockButton.elt.className = "active";
     }
 
-    drawButtonOn = true;
+
     removeButtonOn = false;
     objectType = "Block";
     listeners();
@@ -134,6 +137,7 @@ function makeDragButton() {
 
     buttons.forEach(b => (b.className = "notActive"));
     e.stopPropagation();
+    drawButtonOn = true;
     //buttons.forEach(b => (b.className = "notActive"));
     if (run === true) {
       pause();
@@ -142,10 +146,11 @@ function makeDragButton() {
       drawDragButton.elt.className = "active";
     } else if (current && run === false) {
       play();
+      drawButtonOn = false;
     } else {
       drawDragButton.elt.className = "active";
     }
-    drawButtonOn = true;
+
     removeButtonOn = false;
     objectType = "Drag";
     listeners();
@@ -163,6 +168,7 @@ function makeReverseDragButton() {
 
     e.stopPropagation();
     resetButtons();
+    drawButtonOn = true;
     //buttons.forEach(b => (b.className = "notActive")); //Clear function
     if (run === true) {
       pause();
@@ -171,10 +177,11 @@ function makeReverseDragButton() {
       drawReverseDragButton.elt.className = "active";
     } else if (current && run === false) {
       play();
+      drawButtonOn = false;
     } else {
       drawReverseDragButton.elt.className = "active";
     }
-    drawButtonOn = true;
+
     //removeButtonOn = false; //Clear function.
     objectType = "Reverse Drag";
     listeners();

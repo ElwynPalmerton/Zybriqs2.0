@@ -1,5 +1,5 @@
 //Zibriqs by Elwyn Palmerton
-
+//import Mover from 'mover.js';
 //Objects: Balls, liquids/reverseLiquid     //Add Blocks.
 const balls = [];
 var qty = 3;
@@ -71,20 +71,13 @@ function setup() {
   // let blockStart = createVector(100, 600);
   // let blockEnd = createVector(200, 600);
 
+
+
   let brk = document.createElement("br"); //These two line can just go in the HTML.
   document.body.appendChild(brk);
 
   makeButtons();
 
-  //addSliders();
-  //readSliders();
-  //createController();
-
-
-  //addColorSliders();
-  //addColorSliders2();
-  //readAllSliders();
-  //readAllSliders2();
   createController();
   readController();
 
@@ -108,12 +101,6 @@ function draw() {
     background(bgCol);
 
     if (mouseIsPressed) {
-      //Use eventListeners and e.preventDefault();
-
-      //readSliders();
-      //readAllSliders();
-      //readAllSliders2();
-
 
       readController();
     }

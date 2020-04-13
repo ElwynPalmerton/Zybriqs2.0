@@ -43,25 +43,10 @@ function createController() {
   }
 
 
-
-  // objectSelection.addEventListener('change', () => {
-
-  //   let obj = objectSelection.value;
-
-  //   let objArray = getObjectArray(obj);
-  //   addOptions(objArray);
-  //   if (objArray.length > 0) {
-  //     modifySliders2(objArray[numberSelector.value].color);
-  //   }
-
-  // })
-
-
 } //End of createController.
 
 
-function readSliders3(objectNumber) {
-  //console.log("objectNumber in readSliders3", objectNumber);
+function readSliders(objectNumber) {
 
   let numberSelector = document.getElementById('numberSelector');
   let objectSelector = document.getElementById('objectSelector');
@@ -103,8 +88,6 @@ function readSliders3(objectNumber) {
     let objects = getObjectArray(objectSelector.value);
     objects[objectNumber].color.a = aSlider.value;
   });
-
-  //Remove event listeners down here.
 }
 
 function readController() {
@@ -116,7 +99,7 @@ function readController() {
   let objectNumber = 0;
   objectNumber = numberSelector.value;
 
-  readSliders3(objectNumber, objects)
+  readSliders(objectNumber, objects)
 
 }
 
