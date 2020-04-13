@@ -14,9 +14,9 @@ function addBalls() {
   //If this is accomplished with a modifyOptions function then it does not
   //...and should not happen here aat all.
   //Almost everything from here down, except for removeBalls can be entirely removed.
-  ballSelect = document.getElementById("BallSelect");
-  let newBallNumber = balls.length - 1;
-  addOption(ballSelect, newBallNumber);
+  // ballSelect = document.getElementById("BallSelect");
+  //let newBallNumber = balls.length - 1;
+  //addOption(ballSelect, newBallNumber);
 }
 
 //If this is accomplished with a modifyOptions function then it does not

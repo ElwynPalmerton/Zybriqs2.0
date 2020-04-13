@@ -60,17 +60,25 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
           let newLiquid = new Liquid(startRect, endRect, dragCoefficient, defaultDragColor);
           if (newLiquid.width > minSize && newLiquid.height > minSize) {
             liquids.push(newLiquid);
-            addDragBox();
+            clearDuplicates();
+            createController();
+            updateSliders2();
+            console.log(liquids);
+            //addDragBox();
           }
         } else if (objectType === "Block") {
           let block = new Outline(startRect, endRect, initBlockColors[0]);
           blocks.push(block);
-          addBlock();
+          clearDuplicates();
+          createController();
+          updateSliders2();
         } else if (objectType === "Reverse Drag") {
           let newAccelerator = new Liquid(startRect, endRect, -dragCoefficient, defaultAccelColor);
           if (newAccelerator.width > minSize && newAccelerator.height > minSize) {
             reverseLiquids.push(newAccelerator);
-            addAccelBox();
+            clearDuplicates();
+            createController();
+            updateSliders2();
           }
         }
         drawElementsDuringSetup()

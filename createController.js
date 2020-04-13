@@ -23,7 +23,7 @@ function createController() {
   //..this is already happening in readColorSliders2();
   //read the sliders
 
-  addOptions(balls);
+  //addOptions(balls);
   // modifySliders2(balls[0].color);
 
   let objectSelect = document.getElementById('objectSelector');
@@ -34,27 +34,27 @@ function createController() {
   let obj = objectSelect.value;
   let objArray = getObjectArray(obj);
   addOptions(objArray);
-  console.log(objArray);
+
   if (objArray.length > 0) {
+    console.log(objArray[numberSel.value].color);
     modifySliders2(objArray[numberSel.value].color);
   } else {
     modifySliders2();
   }
 
-  let objectSelection = document.getElementById("objectSelector");
-  let numberSelector = document.getElementById('numberSelector');
 
-  objectSelection.addEventListener('change', () => {
 
-    let obj = objectSelection.value;
+  // objectSelection.addEventListener('change', () => {
 
-    let objArray = getObjectArray(obj);
-    addOptions(objArray);
-    if (objArray.length > 0) {
-      modifySliders2(objArray[numberSelector.value].color);
-    }
+  //   let obj = objectSelection.value;
 
-  })
+  //   let objArray = getObjectArray(obj);
+  //   addOptions(objArray);
+  //   if (objArray.length > 0) {
+  //     modifySliders2(objArray[numberSelector.value].color);
+  //   }
+
+  // })
 
 
 } //End of createController.
@@ -134,7 +134,7 @@ function modifySliders2(newColor) {
     }
   }
 
-  console.log('modify Sliders');
+  console.log('In modify Sliders');
   //How do I select an element which is inside another element.
   //Also, I can put the colorSliders function in a different file since it is a freestanding function.
   //How do I change the value when the Option is selcted.
@@ -152,6 +152,24 @@ function modifySliders2(newColor) {
 function updateSliders() {
 
   createController();
+
+  let objectSelector = document.getElementById('objectSelector');
+
+  let objects = getObjectArray(objectSelector.value);
+
+  let objectNumber = 0;
+  objectNumber = numberSelector.value;
+  if (objects.length > 0) {
+    modifySliders2(objects[objectNumber].color);
+  } else {
+    modifySliders2();
+  }
+
+}
+
+function updateSliders2() {
+
+  //createController();
 
   let objectSelector = document.getElementById('objectSelector');
 
