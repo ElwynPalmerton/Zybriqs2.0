@@ -24,16 +24,19 @@ function createController() {
   //read the sliders
 
   addOptions(balls);
-  modifySliders2(balls[0].color);
+  // modifySliders2(balls[0].color);
 
   let objectSelect = document.getElementById('objectSelector');
+  let numberSel = document.getElementById('numberSelector');
+
+
 
   let obj = objectSelect.value;
   let objArray = getObjectArray(obj);
   addOptions(objArray);
   console.log(objArray);
   if (objArray.length > 0) {
-    modifySliders2(objArray[0].color);
+    modifySliders2(objArray[numberSel.value].color);
   } else {
     modifySliders2();
   }
@@ -48,7 +51,7 @@ function createController() {
     let objArray = getObjectArray(obj);
     addOptions(objArray);
     if (objArray.length > 0) {
-      modifySliders(objArray[0].color);
+      modifySliders(objArray[numberSelector.value].color);
     }
 
   })
