@@ -110,6 +110,7 @@ function colorSliders(name, initialValues, quantity) {
 
   sliderDiv.appendChild(slideContainer);
 
+  console.log(sliderDiv);
   return sliderDiv;
 } //End of ColorSliders.
 

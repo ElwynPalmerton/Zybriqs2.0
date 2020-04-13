@@ -65,9 +65,7 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
         } else if (objectType === "Block") {
           let block = new Outline(startRect, endRect, initBlockColors[0]);
           blocks.push(block);
-          createController();
-          updateSliders();
-          //addBlock();
+          addBlock();
         } else if (objectType === "Reverse Drag") {
           let newAccelerator = new Liquid(startRect, endRect, -dragCoefficient, defaultAccelColor);
           if (newAccelerator.width > minSize && newAccelerator.height > minSize) {
@@ -75,8 +73,6 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
             addAccelBox();
           }
         }
-        createController();
-        updateSliders();
         drawElementsDuringSetup()
       }; //End event listener ('mouseup').
     }

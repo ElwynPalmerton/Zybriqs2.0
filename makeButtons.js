@@ -389,8 +389,7 @@ function clearDuplicates() {
       liquids[i].start.y === liquids[i - 1].start.y
     ) {
       liquids.splice(i, 1);
-      updateSliders();
-      //removeDragBoxSelector();
+      removeDragBoxSelector();
     }
   }
 
@@ -400,8 +399,7 @@ function clearDuplicates() {
       reverseLiquids[i].start.y === reverseLiquids[i - 1].start.y
     ) {
       reverseLiquids.splice(i, 1);
-      updateSliders()
-      //removeAccelBoxSelector();
+      removeAccelBoxSelector();
     }
   }
 
@@ -411,9 +409,7 @@ function clearDuplicates() {
       blocks[i].start.y === blocks[i - 1].start.y
     ) {
       blocks.splice(i, 1);
-      createController();
-      updateSliders();
-      //removeBlocks();
+      removeBlocks();
     }
   }
 } //End of clearDuplicates();

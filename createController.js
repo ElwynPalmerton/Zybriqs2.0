@@ -1,5 +1,5 @@
 function addOptions(objects) {
-  //Adds the relevant number of objects to numberSelector.
+
   let numberSelector = document.getElementById("numberSelector");
 
   while (numberSelector.options.length > 0) {
@@ -22,14 +22,9 @@ function createController() {
   //modify the sliders for the selected number.
   //..this is already happening in readColorSliders2();
   //read the sliders
-  //
-  //Initializes the options for the number of balls.
-  //addOptions(balls);
-  //Initializes the sliders for the first ball object.
-  //  modifySliders2(balls[0].color);
 
-  let objectSelection = document.getElementById("objectSelector");
-  let numberSelector = document.getElementById("numberSelector");
+  addOptions(balls);
+  modifySliders2(balls[0].color);
 
   let objValue = objectSelection.value;
   let objArray = getObjectArray(objValue);
@@ -42,50 +37,45 @@ function createController() {
     modifySliders2();
   }
 
+  let objectSelection = document.getElementById("objectSelector");
+  let numberSelector = document.getElementById('numberSelector');
 
-  // objectSelection.addEventListener("change", () => {
-  //   console.log('changed!');
-  //   let obj = objectSelection.value;
-  //   let objArray = getObjectArray(obj);
-  //   addOptions(objArray);
-  //   if (objArray.length > 0) {
-  //     modifySliders2(objArray[0].color);
-  //   } else {
-  //     modifySliders2();
-  //   }
-  // });
+  objectSelection.addEventListener('change', () => {
 
-  // numberSelector.addEventListener('change', () => {
-  //   console.log("number changed.");
-  //   let obj = objectSelection.value;
-  //   let objArray = getObjectArray(obj);
-  //   modifySliders(objArray[0].color);
+    let obj = objectSelection.value;
 
-  // })
+    let objArray = getObjectArray(obj);
+    addOptions(objArray);
+    modifySliders(objArray[0].color);
+
+  })
 
 } //End of createController.
 
-function readSliders3(objectNumber, objects) {
+
+function readSliders3(objectNumber) {
   //console.log("objectNumber in readSliders3", objectNumber);
 
-  let numberSelector = document.getElementById("numberSelector");
-  let objectSelector = document.getElementById("objectSelector");
+  let numberSelector = document.getElementById('numberSelector');
+  let objectSelector = document.getElementById('objectSelector');
+
 
   let hSlider = document.querySelector(".combinedSliders .hSlider");
-  objects = getObjectArray(objectSelector.value);
-
 
   hSlider.addEventListener("input", () => {
     objectNumber = numberSelector.value;
-    objects = getObjectArray(objectSelector.value);
+    objectNumber = numberSelector.value;
+    let objects = getObjectArray(objectSelector.value);
     objects[objectNumber].color.h = hSlider.value;
   });
+
 
   let sSlider = document.querySelector(".combinedSliders .sSlider");
 
   sSlider.addEventListener("input", () => {
     objectNumber = numberSelector.value;
-    objects = getObjectArray(objectSelector.value);
+    objectNumber = numberSelector.value;
+    let objects = getObjectArray(objectSelector.value);
     objects[objectNumber].color.s = sSlider.value;
   });
 
@@ -93,7 +83,8 @@ function readSliders3(objectNumber, objects) {
 
   lSlider.addEventListener("input", () => {
     objectNumber = numberSelector.value;
-    objects = getObjectArray(objectSelector.value);
+    objectNumber = numberSelector.value;
+    let objects = getObjectArray(objectSelector.value);
     objects[objectNumber].color.l = lSlider.value;
   });
 
@@ -101,7 +92,8 @@ function readSliders3(objectNumber, objects) {
 
   aSlider.addEventListener("input", () => {
     objectNumber = numberSelector.value;
-    objects = getObjectArray(objectSelector.value);
+    objectNumber = numberSelector.value;
+    let objects = getObjectArray(objectSelector.value);
     objects[objectNumber].color.a = aSlider.value;
   });
 
@@ -110,28 +102,22 @@ function readSliders3(objectNumber, objects) {
 
 function readController() {
   //Gets the type of object being modified.
-  let objectSelector = document.getElementById("objectSelector");
+  let objectSelector = document.getElementById('objectSelector');
   let objects = getObjectArray(objectSelector.value);
 
   //Gets the number of the object
   let objectNumber = 0;
   objectNumber = numberSelector.value;
-  if (objects.length > 0) {
-    modifySliders2(objects[objectNumber].color);
-    readSliders3(objectNumber, objects);
-  }
+
+  readSliders3(objectNumber, objects)
+
 }
 
-function modifySliders2(newColor) {
-  if (newColor === undefined) {
-    newColor = {
-      h: 180,
-      s: 50,
-      l: 50,
-      a: 0.5
-    }
-  }
 
+function modifySliders2(newColor) {
+  //How do I select an element which is inside another element.
+  //Also, I can put the colorSliders function in a different file since it is a freestanding function.
+  //How do I change the value when the Option is selcted.
   let hSlider = document.querySelector(".combinedSliders .hSlider");
   let sSlider = document.querySelector(".combinedSliders .sSlider");
   let lSlider = document.querySelector(".combinedSliders .lSlider");
@@ -143,20 +129,6 @@ function modifySliders2(newColor) {
   aSlider.value = newColor.a;
 }
 
-function updateSliders() {
-  createController();
-  let objectSelector = document.getElementById("objectSelector");
-  let objects = getObjectArray(objectSelector.value);
-  let objectNumber = 0;
-  let numberSelector = document.getElementById('numberSelector');
-  if (objects.length > 0) {
-    objectNumber = numberSelector.value;
-    modifySliders2(objects[objectNumber].color);
-  } else {
-    modifySliders2();
-  }
-
-}
 
 function getObjectArray(obj) {
   let objArray = [];

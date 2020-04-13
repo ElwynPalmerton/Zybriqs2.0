@@ -40,8 +40,6 @@ function removeObjects(objArray, x, y) {
         removeBlocks();
       }
       showRemoveButtons();
-      createController();
-      updateSliders();
 
     }
   }
@@ -134,9 +132,9 @@ function removeAccelBoxSelector() {
 function removeBlocks() {
   //I should be able to remove these two pop() lines and it should still work.
   //Maybe this is why the block colors were weird.
-  //initBlockColors.pop();
-  //blockColorsArray.pop();
+  initBlockColors.pop();
+  blockColorsArray.pop();
   //
-  //blockSelection = document.getElementById("BlockSelect");
-  //blockSelection.removeChild(blockSelection.lastChild);
+  blockSelection = document.getElementById("BlockSelect");
+  blockSelection.removeChild(blockSelection.lastChild);
 }
