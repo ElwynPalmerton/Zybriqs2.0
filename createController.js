@@ -51,7 +51,7 @@ function createController() {
     let objArray = getObjectArray(obj);
     addOptions(objArray);
     if (objArray.length > 0) {
-      modifySliders(objArray[numberSelector.value].color);
+      modifySliders2(objArray[numberSelector.value].color);
     }
 
   })
@@ -60,39 +60,61 @@ function createController() {
 } //End of createController.
 
 
-function readSliders3(objectNumber, objects) {
-  console.log("objectNumber in readSliders3", objectNumber);
+function readSliders3(objectNumber) {
+  //console.log("objectNumber in readSliders3", objectNumber);
 
   let numberSelector = document.getElementById('numberSelector');
+  let objectSelector = document.getElementById('objectSelector');
+
+
   let hSlider = document.querySelector(".combinedSliders .hSlider");
 
   hSlider.addEventListener("input", () => {
     objectNumber = numberSelector.value;
-    numberSelector.addEventListener('change', () => {
-      objectNumber = numberSelector.value;
-    })
+    objectNumber = numberSelector.value;
+    let objects = getObjectArray(objectSelector.value);
     objects[objectNumber].color.h = hSlider.value;
-
   });
+
+
+  let sSlider = document.querySelector(".combinedSliders .sSlider");
+
+  sSlider.addEventListener("input", () => {
+    objectNumber = numberSelector.value;
+    objectNumber = numberSelector.value;
+    let objects = getObjectArray(objectSelector.value);
+    objects[objectNumber].color.s = sSlider.value;
+  });
+
+  let lSlider = document.querySelector(".combinedSliders .lSlider");
+
+  lSlider.addEventListener("input", () => {
+    objectNumber = numberSelector.value;
+    objectNumber = numberSelector.value;
+    let objects = getObjectArray(objectSelector.value);
+    objects[objectNumber].color.l = lSlider.value;
+  });
+
+  let aSlider = document.querySelector(".combinedSliders .aSlider");
+
+  aSlider.addEventListener("input", () => {
+    objectNumber = numberSelector.value;
+    objectNumber = numberSelector.value;
+    let objects = getObjectArray(objectSelector.value);
+    objects[objectNumber].color.a = aSlider.value;
+  });
+
+  //Remove event listeners down here.
 }
 
 function readController() {
-
-  let objectNumber = 0;
-
-  let numberSelector = document.getElementById('numberSelector');
-  numberSelector.addEventListener('change', () => {
-
-    objectNumber = numberSelector.value;
-  })
-
+  //Gets the type of object being modified.
   let objectSelector = document.getElementById('objectSelector');
-
-
-  console.log(objectNumber);
-
-  console.log(objectSelector);
   let objects = getObjectArray(objectSelector.value);
+
+  //Gets the number of the object
+  let objectNumber = 0;
+  objectNumber = numberSelector.value;
 
   readSliders3(objectNumber, objects)
 
@@ -118,7 +140,6 @@ function modifySliders2(newColor) {
   //How do I change the value when the Option is selcted.
   let hSlider = document.querySelector(".combinedSliders .hSlider");
   let sSlider = document.querySelector(".combinedSliders .sSlider");
-  console.log(sSlider);
   let lSlider = document.querySelector(".combinedSliders .lSlider");
   let aSlider = document.querySelector(".combinedSliders .aSlider");
 

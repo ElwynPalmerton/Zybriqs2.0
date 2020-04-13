@@ -8,9 +8,6 @@ class Outline { //Change name to Block.
     this.color = thisColor;
 
 
-
-
-
     //I think that this has to be before the assignments below.
     this.start = start; //Vector.
     this.end = end; //Vector.
@@ -101,7 +98,7 @@ class Outline { //Change name to Block.
   }
 
   displayRemoveButton() {
-    console.log('Displaying');
+
     const xBoxSize = 15;
     stroke(150);
     strokeWeight(2);

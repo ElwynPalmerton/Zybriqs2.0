@@ -83,6 +83,8 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
 function drawElementsDuringSetup() {
 
 
+  tempBG = color(230, 30, 30, 1)
+
   background(tempBG);
 
   for (let j = 0; j < blocks.length; j++) {
@@ -99,6 +101,6 @@ function drawElementsDuringSetup() {
   })
 
   reverseLiquids.forEach((reverseLiquid) => {
-    reverseLiquid.displayDimmed(tempReverseLiquidC);
+    reverseLiquid.displayDimmed();
   })
 }

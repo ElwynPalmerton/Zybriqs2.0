@@ -22,10 +22,10 @@ function addBalls() {
 //If this is accomplished with a modifyOptions function then it does not
 //...and should not happen here aat all.
 function addOption(elt, number) {
-  let newOption = document.createElement("option");
-  newOption.value = number;
-  newOption.textContent = number + 1;
-  elt.appendChild(newOption);
+  //let newOption = document.createElement("option");
+  //newOption.value = number;
+  // newOption.textContent = number + 1;
+  // elt.appendChild(newOption);
 }
 
 function removeBalls() {
@@ -35,30 +35,31 @@ function removeBalls() {
   // ballColorsArray.pop();
 
   //This removes the option from the drop-down in the Div for the Ball Color Sliders.
-  let ballSelections = document.getElementById("BallSelect");
-  console.log(ballSelections);
-  ballSelections.removeChild(ballSelections.lastChild);
+  //let ballSelections = document.getElementById("BallSelect");
+  //ballSelections.removeChild(ballSelections.lastChild);
 
 }
 
 function addDragBox() {
 
-  dragSelections = document.getElementById("DragSelect");
-  let dragCount = liquids.length - 1;
-  addOption(dragSelections, dragCount);
+  //dragSelections = document.getElementById("DragSelect");
+  //let dragCount = liquids.length - 1;
+  //addOption(dragSelections, dragCount);
+
 }
 
 function addAccelBox() {
 
-  accelSelections = document.getElementById("AcceleratorSelect");
-  let accelCount = reverseLiquids.length - 1;
-  addOption(accelSelections, accelCount);
+  // accelSelections = document.getElementById("AcceleratorSelect");
+  //let accelCount = reverseLiquids.length - 1;
+  a //ddOption(accelSelections, accelCount);
+
 }
 
 
 function addBlock() {
 
-  blockSelections = document.getElementById("BlockSelect");
-  let blockCount = blocks.length - 1;
-  addOption(blockSelections, blockCount);
+  // blockSelections = document.getElementById("BlockSelect");
+  //let blockCount = blocks.length - 1;
+  //addOption(blockSelections, blockCount);
 }

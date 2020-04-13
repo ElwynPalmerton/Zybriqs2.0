@@ -26,8 +26,6 @@ const bgStartColor = {
 }
 
 
-tempBG = color(bgStartColor.h, bgStartColor.s, bgStartColor.l, bgStartColor.a);
-
 
 // let bgs = bgStartColor;
 
