@@ -1,9 +1,11 @@
 //Zibriqs by Elwyn Palmerton
+//
 //import Mover from 'mover.js';
+//
 //Objects: Balls, liquids/reverseLiquid     //Add Blocks.
 const balls = [];
-var qty = 3;
 let liquid, reverseLiquid;
+var qty = 3;
 const liquids = [];
 const reverseLiquids = [];
 var blocks = [];
@@ -68,45 +70,28 @@ function setup() {
   );
   reverseLiquids.push(reverseLiquid);
 
-  // let blockStart = createVector(100, 600);
-  // let blockEnd = createVector(200, 600);
-
-
-
-  let brk = document.createElement("br"); //These two line can just go in the HTML.
-  document.body.appendChild(brk);
 
   makeButtons();
 
   createController();
   readController();
 
-
-
-
 }
 
 
-// let selectionObject = document.getElementsByClassName('objSel')
-// console.log(selectionObject);
-// selectionObject.addEventListener('change', () => {
-//   console.log('Changed!');
-//   ballSlidersArray.updateSelection();
-// });
+
 
 function draw() {
   if (run) {
 
-    let bgCol = color(230, 35, 35, 0.5)
+    let bgCol = color(230, 35, 35, 1)
     background(bgCol);
 
     if (mouseIsPressed) {
-
       readController();
     }
 
     for (let i = 0; i < qty; i++) {
-      //Try implementing this with a for-of loop.
       //Calculate wind.
       //---The first three lines which calculate wind speed do not (necessaril?) need to be in the loop.
       xOff += 0.01;
