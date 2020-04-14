@@ -232,6 +232,7 @@ function makeAddBallsButton() {
     resetButtons();
     //addBallsButton.elt.className = "active";
     addBalls();
+    updateSliders();
     drawElementsDuringSetup();
     //I don't need this line for this function: objectType = "Reverse Drag";
   });
@@ -250,6 +251,7 @@ function makeRemoveBallsButton() {
     //removeBallsButton.elt.className = "active";
     if (qty > 0) {
       removeBalls();
+      updateSliders();
       drawElementsDuringSetup();
     } else {
       console.log('There are no balls to remove.');

@@ -6,6 +6,9 @@ function addBalls() {
     a: 0.5
   };
 
+
+  updateSliders();
+
   let ball = new Mover(random(width), height / 5, defaultBallColor);
   balls.push(ball);
   qty++;
@@ -16,5 +19,8 @@ function addBalls() {
 function removeBalls() {
   balls.pop();
   qty--;
+
+
+  updateSliders2();
 
 }
