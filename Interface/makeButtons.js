@@ -74,9 +74,7 @@ function pausePlay() {
 }
 
 
-
 function makePlayButton() {
-
   playButton.textContent = "Pause";
 
   let buttonContainer = document.getElementById('buttonContainer');
@@ -325,7 +323,6 @@ function makeZenModeButtons() {
     let elem = document.querySelector('body');
     resetButtons();
     zenButton.elt.className = "active";
-
 
     openFullScreen();
 

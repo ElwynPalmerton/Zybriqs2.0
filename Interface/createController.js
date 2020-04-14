@@ -6,9 +6,7 @@ function addOptions(objects) {
     numberSelector.innerHTML = "";
     numberSelector.options.remove(0);
   }
-  // console.log("Number Selector", numberSelector);
 
-  // console.log(object);
   for (let i = 0; i < objects.length; i++) {
     let option = new Option(i + 1, i);
     numberSelector.appendChild(option);
@@ -17,14 +15,6 @@ function addOptions(objects) {
 
 
 function createController() {
-  //modify the numbers for the lastSelected object number of that type.
-  //..create a variable for each - could I put this in the class?
-  //modify the sliders for the selected number.
-  //..this is already happening in readColorSliders2();
-  //read the sliders
-
-  //addOptions(balls);
-  // modifySliders2(balls[0].color);
 
   let objectSelect = document.getElementById('objectSelector');
   let numberSel = document.getElementById('numberSelector');
@@ -96,8 +86,6 @@ function readController() {
 }
 
 
-
-
 function modifySliders(newColor) {
 
   if (newColor === undefined) {
@@ -121,15 +109,15 @@ function modifySliders(newColor) {
 }
 
 function updateSliders() {
+  //updateSliders() is called from the onchange in the index.html file.
 
   createController();
 
   let objectSelector = document.getElementById('objectSelector');
-
   let objects = getObjectArray(objectSelector.value);
-
   let objectNumber = 0;
   objectNumber = numberSelector.value;
+
   if (objects.length > 0) {
     modifySliders(objects[objectNumber].color);
   } else {
