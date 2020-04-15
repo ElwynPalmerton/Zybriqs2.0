@@ -7,8 +7,6 @@ function addBalls() {
   };
 
 
-  updateSliders();
-
   let ball = new Mover(random(width), height / 5, defaultBallColor);
   balls.push(ball);
   qty++;

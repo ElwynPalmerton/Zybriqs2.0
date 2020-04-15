@@ -145,6 +145,7 @@ h2 {
   border-radius: 7px;
   padding: 3px 10px 5px 10px;
   /* text-align: center; */
+  /* float: right; */
 }
 
 #objectSelector {
