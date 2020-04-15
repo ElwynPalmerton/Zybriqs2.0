@@ -4,7 +4,7 @@ function drawElementsDuringSetup() {
 
   tempBG = color(230, 30, 30, 1)
 
-  background(tempBG);
+  backgroundArray[0].displayDimmed();
 
   for (let j = 0; j < blocks.length; j++) {
     blocks[j].displayDimmed();

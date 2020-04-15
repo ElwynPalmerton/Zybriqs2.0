@@ -47,10 +47,10 @@ function setup() {
     balls.push(ball);
   }
 
-  console.log(initBackgroundColor)
+  //console.log(initBackgroundColor)
   let bgObject = new backgroundObject(initBackgroundColor[0]);
   backgroundArray.push(bgObject);
-  console.log(bgObject.color);
+  //console.log(bgObject.color);
 
 
 
@@ -87,18 +87,11 @@ function setup() {
 
 function draw() {
   if (run) {
-
-
-
     if (mouseIsPressed) {
       readController();
-      console.log(backgroundArray[0].p5bgColor);
     }
 
-    let bgCol = color(230, 35, 35, 1)
     backgroundArray[0].display();
-
-    background(backgroundArray[0].p5bgColor);
 
 
     for (let i = 0; i < qty; i++) {

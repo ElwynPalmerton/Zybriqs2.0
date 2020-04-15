@@ -14,8 +14,19 @@ class backgroundObject {
     let c = this.color;
     c.a = parseInt(c.a);
     let p5bgColor = color(c.h, c.s, c.l, c.a);
-    this.p5bgColor = p5bgColor;
-    //console.log("p5 color", p5bgColor);
-    //background(p5gbColor);
+    background(p5bgColor);
   }
+
+  displayDimmed() {
+    let {
+      h,
+      s,
+      l,
+      a
+    } = this.color;
+
+    let p5Color = color(h, s - dimAmt, l, parseFloat(a));
+    background(p5Color);
+  }
+
 }

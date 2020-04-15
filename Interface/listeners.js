@@ -82,7 +82,7 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
             updateSliders2();
           }
         }
-        drawElementsDuringSetup()
+        drawElementsDuringSetup() //This function is in the file utilities/drawDuringSetup();
       }; //End event listener ('mouseup').
     }
   }) //End listeners().
