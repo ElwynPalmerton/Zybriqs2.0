@@ -8,6 +8,7 @@ let liquid, reverseLiquid;
 var qty = 3;
 const liquids = [];
 const reverseLiquids = [];
+const backgroundArray = [];
 var blocks = [];
 let objectType;
 const dimAmt = 30;
@@ -46,9 +47,12 @@ function setup() {
     balls.push(ball);
   }
 
-  //This needs to be changed so that the liquids are added manually in setup.
-  //...or initiated as defaults...
-  //...or initiated as defaults automatically and then reset if the user chooses to start over.
+  console.log(initBackgroundColor)
+  let bgObject = new backgroundObject(initBackgroundColor[0]);
+  backgroundArray.push(bgObject);
+  console.log(bgObject.color);
+
+
 
   let liquidStart = createVector(200, 150);
   let liquidEnd = createVector(350, 300);
@@ -84,12 +88,18 @@ function setup() {
 function draw() {
   if (run) {
 
-    let bgCol = color(230, 35, 35, 1)
-    background(bgCol);
+
 
     if (mouseIsPressed) {
       readController();
+      console.log(backgroundArray[0].p5bgColor);
     }
+
+    let bgCol = color(230, 35, 35, 1)
+    backgroundArray[0].display();
+
+    background(backgroundArray[0].p5bgColor);
+
 
     for (let i = 0; i < qty; i++) {
       //Calculate wind.

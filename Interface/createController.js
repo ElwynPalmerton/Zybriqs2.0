@@ -163,6 +163,8 @@ function getObjectArray(obj) {
   } else if (obj === "Blocks") {
     objArray = blocks;
     //readColorSliders2(numberSelector, "#combinedSliders", blocks);
+  } else if (obj === "Background") {
+    objArray = backgroundArray;
   }
   return objArray;
 }

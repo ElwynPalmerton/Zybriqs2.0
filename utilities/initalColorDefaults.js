@@ -47,6 +47,15 @@ const initBlockColors = [{
   a: 1,
 }, ];
 
+
+const initBackgroundColor = [{
+  h: 230,
+  s: 35,
+  l: 35,
+  a: 1
+}, ];
+
+
 let initBallColors = [{
     h: 180,
     s: 35,
