@@ -9,7 +9,7 @@ function makeButtons() {
   //makeResetButtons();
   makeNumbersButtons();
   makeZenModeButtons()
-  //makeFullscreenButtons()
+  makeFullscreenButtons()
 }
 
 function lastActive() {
@@ -346,6 +346,40 @@ function makeZenModeButtons() {
   });
 }
 
+
+function makeFullscreenButtons() {
+  //I need to fix the background for this one too.
+  //It also doesn't actually fullScreen because setScale is still being
+  //...calculated for the height of the buttonDiv.
+  let fullscreenButton = createButton("Fullscreen");
+  buttonContainer.appendChild(fullscreenButton.elt);
+  buttons.push(fullscreenButton.elt);
+
+  fullscreenButton.mouseClicked((e) => {
+    e.stopPropagation();
+    let elt = document.querySelector('#canvasContainer');
+    resetButtons();
+    fullscreenButton.elt.className = "active";
+
+    openFullScreen();
+
+    function openFullScreen() {
+      if (elt.requestFullscreen) {
+        elt.requestFullscreen();
+      } else if (elem.mozRequestFullScreen) {
+        /* Firefox */
+        elt.mozRequestFullScreen();
+      } else if (elem.webkitRequestFullscreen) {
+        /* Chrome, Safari & Opera */
+        elt.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) {
+        /* IE/Edge */
+        elt.msRequestFullscreen();
+      }
+    }
+    //I don't need this line for this function: objectType = "Reverse Drag";
+  });
+}
 
 // function makeFullscreenButtons() {
 //   let fullscreenButton = createButton("Fullscreen");
