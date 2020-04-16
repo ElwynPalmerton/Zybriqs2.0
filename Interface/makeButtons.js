@@ -111,8 +111,8 @@ function makeBlockButton() {
     } else if (lastActive && !current && run === false) {
       drawBlockButton.elt.className = "active";
     } else if (current && run === false) {
-      play();
       drawButtonOn = false;
+      play();
     } else {
       drawBlockButton.elt.className = "active";
     }
@@ -145,8 +145,8 @@ function makeDragButton() {
     } else if (lastActive && !current && run === false) {
       drawDragButton.elt.className = "active";
     } else if (current && run === false) {
-      play();
       drawButtonOn = false;
+      play();
     } else {
       drawDragButton.elt.className = "active";
     }
@@ -176,8 +176,8 @@ function makeReverseDragButton() {
     } else if (lastActive && !current && run === false) {
       drawReverseDragButton.elt.className = "active";
     } else if (current && run === false) {
-      play();
       drawButtonOn = false;
+      play();
     } else {
       drawReverseDragButton.elt.className = "active";
     }

@@ -13,10 +13,10 @@ function mouseClicked() {
 function removeObjects(objArray, x, y) {
   for (let i = 0; i < objArray.length; i++) {
     let l = objArray[i];
-    if (x > l.start.x &&
-      x < l.start.x + 15 &&
-      y > l.start.y &&
-      y < l.start.y + 15) {
+    if (x > l.start.x * scl &&
+      x < l.start.x * scl + 15 &&
+      y > l.start.y * scl &&
+      y < l.start.y * scl + 15) {
 
       objArray.splice(i, 1);
 

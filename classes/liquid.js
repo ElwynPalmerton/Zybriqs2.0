@@ -3,6 +3,11 @@ class Liquid {
   constructor(start, end, c, color) {
 
 
+    start.x = start.x / scl;
+    start.y = start.y / scl;
+    end.x = end.x / scl;
+    end.y = end.y / scl;
+
     //Color variables.
     let assignColor = color || defaultColor;
     let thisColor = {};
@@ -56,7 +61,7 @@ class Liquid {
     let p5Color = color(h, s - dimAmt, l, parseFloat(a));
     noStroke();
     fill(p5Color);
-    rect(this.start.x, this.start.y, this.width, this.height)
+    rect(this.start.x * scl, this.start.y * scl, this.width * scl, this.height * scl);
   }
 
 
@@ -72,7 +77,7 @@ class Liquid {
     let p5Color = color(h, s, l, parseFloat(a));
     noStroke();
     fill(p5Color);
-    rect(this.start.x, this.start.y, this.width, this.height)
+    rect(this.start.x * scl, this.start.y * scl, this.width * scl, this.height * scl);
   }
 
   displayNumber(number) {
@@ -80,7 +85,7 @@ class Liquid {
     fill(20);
     var insetX = 10;
     var insetY = 20;
-    text(number, this.start.x + insetX, this.start.y + insetY);
+    text(number, this.start.x * scl + insetX, this.start.y * scl + insetY);
   }
 
   displayRemoveButton() {
@@ -89,7 +94,7 @@ class Liquid {
     strokeWeight(2);
     noFill();
 
-    rect(this.start.x, this.start.y, xBoxSize, xBoxSize);
+    rect(this.start.x * scl, this.start.y * scl, xBoxSize, xBoxSize);
 
   }
 

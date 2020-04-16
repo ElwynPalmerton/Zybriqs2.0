@@ -16,7 +16,7 @@ class Mover {
     this.acceleration = createVector(0, 0);
     this.acceleration.mult(0.02); //This isn't doing anything is it? Just take it out?
     this.topSpeed = 10; //This is being used as a constant below, fix this.
-    this.mass = random(0.5, 2);
+    this.mass = random(minMass, maxMass);
     this.size = this.size * this.mass;
     //this.c = c; //This isn't ever used except that it is re-assigned to c in this.fricton. I think that it is creating an uninitialized variable which is why it works.
     //But it should be this.c below and passed in as an argument so that it can be user modified.
@@ -216,7 +216,7 @@ class Mover {
     noStroke(250, 60, 60, 1);
     strokeWeight(2);
     fill(p5Color);
-    ellipse(this.location.x, this.location.y, this.size, this.size);
+    ellipse(this.location.x * scl, this.location.y * scl, this.size * scl, this.size * scl);
   }
 
   displayNumber(number) {
@@ -237,12 +237,12 @@ class Mover {
     noStroke(250, 60, 60, 1);
     strokeWeight(2);
     fill(p5Color);
-    ellipse(this.location.x, this.location.y, this.size, this.size);
+    ellipse(this.location.x * scl, this.location.y * scl, this.size * scl, this.size * scl);
   }
 
   displayNumber(number) {
     textSize(16);
     var inset = 5;
-    text(number, this.location.x - inset, this.location.y - inset);
+    text(number, this.location.x * scl - inset, this.location.y * scl - inset);
   }
 }

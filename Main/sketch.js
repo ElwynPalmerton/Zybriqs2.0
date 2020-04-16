@@ -4,13 +4,14 @@
 //
 //Objects: Balls, liquids/reverseLiquid     //Add Blocks.
 const balls = [];
-// let liquid, reverseLiquid;
-var qty = 3;
-const liquids = [];
+var qty = 3; //I can remove this after I change setup to just respond to the initialization object.
 const reverseLiquids = [];
+const liquids = [];
 const backgroundArray = [];
 var blocks = [];
 let objectType;
+
+//Display variables:
 const dimAmt = 30;
 
 //Force variabes;
@@ -19,12 +20,13 @@ let friction; //Can this be a variable inside of the mover class???
 const windC = 0.1;
 const dragCoefficient = 0.01;
 const gForce = 0.12;
+const minMass = 0.25;
+const maxMass = 1.0;
 
 //Grid parameters   --------  I need to re-think it this is how I want this to work.
 var cnv;
-const w = 8; //Width of grid in terms of square units.
-const h = 6; //height of grid in terms of square units aka 8 x 10 grid.
-const gridUnit = 100;
+const initWidth = 500;
+const initHeight = 400;
 const minSize = 50;
 
 //Interface variables
@@ -32,19 +34,36 @@ var drawButtonOn = false;
 var removeButtonOn = false;
 var buttons = [];
 var run = true;
+var scl;
 
-function setup() {
-  //setup canvas.
-  setScale();
-  colorMode(HSB);
-  let width = setScale();
-  cnv = createCanvas(width, 600);
+function initializeCanvas(startWidth, startHeight) {
+  //Remove any canvas children in the canvasContainer.
+  scl = setScale();
+  cnv = createCanvas(startWidth * scl, startHeight * scl);
+  //cnv = createCanvas(startWidth, startHeight);
   let container = document.getElementById("canvasContainer");
   container.appendChild(cnv.elt);
+}
+
+function createResizeListener() {
+  window.addEventListener("resize", () => {
+    initializeCanvas(initWidth, initHeight);
+    //Add the setTimeout trick in here.
+  })
+}
+
+///////SETUP///////
+
+function setup() {
+  colorMode(HSB);
+
+  //setup canvas.
+  initializeCanvas(initWidth, initHeight);
+  createResizeListener();
 
   //Create all of the balls.
   for (let i = 0; i < qty; i++) {
-    let ball = new Mover(random(width), height / 5, initBallColors[i]);
+    let ball = new Mover(random(initWidth), initHeight / 5, initBallColors[i]);
     balls.push(ball);
   }
 
@@ -53,8 +72,8 @@ function setup() {
 
   //Initialize the drag elements.
 
-  let liquidStart = createVector(200, 150);
-  let liquidEnd = createVector(350, 300);
+  let liquidStart = createVector(100 * scl, 100 * scl);
+  let liquidEnd = createVector(200 * scl, 200 * scl);
   liquid = new Liquid(
     liquidStart,
     liquidEnd,
@@ -65,8 +84,10 @@ function setup() {
 
   //Initialize the accelerator elements.
 
-  let reverseLiquidStart = createVector(700, 300);
-  let reverseLiquidEnd = createVector(850, 450);
+  //Refactor this so that the initialization vectors.
+  //... go in the initialization object.
+  let reverseLiquidStart = createVector(300 * scl, 200 * scl);
+  let reverseLiquidEnd = createVector(400 * scl, 300 * scl);
   reverseLiquid = new Liquid(
     reverseLiquidStart,
     reverseLiquidEnd,
@@ -79,8 +100,7 @@ function setup() {
 
   //Initialize the interface.
   makeButtons();
-
   createController();
+  //Read the initial color values from the controller.
   readController();
-
 }

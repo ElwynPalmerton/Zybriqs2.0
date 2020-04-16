@@ -1,15 +1,26 @@
 function setScale() {
+  //1. Maybe calculate the actual curent scale based on the default height/width.
+  //So that this still works even if I change the init size and aspect ratio.
+  //
+  //2.Subtract out the sliders or let those be placed first?
+  //Subtract out the buttonDiv height or let those be placed?
+  //The scale should be calculate on the space already alloted.
+  //so...
+  //3.The currentWidth and currentHeight should be passed into this.
 
+  let scale;
+  let wrapper = document.getElementById('canvasContainer');
 
-  let wrapper = document.getElementById('wrapper');
+  let cw = document.body.clientWidth - 260;
+  let ch = document.documentElement.clientHeight - 100;
 
-  let wrapperSize = wrapper.getBoundingClientRect();
-  let ch = document.documentElement.clientHeight;
-  let cw = document.body.clientWidth;
-  console.log("Height", ch);
-  console.log("Width", cw);
+  if (cw / ch < 1.2) {
+    scale = cw / initWidth;
+  } else {
+    scale = ch / initHeight;
+  }
 
-  let canvasWidth = cw - 250;
-  return canvasWidth;
+  //Calculate scale
+  return scale;
 
 }

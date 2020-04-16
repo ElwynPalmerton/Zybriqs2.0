@@ -108,17 +108,15 @@ option {
 
 
 
+
 #buttonContainer {
   height: 200px;
   /* text-align: center; */
 }
 
-#canvasContainer {
-  border-bottom: 20px;
-  border-top: 20px;
-}
 
-.colorSliders {
+
+*/ .colorSliders {
   display: inline;
 }
 

@@ -43,7 +43,7 @@ function draw() {
 
       //Update balls.
       balls[i].update();
-      balls[i].checkEdges(width, height);
+      balls[i].checkEdges(initWidth, initHeight);
 
       //Display the balls, liquid, and reverseLiquid.
       balls[i].display(); //Create an array of ballCols and pass in ballCols[x[.]

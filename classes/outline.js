@@ -2,6 +2,11 @@ class Outline { //Change name to Block.
   constructor(start, end, color) {
     //Color variables.
     //Color variables.
+
+    start.x = start.x / scl;
+    start.y = start.y / scl;
+    end.x = end.x / scl;
+    end.y = end.y / scl;
     let assignColor = color || defaultColor;
     let thisColor = {};
     Object.assign(thisColor, assignColor);
@@ -70,7 +75,7 @@ class Outline { //Change name to Block.
     strokeWeight(5);
     //fill(fColor);
     noFill();
-    rect(this.start.x, this.start.y, this.width, this.height);
+    rect(this.start.x * scl, this.start.y * scl, this.width * scl, this.height * scl);
   }
 
   // display(c, fColor) {
@@ -89,12 +94,12 @@ class Outline { //Change name to Block.
     strokeWeight(5);
     //fill(fColor);
     noFill();
-    rect(this.start.x, this.start.y, this.width, this.height);
+    rect(this.start.x * scl, this.start.y * scl, this.width * scl, this.height * scl);
   }
 
   displayNumber(number) {
     textSize(16);
-    text(number, this.start.x, this.start.y);
+    text(number, this.start.x * scl, this.start.y * scl);
   }
 
   displayRemoveButton() {
@@ -103,7 +108,7 @@ class Outline { //Change name to Block.
     stroke(150);
     strokeWeight(2);
     noFill();
-    rect(this.start.x, this.start.y, xBoxSize, xBoxSize);
+    rect(this.start.x * scl, this.start.y * scl, xBoxSize, xBoxSize);
 
   }
 }

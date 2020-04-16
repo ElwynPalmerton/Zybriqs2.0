@@ -13,6 +13,7 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
       isDrawing = true;
       //Maybe I need an if (event.target thingie here);
       startRect = createVector(mouseX, mouseY).copy();
+      console.log(startRect);
     }
   }
 
