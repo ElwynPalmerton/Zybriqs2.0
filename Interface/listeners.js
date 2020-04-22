@@ -40,7 +40,12 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
   });
 
   document.addEventListener("mouseup", () => {
-    //Maybe I need a preventDefault(); in here.
+    //This is being called even if the isDrawing is already false.
+    //...which means that startRect does not currently have a value.
+    //...Which means which means that I should check to see if isDrawing
+    //... is... already... false?
+
+
     isDrawing = false;
     if (
       startRect.x > 0 &&
@@ -84,7 +89,7 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
           }
         }
         drawElementsDuringSetup() //This function is in the file utilities/drawDuringSetup();
-      }; //End event listener ('mouseup').
-    }
-  }) //End listeners().
-}
+      }; 
+    }  //End of if stmt which checsk the edges of the box.
+  }) //End event listener ('mouseup').
+}//End listeners().
