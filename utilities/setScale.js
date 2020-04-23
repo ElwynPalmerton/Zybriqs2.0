@@ -36,3 +36,24 @@ function setScale() {
   return scale;
 
 }
+
+function setScale2() {
+
+  let scale;
+
+  let cw = document.body.clientWidth;
+  let ch = document.body.clientHeight;
+
+  // let ch = document.documentElement.clientHeight - 100;
+  cw = cw - 250;
+
+  scale = cw / initWidth;
+  if (cw / ch < 1.2) {
+    scale = cw / initWidth;
+  } else {
+    scale = ch / initHeight;
+  }
+
+  //Calculate scale
+  return scale;
+}

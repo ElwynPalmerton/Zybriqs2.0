@@ -383,34 +383,7 @@ function makeFullscreenButtons() {
   });
 }
 
-// function makeFullscreenButtons() {
-//   let fullscreenButton = createButton("Fullscreen");
-//   buttonContainer.appendChild(fullscreenButton.elt);
-//   buttons.push(fullscreenButton.elt);
 
-//   zenButton.mouseClicked((e) => {
-//     e.stopPropagation();
-//     let elem = document.querySelector('body');
-
-//     openFullScreen();
-
-//     function openFullScreen() {
-//       if (elem.requestFullscreen) {
-//         elem.requestFullscreen();
-//       } else if (elem.mozRequestFullScreen) {
-//         /* Firefox */
-//         elem.mozRequestFullScreen();
-//       } else if (elem.webkitRequestFullscreen) {
-//         /* Chrome, Safari & Opera */
-//         elem.webkitRequestFullscreen();
-//       } else if (elem.msRequestFullscreen) {
-//         /* IE/Edge */
-//         elem.msRequestFullscreen();
-//       }
-//     }
-//     //I don't need this line for this function: objectType = "Reverse Drag";
-//   });
-// }
 
 function resetButtons() { //Change name to clearButtons();
   drawButtonOn = false; //Clear function.
@@ -471,8 +444,5 @@ function appendClassNames() {
   for (let i = 4; i < buttons.length; i++) {
     buttons[i].classList.add("btn-row-2");
   }
-
-  console.log(playButton);
-
 
 }
