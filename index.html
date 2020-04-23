@@ -38,18 +38,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400;500&family=Roboto+Slab&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+  <link rel="stylesheet" type="text/css" href="layout.css" />
 
 </head>
 
 <body>
-  <div id="wrapper">
+  <div class="grid" id="wrapper">
     <div id="canvasContainer">
       <!-- Canvas  -->
     </div>
 
     <!-- ll -->
-    <div id="rightColumn">
-      <Card id="colorController">
+    <!-- <div class="sidebar" id="rightColumn"> -->
+      <Card class="sliderSet1" id="colorController">
         <h2 id="controllerTitle">Color</h2>
         <select onchange="updateSliders()" name="ObjectType" id="objectSelector">
           <option value="Balls">Balls</option>
@@ -63,22 +64,49 @@
         <select onchange="updateSliders2()" name="NumberSelect" id="numberSelector">
         </select>
         <div class="combinedSliders">
-          <input type="range" class="hSlider" min="0" max="360">
-          <input type="range" class="sSlider" min="0" max="100">
-          <input type="range" class="lSlider" min="0" max="100">
-          <input type="range" class="aSlider" min="0" max="1" step="0.01">
+          <input type="range" class="hSlider slide" min="0" max="360">
+          <input type="range" class="sSlider slide" min="0" max="100">
+          <input type="range" class="lSlider slide" min="0" max="100">
+          <input type="range" class="aSlider updateSliders2" min="0" max="1" step="0.01">
         </div>
       </Card>
+  
 
-    <!-- Put the second card and the drop-down selector in this column  -->
+    <Card class="sliderSet2" id="colorController">
+      <div class="physicsSliders">
+        <label for="windForce">Wind</label>
+        <input type="range" name="windForce" class="windForce slide" min="0" max="100">
+        <label for="Wind Contancy">Wind Constancy</label>
+        <input type="range" name="constistency" class="consistency slide" min="0" max="100">
+        <label for="Directon">Direciton</label>
+        <input type="range" name="direction" class="direction slide" min="0" max="1" step="100">
+      </div>
+    </Card>
+<!-- 
+    <Card class="sliderSet3" id="colorController">
+      <label for="gravity">Gravity</label>
+      <input type="range" name="gravity" class="slide Gravity"   min="0" max="100">
+    </Card> -->
 
-    </div> <!-- right column -->
-    <!-- ll -->
-    </br>
-    <div id="buttonContainer"></div>
-    </br>
+    <Card class="dropDown1" id="colorController">
+      <label for="colorPresets">Color Presets</label>
+      <select><option>Presets</option></select>
+    </Card>
+
+    <Card class="dropDown2" id="colorController">
+      <label for="colorPresets"> Presets</label>
+      <select><option>Presets</option></select>
+    </Card>
+    
+
+    <div class="buttons" id="buttonContainer">
+   
+  </div> <!-- End Grid -->
+
+
 
   </div>
+  
 </body>
 
 </html>

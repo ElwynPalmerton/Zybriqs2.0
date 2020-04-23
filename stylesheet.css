@@ -34,23 +34,23 @@ canvas {
 
 #wrapper {
   background: #222222;
-  width: 1000px;
-  margin: 0 auto;
+  /* width: 1000px; */
+
 }
 
 div {
   color: white;
   font-family: arial;
-  display: inline;
+
 }
 
 p {
   font-family: arial;
 }
 
-input {
+/* input {
   display: block;
-}
+} */
 
 .active {
   background: #222225;
@@ -61,35 +61,12 @@ input {
   background: default;
 }
 
-
+/* 
 
 canvas {
   position: relative;
 
-}
-
-button {
-  outline: none;
-  letter-spacing: 1px;
-  font-family: Arial;
-  font-weight: 100;
-  /* z-index: 2; */
-  /* margin-top: 40px;
-  margin-bottom: 40px; */
-  font-size: .8em;
-  background: #222222;
-  color: #aaaabf;
-  border-radius: 6px;
-  height: 40px;
-  width: 100px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 6px;
-  /* margin: 10px; */
-  border: #3f5a63 1px solid;
-  vertical-align: middle;
-}
+} */
 
 
 
@@ -107,20 +84,13 @@ option {
 }
 
 
-
-
-#buttonContainer {
-  height: 200px;
-  /* text-align: center; */
-}
-
-
-
-*/ .colorSliders {
+.colorSliders {
   display: inline;
 }
 
-
+label {
+  font-size: 0.8em;
+}
 
 
 h2 {
@@ -168,16 +138,13 @@ h2 {
   padding: 0.5% 0% .5% 0.5%;
 }
 
-#rightColumn {
-  float: right;
-  margin-right: 20px;
-}
+
 
 .column {
   width: 175px;
   float: left;
   /* width: 20%; */
-  /* padding: 20 10px; */
+  padding: 20 10px;
   margin-left: 14px;
   margin-bottom: 50px;
   border: #3f5a63 1px solid;
@@ -186,22 +153,25 @@ h2 {
 
 .paused {
   color: #3c7b7c;
-  /* #DragSelect {
-  margin: 30px;
-} */
 }
 
-card {
-  width: 200px;
-  /* height: 400px; */
-}
+/* #DragSelect {
+  margin: 30px;
+} */
+
+
 
 .hSlider,
 .sSlider,
 .lSlider,
-.aSlider {
+.aSlider,
+.slide {
   margin-bottom: 10px;
   background: #222222;
+}
+
+label {
+  color: #aaaabf;
 }
 
 .title {
