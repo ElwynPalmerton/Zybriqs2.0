@@ -48,10 +48,6 @@ p {
   font-family: arial;
 }
 
-/* input {
-  display: block;
-} */
-
 .active {
   background: #222225;
   color: salmon;
@@ -61,14 +57,29 @@ p {
   background: default;
 }
 
-/* 
 
-canvas {
-  position: relative;
-
-} */
-
-
+button {
+  outline: none;
+  letter-spacing: 1px;
+  font-family: Arial;
+  font-weight: 100;
+  /* z-index: 2; */
+  /* margin-top: 40px;
+  margin-bottom: 40px; */
+  /* font-size: .8em; */
+  background: #222222;
+  color: #aaaabf;
+  border-radius: 6px;
+  /* height: 40px; */
+  /* width: 100px; */
+  /* margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 6px; */
+  /* margin: 10px; */
+  border: #3f5a63 1px solid;
+  /* vertical-align: middle; */
+}
 
 
 select {
@@ -106,9 +117,9 @@ h2 {
   width: 165px;
   float: left;
   /* width: 20%; */
-  /* padding: 20 10px; */
+  padding: 20 10px;
   margin-left: 14px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   border: #3f5a63 1px solid;
   border-radius: 7px;
   padding: 3px 10px 5px 10px;
@@ -123,6 +134,10 @@ h2 {
 #numberSelector {
   margin-left: 10px;
 }
+
+/* .combinedSliders {
+  margin-top: 10px;
+} */
 
 
 #sliders {
@@ -141,8 +156,8 @@ h2 {
 
 
 .column {
-  width: 175px;
-  float: left;
+  /* width: 175px; */
+  /* float: left; */
   /* width: 20%; */
   padding: 20 10px;
   margin-left: 14px;
@@ -183,7 +198,8 @@ label {
 input[type=range] {
   -webkit-appearance: none;
   width: 145px;
-  margin: 20px 10% 20px 5%;
+  margin: 10px 10% 10px 5%;
+
 }
 
 input[type=range]:focus {

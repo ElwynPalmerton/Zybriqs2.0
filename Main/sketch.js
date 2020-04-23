@@ -17,7 +17,7 @@ const dimAmt = 30;
 //Force variabes;
 let xOff = 0;
 let friction; //Can this be a variable inside of the mover class???
-const windC = 0.1;
+const windC = 0.05;
 const dragCoefficient = 0.01;
 const gForce = 0.12;
 const minMass = 0.25;
@@ -40,6 +40,12 @@ function initializeCanvas(startWidth, startHeight) {
   //Remove any canvas children in the canvasContainer.
   scl = setScale();
   cnv = createCanvas(startWidth * scl, startHeight * scl);
+
+  let currentWidth = startWidth * scl;
+  let btns = document.getElementsByClassName("buttons");
+
+  // btns.style.width = currentWidth + "px";
+
   //cnv = createCanvas(startWidth, startHeight);
   let container = document.getElementById("canvasContainer");
   container.appendChild(cnv.elt);

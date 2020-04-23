@@ -11,14 +11,26 @@ function setScale() {
   let scale;
   let wrapper = document.getElementById('canvasContainer');
 
-  let cw = document.body.clientWidth - 260;
-  let ch = document.documentElement.clientHeight - 100;
+  let cw = document.body.clientWidth;
+  let ch = document.body.clientHeight;
 
-  if (cw / ch < 1.2) {
-    scale = cw / initWidth;
-  } else {
-    scale = ch / initHeight;
+  // let ch = document.documentElement.clientHeight - 100;
+  cw = cw - 250;
+
+  console.log(cw);
+
+  if (cw > 1000) {
+    cw = 1000;
   }
+
+  scale = cw / initWidth;
+  // if (cw / ch < 1.2) {
+  //   scale = cw / initWidth;
+  // } else {
+  //   scale = ch / initHeight;
+  // }
+
+
 
   //Calculate scale
   return scale;

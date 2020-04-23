@@ -10,6 +10,7 @@ function makeButtons() {
   makeNumbersButtons();
   makeZenModeButtons()
   makeFullscreenButtons()
+  appendClassNames();
 }
 
 function lastActive() {
@@ -46,6 +47,7 @@ function play() {
   run = true;
   playButton.innerHTML = "Pause";
   playButton.className = "notActive";
+  playButton.classList.add("btn-row-1");
   clearDuplicates();
   loop();
 }
@@ -459,3 +461,18 @@ function clearDuplicates() {
     }
   }
 } //End of clearDuplicates();
+
+
+function appendClassNames() {
+  for (let i = 0; i < 4; i++) {
+    buttons[i].classList.add("btn-row-1");
+  }
+
+  for (let i = 4; i < buttons.length; i++) {
+    buttons[i].classList.add("btn-row-2");
+  }
+
+  console.log(playButton);
+
+
+}
