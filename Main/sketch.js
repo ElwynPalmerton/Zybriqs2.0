@@ -10,6 +10,8 @@ const liquids = [];
 const backgroundArray = [];
 var blocks = [];
 let objectType;
+let zenMode = false;
+let fullScreen = false;
 
 //Display variables:
 const dimAmt = 30;
@@ -19,7 +21,8 @@ let xOff = 0;
 let friction; //Can this be a variable inside of the mover class???
 const windC = 0.05;
 const dragCoefficient = 0.01;
-const gForce = 0.12;
+const gravityConstant = 0.05;
+let gForce = 0.12; //gForce = 0.12
 const minMass = 0.25;
 const maxMass = 1.0;
 
@@ -36,9 +39,10 @@ var buttons = [];
 var run = true;
 var scl;
 
-function initializeCanvas(startWidth, startHeight) {
+function initializeCanvas(startWidth, startHeight, calcScale) {
   //Remove any canvas children in the canvasContainer.
-  scl = setScale();
+
+  scl = calcScale();
   cnv = createCanvas(startWidth * scl, startHeight * scl);
 
   let currentWidth = startWidth * scl;
@@ -53,7 +57,7 @@ function initializeCanvas(startWidth, startHeight) {
 
 function createResizeListener() {
   window.addEventListener("resize", () => {
-    initializeCanvas(initWidth, initHeight);
+    initializeCanvas(initWidth, initHeight, setScale);
     //Add the setTimeout trick in here.
   })
 }
@@ -64,7 +68,7 @@ function setup() {
   colorMode(HSB);
 
   //setup canvas.
-  initializeCanvas(initWidth, initHeight);
+  initializeCanvas(initWidth, initHeight, setScale);
   createResizeListener();
 
   //Create all of the balls.

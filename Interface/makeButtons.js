@@ -317,6 +317,12 @@ function makeNumbersButtons() {
   });
 }
 
+
+
+document.addEventListener('keypress', e => {
+  console.log('hello');
+})
+
 function makeZenModeButtons() {
   let zenButton = createButton("Zen Mode");
   buttonContainer.appendChild(zenButton.elt);
@@ -326,8 +332,9 @@ function makeZenModeButtons() {
     e.stopPropagation();
     let elem = document.querySelector('body');
     resetButtons();
-    zenButton.elt.className = "active";
 
+    fullScreen = false;
+    initializeCanvas(initWidth, initHeight, setScale);
     openFullScreen();
 
     function openFullScreen() {
@@ -359,10 +366,11 @@ function makeFullscreenButtons() {
 
   fullscreenButton.mouseClicked((e) => {
     e.stopPropagation();
-    let elt = document.querySelector('#canvasContainer');
+    fullScreen = true;
+    let elt = document.querySelector('body');
     resetButtons();
     fullscreenButton.elt.className = "active";
-
+    initializeCanvas(initWidth, initHeight, setScale);
     openFullScreen();
 
     function openFullScreen() {

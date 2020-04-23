@@ -18,6 +18,7 @@
   <script src="Interface/makeButtons.js"></script>
   <script src="Interface/createController.js"></script>
   <script src="Interface/listeners.js"></script>
+  <script src="Interface/physicsController.js"></script>
   <!-- object classes: balls, drag, and blocks -->
   <script src="classes/outline.js"></script>
   <script src="classes/mover.js"></script>
@@ -75,7 +76,7 @@
     <Card class="sliderSet2" id="colorController">
       <div class="physicsSliders">
         <label for="gravity">gravity</label>
-        <input type="range" name="gravity" class="gravity slide" min="0" max="100">
+        <input type="range" name="gravity" id="gravity" class="gravity slide" min="0" max="100">
         <label for="windForce">Wind</label>
         <input type="range" name="windForce" class="windForce slide" min="0" max="100">
         <label for="Wind Contancy">Wind Constancy</label>
