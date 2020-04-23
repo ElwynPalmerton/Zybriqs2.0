@@ -37,9 +37,11 @@ function draw() {
       });
 
       //Check collides.
-      for (let j = 0; j < blocks.length; j++) {
-        balls[i].collides(blocks[j]);
-      }
+
+      blocks.forEach(block => {
+        balls[i].collides(block);
+      })
+
 
       //Update balls.
       balls[i].update();
@@ -59,9 +61,13 @@ function draw() {
       reverseLiquid.display();
     });
 
-    for (let i = 0; i < blocks.length; i++) {
-      blocks[i].display();
-    }
+    blocks.forEach(block => {
+      block.display();
+    })
+
+    // for (let i = 0; i < blocks.length; i++) {
+    //   blocks[i].display();
+    // }
   } //end of if (run) loop.
 } //End of draw loop.
 
