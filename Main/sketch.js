@@ -37,6 +37,7 @@ const initHeight = 800;
 const minSize = 50;
 
 //Interface variables
+let infoPopup = false;
 var drawButtonOn = false;
 var removeButtonOn = false;
 var buttons = [];

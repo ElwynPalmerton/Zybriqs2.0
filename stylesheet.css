@@ -8,6 +8,29 @@ body {
   /* position: re; */
 }
 
+#pup {
+  position: absolute;
+  z-index: 200;
+  /* aaaalways on top*/
+  padding: 3px;
+  margin-left: 10px;
+  margin-top: 5px;
+  width: 250px;
+  /* border: 1px solid black; */
+  padding: 1em;
+  border-radius: 6px;
+  background-color: #445555bb;
+  color: #ddd;
+  font-family: arial;
+  font-weight: lighter;
+  font-size: 0.95em;
+}
+
+.span {
+  color: red;
+  font-size: 0.25em;
+}
+
 canvas {
   margin-left: 10px;
   margin-top: 20px

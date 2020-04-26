@@ -19,6 +19,7 @@
   <script src="Interface/createController.js"></script>
   <script src="Interface/listeners.js"></script>
   <script src="Interface/physicsController.js"></script>
+  <script type="text/javascript" src="Interface/nhpup_1.1.js"></script>
   <!-- object classes: balls, drag, and blocks -->
   <script src="classes/outline.js"></script>
   <script src="classes/mover.js"></script>
@@ -105,7 +106,36 @@
 
 
     <div class="buttons" id="buttonContainer">
-
+      <button
+        onmouseover="nhpup.popup('Click here to pause (or to resume play once paused.) <br></br> Note: blocks, drag elements, and accelerator elements can only be added while Zibriks is paused.<br> ... </br> (Press INFO to hide pop-ups.)');"
+        id="newPlayButton">
+        Pause
+      </button>
+      <button
+        onmouseover="nhpup.popup('Click here to draw block elements with the mouse. Once activated, hold the mouse down to drag and draw rectangles in the canvas above. The balls will bounce off of the blocks.<br> ... </br> (Press INFO to hide pop-ups.)');"
+        id="newBlockButton">Block</button>
+      <button
+        onmouseover="nhpup.popup('Click here to draw drag elements with the mouse. Once activated, hold the mouse down to drag and draw rectangles in the canvas above. The drag elements will slow the balls down as they pass over them. <br> ... </br> (Press INFO to hide pop-ups.)');"
+        id="newDragButton">Drag</button>
+      <button
+        onmouseover="nhpup.popup('Click here to draw accelerator elements with the mouse. Once activated, hold the mouse down to drag and draw rectangles in the canvas above. The accelerator elements will speed the balls up as they pass over them. <br> ... </br> (Press INFO to hide pop-ups.)');"
+        id="newAcceleratorButton">Accelerator</button>
+      <button
+        onmouseover="nhpup.popup('Click here to active Remove Mode. While in Remove Mode you can remove rectangular elements (blocks, drag, and accelerators) from the Zibriks canvas by clicking on the small box in their upper left corner. <br> ... </br> (Press INFO to hide pop-ups.)');"
+        id="newRemoveButton">Remove</button>
+      <button
+        onmouseover="nhpup.popup('Click here to add a new ball to the Zibriks canvas. The new ball will have a randomly generated size and color. <br> ... </br> (Press INFO to turn hide pop-ups.)');"
+        id="newAddBallButton">Add Ball</button>
+      <button
+        onmouseover="nhpup.popup('Click here to remove a ball from the Zibriks canvas. The last ball added will be removed. <br> ... </br> (Press INFO to hide pop-ups.)');"
+        id="newRemoveBallButton">Remove Ball</button>
+      <button
+        onmouseover="nhpup.popup('Click here to show the object number of all ball, drag, block, and accelerator elements. These numbers can be referenced in the Color controller to change the HSLA color values of each individual element. <br> ... </br> (Press INFO to hide pop-ups.)');"
+        id="newNumbersButton">Numbers</button>
+      <button
+        onmouseover="nhpup.popup('Click here to enter fullscreen mode. Press escape to exit fullscreen mode.<br> ... </br> (Press INFO to hide pop-ups.)');"
+        id="newZenModeButton">Fullscreen</button>
+      <button id="newInfoButton">Info</button>
     </div> <!-- End Grid -->
 
 
