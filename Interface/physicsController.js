@@ -1,12 +1,44 @@
 function readPhysicsSliders() {
   readGravitySlider();
   readWindSliders();
-
-
-
-
+  readDragSlider();
+  //readAcceleratorSlider();
 } //End readPhysicsSliders.
 
+
+function readDragSlider() {
+
+  //const gravityFactor = 8
+  //Refactor this so that it does negative gravity.
+  let dragSlider = document.getElementById('drag');
+
+  dragSlider.addEventListener("input", () => {
+    let dragFactor = map(dragSlider.value, 0, 100, 0, dragCoefficient * 3); //100 should be a constant value.
+
+    liquids.forEach(l => {
+      l.c = dragFactor;
+    })
+
+    //The 10 here should also be a constant.
+  });
+}
+
+function readAcceleratorSlider() {
+
+  //const gravityFactor = 8
+  //Refactor this so that it does negative gravity.
+  let acceleratorSlider = document.getElementById('accelerator');
+
+  acceleratorSlider.addEventListener("input", () => {
+    let acceleratorFactor = map(acceleratorSlider.value, 0, 100, 0, -acceleratorCoefficient * 5); //100 should be a constant value.
+    console.log(acceleratorFactor);
+    reverseLiquids.forEach(rl => {
+      rl.c = acceleratorFactor;
+    })
+
+    //The 10 here should also be a constant.
+  });
+}
 
 
 function readGravitySlider() {

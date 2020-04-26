@@ -23,7 +23,7 @@ let dragCoefficient = 0.01;
 const acceleratorCoefficient = 0.01;
 const gravityConstant = 0.05;
 let gForce = 0.12; //gForce = 0.12
-const minMass = 0.50;
+const minMass = 1.00;
 const maxMass = 2.0;
 //Wind Variables:
 const windC = 0.05;
