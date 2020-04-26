@@ -23,7 +23,7 @@ let dragCoefficient = 0.01;
 const acceleratorCoefficient = 0.01;
 const gravityConstant = 0.05;
 let gForce = 0.12; //gForce = 0.12
-const minMass = 1.00;
+const minMass = 0.5;
 const maxMass = 2.0;
 //Wind Variables:
 const windC = 0.05;
@@ -60,10 +60,16 @@ function initializeCanvas(startWidth, startHeight, calcScale) {
 }
 
 function createResizeListener() {
+  var resizeTimer;
   window.addEventListener("resize", () => {
-    initializeCanvas(initWidth, initHeight, setScale);
-    //Add the setTimeout trick in here.
-  })
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(
+      initializeCanvas(initWidth, initHeight, setScale),
+      500
+    );
+  });
+  //initializeCanvas(initWidth, initHeight, setScale);
+  //Add the setTimeout trick in here.
 }
 
 ///////SETUP///////
@@ -109,8 +115,6 @@ function setup() {
     initAccelColors[0]
   );
   reverseLiquids.push(reverseLiquid);
-
-
 
   //Initialize the interface.
   makeButtons();
