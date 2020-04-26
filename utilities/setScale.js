@@ -7,7 +7,6 @@ function setScale(zenMode) {
   //The scale should be calculate on the space already alloted.
   //so...
   //3.The currentWidth and currentHeight should be passed into this.
-  console.log(zenMode);
 
   let scale;
   let wrapper = document.getElementById('canvasContainer');
@@ -17,8 +16,6 @@ function setScale(zenMode) {
 
   // let ch = document.documentElement.clientHeight - 100;
   cw = cw - 250;
-
-  console.log(cw);
 
   if (cw > 1000) {
     cw = 1000;

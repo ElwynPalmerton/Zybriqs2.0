@@ -19,17 +19,21 @@ const dimAmt = 30;
 //Force variabes;
 let xOff = 0;
 let friction; //Can this be a variable inside of the mover class???
-const windC = 0.05;
-const dragCoefficient = 0.01;
+let dragCoefficient = 0.01;
+const acceleratorCoefficient = 0.01;
 const gravityConstant = 0.05;
 let gForce = 0.12; //gForce = 0.12
-const minMass = 0.25;
-const maxMass = 1.0;
+const minMass = 0.50;
+const maxMass = 2.0;
+//Wind Variables:
+const windC = 0.05;
+let intensityInput = 50;
+let directionInput = 0;
 
 //Grid parameters   --------  I need to re-think it this is how I want this to work.
 var cnv;
-const initWidth = 500;
-const initHeight = 400;
+const initWidth = 1000;
+const initHeight = 800;
 const minSize = 50;
 
 //Interface variables
@@ -82,8 +86,8 @@ function setup() {
 
   //Initialize the drag elements.
 
-  let liquidStart = createVector(100 * scl, 100 * scl);
-  let liquidEnd = createVector(200 * scl, 200 * scl);
+  let liquidStart = createVector(200 * scl, 200 * scl);
+  let liquidEnd = createVector(400 * scl, 400 * scl);
   liquid = new Liquid(
     liquidStart,
     liquidEnd,
@@ -96,8 +100,8 @@ function setup() {
 
   //Refactor this so that the initialization vectors.
   //... go in the initialization object.
-  let reverseLiquidStart = createVector(300 * scl, 200 * scl);
-  let reverseLiquidEnd = createVector(400 * scl, 300 * scl);
+  let reverseLiquidStart = createVector(600 * scl, 400 * scl);
+  let reverseLiquidEnd = createVector(800 * scl, 600 * scl);
   reverseLiquid = new Liquid(
     reverseLiquidStart,
     reverseLiquidEnd,
