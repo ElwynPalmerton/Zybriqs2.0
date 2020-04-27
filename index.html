@@ -33,12 +33,16 @@
   <script src="utilities/makeRectangle.js"></script>
   <script src="utilities/drawDuringSetup.js"></script>
   <script src="utilities/setScale.js"></script>
-  <!--  -->
+  <!-- Main -->
   <script src="Main/sketch.js"></script>
   <script src="Main/draw.js"></script>
-  <!--  -->
+  <!-- Font Awesome  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Google fonts  -->
   <link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400;500&family=Roboto+Slab&display=swap"
     rel="stylesheet">
+
   <link rel="stylesheet" type="text/css" href="stylesheet.css" />
   <link rel="stylesheet" type="text/css" href="layout.css" />
 
@@ -53,7 +57,7 @@
     <!-- ll -->
     <!-- <div class="sidebar" id="rightColumn"> -->
     <Card class="sliderSet1" id="colorController">
-      <h2 id="controllerTitle">Color</h2>
+      <h2 onmouseover="nhpup.popup('Select object type and number to change colors');" id="controllerTitle">Color</h2>
       <select onchange="updateSliders()" name="ObjectType" id="objectSelector">
         <option value="Balls">Balls</option>
         <option value="Drag">Drag</option>
@@ -66,33 +70,40 @@
       <select onchange="updateSliders2()" name="NumberSelect" id="numberSelector">
       </select>
       <div class="combinedSliders">
-        <input type="range" class="hSlider slide" min="0" max="360">
-        <input type="range" class="sSlider slide" min="0" max="100">
-        <input type="range" class="lSlider slide" min="0" max="100">
-        <input type="range" class="aSlider updateSliders2" min="0" max="1" step="0.01">
+        <input onmouseover="nhpup.popup('Hue');" type="range" class="hSlider slide" min="0" max="360">
+        <input onmouseover="nhpup.popup('Saturation');" type="range" class="sSlider slide" min="0" max="100">
+        <input onmouseover="nhpup.popup('Lightness');" type="range" class="lSlider slide" min="0" max="100">
+        <input onmouseover="nhpup.popup('Alpha (transparency.)');" type="range" class="aSlider updateSliders2" min="0"
+          max="1" step="0.01">
       </div>
     </Card>
 
 
     <Card class="sliderSet2" id="colorController">
       <div class="physicsSliders">
-        <label for="gravity">Gravity</label>
-        <input type="range" name="gravity" id="gravity" class="gravity slide" min="-100" max="100">
-        <label for="windForce">Wind</label>
-        <input type="range" name="windForce" id="windForce" class="windForce slide" min="0" max="100">
-        <label for="Direction">Direction</label>
-        <input type="range" name="direction" id="direction" class="direction slide" min="-100" max="100">
-        <label for="Drag">Drag</label>
-        <input type="range" name="drag" id="drag" class="drag slide" min="0" max="100">
-        <label for="accelerator">Accelerator</label>
-        <input type="range" name="acclerator" id="accelerator" class="accelerator slide" min="0" max="100">
+        <div onmouseover="nhpup.popup('Gravity.');">
+          <label for="gravity">Gravity</label>
+          <input type="range" name="gravity" id="gravity" class="gravity slide" min="-100" max="100">
+        </div>
+        <div onmouseover="nhpup.popup('Wind Force.');">
+          <label for="windForce">Wind</label>
+          <input type="range" name="windForce" id="windForce" class="windForce slide" min="0" max="100">
+        </div>
+        <div onmouseover="nhpup.popup('Wind Direction.');">
+          <label for="Direction">Direction</label>
+          <input type="range" name="direction" id="direction" class="direction slide" min="-100" max="100">
+        </div>
+        <div onmouseover="nhpup.popup('Drag Force.');">
+          <label for="Drag">Drag</label>
+          <input type="range" name="drag" id="drag" class="drag slide" min="0" max="100">
+        </div>
+        <div onmouseover="nhpup.popup('Accelerator Force.');">
+          <label for="accelerator">Accelerator</label>
+          <input type="range" name="acclerator" id="accelerator" class="accelerator slide" min="0" max="100">
+        </div>
       </div>
     </Card>
-    <!-- 
-    <Card class="sliderSet3" id="colorController">
-      <label for="gravity">Gravity</label>
-      <input type="range" name="gravity" class="slide Gravity"   min="0" max="100">
-    </Card> -->
+
 
     <!-- <Card class="dropDown1" id="colorController">
       <label for="colorPresets">Color Presets</label>
@@ -106,35 +117,22 @@
 
 
     <div class="buttons" id="buttonContainer">
-      <button
-        onmouseover="nhpup.popup('Click here to pause (or to resume play once paused.) <br></br> Note: blocks, drag elements, and accelerator elements can only be added while Zibriks is paused.<br> ... </br> (Press INFO to hide pop-ups.)');"
-        id="newPlayButton">
-        Pause
+      <!-- <button>
+        <i class="fa fa-square-full"></i>
+      </button> -->
+      <button onmouseover="nhpup.popup('Pause/Resume.');" id="newPlayButton">
+        <!-- The Font Awesome Pause and Play icons are added in makeButtons.js  -->
       </button>
-      <button
-        onmouseover="nhpup.popup('Click here to draw block elements with the mouse. Once activated, hold the mouse down to drag and draw rectangles in the canvas above. The balls will bounce off of the blocks.<br> ... </br> (Press INFO to hide pop-ups.)');"
-        id="newBlockButton">Block</button>
-      <button
-        onmouseover="nhpup.popup('Click here to draw drag elements with the mouse. Once activated, hold the mouse down to drag and draw rectangles in the canvas above. The drag elements will slow the balls down as they pass over them. <br> ... </br> (Press INFO to hide pop-ups.)');"
-        id="newDragButton">Drag</button>
-      <button
-        onmouseover="nhpup.popup('Click here to draw accelerator elements with the mouse. Once activated, hold the mouse down to drag and draw rectangles in the canvas above. The accelerator elements will speed the balls up as they pass over them. <br> ... </br> (Press INFO to hide pop-ups.)');"
-        id="newAcceleratorButton">Accelerator</button>
-      <button
-        onmouseover="nhpup.popup('Click here to active Remove Mode. While in Remove Mode you can remove rectangular elements (blocks, drag, and accelerators) from the Zibriks canvas by clicking on the small box in their upper left corner. <br> ... </br> (Press INFO to hide pop-ups.)');"
-        id="newRemoveButton">Remove</button>
-      <button
-        onmouseover="nhpup.popup('Click here to add a new ball to the Zibriks canvas. The new ball will have a randomly generated size and color. <br> ... </br> (Press INFO to turn hide pop-ups.)');"
-        id="newAddBallButton">Add Ball</button>
-      <button
-        onmouseover="nhpup.popup('Click here to remove a ball from the Zibriks canvas. The last ball added will be removed. <br> ... </br> (Press INFO to hide pop-ups.)');"
-        id="newRemoveBallButton">Remove Ball</button>
-      <button
-        onmouseover="nhpup.popup('Click here to show the object number of all ball, drag, block, and accelerator elements. These numbers can be referenced in the Color controller to change the HSLA color values of each individual element. <br> ... </br> (Press INFO to hide pop-ups.)');"
-        id="newNumbersButton">Numbers</button>
-      <button
-        onmouseover="nhpup.popup('Click here to enter fullscreen mode. Press escape to exit fullscreen mode.<br> ... </br> (Press INFO to hide pop-ups.)');"
-        id="newZenModeButton">Fullscreen</button>
+      <button onmouseover="nhpup.popup('Draw a block.');" id="newBlockButton">
+        <i class="fas fa-square-full"></i>Block
+      </button>
+      <button onmouseover="nhpup.popup('Draw a drag element.');" id="newDragButton">Drag</button>
+      <button onmouseover="nhpup.popup('Draw accelerator.');" id="newAcceleratorButton">Accelerator</button>
+      <button onmouseover="nhpup.popup('Remove elements by clicking box. ');" id="newRemoveButton">Remove</button>
+      <button onmouseover="nhpup.popup('Add ball.');" id="newAddBallButton">Add Ball</button>
+      <button onmouseover="nhpup.popup('Remove ball.');" id="newRemoveBallButton">Remove Ball</button>
+      <button onmouseover="nhpup.popup('Show/Hide pop-up hints. ');" id="newNumbersButton">Numbers</button>
+      <button onmouseover="nhpup.popup('Fullscreen.');" id="newZenModeButton">Fullscreen</button>
       <button id="newInfoButton">Info</button>
     </div> <!-- End Grid -->
 

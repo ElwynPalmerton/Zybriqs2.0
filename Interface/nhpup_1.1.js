@@ -67,7 +67,7 @@ nhpup = {
 
     // Write content and display
     if (infoPopup === true) {
-      this.pup.html(p_msg).show();
+      setTimeout(this.pup.html(p_msg).show(), 3000);
     }
 
     // Make sure popup goes away on mouse out and we stop the constant 
