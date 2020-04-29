@@ -74,10 +74,21 @@ p {
 .active {
   background: #222225;
   color: salmon;
+  fill: salmon;
 }
 
 .notActive {
   background: default;
+  fill: #aaaabf;
+
+}
+
+.icons {
+  fill: #aaaabf;
+}
+
+.sliderIcons {
+  fill: #aaaabf;
 }
 
 
@@ -119,6 +130,7 @@ option {
 }
 
 
+
 .colorSliders {
   display: inline;
 }
@@ -127,6 +139,14 @@ label {
   font-size: 0.8em;
 }
 
+i {
+  font-size: 1.5em;
+
+}
+
+.buttonStyle {
+  font-size: 1em;
+}
 
 h2 {
   color: #aaaabf;
@@ -225,6 +245,10 @@ input[type=range] {
   margin: 10px 10% 10px 5%;
 
 }
+
+/* .square {
+  color: #aaaabf;
+} */
 
 input[type=range]:focus {
   outline: none;

@@ -50,7 +50,8 @@ function keyPressed(e) {
 function play(playBtn) {
   run = true;
   playBtn.innerHTML = "<i class=\"fa fa-pause\"></i>";
-  playBtn.className = "notActive";
+  playBtn.classList.add("notActive");
+  playBtn.classList.add('buttonStyle');
   playBtn.classList.add("btn-row-1");
   clearDuplicates();
   loop();
@@ -59,7 +60,8 @@ function play(playBtn) {
 function pause(playBtn) {
   run = false;
   playBtn.innerHTML = "<i class=\"fa fa-play\"></i>"
-  playBtn.className = "paused";
+  playBtn.classList.add("paused");
+  playBtn.classList.add('buttonStyle');
   //createRemoveButtons();
   drawElementsDuringSetup(); //This function is in the listeners.js file.
   noLoop();
@@ -83,6 +85,7 @@ function pausePlay(pButton) {
 function makePlayButton(playButton) {
 
   playButton.innerHTML = "<i class=\"fa fa-pause\"></i>";
+  playButton.classList.add('buttonStyle');
 
   let buttonContainer = document.getElementById('buttonContainer');
   // buttonContainer.appendChild(playButton);

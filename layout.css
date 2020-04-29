@@ -4,13 +4,16 @@
 }
 
 #canvasContainer {
-  grid-column: 1/3;
+  grid-column: 1/2;
   grid-row: 1/4;
   text-align: auto;
   /* align-self: left; */
 }
 
 
+#colorPalette {
+  float: right;
+}
 
 .sliderSet1 {
   grid-column: 3;
@@ -44,11 +47,11 @@
   margin-top: 10px;
   margin-left: 10px;
   margin-right: 2em;
-  grid-column: 1/3;
+  grid-column: 1/2;
   grid-row: 4;
   display: grid;
   grid-gap: 1em;
-  justify-content: stretch;
+  justify-content: right;
   grid-template-columns: repeat(10, 1fr);
 }
 
@@ -90,6 +93,7 @@
     justify-content: stretch;
     display: grid;
     justify-items: stretch;
+    width: 20%;
   }
 
   .btn-row-2 {
