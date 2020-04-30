@@ -377,6 +377,9 @@ function makeZenModeButtons() {
         /* IE/Edge */
         elem.msRequestFullscreen();
       }
+      if (run === false) {
+        drawElementsDuringSetup();
+      }
     }
     //I don't need this line for this function: objectType = "Reverse Drag";
   });

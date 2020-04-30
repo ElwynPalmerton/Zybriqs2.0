@@ -68,6 +68,9 @@ function createResizeListener() {
       initializeCanvas(initWidth, initHeight, setScale),
       500
     );
+    if (run === false) {
+      drawElementsDuringSetup()
+    }
   });
   //initializeCanvas(initWidth, initHeight, setScale);
   //Add the setTimeout trick in here.

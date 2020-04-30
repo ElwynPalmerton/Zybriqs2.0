@@ -72,5 +72,8 @@ function draw() {
     })
 
 
+  } else {
+    //drawElementsDuringSetup()
+
   } //end of if (run) loop.
 } //End of draw loop.
