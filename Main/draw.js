@@ -3,6 +3,8 @@ function draw() {
     if (mouseIsPressed) {
       readController();
       readPhysicsSliders()
+
+
     }
 
     backgroundArray[0].display();
@@ -72,8 +74,5 @@ function draw() {
     })
 
 
-  } else {
-    //drawElementsDuringSetup()
-
-  } //end of if (run) loop.
+  }
 } //End of draw loop.

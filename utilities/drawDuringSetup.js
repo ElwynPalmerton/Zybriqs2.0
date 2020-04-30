@@ -22,4 +22,7 @@ function drawElementsDuringSetup() {
   reverseLiquids.forEach((reverseLiquid) => {
     reverseLiquid.displayDimmed();
   })
+  if (drawButtonOn === true) {
+    document.body.querySelector('canvas').style.cursor = "crosshair";
+  }
 }

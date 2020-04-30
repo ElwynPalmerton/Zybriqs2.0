@@ -45,7 +45,13 @@ function keyPressed(e) {
 //   }
 // }
 
-
+function setCursor() {
+  if (drawButtonOn === true) {
+    document.body.querySelector('canvas').style.cursor = "crosshair";
+  } else {
+    document.body.querySelector('canvas').style.cursor = "auto";
+  }
+}
 
 function play(playBtn) {
   run = true;
@@ -98,6 +104,7 @@ function makePlayButton(playButton) {
     e.preventDefault();
     e.stopPropagation();
     pausePlay(playButton);
+    setCursor();
   });
 }
 
@@ -117,6 +124,7 @@ function makeBlockButton(pButton) {
     if (run === true) {
       pause(pButton);
       drawBlockButton.className = "active";
+
     } else if (lastActive && !current && run === false) {
       drawBlockButton.className = "active";
     } else if (current && run === false) {
@@ -126,7 +134,7 @@ function makeBlockButton(pButton) {
       drawBlockButton.className = "active";
     }
 
-
+    setCursor();
     removeButtonOn = false;
     objectType = "Block"; //This should be passed in as an object instead of this.
     //...Then I would have to have it return the new object and push it to the correct array in here.
@@ -158,7 +166,7 @@ function makeDragButton(pButton) {
     } else {
       drawDragButton.className = "active";
     }
-
+    setCursor();
     removeButtonOn = false;
     objectType = "Drag";
     listeners();
@@ -188,7 +196,7 @@ function makeReverseDragButton(pBtn) {
     } else {
       drawReverseDragButton.className = "active";
     }
-
+    setCursor();
     //removeButtonOn = false; //Clear function.
     objectType = "Reverse Drag";
     listeners();
@@ -217,7 +225,7 @@ function makeRemoveButton(pBtn) {
       removeButton.className = "active";
     }
 
-
+    setCursor();
 
     drawButtonOn = false; //Clear function.
     removeButtonOn = true;
@@ -311,7 +319,7 @@ function makeNumbersButtons(pBtn) {
     if (run === true) {
       numbersButton.className = "notActive";
     }
-
+    setCursor();
     drawElementsDuringSetup()
     showNumbers();
     //I don't need this line for this function: objectType = "Reverse Drag";
