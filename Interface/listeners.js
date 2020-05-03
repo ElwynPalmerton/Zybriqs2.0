@@ -16,12 +16,13 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
     }
   }
 
+  let cnv = document.getElementById('canvasContainer')
   //document.addEventListener("mousedown", onMouseDown);
-  document.addEventListener("mousedown", onMouseDown);
+  cnv.addEventListener("mousedown", onMouseDown);
 
   //document.addEventListener("mousedown", onMouseDown);
 
-  document.addEventListener("mousemove", () => {
+  cnv.addEventListener("mousemove", () => {
     if (isDrawing === true) {
       endRect = createVector(mouseX, mouseY);
       //Pass in the background color variable here.
@@ -38,7 +39,7 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
     }
   });
 
-  document.addEventListener("mouseup", () => {
+  cnv.addEventListener("mouseup", () => {
     //This is being called even if the isDrawing is already false.
     //...which means that startRect does not currently have a value.
     //...Which means which means that I should check to see if isDrawing
