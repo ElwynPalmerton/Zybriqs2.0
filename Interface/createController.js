@@ -110,7 +110,8 @@ function modifySliders(newColor) {
 
 function updateSliders() {
   //updateSliders() is called from the onchange in the index.html file.
-
+  //updateSldiers() is the same as updateSliders2 except that it calls
+  // createController();
   createController();
 
   let objectSelector = document.getElementById('objectSelector');

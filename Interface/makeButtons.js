@@ -15,6 +15,7 @@ function makeButtons() {
   makeInfoButton();
   //makeFullscreenButtons()
   appendClassNames();
+  keyboardResponse(playButton);
 }
 
 function lastActive() {
@@ -22,28 +23,26 @@ function lastActive() {
 }
 
 /////PPP/////////
-function keyPressed(e) {
-  if (keyCode === 80) {
-    e.preventDefault();
-    //"P" - Makes all the balls move spasstically updward.
-    console.log("pressed");
-    let bounce = createVector(0, -1);
 
-    for (let i = 0; i < qty; i++) {
-      bounce.mult(balls[i].mass);
-      balls[i].applyForce(bounce);
+
+function keyboardResponse(playButton) {
+  document.addEventListener('keypress', e => {
+    if (keyCode === 80) {
+      console.log("pressed P");
+      for (let i = 0; i < qty; i++) {
+        let bounce = createVector(0, -1);
+        bounce.mult(balls[i].mass);
+        balls[i].applyForce(bounce);
+      }
     }
-  }
+    if (keyCode === 32) {
+      console.log('Pressed spacebar')
+      pausePlay(playButton);
 
+    }
+  })
 }
 
-
-// function keyPressed(e) {
-//   if (key = " ") {
-//     e.preventDefault();
-//     pausePlay();
-//   }
-// }
 
 function setCursor() {
   if (drawButtonOn === true) {
