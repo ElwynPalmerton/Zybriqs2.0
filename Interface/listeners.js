@@ -13,7 +13,6 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
       isDrawing = true;
       //Maybe I need an if (event.target thingie here);
       startRect = createVector(mouseX, mouseY).copy();
-      console.log(startRect);
     }
   }
 
@@ -89,7 +88,7 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
           }
         }
         drawElementsDuringSetup() //This function is in the file utilities/drawDuringSetup();
-      }; 
-    }  //End of if stmt which checsk the edges of the box.
+      };
+    } //End of if stmt which checsk the edges of the box.
   }) //End event listener ('mouseup').
-}//End listeners().
+} //End listeners().

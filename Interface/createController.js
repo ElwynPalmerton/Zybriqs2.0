@@ -136,7 +136,6 @@ function updateSliders2() {
   let objectSelector = document.getElementById('objectSelector');
 
   let objects = getObjectArray(objectSelector.value);
-  console.log(objects);
 
   let objectNumber = 0;
   objectNumber = numberSelector.value;
