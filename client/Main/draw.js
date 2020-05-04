@@ -9,7 +9,6 @@ function draw() {
 
     backgroundArray[0].display();
 
-
     balls.forEach(ball => {
       //Calculate wind.
       //---The first three lines which calculate wind speed do not (necessaril?) need to be in the loop.

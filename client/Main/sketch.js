@@ -3,6 +3,9 @@
 //import Mover from 'mover.js';
 //
 //Objects: Balls, liquids/reverseLiquid     //Add Blocks.
+
+
+
 const balls = [];
 var qty = 3; //I can remove this after I change setup to just respond to the initialization object.
 const reverseLiquids = [];
@@ -79,7 +82,9 @@ function createResizeListener() {
 
 ///////SETUP///////
 
+
 function setup() {
+
   colorMode(HSB);
 
   //setup canvas.
@@ -126,4 +131,6 @@ function setup() {
   createController();
   //Read the initial color values from the controller.
   readController();
+  console.log("Hello");
+  console.log(defaultObject);
 }

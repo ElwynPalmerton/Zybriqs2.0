@@ -35,6 +35,7 @@ function createController() {
 
 function readSliders(objectNumber) {
 
+
   let numberSelector = document.getElementById('numberSelector');
   let objectSelector = document.getElementById('objectSelector');
 
