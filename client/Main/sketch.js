@@ -10,8 +10,7 @@ const liquids = [];
 const backgroundArray = [];
 var blocks = [];
 let objectType;
-let zenMode = false;
-let fullScreen = false;
+
 
 //Display variables:
 const dimAmt = 30;
@@ -30,7 +29,7 @@ const windC = 0.05;
 let intensityInput = 50;
 let directionInput = 0;
 
-//Grid parameters   --------  I need to re-think it this is how I want this to work.
+//Grid parameters   
 var cnv;
 const initWidth = 1000;
 const initHeight = 800;
@@ -40,6 +39,8 @@ const minSize = 50;
 let infoPopup = false;
 var drawButtonOn = false;
 var removeButtonOn = false;
+let zenMode = false;
+let fullScreen = false;
 var buttons = [];
 var run = true;
 var scl;
