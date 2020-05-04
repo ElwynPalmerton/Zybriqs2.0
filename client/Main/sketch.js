@@ -91,46 +91,11 @@ function setup() {
   initializeCanvas(initWidth, initHeight, setScale);
   createResizeListener();
 
-  //Create all of the balls.
-  for (let i = 0; i < qty; i++) {
-    let ball = new Mover(random(initWidth), initHeight / 5, initBallColors[i]);
-    balls.push(ball);
-  }
-
-  let bgObject = new backgroundObject(initBackgroundColor[0]);
-  backgroundArray.push(bgObject);
-
-  //Initialize the drag elements.
-
-  let liquidStart = createVector(200 * scl, 200 * scl);
-  let liquidEnd = createVector(400 * scl, 400 * scl);
-  liquid = new Liquid(
-    liquidStart,
-    liquidEnd,
-    dragCoefficient,
-    initDragColors[0]
-  );
-  liquids.push(liquid);
-
-  //Initialize the accelerator elements.
-
-  //Refactor this so that the initialization vectors.
-  //... go in the initialization object.
-  let reverseLiquidStart = createVector(600 * scl, 400 * scl);
-  let reverseLiquidEnd = createVector(800 * scl, 600 * scl);
-  reverseLiquid = new Liquid(
-    reverseLiquidStart,
-    reverseLiquidEnd,
-    -dragCoefficient,
-    initAccelColors[0]
-  );
-  reverseLiquids.push(reverseLiquid);
-
+  initializeObjects(defaultObject2);
   //Initialize the interface.
   makeButtons();
   createController();
   //Read the initial color values from the controller.
   readController();
-  console.log("Hello");
-  console.log(defaultObject);
+
 }

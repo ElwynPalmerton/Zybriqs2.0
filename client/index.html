@@ -33,10 +33,12 @@
   <script src="utilities/makeRectangle.js"></script>
   <script src="utilities/drawDuringSetup.js"></script>
   <script src="utilities/setScale.js"></script>
-  <script src="utilities/initObject.js"></script>
   <!-- Main -->
   <script src="Main/sketch.js"></script>
   <script src="Main/draw.js"></script>
+  <script src="Main/colorPresets/defaultObject.js"></script>
+  <script src="Main/colorPresets/defaultObject2.js"></script>
+  <script src="Main/initializeObjects.js"></script>
   <!-- Font Awesome  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -141,14 +143,18 @@
     </Card>
 
 
-    <!-- <Card class="dropDown1" id="colorController">
-      <label for="colorPresets">Color Presets</label>
-      <select><option>Presets</option></select>
-    </Card>
-
-    <Card class="dropDown2" id="colorController">
-      <label for="colorPresets"> Presets</label>
-      <select><option>Presets</option></select>
+    <Card onchange="reInitialize()" class="dropDown1" id="colorController">
+      <label for="Presets">Presets</label>
+      <select id="colorPresets">
+        <option>-</option>
+        <option value="defaultObject">default1</option>
+        <option value="defaultObject2">default2</option>
+      </select> </Card>
+    <!-- <Card class="dropDown2" id="colorController">
+          <label for="colorPresets"> Presets</label>
+          <select>
+            <option>Presets</option>
+          </select>
     </Card> -->
 
 
