@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 
 app.post("/", (req, res) => {
   console.log("Posted");
-  console.log(req.body.data);
+  console.log(req.body);
   res.send('hello');
 });
 

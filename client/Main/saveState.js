@@ -1,10 +1,10 @@
 function submitData() {
-  createP("Hello");
 
+  const url = "/"
 
-  const url = "/" // "http://localhost:3000";
-
-  const data = "HelloData";
+  const data = {
+    HelloData: "A data",
+  };
 
   $('.upload').click(function () {
     $.post(url, data, function (data, status) {
