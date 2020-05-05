@@ -19,6 +19,7 @@
   <script src="Interface/createController.js"></script>
   <script src="Interface/listeners.js"></script>
   <script src="Interface/physicsController.js"></script>
+  <script src="Interface/applyColors.js"></script>
   <script type="text/javascript" src="Interface/nhpup_1.1.js"></script>
   <!-- object classes: balls, drag, and blocks -->
   <script src="classes/outline.js"></script>
@@ -33,11 +34,15 @@
   <script src="utilities/makeRectangle.js"></script>
   <script src="utilities/drawDuringSetup.js"></script>
   <script src="utilities/setScale.js"></script>
+  <!-- Color and Design Presets  -->
+  <script src="designPresets/defaultObject.js"></script>
+  <script src="designPresets/defaultObject2.js"></script>
+  <script src="colorPresets/B&W.js"></script>
+  <script src="colorPresets/Rainbow.js"></script>
   <!-- Main -->
   <script src="Main/sketch.js"></script>
   <script src="Main/draw.js"></script>
-  <script src="Main/colorPresets/defaultObject.js"></script>
-  <script src="Main/colorPresets/defaultObject2.js"></script>
+
   <script src="Main/initializeObjects.js"></script>
   <!-- Font Awesome  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -143,19 +148,22 @@
     </Card>
 
 
-    <Card onchange="reInitialize()" class="dropDown1" id="colorController">
+    <Card class="dropDown1" id="colorController">
       <label for="Presets">Presets</label>
-      <select id="colorPresets">
+      <select onchange="reInitialize()" id="designPresets">
         <option>-</option>
         <option value="defaultObject">default1</option>
         <option value="defaultObject2">default2</option>
       </select> </Card>
-    <!-- <Card class="dropDown2" id="colorController">
-          <label for="colorPresets"> Presets</label>
-          <select>
-            <option>Presets</option>
-          </select>
-    </Card> -->
+
+    <Card class="dropDown2" id="colorController">
+      <label for="colorPresets"> Presets</label>
+      <select onchange="applyColors()" id="colorPresets">
+        <option>-</option>
+        <option value="B&W">B&W</option>
+        <option value="Rainbow">Rainbow</option>
+      </select>
+    </Card>
 
 
     <div class="buttons" id="buttonContainer">

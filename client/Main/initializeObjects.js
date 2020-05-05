@@ -1,11 +1,9 @@
 function initializeObjects(settings) {
-
   balls.splice(0);
   blocks.splice(0);
   liquids.splice(0);
   reverseLiquids.splice(0);
   backgroundArray.splice(0);
-
 
   for (let i = 0; i < settings.balls.length; i++) {
     let ball = new Mover(random(initWidth), initHeight / 5, settings.balls[i]);
@@ -21,9 +19,7 @@ function initializeObjects(settings) {
   //Add (liquid) start and end to the default object.
   //Test to see if it works with a different object.
 
-
   for (let i = 0; i < settings.drag.length; i++) {
-
     let startY = settings.drag[i].start.y;
     let startX = settings.drag[i].start.x;
     let endX = settings.drag[i].end.x;
@@ -39,7 +35,6 @@ function initializeObjects(settings) {
       settings.drag[i].color
     );
     liquids.push(liquid);
-
   }
 
   //Add (reverseLiquid) start and end to the default object.
@@ -47,18 +42,14 @@ function initializeObjects(settings) {
   //Loop over setting.dragColor.length.
   //Create the object and push it to liquids.
 
-
   for (let i = 0; i < settings.accel.length; i++) {
-
     let startX = settings.accel[i].start.x;
     let startY = settings.accel[i].start.y;
     let endX = settings.accel[i].end.x;
     let endY = settings.accel[i].end.y;
 
-
     let reverseLiquidStart = createVector(startX * scl, startY * scl);
     let reverseLiquidEnd = createVector(endX * scl, endY * scl);
-
 
     let reverseLiquid = new Liquid(
       reverseLiquidStart,
@@ -70,31 +61,22 @@ function initializeObjects(settings) {
   }
 
   for (let i = 0; i < settings.blocks.length; i++) {
-
     let startX = settings.blocks[i].start.x;
     let startY = settings.blocks[i].start.y;
     let endX = settings.blocks[i].end.x;
     let endY = settings.blocks[i].end.y;
 
-
     let blockStart = createVector(startX * scl, startY * scl);
     let blockEnd = createVector(endX * scl, endY * scl);
 
-
-    let block = new Outline(
-      blockStart,
-      blockEnd,
-      settings.blocks[i].color
-    );
+    let block = new Outline(blockStart, blockEnd, settings.blocks[i].color);
     blocks.push(block);
   }
 }
 
 function reInitialize() {
-  let colorPreset = document.querySelector("#colorPresets");
-  let objName = colorPreset.value;
-
-
+  let designPreset = document.querySelector("#designPresets");
+  let objName = designPreset.value;
 
   switch (objName) {
     case "defaultObject":
@@ -104,10 +86,6 @@ function reInitialize() {
       initializeObjects(defaultObject2);
       break;
     default:
-      // Do nothing.
+    // Do nothing.
   }
-
-
-
-
 }
