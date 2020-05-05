@@ -89,3 +89,7 @@ function reInitialize() {
     // Do nothing.
   }
 }
+
+function submitData() {
+  createP("Hello");
+}
