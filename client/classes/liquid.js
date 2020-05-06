@@ -32,18 +32,29 @@ class Liquid {
       if (this.start.y < this.end.y) {
         //rect(this.start.x, this.start.y, this.width, this.height);
       } else {
-        this.start.x = this.start.x
+        // this.start.x = this.start.x
         //idk?
+        let tempY = this.start.y
         this.start.y = this.end.y
+        this.end.y = tempY;
         //rect(this.start.x, this.end.y, this.width, this.height);
       }
     } else {
       if (this.start.y < this.end.y) {
+        //bottom-left
+        let tempX = this.start.x;
         this.start.x = this.end.x;
+        this.end.x = tempX;
         //rect(this.end.x, this.start.y, this.width, this.height);
       } else {
+        let tempX = this.start.x;
+        let tempY = this.start.y;
+
         this.start.x = this.end.x;
         this.start.y = this.end.y;
+
+        this.end.x = tempX;
+        this.end.y = tempY;
         //rect(this.end.x, this.end.y, this.width, this.height);
       }
     }

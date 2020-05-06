@@ -23,22 +23,31 @@ class Outline { //Change name to Block.
     //This is weird, rewrite this:
     if (this.start.x < this.end.x) {
       if (this.start.y < this.end.y) {
-
-        //rect(this.start.x, this.start.y, this.width, this.height);
+        //Bottom-right - do nothing.
       } else {
-        this.start.x = this.start.x
-        //idk?
+        //top-right
+        //this.start.x = this.start.x
+        let tempY = this.start.y;
         this.start.y = this.end.y
-        //rect(this.start.x, this.end.y, this.width, this.height);
+        this.end.y = tempY;
       }
     } else {
+      //left-side
       if (this.start.y < this.end.y) {
+        //bottom-left
+        let tempX = this.start.x;
         this.start.x = this.end.x;
-        //rect(this.end.x, this.start.y, this.width, this.height);
+        this.end.x = tempX;
       } else {
+        //top-left
+        let tempX = this.start.x;
+        let tempY = this.start.y;
+
         this.start.x = this.end.x;
         this.start.y = this.end.y;
-        //rect(this.end.x, this.end.y, this.width, this.height);
+
+        this.end.x = tempX;
+        this.end.y = tempY;
       }
     }
 
