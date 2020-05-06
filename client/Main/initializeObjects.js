@@ -90,6 +90,4 @@ function reInitialize() {
   }
 }
 
-function submitData() {
-  createP("Hello");
-}
+

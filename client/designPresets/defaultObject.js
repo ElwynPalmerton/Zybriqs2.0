@@ -23,7 +23,7 @@ let defaultObject = {
       s: 55,
       l: 70,
       a: 0.6,
-    },
+    },               
     start: {
       x: 600,
       y: 400,
@@ -34,7 +34,7 @@ let defaultObject = {
     }
   }, ],
 
-  blocks: [],
+  blocks: [],    
 
 
   backgroundColor: [{
