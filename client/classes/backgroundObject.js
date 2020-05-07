@@ -1,8 +1,9 @@
 class backgroundObject {
 
   constructor(color) {
+    console.log(color);
 
-
+    color.a = parseFloat(color.a);
     //Color variables.
     let assignColor = color || defaultColor;
     let thisColor = {};

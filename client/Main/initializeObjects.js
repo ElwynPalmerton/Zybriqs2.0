@@ -11,8 +11,12 @@ function initializeObjects(settings) {
   }
 
   //Create the background object using settings.backColor[0];
+  //console.log(settings.backgroundColor[0]);
+  console.log("settings.backgroundColor", settings.backgroundColor);
   let bgObject = new backgroundObject(settings.backgroundColor[0]);
   backgroundArray.push(bgObject);
+  console.log("backgroundArray:", backgroundArray)
+  //console.log(backgroundArray);
 
   //Initialize the drag elements.
 
@@ -86,8 +90,6 @@ function reInitialize() {
       initializeObjects(defaultObject2);
       break;
     default:
-    // Do nothing.
+      // Do nothing.
   }
 }
-
-

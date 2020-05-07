@@ -1,12 +1,14 @@
 function submitData() {
 
   let stateData = saveState();
+
+  console.log("stateData in save", stateData);
   let stateJSON = JSON.stringify(stateData);
 
   const url = "/"
 
   const data = {
-    name: "Zybriqs1",
+    name: "Zybriqs5",
     state: stateJSON,
   };
 
@@ -85,7 +87,22 @@ function saveState() {
   state.blocks = blockArray;
   state.drag = dragArray;
   state.accel = accelArray;
-  state.backgroundColor = backgroundArray;
+
+  console.log("inside save", backgroundArray[0].color)
+
+
+  //backgroundArray[0] contains backgroundObject which contains the
+  //backgroundColor. So, the code below takes the color from the backgroundobject held at backgroundArray[0], and puts 
+  //...the color object into the stateBackgroundArray.
+  //So, state.backgroundColor contains an array which holds one
+  //color object.
+
+
+  let stateBackgroundArray = [];
+
+  stateBackgroundArray.push(backgroundArray[0].color);
+
+  state.backgroundColor = stateBackgroundArray;
 
   return state;
 }
