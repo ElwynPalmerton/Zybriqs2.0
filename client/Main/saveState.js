@@ -1,30 +1,19 @@
 function submitData() {
 
-
   let stateData = saveState();
   let stateJSON = JSON.stringify(stateData);
-
-
-  console.log(stateData);
-  console.log(stateJSON);
-
-
 
   const url = "/"
 
   const data = {
-    Name: "Zybriqs1",
-    State: stateJSON,
+    name: "Zybriqs1",
+    state: stateJSON,
   };
 
-  console.log(data);
 
-  $('.upload').click(function () {
-    $.post(url, data, function (data, status) {
-      console.log(`${data} and status is ${status}`)
-    })
-  });
-
+  $.post(url, data, function (data, status) {
+    console.log(`${data} and status is ${status}`)
+  })
 }
 
 
