@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const ejs = require("ejs");
 
 const app = express();
 
@@ -8,6 +9,8 @@ app.use(
     extended: true,
   })
 );
+
+app.set("view engine", "ejs");
 
 app.use(express.static(__dirname + "/client"));
 
@@ -24,7 +27,7 @@ var zybriqsSchema = new mongoose.Schema({
 
 var Zybriq = mongoose.model('zybriq', zybriqsSchema);
 
-
+let tempZybriq;
 
 app.get("/loadState", (req, res) => {
   console.log('hello');
@@ -46,20 +49,29 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "index.html"));
 });
 
+
+//POST route.
+//Initial route for saving Zybriqs's.
 app.post("/", (req, res) => {
   console.log("Posted");
   console.log("name:", req.body.name);
   console.log("state", req.body.state);
-  //const newZybriq = new zybriq({name: req.body.name, state: req.body.state})
 
-  let zybriqOne = new Zybriq({
+  //const newZybriq = new zybriq({name: req.body.name, state: req.body.state})
+  //I need to check to see if the Zybriqs is already saved.
+
+
+  tempZybriq = new Zybriq({
     name: req.body.name,
     state: req.body.state,
   })
 
-  zybriqOne.save();
 
+  tempZybriq.save();
   res.send("Saved your Zybriq");
+
+
+
 });
 
 app.listen(3000, console.log("Running server on port 3000"));
