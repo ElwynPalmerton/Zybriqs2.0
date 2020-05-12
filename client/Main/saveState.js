@@ -5,7 +5,7 @@ function submitData() {
   console.log("stateData in save", stateData);
   let stateJSON = JSON.stringify(stateData);
 
-  const url = "/"
+  const url = "/saveName"
 
   const data = {
     name: "Zybriqs5",
@@ -13,9 +13,14 @@ function submitData() {
   };
 
 
+
+
   $.post(url, data, function (data, status) {
     console.log(`${data} and status is ${status}`)
+
   })
+
+
 }
 
 

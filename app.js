@@ -4,13 +4,14 @@ const ejs = require("ejs");
 
 const app = express();
 
+app.set("view engine", "ejs");
+
 app.use(
   express.urlencoded({
     extended: true,
   })
 );
 
-app.set("view engine", "ejs");
 
 app.use(express.static(__dirname + "/client"));
 
@@ -28,6 +29,8 @@ var zybriqsSchema = new mongoose.Schema({
 var Zybriq = mongoose.model('zybriq', zybriqsSchema);
 
 let tempZybriq;
+
+
 
 app.get("/loadState", (req, res) => {
   console.log('hello');
@@ -52,7 +55,7 @@ app.get("/", (req, res) => {
 
 //POST route.
 //Initial route for saving Zybriqs's.
-app.post("/", (req, res) => {
+app.post("/saveName", (req, res) => {
   console.log("Posted");
   console.log("name:", req.body.name);
   console.log("state", req.body.state);
@@ -66,12 +69,33 @@ app.post("/", (req, res) => {
     state: req.body.state,
   })
 
+  //tempZybriq.save();
 
-  tempZybriq.save();
-  res.send("Saved your Zybriq");
+  let msg = "Please save your Zybriqs.";
+
+  res.render('pages/saveName.ejs', {
+    message: msg
+  })
 
 
+
+
+  //tempZybriq.save();
+  //res.send("Saved your Zybriq");
 
 });
+
+
+// app.get('/saveName', (req, res) => {
+//   console.log('in get saveName');
+//   let msg = "ldksfjsdlkfj";
+
+//   res.render('pages/saveName.ejs', {
+//     message: msg
+//   })
+// })
+
+
+
 
 app.listen(3000, console.log("Running server on port 3000"));
