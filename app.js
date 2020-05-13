@@ -19,6 +19,8 @@ app.use(express.static(__dirname + "/client"));
 mongoose.connect('mongodb://localhost:27017/zybriqsDB', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+}).catch(error => {
+  console.log("Mongo connection error:", error);
 });
 
 var zybriqsSchema = new mongoose.Schema({
@@ -28,8 +30,8 @@ var zybriqsSchema = new mongoose.Schema({
 
 var Zybriq = mongoose.model('zybriq', zybriqsSchema);
 
-let tempZybriq;
-
+let tempZybriq; //I probably don't need this.
+let tempState;
 
 
 app.get("/loadState", (req, res) => {
@@ -64,21 +66,19 @@ app.post("/saveName", (req, res) => {
   //I need to check to see if the Zybriqs is already saved.
 
 
-  tempZybriq = new Zybriq({
-    name: req.body.name,
-    state: req.body.state,
-  })
+  // tempZybriq = new Zybriq({
+  //   name: req.body.name,
+  //   state: req.body.state,
+  // })
+
+  tempState = req.body.state;
 
   //tempZybriq.save();
 
-  let msg = "Please save your Zybriqs.";
 
-  res.render('pages/saveName.ejs', {
-    message: msg
-  })
-
-
-
+  res.send({
+    message: "Success",
+  });
 
   //tempZybriq.save();
   //res.send("Saved your Zybriq");
@@ -86,14 +86,42 @@ app.post("/saveName", (req, res) => {
 });
 
 
-// app.get('/saveName', (req, res) => {
-//   console.log('in get saveName');
-//   let msg = "ldksfjsdlkfj";
+app.get('/saveName', (req, res) => {
+  console.log('in get saveName');
+  let msg = "Please name your Zibriq:";
 
-//   res.render('pages/saveName.ejs', {
-//     message: msg
-//   })
-// })
+  res.render('pages/saveName.ejs', {
+    message: msg
+  })
+});
+
+app.get('/saveZibriq', (req, res) => {
+
+  console.log("In get save Zibriq");
+  console.log(req.body.zName);
+  res.render('pages/saveSuccess.ejs', {
+    message: "Success",
+  });
+});
+
+app.post('/saveZibriq', (req, res) => {
+  console.log("in save Zybriq");
+  console.log("Zibriq Name: ", req.body.zName);
+  let zName = req.body.zName;
+
+
+  let tempZybriq = new Zybriq({
+    name: zName,
+    state: tempState,
+  });
+
+  tempZybriq.save();
+
+  console.log("temp Zibriq:", tempZybriq);
+  res.render('pages/saveSuccess.ejs', {
+    message: "Success",
+  });
+});
 
 
 
