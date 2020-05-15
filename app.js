@@ -33,28 +33,6 @@ var Zybriq = mongoose.model("zybriq", zybriqsSchema);
 let tempZybriq; //I probably don't need this.
 let tempState;
 
-app.get("/loadState", (req, res) => {
-
-  console.log("in loadState");
-  Zibriq.findOne({
-      name: HelloThere
-    })
-    .then(foundZibs => {
-      console.log(foundZibs);
-    })
-    .catch(err => console.log(err));
-
-  // Zybriq.findOne({
-  //     name: "HelloThere",
-  //   })
-  //   .then((foundZybriq) => {
-  //     console.log(foundZybriq.state);
-  //     res.send(foundZybriq.state);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   }); //end of findOne.
-}); //End of /loadState.
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "index.html"));
@@ -124,7 +102,41 @@ app.post("/saveZibriq", (req, res) => {
 
 app.get("/loadData", (req, res) => {
   console.log("in load Data");
+  Zybriq.find({
+      // name: "HelloThere",
+    })
+    .then((foundZybriq) => {
+      console.log(foundZybriq[0].state);
+      //res.send(foundZybriq.state);
+    })
+    .catch((err) => {
+      console.log(err);
+    }); //end of findOne.
 
 });
+
+app.get("/loadState", (req, res) => {
+
+  // console.log("in loadState");
+  // Zibriq.findOne({
+  //     name: "HelloThere",
+  //   })
+  //   .then(foundZibs => {
+  //     console.log(foundZibs);
+  //   })
+  //   .catch(err => console.log(err));
+
+  Zybriq.findOne({
+      name: "HelloThere",
+    })
+    .then((foundZybriq) => {
+      console.log(foundZybriq.state);
+      res.send(foundZybriq.state);
+    })
+    .catch((err) => {
+      console.log(err);
+    }); //end of findOne.
+}); //End of /loadState.
+
 
 app.listen(3000, console.log("Running server on port 3000"));
