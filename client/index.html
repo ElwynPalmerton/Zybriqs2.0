@@ -232,7 +232,11 @@
   </div>
 
   <button class="upload" onclick="submitData()">Save</button>
-  <button class="download" onclick="loadData()">Load</button>
+  <form action="/loadData" method="get">
+    <button class="download" onclick="loadData()">Load</button>
+    <!-- loadData() is in "restoreState" -->
+    <!-- I can probably delete this now.  -->
+  </form>
 
 </body>
 
