@@ -100,13 +100,33 @@ app.post("/saveZibriq", (req, res) => {
   });
 });
 
-app.get("/loadData", (req, res) => {
+app.get("/loadSavedNames", (req, res) => {
   console.log("in load Data");
   Zybriq.find({
       // name: "HelloThere",
     })
     .then((foundZybriq) => {
-      console.log(foundZybriq[0].state);
+      // console.log(foundZybriq[1].name);
+      // console.log(foundZybriq[1].state);
+
+      let zibNames = [];
+      let zibIds = []
+
+
+      for (let zib of foundZybriq) {
+        zibNames.push(zib.name);
+        zibIds.push(zib._id);
+      }
+
+      res.render('pages/listSaved', {
+        zibNames: zibNames,
+        zibIds: zibIds,
+      })
+
+      //res.render
+      //Create the res.render fild under l
+
+
       //res.send(foundZybriq.state);
     })
     .catch((err) => {
@@ -117,25 +137,18 @@ app.get("/loadData", (req, res) => {
 
 app.get("/loadState", (req, res) => {
 
-  // console.log("in loadState");
-  // Zibriq.findOne({
+  console.log(req.body.name);
+
+  // Zybriq.findOne({
   //     name: "HelloThere",
   //   })
-  //   .then(foundZibs => {
-  //     console.log(foundZibs);
+  //   .then((foundZybriq) => {
+  //     console.log(foundZybriq.state);
+  //     res.send(foundZybriq.state);
   //   })
-  //   .catch(err => console.log(err));
-
-  Zybriq.findOne({
-      name: "HelloThere",
-    })
-    .then((foundZybriq) => {
-      console.log(foundZybriq.state);
-      res.send(foundZybriq.state);
-    })
-    .catch((err) => {
-      console.log(err);
-    }); //end of findOne.
+  //   .catch((err) => {
+  //     console.log(err);
+  //   }); //end of findOne.
 }); //End of /loadState.
 
 
