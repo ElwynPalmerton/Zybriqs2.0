@@ -91,6 +91,10 @@ function setup() {
   initializeCanvas(initWidth, initHeight, setScale);
   createResizeListener();
 
+  const urlParams = new URLSearchParams(window.location.search)
+  savedZib = urlParams.get('savedZib');
+  console.log(savedZib);
+
   initializeObjects(defaultObject2);
   //Initialize the interface.
   makeButtons();

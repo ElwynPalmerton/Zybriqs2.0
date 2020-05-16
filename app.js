@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
+const path = require('path');
 
 const app = express();
 
@@ -33,10 +34,18 @@ var Zybriq = mongoose.model("zybriq", zybriqsSchema);
 let tempZybriq; //I probably don't need this.
 let tempState;
 
+///////////ROOT
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "index.html"));
 });
+
+app.get("/restore", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "index.html"));
+});
+
+
+//////////////////////SAVING/////////////////////
 
 //POST route.
 //Initial route for saving Zybriqs's.
@@ -47,11 +56,6 @@ app.post("/saveName", (req, res) => {
 
   //const newZybriq = new zybriq({name: req.body.name, state: req.body.state})
   //I need to check to see if the Zybriqs is already saved.
-
-  // tempZybriq = new Zybriq({
-  //   name: req.body.name,
-  //   state: req.body.state,
-  // })
 
   tempState = req.body.state;
 
@@ -75,7 +79,7 @@ app.get("/saveName", (req, res) => {
 });
 
 app.get("/saveZibriq", (req, res) => {
-  console.log("In get save Zibriq");
+  console.log("In get saveZibriq");
   console.log(req.body.zName);
   res.render("pages/saveSuccess.ejs", {
     message: "Success",
@@ -99,6 +103,9 @@ app.post("/saveZibriq", (req, res) => {
     message: "Success",
   });
 });
+
+
+//////////////////////LOADING////////////////////////////////
 
 app.get("/loadSavedNames", (req, res) => {
   console.log("in load Data");
@@ -135,9 +142,13 @@ app.get("/loadSavedNames", (req, res) => {
 
 });
 
-app.get("/loadState", (req, res) => {
+app.post("/loadState", (req, res) => {
+  console.log('In /loadState');
 
-  console.log(req.body.name);
+  let savedZibriq = req.body.name
+  console.log("Selected Zibriq", savedZibriq);
+
+  res.redirect('restore?savedZib=' + savedZibriq);
 
   // Zybriq.findOne({
   //     name: "HelloThere",
