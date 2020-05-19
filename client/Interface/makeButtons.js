@@ -260,7 +260,7 @@ function makeRemoveBallsButton() {
   removeBallButton.addEventListener('click', (e) => {
 
     //removeBallsButton.elt.className = "active";
-    if (qty > 0) {
+    if (balls.length > 0) {
       removeBalls();
       updateSliders();
       drawElementsDuringSetup();
