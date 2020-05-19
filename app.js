@@ -44,15 +44,34 @@ app.get("/restore", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "index.html"));
 });
 
+app.post("/restore", (req, res) => {
+  console.log('in restore state');
+  console.log("zibID: ", req.body.zibID);
+  let id = req.body.zibID;
+
+  Zybriq.findOne({
+      _id: id,
+    })
+    .then(foundZybriq => {
+      console.log(foundZybriq);
+      res.send(foundZybriq.state);
+    })
+    .catch(err => {
+      console.log(err)
+    });
+  //console.log("restoreState, zibID: ", req.body.params);
+
+})
+
 
 //////////////////////SAVING/////////////////////
 
 //POST route.
 //Initial route for saving Zybriqs's.
 app.post("/saveName", (req, res) => {
-  console.log("Posted");
-  console.log("name:", req.body.name);
-  console.log("state", req.body.state);
+  //console.log("Posted");
+  //console.log("name:", req.body.name);
+  //console.log("state", req.body.state);
 
   //const newZybriq = new zybriq({name: req.body.name, state: req.body.state})
   //I need to check to see if the Zybriqs is already saved.
@@ -70,7 +89,7 @@ app.post("/saveName", (req, res) => {
 });
 
 app.get("/saveName", (req, res) => {
-  console.log("in get saveName");
+  //console.log("in get saveName");
   let msg = "Please name your Zibriq:";
 
   res.render("pages/saveName.ejs", {
@@ -79,16 +98,16 @@ app.get("/saveName", (req, res) => {
 });
 
 app.get("/saveZibriq", (req, res) => {
-  console.log("In get saveZibriq");
-  console.log(req.body.zName);
+  //console.log("In get saveZibriq");
+  //console.log(req.body.zName);
   res.render("pages/saveSuccess.ejs", {
     message: "Success",
   });
 });
 
 app.post("/saveZibriq", (req, res) => {
-  console.log("in save Zybriq");
-  console.log("Zibriq Name: ", req.body.zName);
+  //console.log("in save Zybriq");
+  //console.log("Zibriq Name: ", req.body.zName);
   let zName = req.body.zName;
 
   let tempZybriq = new Zybriq({
@@ -98,7 +117,7 @@ app.post("/saveZibriq", (req, res) => {
 
   tempZybriq.save();
 
-  console.log("temp Zibriq:", tempZybriq);
+  //console.log("temp Zibriq:", tempZybriq);
   res.render("pages/saveSuccess.ejs", {
     message: "Success",
   });
@@ -107,8 +126,9 @@ app.post("/saveZibriq", (req, res) => {
 
 //////////////////////LOADING////////////////////////////////
 
+//Gets the saved names from the database and renders them with listSaved.ejs
 app.get("/loadSavedNames", (req, res) => {
-  console.log("in load Data");
+  //console.log("in load Data");
   Zybriq.find({
       // name: "HelloThere",
     })
@@ -142,11 +162,13 @@ app.get("/loadSavedNames", (req, res) => {
 
 });
 
+//This is called form listSaved.ejs after the radio button for the saved Zibriq is selected.
+//Redirects to /restre?savedZib=  _ID.
 app.post("/loadState", (req, res) => {
-  console.log('In /loadState');
+  //console.log('In /loadState');
 
   let savedZibriq = req.body.name
-  console.log("Selected Zibriq", savedZibriq);
+  //console.log("Selected Zibriq", savedZibriq);
 
   res.redirect('restore?savedZib=' + savedZibriq);
 
@@ -161,6 +183,19 @@ app.post("/loadState", (req, res) => {
   //     console.log(err);
   //   }); //end of findOne.
 }); //End of /loadState.
+
+
+//I don't think that this is doing anything now?
+// app.post("/loadZibriq", (req, res) => {
+//   console.log('In /loadZibriq');
+
+//   let savedZibriq = req.body.name
+//   console.log("Selected Zibriq", savedZibriq);
+
+//   res.redirect('restore?savedZib=' + savedZibriq);
+
+
+// }); //End of /loadState.
 
 
 app.listen(3000, console.log("Running server on port 3000"));

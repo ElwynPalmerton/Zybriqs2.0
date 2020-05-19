@@ -46,7 +46,7 @@
   <script src="Main/draw.js"></script>
   <script src="Main/initializeObjects.js"></script>
   <script src="Main/saveState.js"></script>
-  <script src="Main/restoreState.js"></script>
+  <script src="Main/loadData.js"></script>
   <!-- Font Awesome  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -233,7 +233,7 @@
 
   <button class="upload" onclick="submitData()">Save</button>
   <form action="/loadSavedNames" method="get">
-    <button class="download" onclick="loadData()">Load</button>
+    <button class="download">Load</button>
     <!-- loadData() is in "restoreState" -->
     <!-- I can probably delete this now.  -->
   </form>
