@@ -20,6 +20,7 @@ function loadData(zibID) {
     console.log("New state JSON", data);
     console.log("New state JSON", newStateJSON);
 
+    initializeObjects(newStateJSON);
     return newStateJSON;
 
 

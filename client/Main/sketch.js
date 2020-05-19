@@ -91,19 +91,21 @@ function setup() {
   initializeCanvas(initWidth, initHeight, setScale);
   createResizeListener();
 
-  async function retrieveZybriq() {
 
-    const urlParams = new URLSearchParams(window.location.search)
-    savedZib = urlParams.get('savedZib');
-    console.log(savedZib);
+  const urlParams = new URLSearchParams(window.location.search)
+  savedZib = urlParams.get('savedZib');
+  console.log(savedZib);
 
-    let zibState = defaultObject2;
+  let zibState = defaultObject2;
 
-    if (savedZib) {
-      zibState = loadData(savedZib);
-      console.log("zibState in sketch(): ", zibState);
-    }
+  if (savedZib) {
+    zibState = loadData(savedZib);
+    console.log("zibState in sketch(): ", zibState);
   }
+
+
+
+
 
   initializeObjects(defaultObject2);
   //Initialize the interface.
