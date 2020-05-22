@@ -17,7 +17,6 @@ function initializeObjects(settings) {
   backgroundArray.push(bgObject);
 
   //Initialize the drag elements.
-
   //Add (liquid) start and end to the default object.
   //Test to see if it works with a different object.
 

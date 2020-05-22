@@ -1,7 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
-const path = require('path');
+const path = require("path");
+const session = require("express-session");
+const passport = require("passport");
+const passportLocalMongoose = require("passport-local-mongoose");
 
 const app = express();
 
@@ -14,6 +17,15 @@ app.use(
 );
 
 app.use(express.static(__dirname + "/client"));
+
+app.use(
+  session({
+    secdret: "keyboard cat",
+    resave: false,
+    saveUnitinitalized: true,
+    cookie: { secure: true },
+  })
+);
 
 mongoose
   .connect("mongodb://localhost:27017/zybriqsDB", {
@@ -34,6 +46,14 @@ var Zybriq = mongoose.model("zybriq", zybriqsSchema);
 let tempZybriq; //I probably don't need this.
 let tempState;
 
+app.get("/register", (req, res) => {
+  res.render("pages/register");
+});
+
+app.get("/login", (req, res) => {
+  res.render("pages/login");
+});
+
 ///////////ROOT
 
 app.get("/", (req, res) => {
@@ -45,24 +65,22 @@ app.get("/restore", (req, res) => {
 });
 
 app.post("/restore", (req, res) => {
-  console.log('in restore state');
+  console.log("in restore state");
   console.log("zibID: ", req.body.zibID);
   let id = req.body.zibID;
 
   Zybriq.findOne({
-      _id: id,
-    })
-    .then(foundZybriq => {
+    _id: id,
+  })
+    .then((foundZybriq) => {
       console.log(foundZybriq);
       res.send(foundZybriq.state);
     })
-    .catch(err => {
-      console.log(err)
+    .catch((err) => {
+      console.log(err);
     });
   //console.log("restoreState, zibID: ", req.body.params);
-
-})
-
+});
 
 //////////////////////SAVING/////////////////////
 
@@ -123,43 +141,39 @@ app.post("/saveZibriq", (req, res) => {
   });
 });
 
-
 //////////////////////LOADING////////////////////////////////
 
 //Gets the saved names from the database and renders them with listSaved.ejs
 app.get("/loadSavedNames", (req, res) => {
   //console.log("in load Data");
   Zybriq.find({
-      // name: "HelloThere",
-    })
+    // name: "HelloThere",
+  })
     .then((foundZybriq) => {
       // console.log(foundZybriq[1].name);
       // console.log(foundZybriq[1].state);
 
       let zibNames = [];
-      let zibIds = []
-
+      let zibIds = [];
 
       for (let zib of foundZybriq) {
         zibNames.push(zib.name);
         zibIds.push(zib._id);
       }
 
-      res.render('pages/listSaved', {
+      res.render("pages/listSaved", {
         zibNames: zibNames,
         zibIds: zibIds,
-      })
+      });
 
       //res.render
       //Create the res.render fild under l
-
 
       //res.send(foundZybriq.state);
     })
     .catch((err) => {
       console.log(err);
     }); //end of findOne.
-
 });
 
 //This is called form listSaved.ejs after the radio button for the saved Zibriq is selected.
@@ -167,10 +181,10 @@ app.get("/loadSavedNames", (req, res) => {
 app.post("/loadState", (req, res) => {
   //console.log('In /loadState');
 
-  let savedZibriq = req.body.name
+  let savedZibriq = req.body.name;
   //console.log("Selected Zibriq", savedZibriq);
 
-  res.redirect('restore?savedZib=' + savedZibriq);
+  res.redirect("restore?savedZib=" + savedZibriq);
 
   // Zybriq.findOne({
   //     name: "HelloThere",
@@ -184,7 +198,6 @@ app.post("/loadState", (req, res) => {
   //   }); //end of findOne.
 }); //End of /loadState.
 
-
 //I don't think that this is doing anything now?
 // app.post("/loadZibriq", (req, res) => {
 //   console.log('In /loadZibriq');
@@ -194,8 +207,6 @@ app.post("/loadState", (req, res) => {
 
 //   res.redirect('restore?savedZib=' + savedZibriq);
 
-
 // }); //End of /loadState.
-
 
 app.listen(3000, console.log("Running server on port 3000"));
