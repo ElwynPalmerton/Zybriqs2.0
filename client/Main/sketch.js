@@ -99,6 +99,10 @@ function setup() {
   let zibState = defaultObject2;
 
   if (savedZib) {
+    //loadData actually calls initializeObjects. I am not
+    //why this is even working.
+    //Why isn't it being over-ridden by the call to 
+    //initializeObjects(defaultObject2) below.
     zibState = loadData(savedZib);
     console.log("zibState in sketch(): ", zibState);
   }

@@ -2,6 +2,7 @@ const router = require('express').Router();
 const passport = require('passport');
 const User = require('../models/mongoose-model');
 const passportLocalMongoose = require('passport-local-mongoose');
+const Zybriq = require('../models/zybriqs-model');
 
 router.get("/", (req, res) => {
   res.render("pages/register", {

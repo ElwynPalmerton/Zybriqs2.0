@@ -10,7 +10,10 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const registerRoutes = require('./routes/register-routes');
 const restoreRoutes = require('./routes/restore-routes');
 const User = require('./models/mongoose-model');
-const Zybriq = require('./models/zybriqs-model');
+const {
+  Zybriq,
+  zybriqSchema
+} = require('./models/zybriqs-model');
 
 const app = express();
 
@@ -61,17 +64,18 @@ passport.deserializeUser(User.deserializeUser());
 let tempZybriq; //I probably don't need this.
 let tempState;
 
-
+/////////////ROOT///////////////
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "index.html"));
 });
 //register routes.
 app.use('/register', registerRoutes);
-app.use('/restore', restoreRoutes);
 
+app.use('/restore', restoreRoutes);
 
 app.get("/restore", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "index.html"));
+  //I don't know how to reference the __dirname to a differenct folder using this command or whatever it is I need to do.
 });
 
 app.get("/login", (req, res) => {
@@ -80,58 +84,50 @@ app.get("/login", (req, res) => {
   });
 });
 
-///////////ROOT
+app.post("/login", (req, res) => {
 
-// app.get("/", (req, res) => {
-//   res.sendFile(path.join(__dirname, "client", "index.html"));
-// });
+  const user = new User({
+    username: req.body.username,
+    password: req.body.password,
+  });
 
-// app.get("/restore", (req, res) => {
-//   res.sendFile(path.join(__dirname, "client", "index.html"));
-// });
+  req.login(user, function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      passport.authenticate('local')(req, res, function () {
+        res.redirect('/');
+      })
+    }
+  })
 
-// app.post("/restore", (req, res) => {
-//   console.log("in restore state");
-//   console.log("zibID: ", req.body.zibID);
-//   let id = req.body.zibID;
 
-//   Zybriq.findOne({
-//       _id: id,
-//     })
-//     .then((foundZybriq) => {
-//       console.log(foundZybriq);
-//       res.send(foundZybriq.state);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-//console.log("restoreState, zibID: ", req.body.params);
-// });
+});
+//////////////////SAVING//////////////////
+//////////////////SAVING//////////////////
+//////////////////SAVING//////////////////
+//////////////////SAVING//////////////////
+//////////////////SAVING//////////////////
 
-//////////////////////SAVING/////////////////////
-
-//POST route.
 //Initial route for saving Zybriqs's.
+//Front-end sends the Zybriq data here with the $.post.
 app.post("/saveName", (req, res) => {
-  //console.log("Posted");
-  //console.log("name:", req.body.name);
-  //console.log("state", req.body.state);
-
-  //const newZybriq = new zybriq({name: req.body.name, state: req.body.state})
-  //I need to check to see if the Zybriqs is already saved.
-
+  //tempState is a global variable which
+  //is assigned here so that it can be accessed in 
+  //app.post(/saveZibriq);
   tempState = req.body.state;
 
-  //tempZybriq.save();
-
+  //This just sends a success message.
+  //The get /saveName route is handling the naming.
   res.send({
     message: "Success",
   });
 
-  //tempZybriq.save();
-  //res.send("Saved your Zybriq");
 });
 
+//The save button calls the submitData() function in
+//saveState.js which then uses Window.location.assign('/saveName');
+//Called from submitData() with assign();
 app.get("/saveName", (req, res) => {
   //console.log("in get saveName");
   if (req.isAuthenticated()) {
@@ -140,43 +136,69 @@ app.get("/saveName", (req, res) => {
       message: msg,
     });
   } else {
+    //This should redirect?
     res.render("pages/login", {
       msg: "You must be logged in to save your Zybriqs.",
     });
   }
 });
 
-app.get("/saveZibriq", (req, res) => {
-  //console.log("In get saveZibriq");
-  //console.log(req.body.zName);
-  res.render("pages/saveSuccess.ejs", {
-    message: "Success",
-  });
-});
 
+//Called from the form in saveName.ejs.
+//Receives the Zybriqs name and saves it to the database.
 app.post("/saveZibriq", (req, res) => {
-  //console.log("in save Zybriq");
-  //console.log("Zibriq Name: ", req.body.zName);
   let zName = req.body.zName;
 
-  let tempZybriq = new Zybriq({
-    name: zName,
+  //I need to check for dupes here so that the user cannot
+  //save two Zybriqs with the same name.
+
+  const tempZ = new Zybriq({
+    name: req.body.zName,
     state: tempState,
-  });
+  })
 
-  tempZybriq.save();
+  tempZ.save();
 
-  //console.log("temp Zibriq:", tempZybriq);
+  User.findOne({
+    username: req.user.username
+  }).then(currentUser => {
+    console.log(currentUser);
+    currentUser.Zybriqs.push(tempZ);
+    currentUser.save().then(user => {
+        console.log(user);
+        res.render("pages/saveSuccess.ejs", {
+          message: "Success",
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }).catch(err => {
+    console.log(err);
+  })
+
+  //Console.log the user out here.
+
+});
+
+//Final save route - not used/necessary?
+app.get("/saveZibriq", (req, res) => {
+  //This route isn't getting used because I
+  //just render the page from the saveZibriq post-route.
   res.render("pages/saveSuccess.ejs", {
     message: "Success",
   });
 });
 
 //////////////////////LOADING////////////////////////////////
+//////////////////////LOADING////////////////////////////////
+//////////////////////LOADING////////////////////////////////
+//////////////////////LOADING////////////////////////////////
 
 //Gets the saved names from the database and renders them with listSaved.ejs
 app.get("/loadSavedNames", (req, res) => {
   //console.log("in load Data");
+  console.log(req.user.Zybriqs);
   Zybriq.find({
       // name: "HelloThere",
     })
@@ -217,27 +239,9 @@ app.post("/loadState", (req, res) => {
 
   res.redirect("restore?savedZib=" + savedZibriq);
 
-  // Zybriq.findOne({
-  //     name: "HelloThere",
-  //   })
-  //   .then((foundZybriq) => {
-  //     console.log(foundZybriq.state);
-  //     res.send(foundZybriq.state);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   }); //end of findOne.
+
 }); //End of /loadState.
 
-//I don't think that this is doing anything now?
-// app.post("/loadZibriq", (req, res) => {
-//   console.log('In /loadZibriq');
 
-//   let savedZibriq = req.body.name
-//   console.log("Selected Zibriq", savedZibriq);
-
-//   res.redirect('restore?savedZib=' + savedZibriq);
-
-// }); //End of /loadState.
 
 app.listen(3000, console.log("Running server on port 3000"));

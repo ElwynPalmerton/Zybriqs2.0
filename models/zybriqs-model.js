@@ -8,4 +8,7 @@ var zybriqsSchema = new mongoose.Schema({
 
 var Zybriq = mongoose.model("zybriq", zybriqsSchema);
 
-module.exports = Zybriq;
+module.exports = {
+  Zybriq,
+  zybriqsSchema
+};
