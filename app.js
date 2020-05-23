@@ -8,6 +8,8 @@ const passportLocalMongoose = require("passport-local-mongoose");
 
 const app = express();
 
+app.use(express.static(__dirname + "/client"));
+
 app.set("view engine", "ejs");
 
 app.use(
@@ -16,16 +18,17 @@ app.use(
   })
 );
 
-app.use(express.static(__dirname + "/client"));
-
 app.use(
   session({
-    secdret: "keyboard cat",
-    resave: false,
-    saveUnitinitalized: true,
-    cookie: { secure: true },
+    secret: "keyboard cat",
+    resave: true,
+    saveUninitialized: false,
+    cookie: { secure: false },
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 mongoose
   .connect("mongodb://localhost:27017/zybriqsDB", {
@@ -36,6 +39,9 @@ mongoose
     console.log("Mongo connection error:", error);
   });
 
+mongoose.set("useCreateIndex", true);
+
+//Zybriqs schema
 var zybriqsSchema = new mongoose.Schema({
   name: String,
   state: String,
@@ -46,12 +52,93 @@ var Zybriq = mongoose.model("zybriq", zybriqsSchema);
 let tempZybriq; //I probably don't need this.
 let tempState;
 
-app.get("/register", (req, res) => {
-  res.render("pages/register");
+//User schema.
+const userSchema = new mongoose.Schema({
+  username: String,
+  password: String,
 });
 
+userSchema.plugin(passportLocalMongoose);
+
+const User = mongoose.model("user", userSchema);
+
+passport.use(User.createStrategy());
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.get("/register", (req, res) => {
+  res.render("pages/register", {
+    msg: "Please enter user data to register: ",
+  });
+});
+
+app.get("/registerSuccess", (req, res) => {
+  console.log("in registerSuccess route.");
+
+  console.log("isAuth ", req.isAuthenticated());
+  if (req.isAuthenticated()) {
+    res.render("pages/registerSuccess");
+  } else {
+    res.redirect("/login");
+  }
+});
+
+app.post("/register", (req, res) => {
+  let username = req.body.username;
+  let password1 = req.body.password;
+  let password2 = req.body.password_two;
+
+  //find the username and see if they exist already.
+  //If not, checks to see if the passwords match.
+  //If pw's match then it registers the user and redirects.
+
+  User.findOne({ username: username }).then((foundUser) => {
+    if (foundUser) {
+      res.render("pages/register", {
+        msg: "That user is already registered.",
+      });
+    } else if (password1 !== password2) {
+      res.render("pages/register", {
+        msg: "Passwords must match.",
+      });
+    } else {
+      User.register(
+        {
+          username: username,
+        },
+        password1,
+        function (err, user) {
+          if (err) {
+            console.log(err);
+            res.redirect("/login");
+          } else {
+            passport.authenticate("local")(req, res, function () {
+              res.redirect("/registerSuccess");
+            });
+          }
+        }
+      );
+      // .then((user) => {
+      //   console.log("Authenticating user");
+      //   passport.authenticate("local", { failureRedirect: "/" }),
+      //     function (req, res) {
+      //       res.redirect("pages/registerSuccess");
+      //     };
+      //   //authenticate.
+      //   //..and redirect.
+      // })
+      // .catch((err) => {
+      //   console.log(err);
+      // });
+    } //end of else.
+  }); //end of User.findOne.
+}); //end app.post
+
 app.get("/login", (req, res) => {
-  res.render("pages/login");
+  res.render("pages/login", {
+    msg: "Please login: ",
+  });
 });
 
 ///////////ROOT
@@ -108,11 +195,16 @@ app.post("/saveName", (req, res) => {
 
 app.get("/saveName", (req, res) => {
   //console.log("in get saveName");
-  let msg = "Please name your Zibriq:";
-
-  res.render("pages/saveName.ejs", {
-    message: msg,
-  });
+  if (req.isAuthenticated()) {
+    let msg = "Please name your Zibriq:";
+    res.render("pages/saveName.ejs", {
+      message: msg,
+    });
+  } else {
+    res.render("pages/login", {
+      msg: "You must be logged in to save your Zybriqs.",
+    });
+  }
 });
 
 app.get("/saveZibriq", (req, res) => {
