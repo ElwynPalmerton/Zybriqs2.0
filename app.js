@@ -8,6 +8,7 @@ const passportLocalMongoose = require("passport-local-mongoose");
 
 //routes
 const registerRoutes = require('./routes/register-routes');
+const restoreRoutes = require('./routes/restore-routes');
 const User = require('./models/mongoose-model');
 const Zybriq = require('./models/zybriqs-model');
 
@@ -61,9 +62,17 @@ let tempZybriq; //I probably don't need this.
 let tempState;
 
 
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "index.html"));
+});
 //register routes.
 app.use('/register', registerRoutes);
+app.use('/restore', restoreRoutes);
 
+
+app.get("/restore", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "index.html"));
+});
 
 app.get("/login", (req, res) => {
   res.render("pages/login", {
@@ -73,31 +82,31 @@ app.get("/login", (req, res) => {
 
 ///////////ROOT
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "index.html"));
-});
+// app.get("/", (req, res) => {
+//   res.sendFile(path.join(__dirname, "client", "index.html"));
+// });
 
-app.get("/restore", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "index.html"));
-});
+// app.get("/restore", (req, res) => {
+//   res.sendFile(path.join(__dirname, "client", "index.html"));
+// });
 
-app.post("/restore", (req, res) => {
-  console.log("in restore state");
-  console.log("zibID: ", req.body.zibID);
-  let id = req.body.zibID;
+// app.post("/restore", (req, res) => {
+//   console.log("in restore state");
+//   console.log("zibID: ", req.body.zibID);
+//   let id = req.body.zibID;
 
-  Zybriq.findOne({
-      _id: id,
-    })
-    .then((foundZybriq) => {
-      console.log(foundZybriq);
-      res.send(foundZybriq.state);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  //console.log("restoreState, zibID: ", req.body.params);
-});
+//   Zybriq.findOne({
+//       _id: id,
+//     })
+//     .then((foundZybriq) => {
+//       console.log(foundZybriq);
+//       res.send(foundZybriq.state);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+//console.log("restoreState, zibID: ", req.body.params);
+// });
 
 //////////////////////SAVING/////////////////////
 
