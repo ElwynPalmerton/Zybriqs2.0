@@ -209,7 +209,7 @@ app.get("/loadSavedNames", (req, res) => {
       let zibNames = [];
       let zibIds = [];
 
-      for (let zib of foundZybriq) {
+      for (let zib of req.user.Zybriqs) {
         zibNames.push(zib.name);
         zibIds.push(zib._id);
       }
@@ -235,6 +235,7 @@ app.post("/loadState", (req, res) => {
   //console.log('In /loadState');
 
   let savedZibriq = req.body.name;
+  console.log(req.body.name);
   //console.log("Selected Zibriq", savedZibriq);
 
   res.redirect("restore?savedZib=" + savedZibriq);

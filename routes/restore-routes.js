@@ -2,12 +2,15 @@ const router = require('express').Router();
 const passport = require('passport');
 const User = require('../models/mongoose-model');
 const passportLocalMongoose = require('passport-local-mongoose');
-const Zybriq = require('../models/zybriqs-model');
+const {
+  Zybriq,
+  zybriqsSchema
+} = require('../models/zybriqs-model');
 
 //Restores the Zybriqs to the main restore page after it has
 //.. been requested by the front-end javascript.
 
-
+//restore route.
 router.post("/", (req, res) => {
   console.log("in restore state");
   console.log("zibID: ", req.body.zibID);
