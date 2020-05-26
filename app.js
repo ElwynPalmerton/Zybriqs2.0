@@ -7,13 +7,13 @@ const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 
 //routes
-const registerRoutes = require('./routes/register-routes');
-const restoreRoutes = require('./routes/restore-routes');
-const User = require('./models/mongoose-model');
+const registerRoutes = require("./routes/register-routes");
+const restoreRoutes = require("./routes/restore-routes");
+const User = require("./models/mongoose-model");
 const {
   Zybriq,
   zybriqSchema
-} = require('./models/zybriqs-model');
+} = require("./models/zybriqs-model");
 
 const app = express();
 
@@ -33,15 +33,13 @@ app.use(
     resave: true,
     saveUninitialized: false,
     cookie: {
-      secure: false
+      secure: false,
     },
   })
 );
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-
 
 mongoose
   .connect("mongodb://localhost:27017/zybriqsDB", {
@@ -54,12 +52,10 @@ mongoose
 
 mongoose.set("useCreateIndex", true);
 
-
 passport.use(User.createStrategy());
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
 
 let tempZybriq; //I probably don't need this.
 let tempState;
@@ -69,9 +65,9 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "index.html"));
 });
 //register routes.
-app.use('/register', registerRoutes);
+app.use("/register", registerRoutes);
 
-app.use('/restore', restoreRoutes);
+app.use("/restore", restoreRoutes);
 
 app.get("/restore", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "index.html"));
@@ -81,11 +77,11 @@ app.get("/restore", (req, res) => {
 app.get("/login", (req, res) => {
   res.render("pages/login", {
     msg: "Please login: ",
+    cameFrom: "loginRoute"
   });
 });
 
 app.post("/login", (req, res) => {
-
   const user = new User({
     username: req.body.username,
     password: req.body.password,
@@ -95,25 +91,30 @@ app.post("/login", (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      passport.authenticate('local')(req, res, function () {
-        res.redirect('/');
-      })
+      passport.authenticate("local")(req, res, function () {
+
+        var cameFrom = req.body.cameFrom;
+        if (cameFrom === "loadRoute") {
+          res.redirect('/loadSavedNames');
+        } else if (cameFrom === "saveRoute") {
+          res.redirect('/saveName');
+        } else {
+          res.redirect("/");
+          //Ad a flag to the request object? and check for it here?
+        }
+      });
     }
-  })
-
-
+  });
 });
+//////////////////////////////////////////
 //////////////////SAVING//////////////////
-//////////////////SAVING//////////////////
-//////////////////SAVING//////////////////
-//////////////////SAVING//////////////////
-//////////////////SAVING//////////////////
+//////////////////////////////////////////
 
 //Initial route for saving Zybriqs's.
 //Front-end sends the Zybriq data here with the $.post.
 app.post("/saveName", (req, res) => {
   //tempState is a global variable which
-  //is assigned here so that it can be accessed in 
+  //is assigned here so that it can be accessed in
   //app.post(/saveZibriq);
   tempState = req.body.state;
 
@@ -122,7 +123,6 @@ app.post("/saveName", (req, res) => {
   res.send({
     message: "Success",
   });
-
 });
 
 //The save button calls the submitData() function in
@@ -139,10 +139,10 @@ app.get("/saveName", (req, res) => {
     //This should redirect?
     res.render("pages/login", {
       msg: "You must be logged in to save your Zybriqs.",
+      cameFrom: "saveRoute",
     });
   }
 });
-
 
 //Called from the form in saveName.ejs.
 //Receives the Zybriqs name and saves it to the database.
@@ -155,30 +155,33 @@ app.post("/saveZibriq", (req, res) => {
   const tempZ = new Zybriq({
     name: req.body.zName,
     state: tempState,
-  })
+  });
 
   tempZ.save();
 
   User.findOne({
-    username: req.user.username
-  }).then(currentUser => {
-    console.log(currentUser);
-    currentUser.Zybriqs.push(tempZ);
-    currentUser.save().then(user => {
-        console.log(user);
-        res.render("pages/saveSuccess.ejs", {
-          message: "Success",
+      username: req.user.username,
+    })
+    .then((currentUser) => {
+      console.log(currentUser);
+      currentUser.Zybriqs.push(tempZ);
+      currentUser
+        .save()
+        .then((user) => {
+          console.log(user);
+          res.render("pages/saveSuccess.ejs", {
+            message: "Success",
+          });
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }).catch(err => {
-    console.log(err);
-  })
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
   //Console.log the user out here.
-
 });
 
 //Final save route - not used/necessary?
@@ -190,43 +193,49 @@ app.get("/saveZibriq", (req, res) => {
   });
 });
 
-//////////////////////LOADING////////////////////////////////
-//////////////////////LOADING////////////////////////////////
-//////////////////////LOADING////////////////////////////////
-//////////////////////LOADING////////////////////////////////
+//////////////////////////////////////////////////
+//////////////////////LOADING/////////////////////
+//////////////////////////////////////////////////
 
 //Gets the saved names from the database and renders them with listSaved.ejs
 app.get("/loadSavedNames", (req, res) => {
   //console.log("in load Data");
-  console.log(req.user.Zybriqs);
-  Zybriq.find({
-      // name: "HelloThere",
-    })
-    .then((foundZybriq) => {
-      // console.log(foundZybriq[1].name);
-      // console.log(foundZybriq[1].state);
+  if (req.isAuthenticated()) {
+    Zybriq.find({
+        // name: "HelloThere",
+      })
+      .then((foundZybriq) => {
+        // console.log(foundZybriq[1].name);
+        // console.log(foundZybriq[1].state);
 
-      let zibNames = [];
-      let zibIds = [];
+        let zibNames = [];
+        let zibIds = [];
 
-      for (let zib of req.user.Zybriqs) {
-        zibNames.push(zib.name);
-        zibIds.push(zib._id);
-      }
+        for (let zib of req.user.Zybriqs) {
+          zibNames.push(zib.name);
+          zibIds.push(zib._id);
+        }
 
-      res.render("pages/listSaved", {
-        zibNames: zibNames,
-        zibIds: zibIds,
-      });
+        res.render("pages/listSaved", {
+          zibNames: zibNames,
+          zibIds: zibIds,
+        });
 
-      //res.render
-      //Create the res.render fild under l
+        //res.render
+        //Create the res.render fild under l
 
-      //res.send(foundZybriq.state);
-    })
-    .catch((err) => {
-      console.log(err);
-    }); //end of findOne.
+        //res.send(foundZybriq.state);
+      })
+      .catch((err) => {
+        console.log(err);
+      }); //end of findOne.
+  } else {
+    res.cameFrom = "loadRoute";
+    res.render("pages/login", {
+      msg: "You must be logged in to restore your save Zybriqses.",
+      cameFrom: "loadRoute",
+    });
+  }
 });
 
 //This is called form listSaved.ejs after the radio button for the saved Zibriq is selected.
@@ -235,14 +244,9 @@ app.post("/loadState", (req, res) => {
   //console.log('In /loadState');
 
   let savedZibriq = req.body.name;
-  console.log(req.body.name);
   //console.log("Selected Zibriq", savedZibriq);
 
   res.redirect("restore?savedZib=" + savedZibriq);
-
-
 }); //End of /loadState.
-
-
 
 app.listen(3000, console.log("Running server on port 3000"));

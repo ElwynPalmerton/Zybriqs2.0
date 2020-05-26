@@ -1,3 +1,5 @@
+<!-- views/partials/header.ejs-->
+
 <!DOCTYPE html>
 
 <head>
@@ -10,18 +12,25 @@
 </head>
 
 <body>
-  <h1>Zibriqs</h1>
-  <form action="/login" method="post">
-    <p> <%= msg %> </p>
-    <label for="username">Name:</label>
-    <input name="username" placeholder="name">
-    </br>
-    <label for="password">Password</label>
-    <input name="password" type="password" placeholder="Password">
-    </br>
-    <button type="submit">Login</button>
-  </form>
+  <%-include('../partials/header') -%>
 
+  <main>
+
+
+    <h1>Zibriqs</h1>
+    <form action="/login" method="post">
+      <input hidden name="cameFrom" value=<%=cameFrom%>>
+      <p> <%= msg %> </p>
+      <label for=" username">Name:</label>
+      <input name="username" placeholder="name">
+      </br>
+      <label for="password">Password</label>
+      <input name="password" type="password" placeholder="Password">
+      </br>
+      <button type="submit">Login</button>
+    </form>
+
+  </main>
 </body>
 
 </html>

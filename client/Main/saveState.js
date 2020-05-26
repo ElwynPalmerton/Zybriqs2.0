@@ -1,7 +1,5 @@
 function submitData() {
 
-
-
   let stateData = saveState();
 
   console.log("stateData in save", stateData);
