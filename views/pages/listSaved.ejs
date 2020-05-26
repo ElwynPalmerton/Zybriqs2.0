@@ -18,7 +18,7 @@
 
     <form action="/loadState" method="post">
       <% for (let i = 0; i < zibNames.length; i++) { %>
-      <input type="radio" name="name" id="<%=zibNames[i]%>" value="<%=zibIds[i]%>" <%=zibIds[i]%>">
+      <input type="radio" name="name" id="<%=zibNames[i]%>" value="<%=zibIds[i]%>">
       <label for="<%=zibNames[i]%>"> <%=zibNames[i] %></label>
       </br>
       <% } %>

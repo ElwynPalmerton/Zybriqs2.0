@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
@@ -29,7 +30,7 @@ app.use(
 
 app.use(
   session({
-    secret: "keyboard cat",
+    secret: process.env.SECRET,
     resave: true,
     saveUninitialized: false,
     cookie: {
@@ -77,7 +78,7 @@ app.get("/restore", (req, res) => {
 app.get("/login", (req, res) => {
   res.render("pages/login", {
     msg: "Please login: ",
-    cameFrom: "loginRoute"
+    cameFrom: "loginRoute",
   });
 });
 
@@ -92,12 +93,11 @@ app.post("/login", (req, res) => {
       console.log(err);
     } else {
       passport.authenticate("local")(req, res, function () {
-
         var cameFrom = req.body.cameFrom;
         if (cameFrom === "loadRoute") {
-          res.redirect('/loadSavedNames');
+          res.redirect("/loadSavedNames");
         } else if (cameFrom === "saveRoute") {
-          res.redirect('/saveName');
+          res.redirect("/saveName");
         } else {
           res.redirect("/");
           //Ad a flag to the request object? and check for it here?
@@ -163,16 +163,13 @@ app.post("/saveZibriq", (req, res) => {
       username: req.user.username,
     })
     .then((currentUser) => {
-      console.log(currentUser);
       currentUser.Zybriqs.push(tempZ);
       currentUser
         .save()
         .then((user) => {
-          console.log(user);
-          console.log(user.id);
           res.render("pages/saveSuccess.ejs", {
             message: "Success",
-            id: user.id,
+            id: tempZ.id,
           });
         })
         .catch((err) => {
