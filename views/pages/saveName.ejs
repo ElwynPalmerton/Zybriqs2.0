@@ -10,14 +10,17 @@
 </head>
 
 <body>
-  <h1>Zibriqs</h1>
-  <form action="/saveZibriq" method="post">
-    <p> <%= message %> </p>
-    <label for="name">Name:</label>
-    <input name="zName" placeholder="name">
-    <button type="submit">Save</button>
-  </form>
 
+
+  <%-include('../partials/header') -%>
+  <main>
+    <form action="/saveZibriq" method="post">
+      <p> <%= message %> </p>
+      <label for="name">Name:</label>
+      <input name="zName" placeholder="name">
+      <button type="submit">Save</button>
+    </form>
+  </main>
 </body>
 
 </html>

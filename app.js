@@ -169,8 +169,10 @@ app.post("/saveZibriq", (req, res) => {
         .save()
         .then((user) => {
           console.log(user);
+          console.log(user.id);
           res.render("pages/saveSuccess.ejs", {
             message: "Success",
+            id: user.id,
           });
         })
         .catch((err) => {
@@ -243,10 +245,11 @@ app.get("/loadSavedNames", (req, res) => {
 app.post("/loadState", (req, res) => {
   //console.log('In /loadState');
 
-  let savedZibriq = req.body.name;
+  let savedZybriq = req.body.name;
+  console.log("id: ", savedZybriq);
   //console.log("Selected Zibriq", savedZibriq);
 
-  res.redirect("restore?savedZib=" + savedZibriq);
+  res.redirect("restore?savedZib=" + savedZybriq);
 }); //End of /loadState.
 
 app.listen(3000, console.log("Running server on port 3000"));

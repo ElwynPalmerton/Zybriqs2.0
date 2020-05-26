@@ -8,6 +8,18 @@ body {
   /* position: re; */
 }
 
+header h1 {
+  display: inline-block
+}
+
+header a {
+  display: inline-block,
+}
+
+body {
+  color: #ddd;
+}
+
 #pup {
   position: absolute;
   z-index: 200;

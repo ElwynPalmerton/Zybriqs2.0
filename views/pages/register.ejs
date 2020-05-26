@@ -10,22 +10,24 @@
 </head>
 
 <body>
-  <h1>Zibriqs</h1>
-  <form action="/register" method="post">
 
-    <p> <%= msg %> </p>
-    <label for="username">Name:</label>
-    <input name="username" placeholder="name">
-    </br>
-    <label for="password">Password</label>
-    <input name="password" type="password" placeholder="Password">
-    </br>
-    <label for="password2">Password</label>
-    <input name="password_two" type="password" placeholder="Re-enter Password">
-    </br>
-    <button type="submit">Register</button>
-  </form>
+  <%-include('../partials/header') -%>
+  <main>
+    <form action="/register" method="post">
 
+      <p> <%= msg %> </p>
+      <label for="username">Name:</label>
+      <input name="username" placeholder="name">
+      </br>
+      <label for="password">Password</label>
+      <input name="password" type="password" placeholder="Password">
+      </br>
+      <label for="password2">Password</label>
+      <input name="password_two" type="password" placeholder="Re-enter Password">
+      </br>
+      <button type="submit">Register</button>
+    </form>
+  </main>
 </body>
 
 </html>
