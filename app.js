@@ -10,6 +10,11 @@ const passportLocalMongoose = require("passport-local-mongoose");
 //routes
 const registerRoutes = require("./routes/register-routes");
 const restoreRoutes = require("./routes/restore-routes");
+const loginRoutes = require("./routes/login-routes");
+const {
+  saveRoutes,
+  tempState
+} = require("./routes/save-routes");
 const User = require("./models/mongoose-model");
 const {
   Zybriq,
@@ -59,7 +64,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 let tempZybriq; //I probably don't need this.
-let tempState;
 
 /////////////ROOT///////////////
 app.get("/", (req, res) => {
@@ -75,74 +79,48 @@ app.get("/restore", (req, res) => {
   //I don't know how to reference the __dirname to a differenct folder using this command or whatever it is I need to do.
 });
 
-app.get("/login", (req, res) => {
-  res.render("pages/login", {
-    msg: "Please login: ",
-    cameFrom: "loginRoute",
-  });
-});
+app.use('/login', loginRoutes);
 
-app.post("/login", (req, res) => {
-  const user = new User({
-    username: req.body.username,
-    password: req.body.password,
-  });
 
-  req.login(user, function (err) {
-    if (err) {
-      console.log(err);
-    } else {
-      passport.authenticate("local")(req, res, function () {
-        var cameFrom = req.body.cameFrom;
-        if (cameFrom === "loadRoute") {
-          res.redirect("/loadSavedNames");
-        } else if (cameFrom === "saveRoute") {
-          res.redirect("/saveName");
-        } else {
-          res.redirect("/");
-          //Ad a flag to the request object? and check for it here?
-        }
-      });
-    }
-  });
-});
 //////////////////////////////////////////
 //////////////////SAVING//////////////////
 //////////////////////////////////////////
 
-//Initial route for saving Zybriqs's.
-//Front-end sends the Zybriq data here with the $.post.
-app.post("/saveName", (req, res) => {
-  //tempState is a global variable which
-  //is assigned here so that it can be accessed in
-  //app.post(/saveZibriq);
-  tempState = req.body.state;
+app.use('/saveName', saveRoutes);
 
-  //This just sends a success message.
-  //The get /saveName route is handling the naming.
-  res.send({
-    message: "Success",
-  });
-});
+// //Initial route for saving Zybriqs's.
+// //Front-end sends the Zybriq data here with the $.post.
+// app.post("/saveName", (req, res) => {
+//   //tempState is a global variable which
+//   //is assigned here so that it can be accessed in
+//   //app.post(/saveZibriq);
+//   tempState = req.body.state;
 
-//The save button calls the submitData() function in
-//saveState.js which then uses Window.location.assign('/saveName');
-//Called from submitData() with assign();
-app.get("/saveName", (req, res) => {
-  //console.log("in get saveName");
-  if (req.isAuthenticated()) {
-    let msg = "Please name your Zibriq:";
-    res.render("pages/saveName.ejs", {
-      message: msg,
-    });
-  } else {
-    //This should redirect?
-    res.render("pages/login", {
-      msg: "You must be logged in to save your Zybriqs.",
-      cameFrom: "saveRoute",
-    });
-  }
-});
+//   //This just sends a success message.
+//   //The get /saveName route is handling the naming.
+//   res.send({
+//     message: "Success",
+//   });
+// });
+
+// //The save button calls the submitData() function in
+// //saveState.js which then uses Window.location.assign('/saveName');
+// //Called from submitData() with assign();
+// app.get("/saveName", (req, res) => {
+//   //console.log("in get saveName");
+//   if (req.isAuthenticated()) {
+//     let msg = "Please name your Zibriq:";
+//     res.render("pages/saveName.ejs", {
+//       message: msg,
+//     });
+//   } else {
+//     //This should redirect?
+//     res.render("pages/login", {
+//       msg: "You must be logged in to save your Zybriqs.",
+//       cameFrom: "saveRoute",
+//     });
+//   }
+// });
 
 //Called from the form in saveName.ejs.
 //Receives the Zybriqs name and saves it to the database.
@@ -151,6 +129,8 @@ app.post("/saveZibriq", (req, res) => {
 
   //I need to check for dupes here so that the user cannot
   //save two Zybriqs with the same name.
+
+  console.log(tempState);
 
   const tempZ = new Zybriq({
     name: req.body.zName,

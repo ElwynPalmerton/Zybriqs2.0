@@ -1,6 +1,5 @@
 function loadData(zibID) {
 
-  console.log('Load Data.');
 
 
   //I am going to have to put the name in as a parameter.
@@ -17,15 +16,7 @@ function loadData(zibID) {
 
   $.post(url, requestData, function (data, status) {
     newStateJSON = JSON.parse(data);
-    console.log("New state JSON", data);
-    console.log("New state JSON", newStateJSON);
-
     initializeObjects(newStateJSON);
     return newStateJSON;
-
-
   })
-
-
-
 }

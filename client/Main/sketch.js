@@ -94,7 +94,6 @@ function setup() {
 
   const urlParams = new URLSearchParams(window.location.search)
   savedZib = urlParams.get('savedZib');
-  console.log(savedZib);
 
   let zibState = defaultObject2;
 
@@ -104,7 +103,6 @@ function setup() {
     //Why isn't it being over-ridden by the call to 
     //initializeObjects(defaultObject2) below.
     zibState = loadData(savedZib);
-    console.log("zibState in sketch(): ", zibState);
   }
 
 

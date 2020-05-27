@@ -26,8 +26,8 @@ function initializeObjects(settings) {
     let endX = settings.drag[i].end.x;
     let endY = settings.drag[i].end.y;
 
-    let liquidStart = createVector(200 * scl, 200 * scl);
-    let liquidEnd = createVector(400 * scl, 400 * scl);
+    let liquidStart = createVector(startX * scl, startY * scl);
+    let liquidEnd = createVector(endX * scl, endY * scl);
 
     let liquid = new Liquid(
       liquidStart,
@@ -37,6 +37,8 @@ function initializeObjects(settings) {
     );
     liquids.push(liquid);
   }
+
+  console.log(liquids);
 
   //Add (reverseLiquid) start and end to the default object.
   //
