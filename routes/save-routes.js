@@ -5,7 +5,10 @@ const session = require("express-session");
 const User = require("../models/mongoose-model");
 const chalk = require("chalk");
 const passportLocalMongoose = require("passport-local-mongoose");
-const { Zybriq, zybriqsSchema } = require("../models/zybriqs-model");
+const {
+  Zybriq,
+  zybriqsSchema
+} = require("../models/zybriqs-model");
 
 let tempState;
 let exists;
@@ -94,7 +97,6 @@ saveRoutes.get("/", (req, res) => {
       });
     }
   } else {
-    // This should redirect?
     res.render("pages/login", {
       msg: "You must be logged in to save your Zybriqs.",
       cameFrom: "saveRoute",
@@ -112,8 +114,7 @@ saveRoutes.post("/saveZibriq", (req, res) => {
   exists = false;
 
   User.find({
-    $and: [
-      {
+    $and: [{
         username: req.user.username,
       },
       {
@@ -137,8 +138,8 @@ saveRoutes.post("/saveZibriq", (req, res) => {
       tempZ.save();
 
       User.findOne({
-        username: req.user.username,
-      })
+          username: req.user.username,
+        })
         .then((currentUser) => {
           currentUser.Zybriqs.push(tempZ);
           currentUser
@@ -163,6 +164,72 @@ saveRoutes.post("/saveZibriq", (req, res) => {
   //
   //Console.log the user out here.
 });
+
+saveRoutes.get('/delete', (req, res) => {
+  //Check authentication, elso go to login.
+  //Create the ZibIDs and ZibNames arrays.
+  //Create the post route and log the result to the console.
+  if (req.isAuthenticated()) {
+    let zibNames = [];
+    let zibIds = [];
+
+    for (let zib of req.user.Zybriqs) {
+      zibNames.push(zib.name);
+      zibIds.push(zib._id);
+    }
+    res.render("pages/delete", {
+      zibNames: zibNames,
+      zibIds: zibIds,
+    });
+  } else {
+    res.render("pages/login", {
+      msg: "You must be logged in to save your Zybriqs.",
+      cameFrom: "deleteRoute",
+      //Don't forget to change this to delete route.
+    });
+  }
+});
+
+
+saveRoutes.post('/delete', (req, res) => {
+  //This is an array of zyb Id's.
+  let itemsToBeDeleted = [];
+  let deleteArray = req.body.zName;
+
+  //req.body.name delivers a string if it is one element and an array if it is not.
+  if (typeof deleteArray === 'object') {
+    itemsToBeDeleted = deleteArray;
+  } else if (typeof deleteArray === 'string') {
+    itemsToBeDeleted.push(deleteArray);
+  };
+
+
+
+  console.log(req.user.username);
+
+  console.log(req.user.Zybriqs);
+
+  itemsToBeDeleted.forEach(item => {
+
+    req.user.Zybriqs.pull(item);
+    req.user.save();
+
+    Zybriq.findByIdAndDelete(item)
+      .then(result => {
+        console.log("Deleted: ", result);
+      }).catch(err => {
+        console.log("err ", err);
+      });
+
+  });
+
+  res.redirect('/');
+
+
+})
+
+
+
 
 module.exports = {
   saveRoutes,
