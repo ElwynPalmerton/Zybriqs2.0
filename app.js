@@ -12,6 +12,7 @@ const registerRoutes = require("./routes/register-routes");
 const restoreRoutes = require("./routes/restore-routes");
 const loginRoutes = require("./routes/login-routes");
 const loadSavedRoutes = require("./routes/load-saved-route");
+const deleteRoutes = require("./routes/delete-routes");
 const {
   saveRoutes,
   tempState
@@ -85,6 +86,8 @@ app.use("/login", loginRoutes);
 app.use("/saveName", saveRoutes);
 
 app.use("/loadSavedNames", loadSavedRoutes);
+
+app.use("/delete", deleteRoutes);
 
 app.get("/logout", (req, res) => {
   req.logout();

@@ -32,7 +32,7 @@ router.post("/", (req, res) => {
         } else if (cameFrom === "saveRoute") {
           res.redirect("/saveName");
         } else if (cameFrom === "deleteRoute") {
-          res.redirect('/saveName/delete');
+          res.redirect('/delete');
         } else {
           res.redirect("/");
           //Ad a flag to the request object? and check for it here?
