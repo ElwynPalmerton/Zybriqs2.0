@@ -1,13 +1,14 @@
-const saveRoutes = require('express').Router();
-const passport = require('passport');
-const User = require('../models/mongoose-model');
-const passportLocalMongoose = require('passport-local-mongoose');
-const {
-  Zybriq,
-  zybriqsSchema
-} = require('../models/zybriqs-model');
+const saveRoutes = require("express").Router();
+const passport = require("passport");
+const path = require("path");
+const session = require("express-session");
+const User = require("../models/mongoose-model");
+const chalk = require("chalk");
+const passportLocalMongoose = require("passport-local-mongoose");
+const { Zybriq, zybriqsSchema } = require("../models/zybriqs-model");
 
 let tempState;
+let exists;
 
 // Initial route
 // for saving Zybriqs 's.
@@ -17,12 +18,16 @@ saveRoutes.post("/", (req, res) => {
   //is assigned here so that it can be accessed in
   //app.post(/saveZibriq);
   tempState = req.body.state;
-  console.log("tempSate in post saveName: ", tempState)
   //This just sends a success message.
   //The get /saveName route is handling the naming.
   res.send({
     message: "Success",
   });
+});
+
+saveRoutes.get("/saveOver", (req, res) => {
+  console.log("in saveOver");
+  //return res.render("pages/saveOver");
 });
 
 //The save button calls the submitData() function in
@@ -31,12 +36,24 @@ saveRoutes.post("/", (req, res) => {
 saveRoutes.get("/", (req, res) => {
   //console.log("in get saveName");
   if (req.isAuthenticated()) {
-    let msg = "Please name your Zibriq:";
-    res.render("pages/saveName.ejs", {
-      message: msg,
-    });
+    //CHeck this here and created redirect to Delete a Zybriqs.
+    //Or let them replace a Zybriq.
+    if (req.user.Zybriqs.length > 5) {
+      res.render("pages/saveOver");
+      res.end();
+    } else {
+      let msg;
+      msg = "Please name your Zybriq";
+      if (exists === true) {
+        msg = "That Zybriq already exists.";
+        exists = false;
+      } //This is probably a terrible
+      res.render("pages/saveName", {
+        message: msg,
+      });
+    }
   } else {
-    //This should redirect?
+    // This should redirect?
     res.render("pages/login", {
       msg: "You must be logged in to save your Zybriqs.",
       cameFrom: "saveRoute",
@@ -51,52 +68,66 @@ saveRoutes.post("/saveZibriq", (req, res) => {
 
   //I need to check for dupes here so that the user cannot
   //save two Zybriqs with the same name.
+  console.log(req.user.username);
+  exists = false;
 
-  console.log(tempState);
+  User.find({
+    $and: [
+      {
+        username: req.user.username,
+      },
+      {
+        Zybriqs: {
+          $elemMatch: {
+            name: zName,
+          },
+        },
+      },
+    ],
+  }).then((foundZyb) => {
+    if (foundZyb.length !== 0) {
+      console.log("Found Zyb in current user", foundZyb);
+      res.redirect("/saveName");
+      exists = true;
+    } else {
+      console.log("no match");
 
-  const tempZ = new Zybriq({
-    name: req.body.zName,
-    state: tempState,
-  });
+      const tempZ = new Zybriq({
+        name: req.body.zName,
+        state: tempState,
+      });
 
-  tempZ.save();
+      tempZ.save();
 
-  User.findOne({
-      username: req.user.username,
-    })
-    .then((currentUser) => {
-      currentUser.Zybriqs.push(tempZ);
-      currentUser
-        .save()
-        .then((user) => {
-          res.render("pages/saveSuccess.ejs", {
-            message: "Success",
-            id: tempZ.id,
-          });
+      User.findOne({
+        username: req.user.username,
+      })
+        .then((currentUser) => {
+          currentUser.Zybriqs.push(tempZ);
+          currentUser
+            .save()
+            .then((user) => {
+              res.render("pages/saveSuccess.ejs", {
+                message: "Success",
+                id: tempZ.id,
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         })
         .catch((err) => {
           console.log(err);
         });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 
+      //
+    }
+  });
+  //
   //Console.log the user out here.
 });
 
 module.exports = {
   saveRoutes,
-  tempState
+  tempState,
 };
-
-/// GET saveZibriq. Final save route - not used/necessary?
-
-
-// app.get("/saveZibriq", (req, res) => {
-//   //This route isn't getting used because I
-//   //just render the page from the saveZibriq post-route.
-//   res.render("pages/saveSuccess.ejs", {
-//     message: "Success",
-//   });
-// });

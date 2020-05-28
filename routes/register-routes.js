@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
+const session = require('express-session');
 const User = require('../models/mongoose-model');
 const passportLocalMongoose = require('passport-local-mongoose');
 const Zybriq = require('../models/zybriqs-model');
@@ -35,7 +36,7 @@ router.post("/", (req, res) => {
   }).then((foundUser) => {
     if (foundUser) {
       res.render("pages/register", {
-        msg: "That user is already registered.",
+        msg: "That user is already registered. Please choose a different user name.",
       });
     } else if (password1 !== password2) {
       res.render("pages/register", {

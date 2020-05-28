@@ -12,15 +12,9 @@ const registerRoutes = require("./routes/register-routes");
 const restoreRoutes = require("./routes/restore-routes");
 const loginRoutes = require("./routes/login-routes");
 const loadSavedRoutes = require("./routes/load-saved-route");
-const {
-  saveRoutes,
-  tempState
-} = require("./routes/save-routes");
+const { saveRoutes, tempState } = require("./routes/save-routes");
 const User = require("./models/mongoose-model");
-const {
-  Zybriq,
-  zybriqSchema
-} = require("./models/zybriqs-model");
+const { Zybriq, zybriqSchema } = require("./models/zybriqs-model");
 
 const app = express();
 
@@ -80,11 +74,16 @@ app.get("/restore", (req, res) => {
   //I don't know how to reference the __dirname to a differenct folder using this command or whatever it is I need to do.
 });
 
-app.use('/login', loginRoutes);
+app.use("/login", loginRoutes);
 
-app.use('/saveName', saveRoutes);
+app.use("/saveName", saveRoutes);
 
 app.use("/loadSavedNames", loadSavedRoutes);
+
+app.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
 
 //This is called form listSaved.ejs after the radio button for the saved Zibriq is selected.
 //Redirects to /restre?savedZib=  _ID.
