@@ -12,9 +12,15 @@ const registerRoutes = require("./routes/register-routes");
 const restoreRoutes = require("./routes/restore-routes");
 const loginRoutes = require("./routes/login-routes");
 const loadSavedRoutes = require("./routes/load-saved-route");
-const { saveRoutes, tempState } = require("./routes/save-routes");
+const {
+  saveRoutes,
+  tempState
+} = require("./routes/save-routes");
 const User = require("./models/mongoose-model");
-const { Zybriq, zybriqSchema } = require("./models/zybriqs-model");
+const {
+  Zybriq,
+  zybriqSchema
+} = require("./models/zybriqs-model");
 
 const app = express();
 
@@ -62,7 +68,7 @@ let tempZybriq; //I probably don't need this.
 
 /////////////ROOT///////////////
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "index.html"));
+  res.sendFile(path.join(__dirname, "cnt", "index.html"));
 });
 //register routes.
 app.use("/register", registerRoutes);
