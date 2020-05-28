@@ -7,21 +7,18 @@ const session = require("express-session");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 
+//mongo store.
+const mongoStore = require("connect-mongo")(session);
+
 //routes
 const registerRoutes = require("./routes/register-routes");
 const restoreRoutes = require("./routes/restore-routes");
 const loginRoutes = require("./routes/login-routes");
 const loadSavedRoutes = require("./routes/load-saved-route");
 const deleteRoutes = require("./routes/delete-routes");
-const {
-  saveRoutes,
-  tempState
-} = require("./routes/save-routes");
+const { saveRoutes, tempState } = require("./routes/save-routes");
 const User = require("./models/mongoose-model");
-const {
-  Zybriq,
-  zybriqSchema
-} = require("./models/zybriqs-model");
+const { Zybriq, zybriqSchema } = require("./models/zybriqs-model");
 
 const app = express();
 
@@ -37,10 +34,14 @@ app.use(
 
 app.use(
   session({
+    store: new mongoStore({
+      url: process.env.DATABASE_URL,
+    }),
     secret: process.env.SECRET,
     resave: true,
     saveUninitialized: false,
     cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
       secure: false,
     },
   })
@@ -69,7 +70,11 @@ let tempZybriq; //I probably don't need this.
 
 /////////////ROOT///////////////
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "cnt", "index.html"));
+  console.log("Hello");
+  req.session.info = "session-info-here!";
+  console.log(res.session.info);
+
+  res.sendFile(path.join(__dirname, "client", "index.html"));
 });
 //register routes.
 app.use("/register", registerRoutes);
@@ -92,6 +97,10 @@ app.use("/delete", deleteRoutes);
 app.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
+});
+
+app.get("/getValue", (req, res) => {
+  console.log(req.session);
 });
 
 //This is called form listSaved.ejs after the radio button for the saved Zibriq is selected.

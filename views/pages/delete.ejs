@@ -15,9 +15,9 @@
   <main>
 
     <h1> Delete a Zybs </h1>
-    <p>Please select a Zybriqs to delete.</p>
+    <p><%=msg%></p>
 
-    <form action="/saveName/delete" method="post">
+    <form action="/delete" method="post">
       <% for (let i = 0; i < zibNames.length; i++) { %>
       <input type="checkbox" name="zName" id="<%=zibNames[i]%>" value="<%=zibIds[i]%>">
       <label for="<%=zibNames[i]%>"> <%=zibNames[i] %></label>

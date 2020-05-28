@@ -19,13 +19,21 @@ router.get('/', (req, res) => {
     let zibNames = [];
     let zibIds = [];
 
+
     for (let zib of req.user.Zybriqs) {
       zibNames.push(zib.name);
       zibIds.push(zib._id);
     }
+
+    let msg = "Please select which Zybriqses you would like to delete."
+    if (zibNames.length === 0) {
+      msg = "You do not have any saved Zybriqses to delete."
+    };
+
     res.render("pages/delete", {
       zibNames: zibNames,
       zibIds: zibIds,
+      msg: msg,
     });
   } else {
     res.render("pages/login", {
