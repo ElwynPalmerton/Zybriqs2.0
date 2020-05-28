@@ -25,9 +25,49 @@ saveRoutes.post("/", (req, res) => {
   });
 });
 
+///Save over existing Zybriq.
 saveRoutes.get("/saveOver", (req, res) => {
-  console.log("in saveOver");
-  //return res.render("pages/saveOver");
+  let zibNames = [];
+  let zibIds = [];
+
+  for (let zib of req.user.Zybriqs) {
+    zibNames.push(zib.name);
+    zibIds.push(zib._id);
+  }
+
+  res.render("pages/saveOver", {
+    zibNames: zibNames,
+    zibIds: zibIds,
+  });
+});
+
+saveRoutes.post("/saveOver", (req, res) => {
+  console.log("Replace ZybId: ", req.body.zName);
+  console.log("User id", req.user.id);
+  let zybID = req.body.zName;
+
+  // const tempZ = new Zybriq({
+  //   name: zybID,
+  //   state: tempState,
+  // });
+
+  // tempZ.save();
+
+  let username = req.user.username;
+
+  Zybriq.findOne({
+    _id: zybID,
+  }).then((zyb) => {
+    console.log(zyb);
+    zyb.state = tempState;
+    zyb.save().then((savedZyb) => {
+      console.log("Saved Zyb: ", savedZyb);
+      res.render("pages/saveSuccess.ejs", {
+        message: "Success",
+        id: savedZyb.id,
+      });
+    });
+  });
 });
 
 //The save button calls the submitData() function in
@@ -39,7 +79,8 @@ saveRoutes.get("/", (req, res) => {
     //CHeck this here and created redirect to Delete a Zybriqs.
     //Or let them replace a Zybriq.
     if (req.user.Zybriqs.length > 5) {
-      res.render("pages/saveOver");
+      console.log(req.user.username);
+      res.redirect("/saveName/saveOver");
       res.end();
     } else {
       let msg;
@@ -68,7 +109,6 @@ saveRoutes.post("/saveZibriq", (req, res) => {
 
   //I need to check for dupes here so that the user cannot
   //save two Zybriqs with the same name.
-  console.log(req.user.username);
   exists = false;
 
   User.find({
@@ -86,12 +126,9 @@ saveRoutes.post("/saveZibriq", (req, res) => {
     ],
   }).then((foundZyb) => {
     if (foundZyb.length !== 0) {
-      console.log("Found Zyb in current user", foundZyb);
       res.redirect("/saveName");
       exists = true;
     } else {
-      console.log("no match");
-
       const tempZ = new Zybriq({
         name: req.body.zName,
         state: tempState,
