@@ -53,10 +53,15 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+let db;
+
 mongoose
   .connect("mongodb://localhost:27017/zybriqsDB", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+  })
+  .then(dbConnection => {
+    db = dbConnection;
   })
   .catch((error) => {
     console.log("Mongo connection error:", error);

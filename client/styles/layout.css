@@ -52,7 +52,7 @@
   display: grid;
   grid-gap: 1em;
   justify-content: right;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: repeat(12, 1fr);
 }
 
 @media(max-width: 1027px) {
@@ -61,7 +61,7 @@
   .buttons {
     grid-column: 1/5;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     justify-content: stretch;
   }
 

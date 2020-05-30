@@ -13,35 +13,11 @@ function submitData() {
 
   $.post(url, data, function (data, status) {
     console.log(`${data} and status is ${status}`);
-    window.location.assign("/saveName")
-      .then(data => {
-        console.log('Redirected to saveName page.');
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    window.location.assign("/saveName");
   });
 }
 
 
-
-function setSessionState() {
-  console.log('setSessionState');
-
-  window.onpopstate = () => {
-    console.log('popstate');
-    const url = "/saveName/session";
-
-    let sessionStateData = saveState();
-    let sessionJSON = JSON.stringify(sessionStateData);
-
-    const state = sessionJSON;
-
-    $.post(url, state, (data, status) => {
-      console.log(`${data} and status is ${status}`);
-    })
-  }
-}
 
 
 

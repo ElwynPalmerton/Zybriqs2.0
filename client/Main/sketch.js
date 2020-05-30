@@ -95,22 +95,28 @@ function setup() {
   const urlParams = new URLSearchParams(window.location.search)
   savedZib = urlParams.get('savedZib');
 
-  let zibState = defaultObject2;
+  let zibState = Object.assign({}, defaultObject2);
+
+  console.log('initial zibState', zibState);
 
   if (savedZib) {
     //loadData actually calls initializeObjects. I am not
     //why this is even working.
     //Why isn't it being over-ridden by the call to 
     //initializeObjects(defaultObject2) below.
-    zibState = loadData(savedZib);
+    let savedZybObject = loadData(savedZib);
+    console.log(savedZybObject);
+    //Instead of calling initializeObjects from loadData, it should return the value.
+    zibState = Object.assign({}, savedZybObject);
+    console.log('saved zibState', zibState);
   } else {
-
-    newSessionState = loadSessionState();
-    if (newSessionState !== null) {
-      console.log('here');
-      zibState = newSessionState;
-      //This should use object.assign??? (Here and above?)
-    }
+    console.log('in else');
+    loadSessionState();
+    // if (newSessionState !== null) {
+    //   zibState = Object.assign({}, newSessionState);
+    //   console.log('session zib state: ', zibState);
+    //   //This should use object.assign??? (Here and above?)
+    // }
   }
 
 

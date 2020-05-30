@@ -9,7 +9,6 @@ const {
   zybriqsSchema
 } = require("../models/zybriqs-model");
 
-let exists;
 
 const maxZybs = 3;
 
@@ -42,6 +41,8 @@ saveRoutes.get("/saveOver", (req, res) => {
   });
 });
 
+
+
 saveRoutes.post("/saveOver", (req, res) => {
   //Takes the user selected/previously saves Zybriq and overwrites it with the current state.
   let zybID = req.body.zName;
@@ -62,13 +63,23 @@ saveRoutes.post("/saveOver", (req, res) => {
 });
 
 saveRoutes.post('/session', (req, res) => {
-  console.log(req.body.state);
+  req.session.state = req.body.state;
+
+  console.log('in session route: ', req.session.state);
 
   //req.session.state = req.body.state;
   //console.log(req.session.state);
   res.send('success');
   res.end();
 })
+
+saveRoutes.get('/session', (req, res) => {
+  console.log("in saveName/session", req.session.state);
+  let state = JSON.parse(req.session.state);
+  let prettyState = JSON.stringify(state, null, 2);
+  res.send(req.session.state);
+})
+
 
 //The save button calls the submitData() function in
 //saveState.js which then uses Window.location.assign('/saveName');
@@ -83,9 +94,9 @@ saveRoutes.get("/", (req, res) => {
     } else {
       let msg;
       msg = "Please name your Zybriq";
-      if (exists === true) {
+      if (req.session.exists === true) {
         msg = "That Zybriq already exists.";
-        exists = false;
+        req.session.exists = false;
       } //This is probably a terrible
       res.render("pages/saveName", {
         message: msg,
@@ -104,7 +115,7 @@ saveRoutes.get("/", (req, res) => {
 saveRoutes.post("/saveZibriq", (req, res) => {
   let zName = req.body.zName;
 
-  exists = false;
+  req.session.exists = false;
 
   User.find({
     $and: [{
@@ -121,6 +132,7 @@ saveRoutes.post("/saveZibriq", (req, res) => {
   }).then((foundZyb) => {
     if (foundZyb.length !== 0) {
       res.redirect("/saveName");
+      req.session.exists = true;
       exists = true;
     } else {
       const tempZ = new Zybriq({

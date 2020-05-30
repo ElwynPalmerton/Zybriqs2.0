@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const passport = require('passport');
 const User = require('../models/mongoose-model');
+const session = require("express-session");
 const passportLocalMongoose = require('passport-local-mongoose');
 const {
   Zybriq,
@@ -27,7 +28,7 @@ router.post("/", (req, res) => {
 
 
 router.get('/session', (req, res) => {
-  console.log(req.session.state);
+  console.log("in restore/session", req.session.state);
   res.send(req.session.state);
 
 })

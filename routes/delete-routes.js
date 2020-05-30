@@ -71,7 +71,7 @@ router.post('/', (req, res) => {
 
   });
 
-  res.redirect('/');
+  res.redirect('/saveName');
 
 
 })

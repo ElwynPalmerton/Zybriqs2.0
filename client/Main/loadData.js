@@ -14,21 +14,30 @@ function loadData(zibID) {
 
   $.post(url, requestData, function (data, status) {
     newStateJSON = JSON.parse(data);
+    console.log("Loading state in loadData: ", newStateJSON);
+
     initializeObjects(newStateJSON);
     return newStateJSON;
   })
 }
 
 
+function reset() {
+  initializeObjects(defaultObject2);
+}
+
 function loadSessionState() {
 
-  const url = '/restore/session';
+  const url = '/saveName/session';
 
-  $.get(url, function (data, status) {
+  $.get(url, function (data) {
+    //console.log('session data: ', data);
+    console.log("data: ", data);
 
-    console.log(data);
+    newSessionState = JSON.parse(data);
+    console.log("New session state: ", newSessionState);
+    initializeObjects(newSessionState);
     //newSessionState = JSON.parse 
-
 
   })
 

@@ -24,6 +24,7 @@ router.get("/success", (req, res) => {
 
 router.post("/", (req, res) => {
   let username = req.body.username;
+  let email = req.body.email;
   let password1 = req.body.password;
   let password2 = req.body.password_two;
 
@@ -45,6 +46,7 @@ router.post("/", (req, res) => {
     } else {
       User.register({
           username: username,
+          email: email
         },
         password1,
         function (err, user) {
