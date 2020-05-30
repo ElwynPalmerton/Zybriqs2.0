@@ -64,6 +64,7 @@ function initializeCanvas(startWidth, startHeight, calcScale) {
   container.appendChild(cnv.elt);
 }
 
+//This should go in a utilities folder.
 function createResizeListener() {
   var resizeTimer;
   window.addEventListener("resize", () => {
@@ -91,7 +92,6 @@ function setup() {
   initializeCanvas(initWidth, initHeight, setScale);
   createResizeListener();
 
-
   const urlParams = new URLSearchParams(window.location.search)
   savedZib = urlParams.get('savedZib');
 
@@ -103,7 +103,16 @@ function setup() {
     //Why isn't it being over-ridden by the call to 
     //initializeObjects(defaultObject2) below.
     zibState = loadData(savedZib);
+  } else {
+
+    newSessionState = loadSessionState();
+    if (newSessionState !== null) {
+      console.log('here');
+      zibState = newSessionState;
+      //This should use object.assign??? (Here and above?)
+    }
   }
+
 
 
 

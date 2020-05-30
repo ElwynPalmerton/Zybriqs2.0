@@ -23,6 +23,28 @@ function submitData() {
   });
 }
 
+
+
+function setSessionState() {
+  console.log('setSessionState');
+
+  window.onpopstate = () => {
+    console.log('popstate');
+    const url = "/saveName/session";
+
+    let sessionStateData = saveState();
+    let sessionJSON = JSON.stringify(sessionStateData);
+
+    const state = sessionJSON;
+
+    $.post(url, state, (data, status) => {
+      console.log(`${data} and status is ${status}`);
+    })
+  }
+}
+
+
+
 function saveState() {
   state = {};
 

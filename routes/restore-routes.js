@@ -12,20 +12,24 @@ const {
 
 //restore route.
 router.post("/", (req, res) => {
-  console.log("in restore state");
-  console.log("zibID: ", req.body.zibID);
   let id = req.body.zibID;
 
   Zybriq.findOne({
       _id: id,
     })
     .then((foundZybriq) => {
-      console.log(foundZybriq);
       res.send(foundZybriq.state);
     })
     .catch((err) => {
       console.log(err);
     });
 });
+
+
+router.get('/session', (req, res) => {
+  console.log(req.session.state);
+  res.send(req.session.state);
+
+})
 
 module.exports = router;

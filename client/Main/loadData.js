@@ -1,7 +1,5 @@
 function loadData(zibID) {
 
-
-
   //I am going to have to put the name in as a parameter.
 
   const url = "/restore";
@@ -19,4 +17,20 @@ function loadData(zibID) {
     initializeObjects(newStateJSON);
     return newStateJSON;
   })
+}
+
+
+function loadSessionState() {
+
+  const url = '/restore/session';
+
+  $.get(url, function (data, status) {
+
+    console.log(data);
+    //newSessionState = JSON.parse 
+
+
+  })
+
+
 }

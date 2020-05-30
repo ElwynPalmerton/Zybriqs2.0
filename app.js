@@ -16,9 +16,12 @@ const restoreRoutes = require("./routes/restore-routes");
 const loginRoutes = require("./routes/login-routes");
 const loadSavedRoutes = require("./routes/load-saved-route");
 const deleteRoutes = require("./routes/delete-routes");
-const { saveRoutes, tempState } = require("./routes/save-routes");
+const saveRoutes = require("./routes/save-routes");
 const User = require("./models/mongoose-model");
-const { Zybriq, zybriqSchema } = require("./models/zybriqs-model");
+const {
+  Zybriq,
+  zybriqSchema
+} = require("./models/zybriqs-model");
 
 const app = express();
 
@@ -70,10 +73,6 @@ let tempZybriq; //I probably don't need this.
 
 /////////////ROOT///////////////
 app.get("/", (req, res) => {
-  console.log("Hello");
-  req.session.info = "session-info-here!";
-  console.log(res.session.info);
-
   res.sendFile(path.join(__dirname, "client", "index.html"));
 });
 //register routes.
@@ -109,8 +108,6 @@ app.post("/loadState", (req, res) => {
   //console.log('In /loadState');
 
   let savedZybriq = req.body.name;
-  console.log("id: ", savedZybriq);
-  //console.log("Selected Zibriq", savedZibriq);
 
   res.redirect("restore?savedZib=" + savedZybriq);
 }); //End of /loadState.

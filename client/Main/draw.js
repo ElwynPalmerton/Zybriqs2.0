@@ -10,14 +10,10 @@ function draw() {
     backgroundArray[0].display();
 
     balls.forEach(ball => {
+      
       //Calculate wind.
-      //---The first three lines which calculate wind speed do not (necessaril?) need to be in the loop.
-      //
-
       let wind = calculateWind();
-      // xOff += 0.01;
-      // var windSpeed = map(noise(xOff), 0, 1, -windC, windC);
-      // var wind = createVector(windSpeed, 0.0);
+      //calculateWind() is in Interface/physicsController - I should move this.
 
       //Make  function which just returns the wind value.
       ball.applyForce(wind);

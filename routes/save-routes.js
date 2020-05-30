@@ -4,9 +4,11 @@ const path = require("path");
 const session = require("express-session");
 const User = require("../models/mongoose-model");
 const passportLocalMongoose = require("passport-local-mongoose");
-const { Zybriq, zybriqsSchema } = require("../models/zybriqs-model");
+const {
+  Zybriq,
+  zybriqsSchema
+} = require("../models/zybriqs-model");
 
-let tempState;
 let exists;
 
 const maxZybs = 3;
@@ -15,10 +17,6 @@ const maxZybs = 3;
 // for saving Zybriqs 's.
 // //Front-end sends the Zybriq data here with the $.post.
 saveRoutes.post("/", (req, res) => {
-  //tempState is a global variable which
-  //is assigned here so that it can be accessed in
-  //app.post(/saveZibriq);
-  tempState = req.body.state;
   req.session.state = req.body.state;
   //This just sends a success message.
   //The get /saveName route is handling the naming.
@@ -29,6 +27,7 @@ saveRoutes.post("/", (req, res) => {
 
 ///Save over existing Zybriq.
 saveRoutes.get("/saveOver", (req, res) => {
+  //Gets a list of all saved Zybriqs and sends it to the pages/saveOver.ejs view.
   let zibNames = [];
   let zibIds = [];
 
@@ -44,26 +43,16 @@ saveRoutes.get("/saveOver", (req, res) => {
 });
 
 saveRoutes.post("/saveOver", (req, res) => {
-  console.log("Replace ZybId: ", req.body.zName);
-  console.log("User id", req.user.id);
+  //Takes the user selected/previously saves Zybriq and overwrites it with the current state.
   let zybID = req.body.zName;
-
-  // const tempZ = new Zybriq({
-  //   name: zybID,
-  //   state: tempState,
-  // });
-
-  // tempZ.save();
 
   let username = req.user.username;
 
   Zybriq.findOne({
     _id: zybID,
   }).then((zyb) => {
-    //tempState assigned to Zy
     zyb.state = req.session.state;
     zyb.save().then((savedZyb) => {
-      console.log("Saved Zyb: ", savedZyb);
       res.render("pages/saveSuccess.ejs", {
         message: "Success",
         id: savedZyb.id,
@@ -72,19 +61,23 @@ saveRoutes.post("/saveOver", (req, res) => {
   });
 });
 
+saveRoutes.post('/session', (req, res) => {
+  console.log(req.body.state);
+
+  //req.session.state = req.body.state;
+  //console.log(req.session.state);
+  res.send('success');
+  res.end();
+})
+
 //The save button calls the submitData() function in
 //saveState.js which then uses Window.location.assign('/saveName');
 //Called from submitData() with assign();
 saveRoutes.get("/", (req, res) => {
-  console.log("hello");
-  req.session.info = "dlksfjslkdfj";
-  console.log(req.session);
-  //console.log("in get saveName");
   if (req.isAuthenticated()) {
     //CHeck this here and created redirect to Delete a Zybriqs.
     //Or let them replace a Zybriq.
     if (req.user.Zybriqs.length >= maxZybs) {
-      console.log(req.user.username);
       res.redirect("/saveName/saveOver");
       res.end();
     } else {
@@ -111,14 +104,10 @@ saveRoutes.get("/", (req, res) => {
 saveRoutes.post("/saveZibriq", (req, res) => {
   let zName = req.body.zName;
 
-  console.log("session.state in /saveZibriq", req.session.state);
-  //I need to check for dupes here so that the user cannot
-  //save two Zybriqs with the same name.
   exists = false;
 
   User.find({
-    $and: [
-      {
+    $and: [{
         username: req.user.username,
       },
       {
@@ -142,8 +131,8 @@ saveRoutes.post("/saveZibriq", (req, res) => {
       tempZ.save();
 
       User.findOne({
-        username: req.user.username,
-      })
+          username: req.user.username,
+        })
         .then((currentUser) => {
           currentUser.Zybriqs.push(tempZ);
           currentUser
@@ -169,7 +158,4 @@ saveRoutes.post("/saveZibriq", (req, res) => {
   //Console.log the user out here.
 });
 
-module.exports = {
-  saveRoutes,
-  tempState,
-};
+module.exports = saveRoutes;
