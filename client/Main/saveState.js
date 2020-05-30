@@ -18,9 +18,6 @@ function submitData() {
 }
 
 
-
-
-
 function saveState() {
   state = {};
 
