@@ -72,7 +72,7 @@ function setScale2() {
 function setScale3() {
 
 
-  let scale = 0.80;
+  let scale = 0.8;
   //Calculate scale
   console.log(scale);
   return scale;

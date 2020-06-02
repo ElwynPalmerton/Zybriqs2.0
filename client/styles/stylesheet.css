@@ -29,8 +29,12 @@ body {
 
 #wrapper {
   /* Goes around everything  */
+
+
   margin: 0 auto;
   width: 1027px;
+
+
   /* Making the margin 0 auto puts the canvas in the center for some reason? */
   background: #222222;
   /* Changing the width moves the sliders to the left/right  */
@@ -38,8 +42,7 @@ body {
 }
 
 canvas {
-  margin-left: 10px;
-  margin-top: 20px
+  margin-top: 10px
 }
 
 div {
@@ -71,7 +74,7 @@ button {
 
 .controller {
   /* Color controller is the id for all four cards. */
-  margin-top: 20px;
+  margin-top: 30px;
   margin-left: 10px;
   width: 100%;
   border: #3f5a63 1px solid;

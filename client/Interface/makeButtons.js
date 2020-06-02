@@ -11,7 +11,7 @@ function makeButtons() {
   makeRemoveBallsButton();
   //makeResetButtons();
   makeNumbersButtons(playButton);
-  makeZenModeButtons()
+  //makeZenModeButtons()
   makeInfoButton();
   //makeFullscreenButtons()
   appendClassNames();
@@ -358,39 +358,39 @@ function makeInfoButton() {
 //   console.log('hello');
 // })
 
-function makeZenModeButtons() {
-  let zenButton = document.getElementById('newZenModeButton')
-  buttons.push(zenButton);
+// function makeZenModeButtons() {
+//   let zenButton = document.getElementById('newZenModeButton')
+//   buttons.push(zenButton);
 
-  zenButton.addEventListener('click', (e) => {
-    e.stopPropagation();
-    let elem = document.querySelector('body');
-    resetButtons();
+//   zenButton.addEventListener('click', (e) => {
+//     e.stopPropagation();
+//     let elem = document.querySelector('body');
+//     resetButtons();
 
-    fullScreen = false;
-    initializeCanvas(initWidth, initHeight, setScale2);
-    openFullScreen();
+//     fullScreen = false;
+//     initializeCanvas(initWidth, initHeight, setScale);
+//     openFullScreen();
 
-    function openFullScreen() {
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-      } else if (elem.mozRequestFullScreen) {
-        /* Firefox */
-        elem.mozRequestFullScreen();
-      } else if (elem.webkitRequestFullscreen) {
-        /* Chrome, Safari & Opera */
-        elem.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) {
-        /* IE/Edge */
-        elem.msRequestFullscreen();
-      }
-      if (run === false) {
-        drawElementsDuringSetup();
-      }
-    }
-    //I don't need this line for this function: objectType = "Reverse Drag";
-  });
-}
+//     function openFullScreen() {
+//       if (elem.requestFullscreen) {
+//         elem.requestFullscreen();
+//       } else if (elem.mozRequestFullScreen) {
+//         /* Firefox */
+//         elem.mozRequestFullScreen();
+//       } else if (elem.webkitRequestFullscreen) {
+//         /* Chrome, Safari & Opera */
+//         elem.webkitRequestFullscreen();
+//       } else if (elem.msRequestFullscreen) {
+//         /* IE/Edge */
+//         elem.msRequestFullscreen();
+//       }
+//       if (run === false) {
+//         drawElementsDuringSetup();
+//       }
+//     }
+//     //I don't need this line for this function: objectType = "Reverse Drag";
+//   });
+// }
 
 
 function makeFullscreenButtons() {
@@ -407,7 +407,7 @@ function makeFullscreenButtons() {
     let elt = document.querySelector('body');
     resetButtons();
     fullscreenButton.elt.className = "active";
-    initializeCanvas(initWidth, initHeight, setScale2);
+    initializeCanvas(initWidth, initHeight, setScale);
     openFullScreen();
 
     function openFullScreen() {

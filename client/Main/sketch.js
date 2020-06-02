@@ -71,14 +71,14 @@ function createResizeListener() {
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(
-      initializeCanvas(initWidth, initHeight, setScale2),
+      initializeCanvas(initWidth, initHeight, setScale3),
       500
     );
     if (run === false) {
       drawElementsDuringSetup()
     }
   });
-  initializeCanvas(initWidth, initHeight, setScale2);
+  initializeCanvas(initWidth, initHeight, setScale3);
   //Add the setTimeout trick in here.
 }
 
@@ -90,7 +90,7 @@ function setup() {
   colorMode(HSB);
 
   //setup canvas.
-  initializeCanvas(initWidth, initHeight, setScale);
+  initializeCanvas(initWidth, initHeight, setScale3);
   //createResizeListener();
 
   const urlParams = new URLSearchParams(window.location.search)
