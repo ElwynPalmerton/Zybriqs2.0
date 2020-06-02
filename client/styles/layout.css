@@ -4,16 +4,17 @@
 }
 
 #canvasContainer {
-  grid-column: 1/2;
-  grid-row: 1/4;
+  grid-column: 1/3;
+  grid-row: 1/5;
   text-align: auto;
   /* align-self: left; */
 }
 
-
 #colorPalette {
   float: right;
 }
+
+/* Right column  */
 
 .sliderSet1 {
   grid-column: 3;
@@ -27,11 +28,6 @@
   margin-right: 20px;
 }
 
-.sliderSet3 {
-  grid-column: 2;
-  grid-row: 3;
-}
-
 .dropDown1 {
   grid-column: 3;
   grid-row: 3;
@@ -43,12 +39,15 @@
   grid-row: 4;
 }
 
+
+
+
 .buttons {
   margin-top: 10px;
   margin-left: 10px;
   margin-right: 2em;
   grid-column: 1/2;
-  grid-row: 4;
+  grid-row: 5;
   display: grid;
   grid-gap: 1em;
   justify-content: right;

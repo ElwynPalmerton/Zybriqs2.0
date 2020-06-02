@@ -368,7 +368,7 @@ function makeZenModeButtons() {
     resetButtons();
 
     fullScreen = false;
-    initializeCanvas(initWidth, initHeight, setScale);
+    initializeCanvas(initWidth, initHeight, setScale2);
     openFullScreen();
 
     function openFullScreen() {
@@ -395,7 +395,7 @@ function makeZenModeButtons() {
 
 function makeFullscreenButtons() {
   //I need to fix the background for this one too.
-  //It also doesn't actually fullScreen because setScale is still being
+  //It also doesn't actually fullScreen because  is still being
   //...calculated for the height of the buttonDiv.
   let fullscreenButton = createButton("Fullscreen");
   buttonContainer.appendChild(fullscreenButton.elt);
@@ -407,7 +407,7 @@ function makeFullscreenButtons() {
     let elt = document.querySelector('body');
     resetButtons();
     fullscreenButton.elt.className = "active";
-    initializeCanvas(initWidth, initHeight, setScale);
+    initializeCanvas(initWidth, initHeight, setScale2);
     openFullScreen();
 
     function openFullScreen() {

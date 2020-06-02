@@ -32,10 +32,8 @@ function loadSessionState() {
 
   $.get(url, function (data) {
     //console.log('session data: ', data);
-    console.log("data: ", data);
 
     newSessionState = JSON.parse(data);
-    console.log("New session state: ", newSessionState);
     initializeObjects(newSessionState);
     //newSessionState = JSON.parse 
 

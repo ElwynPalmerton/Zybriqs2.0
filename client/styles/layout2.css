@@ -1,0 +1,55 @@
+.grid {
+  display: grid;
+  justify-items: left;
+}
+
+#canvasContainer {
+  grid-column: 1/3;
+  grid-row: 1/5;
+  text-align: auto;
+  /* align-self: left; */
+}
+
+#colorPalette {
+  float: right;
+}
+
+/* Right column  */
+
+.sliderSet1 {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: left;
+}
+
+.sliderSet2 {
+  grid-column: 3;
+  grid-row: 2;
+  margin-right: 20px;
+}
+
+.dropDown1 {
+  grid-column: 3;
+  grid-row: 3;
+  align-self: top;
+}
+
+.dropDown2 {
+  grid-column: 3;
+  grid-row: 4;
+}
+
+
+
+
+.buttons {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 2em;
+  grid-column: 1/2;
+  grid-row: 5;
+  display: grid;
+  grid-gap: 1em;
+  justify-content: right;
+  grid-template-columns: repeat(12, 1fr);
+}

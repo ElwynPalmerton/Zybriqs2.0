@@ -4,19 +4,6 @@ html {
 
 body {
   background: #222222;
-  /* color: white; */
-  /* position: re; */
-}
-
-header h1 {
-  display: inline-block
-}
-
-header a {
-  display: inline-block,
-}
-
-body {
   color: #ddd;
 }
 
@@ -38,9 +25,16 @@ body {
   font-size: 0.75em;
 }
 
-.span {
-  color: red;
-  font-size: 0.25em;
+/* Canvas and wrapper */
+
+#wrapper {
+  /* Goes around everything  */
+  margin: 0 auto;
+  width: 1027px;
+  /* Making the margin 0 auto puts the canvas in the center for some reason? */
+  background: #222222;
+  /* Changing the width moves the sliders to the left/right  */
+
 }
 
 canvas {
@@ -48,86 +42,48 @@ canvas {
   margin-top: 20px
 }
 
-/* 
-#container:fullscreen {
-  background-color: #222222;
-}
-
-#container:-webkit-full-screen {
-  background-color: #222222;
-}
-
-#container:-moz-full-screen {
-  background-color: #222222;
-} */
-
-/* *:fullscreen,
-*:-webkit-full-screen,
-*:-moz-full-screen {
-  background-color: #222222;
-} */
-
-#wrapper {
-  background: #222222;
-  /* width: 1000px; */
-
-}
-
 div {
   color: white;
   font-family: arial;
-
 }
 
-p {
-  font-family: arial;
-}
 
-.active {
-  background: #222225;
-  color: salmon;
-  fill: salmon;
-}
-
-.notActive {
-  background: default;
-  fill: #aaaabf;
-
-}
-
-.icons {
-  fill: #aaaabf;
-}
-
-.sliderIcons {
-  fill: #aaaabf;
-}
-
+/* Buttons  */
 
 button {
-  outline: none;
-  letter-spacing: 1px;
-  font-family: Arial;
-  font-weight: 100;
-  /* z-index: 2; */
-  /* margin-top: 40px;
-  margin-bottom: 40px; */
-  /* font-size: .8em; */
-  background: #222222;
   color: #aaaabf;
-  border-radius: 8px;
-  height: 40px;
+  background: #222222;
 
-  /* width: 100px; */
-  /* margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 6px; */
-  /* margin: 10px; */
+  font-family: Arial;
+  letter-spacing: 1px;
+  font-weight: 100;
+
+  outline: none;
+
+  border-radius: 8px;
   border: #3f5a63 1px solid;
-  /* vertical-align: middle; */
+
+  height: 40px;
+  vertical-align: middle;
 }
 
+/* CARDS and card elemetns  */
+
+.controller {
+  /* Color controller is the id for all four cards. */
+  margin-top: 20px;
+  margin-left: 10px;
+  width: 100%;
+  border: #3f5a63 1px solid;
+  border-radius: 7px;
+
+  /* padding: 3px 10px 5px 10px; */
+
+  /* text-align: center; */
+  /* Puts the icons into the center */
+  /*float: right moves the icons and hsla letter to the left. */
+  /* float: right; */
+}
 
 select {
   border: #2f5a53 2px solid;
@@ -142,214 +98,75 @@ option {
 }
 
 
-
-.colorSliders {
-  display: inline;
-}
-
-label {
-  font-size: 0.8em;
-}
-
-i {
-  font-size: 1.5em;
-
-}
-
-.buttonStyle {
-  font-size: 1em;
-}
-
-h2 {
-  color: #aaaabf;
-  font-size: 1.5em;
-  text-align: center;
-  padding-bottom: 0%;
-  margin: 3% 0 6% 0;
-}
-
-#colorController {
-  margin-top: 20px;
-  width: 165px;
-  float: left;
-  /* width: 20%; */
-  padding: 20 10px;
-  margin-left: 14px;
-  /* margin-bottom: 20px; */
-  border: #3f5a63 1px solid;
-  border-radius: 7px;
-  padding: 3px 10px 5px 10px;
-  /* text-align: center; */
-  /* float: right; */
-}
-
 #objectSelector {
+  /* Select Object in first card */
   margin: 0px 5px 7px 10px;
 }
 
 #numberSelector {
+  /* Select the number of the object in the first card */
   margin-left: 10px;
 }
 
-/* .combinedSliders {
-  margin-top: 10px;
-} */
-
-
-#sliders {
-  color: #aaaabf;
-  border-radius: 6px;
-}
-
-#sliders card {
-  /* padding: 1% 0% 1% 1%; */
-  margin-top: 20px;
-  border-radius: 6px;
-  color: #aaaabf;
-  padding: 0.5% 0% .5% 0.5%;
-}
-
-
-
-.column {
-  /* width: 175px; */
-  /* float: left; */
-  /* width: 20%; */
-  padding: 20 10px;
-  margin-left: 14px;
-  margin-bottom: 50px;
-  border: #3f5a63 1px solid;
-  padding: 10px 10px 10px 10px;
-}
-
-.paused {
-  color: #3c7b7c;
-}
-
-/* #DragSelect {
-  margin: 30px;
-} */
-
-
-
-.hSlider,
-.sSlider,
-.lSlider,
-.aSlider,
-.slide {
-  margin-bottom: 10px;
-  background: #222222;
-}
 
 label {
+  display: inline-block;
+
+  text-align: right;
+  margin-left: 5px;
+  margin-right: 5px;
   color: #aaaabf;
+  font-size: 0.8em;
 }
 
-.title {
-  border-top: white 1px solid;
+
+
+/* End of cards */
+
+
+/* SVG icons */
+
+.icons {
+  /* This only affects the palette icon. */
+  fill: #aaaabf;
 }
 
-/* ///////////sliders////////////// */
+.sliderIcons {
+  fill: #aaaabf;
+}
 
-input[type=range] {
-  -webkit-appearance: none;
-  width: 145px;
-  margin: 10px 10% 10px 5%;
+i {
+  /* Only applies to the square since that one uses fontAwesome */
+  font-size: 1.5em;
+}
+
+.active {
+  background: #222225;
+  color: salmon;
+  fill: salmon;
+}
+
+.notActive {
+  background: default;
+  fill: #aaaabf;
 
 }
 
-/* .square {
-  color: #aaaabf;
-} */
+/* End of icons  */
 
-input[type=range]:focus {
-  outline: none;
+
+/* Layout continued  */
+
+.controller {
+  margin: 10px;
+  width: 150px;
+  padding: 10px;
 }
 
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 9.2px;
-  cursor: pointer;
-  box-shadow: 0px 0px 0px rgba(125, 188, 164, 0.1), 0px 0px 0px rgba(142, 197, 176, 0.1);
-  background: #425169;
-  border-radius: 3.9px;
-  border: 0px solid rgba(128, 128, 128, 0.8);
+.dropDown1 {
+  height: 50px;
 }
 
-input[type=range]::-webkit-slider-thumb {
-  box-shadow: 1px 1px 1px rgba(223, 186, 0, 0.5), 0px 0px 1px rgba(249, 207, 0, 0.5);
-  border: 0px solid rgba(170, 122, 131, 0);
-  height: 25px;
-  width: 15px;
-  border-radius: 32px;
-  background: #aaaabf;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -7.9px;
-}
-
-input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #4c5d79;
-}
-
-input[type=range]::-moz-range-track {
-  width: 100%;
-  height: 9.2px;
-  cursor: pointer;
-  box-shadow: 0px 0px 0px rgba(125, 188, 164, 0.1), 0px 0px 0px rgba(142, 197, 176, 0.1);
-  background: #425169;
-  border-radius: 3.9px;
-  border: 0px solid rgba(128, 128, 128, 0.8);
-}
-
-input[type=range]::-moz-range-thumb {
-  box-shadow: 1px 1px 1px rgba(223, 186, 0, 0.5), 0px 0px 1px rgba(249, 207, 0, 0.5);
-  border: 0px solid rgba(170, 122, 131, 0);
-  height: 25px;
-  width: 20px;
-  border-radius: 32px;
-  background: #aaaabf;
-  cursor: pointer;
-}
-
-input[type=range]::-ms-track {
-  width: 100%;
-  height: 9.2px;
-  cursor: pointer;
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
-}
-
-input[type=range]::-ms-fill-lower {
-  background: #384559;
-  border: 0px solid rgba(128, 128, 128, 0.8);
-  border-radius: 7.8px;
-  box-shadow: 0px 0px 0px rgba(125, 188, 164, 0.1), 0px 0px 0px rgba(142, 197, 176, 0.1);
-}
-
-input[type=range]::-ms-fill-upper {
-  background: #425169;
-  border: 0px solid rgba(128, 128, 128, 0.8);
-  border-radius: 7.8px;
-  box-shadow: 0px 0px 0px rgba(125, 188, 164, 0.1), 0px 0px 0px rgba(142, 197, 176, 0.1);
-}
-
-input[type=range]::-ms-thumb {
-  box-shadow: 1px 1px 1px rgba(223, 186, 0, 0.5), 0px 0px 1px rgba(249, 207, 0, 0.5);
-  border: 0px solid rgba(170, 122, 131, 0);
-  height: 25px;
-  width: 20px;
-  border-radius: 32px;
-  background: #aaaabf;
-  cursor: pointer;
-  height: 9.2px;
-}
-
-input[type=range]:focus::-ms-fill-lower {
-  background: #425169;
-}
-
-input[type=range]:focus::-ms-fill-upper {
-  background: #4c5d79;
+.dropDown2 {
+  height: 50px;
 }

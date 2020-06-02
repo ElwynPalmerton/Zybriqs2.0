@@ -67,3 +67,16 @@ function setScale2() {
   //Calculate scale
   return scale;
 }
+
+
+function setScale3() {
+
+
+  let scale = 0.80;
+  //Calculate scale
+  console.log(scale);
+  return scale;
+}
+
+//initializeCanvas (which requires a calcScale function is called from sketch and 
+//createResizeListener in the sketch.js file.

@@ -51,7 +51,8 @@ var scl;
 function initializeCanvas(startWidth, startHeight, calcScale) {
   //Remove any canvas children in the canvasContainer.
 
-  scl = calcScale();
+  scl = calcScale(); //setScale is passed into initializeCanvas.
+
   cnv = createCanvas(startWidth * scl, startHeight * scl);
 
   let currentWidth = startWidth * scl;
@@ -70,14 +71,14 @@ function createResizeListener() {
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(
-      initializeCanvas(initWidth, initHeight, setScale),
+      initializeCanvas(initWidth, initHeight, setScale2),
       500
     );
     if (run === false) {
       drawElementsDuringSetup()
     }
   });
-  //initializeCanvas(initWidth, initHeight, setScale);
+  initializeCanvas(initWidth, initHeight, setScale2);
   //Add the setTimeout trick in here.
 }
 
@@ -90,14 +91,13 @@ function setup() {
 
   //setup canvas.
   initializeCanvas(initWidth, initHeight, setScale);
-  createResizeListener();
+  //createResizeListener();
 
   const urlParams = new URLSearchParams(window.location.search)
   savedZib = urlParams.get('savedZib');
 
   let zibState = Object.assign({}, defaultObject2);
 
-  console.log('initial zibState', zibState);
 
   if (savedZib) {
     //loadData actually calls initializeObjects. I am not
@@ -105,12 +105,9 @@ function setup() {
     //Why isn't it being over-ridden by the call to 
     //initializeObjects(defaultObject2) below.
     let savedZybObject = loadData(savedZib);
-    console.log(savedZybObject);
     //Instead of calling initializeObjects from loadData, it should return the value.
     zibState = Object.assign({}, savedZybObject);
-    console.log('saved zibState', zibState);
   } else {
-    console.log('in else');
     loadSessionState();
     // if (newSessionState !== null) {
     //   zibState = Object.assign({}, newSessionState);

@@ -38,7 +38,6 @@ function initializeObjects(settings) {
     liquids.push(liquid);
   }
 
-  console.log(liquids);
 
   //Add (reverseLiquid) start and end to the default object.
   //
