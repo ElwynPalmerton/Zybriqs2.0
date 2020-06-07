@@ -78,7 +78,8 @@ let tempZybriq; //I probably don't need this.
 
 /////////////ROOT///////////////
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "index.html"));
+
+  //res.sendFile(path.join(__dirname, "client", "index.html"));
 });
 //register routes.
 app.use("/register", registerRoutes);
@@ -86,7 +87,8 @@ app.use("/register", registerRoutes);
 app.use("/restore", restoreRoutes);
 
 app.get("/restore", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "index.html"));
+  // res.sendFile(path.join(__dirname, "client", "index.html"));
+  res.render('index');
   //I don't know how to reference the __dirname to a differenct folder using this command or whatever it is I need to do.
 });
 
