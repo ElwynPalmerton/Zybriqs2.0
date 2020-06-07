@@ -59,6 +59,7 @@
   <link rel="stylesheet" type="text/css" href="styles/stylesheet.css" />
   <link rel="stylesheet" type="text/css" href="styles/layout2.css" />
   <link rel="stylesheet" type="text/css" href="styles/sliderStyles.css" />
+  <link rel="stylesheet" type="text/css" href="styles/headerStyle.css" />
 
 </head>
 
@@ -66,6 +67,37 @@
 
 
 <body>
+
+  <header>
+
+    <nav>
+      <div id="navItemWrapper">
+
+        <ul>
+          <li>
+            <h1>Zybriqs</h1>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="/logout">Logout</a>
+          </li>
+          <li>
+            <a href="/login">Login</a>
+          </li>
+          <li>
+            <a href="/register">Register</a>
+          </li>
+          <li>
+            <a href="/About">About</a>
+          </li>
+        </ul>
+      </div>
+
+    </nav>
+
+  </header>
+
   <div id=outsideWrapper>
     <div class="grid" id="wrapper">
       <div id="canvasContainer">
@@ -74,35 +106,35 @@
 
       <!-- ll -->
       <!-- <div class="sidebar" id="rightColumn"> -->
-        
-        <Card class="sliderSet1 controller">
-          <div class="cardTop">
-            <!-- Palette icons  -->
-            <h2 onmouseover="nhpup.popup('Select object type and number to change colors');" id="controllerTitle">
-              <!-- Color Palette svg  -->
-            
-              <svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40" >
-                <path id="colorPalette" 
+
+      <Card class="sliderSet1 controller">
+        <div class="cardTop">
+          <!-- Palette icons  -->
+          <h2 onmouseover="nhpup.popup('Select object type and number to change colors');" id="controllerTitle">
+            <!-- Color Palette svg  -->
+
+            <svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40">
+              <path id="colorPalette"
                 d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
-                <path d="M0 0h24v24H0z" fill="none" />
-              </svg>
-              <!-- end color palette svg -->
-              </h2>
-              <!-- Object Selector  -->
-              <select onchange="updateSliders()" name="ObjectType" id="objectSelector">
-                <option value="Balls">Balls</option>
-                <option value="Drag">Drag</option>
-                <option value="Accelerator">Accelerator</option>
-                <option value="Blocks">Blocks</option>
-                <option value="Background">Background</option>
-                
-              </select>
-            </br>
-            <!-- Number Selector  -->
-            <select onchange="updateSliders2()" name="NumberSelect" id="numberSelector">
-            </select>
-          </div>  
-<!-- End of cardtop  -->
+              <path d="M0 0h24v24H0z" fill="none" />
+            </svg>
+            <!-- end color palette svg -->
+          </h2>
+          <!-- Object Selector  -->
+          <select onchange="updateSliders()" name="ObjectType" id="objectSelector">
+            <option value="Balls">Balls</option>
+            <option value="Drag">Drag</option>
+            <option value="Accelerator">Accelerator</option>
+            <option value="Blocks">Blocks</option>
+            <option value="Background">Background</option>
+
+          </select>
+          </br>
+          <!-- Number Selector  -->
+          <select onchange="updateSliders2()" name="NumberSelect" id="numberSelector">
+          </select>
+        </div>
+        <!-- End of cardtop  -->
         <div class="combinedSliders">
           <!-- Hue slider  -->
           <div class="sliderAndLabel">
@@ -134,7 +166,7 @@
       <Card class="sliderSet2 controller">
         <div class="physicsSliders">
           <!-- Gravity  -->
-          <div  class="sliderAndLabel" onmouseover="nhpup.popup('Gravity.');">
+          <div class="sliderAndLabel" onmouseover="nhpup.popup('Gravity.');">
             <label class="svgLabel" for="gravity">
               <svg class="sliderIcons" xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16">
                 <path d="M0 0h24v24H0V0z" fill="none" />
@@ -144,7 +176,7 @@
             <input type="range" name="gravity" id="gravity" class="gravity slide" min="-100" max="100">
           </div>
           <!-- Wind Force  -->
-          <div  class="sliderAndLabel" onmouseover="nhpup.popup('Wind Force.');">
+          <div class="sliderAndLabel" onmouseover="nhpup.popup('Wind Force.');">
             <label class="svgLabel" for="windForce">
               <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16">
                 <path class="sliderIcons"
@@ -155,7 +187,7 @@
             <input type="range" name="windForce" id="windForce" class="windForce slide" min="0" max="100">
           </div>
           <!-- Wind Direction  -->
-          <div  class="sliderAndLabel" onmouseover="nhpup.popup('Wind Direction.');">
+          <div class="sliderAndLabel" onmouseover="nhpup.popup('Wind Direction.');">
             <label class="svgLabel" for="Direction">
               <svg class="sliderIcons" xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16">
                 <path
@@ -164,7 +196,7 @@
             </label>
             <input type="range" name="direction" id="direction" class="direction slide" min="-100" max="100">
           </div>
-          <div  class="sliderAndLabel" onmouseover="nhpup.popup('Drag Force.');">
+          <div class="sliderAndLabel" onmouseover="nhpup.popup('Drag Force.');">
             <label class="svgLabel" for="Drag">
               <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16">
                 <path class="sliderIcons"
@@ -173,7 +205,7 @@
             </label>
             <input type="range" name="drag" id="drag" class="drag slide" min="0" max="100">
           </div>
-          <div  class="sliderAndLabel" onmouseover="nhpup.popup('Accelerator Force.');">
+          <div class="sliderAndLabel" onmouseover="nhpup.popup('Accelerator Force.');">
             <label class="svgLabel" for="accelerator">
               <svg class="sliderIcons" xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16">
                 <path d="M0 0h24v24H0V0z" fill="none" />
@@ -270,12 +302,12 @@
 
         <button class="upload" onclick="submitData()">Save</button>
         <form action="/loadSavedNames" method="get">
-          <button onclick="submitSession()" class="download">Load</button>
+          <button id="loadButton" onclick="submitSession()" class="download">Load</button>
           <!-- loadData() is in "restoreState" -->
           <!-- I can probably delete this now.  -->
+          <!-- <button onclick="reset()">reset</button> -->
+          <!-- reset() is in Main/loadData.js -->
         </form>
-        <!-- <button onclick="reset()">reset</button> -->
-        <!-- reset() is in Main/loadData.js -->
 
 
       </div> <!-- End Button Container -->

@@ -181,3 +181,14 @@ i {
   width: 125px;
   margin: 5% auto;
 }
+
+form {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+#loadButton {
+  width: 100%;
+  margin: 0;
+}
