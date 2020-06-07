@@ -16,6 +16,7 @@ body {
 
 #colorPalette {
   float: right;
+  fill: #555;
 }
 
 /* Right column  */
@@ -24,6 +25,50 @@ body {
   grid-column: 3;
   grid-row: 1;
   justify-self: left;
+  padding-bottom: 0px;
+}
+
+.cardTop {
+  /* border: 1px solid red; */
+  color: #777;
+  display: grid;
+  grid-column-gap: .25em;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 1fr 1fr;
+
+  margin: 5px 10px -10px 0px;
+}
+
+
+
+/* h2 {} */
+
+#controllerTitle {
+  grid-row: 1 / span 2;
+  align-self: center;
+  justify-self: center;
+  font-size: 1em;
+}
+
+select {
+  height: 30px;
+  width: 90%;
+  border-radius: 5px;
+}
+
+#objectSelector {
+  grid-column: 2;
+  align-self: end;
+}
+
+#numberSelector {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: end;
+}
+
+.sliderAndLabel {
+  margin: 4%;
 }
 
 .sliderSet2 {

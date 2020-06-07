@@ -41,6 +41,7 @@ body {
 
 }
 
+
 canvas {
   margin-top: 10px
 }
@@ -74,8 +75,8 @@ button {
 
 .controller {
   /* Color controller is the id for all four cards. */
-  margin-top: 30px;
-  margin-left: 10px;
+  /* margin-top: 30px; */
+  /* margin-left: 10px; */
   width: 100%;
   border: #3f5a63 1px solid;
   border-radius: 7px;
@@ -90,36 +91,35 @@ button {
 
 select {
   border: #2f5a53 2px solid;
-  margin-left: 6%;
+  width: 100px;
   background: #222222;
   color: #aaaabf;
   outline: none;
 }
+
+
 
 option {
   color: #aaaabf;
 }
 
 
-#objectSelector {
-  /* Select Object in first card */
-  margin: 0px 5px 7px 10px;
-}
 
-#numberSelector {
-  /* Select the number of the object in the first card */
-  margin-left: 10px;
-}
 
 
 label {
   display: inline-block;
-
   text-align: right;
+  width: 5%;
   margin-left: 5px;
   margin-right: 5px;
   color: #aaaabf;
   font-size: 0.8em;
+}
+
+.slider {
+  display: inline-block;
+  padding-right: 0;
 }
 
 
@@ -163,13 +163,21 @@ i {
 .controller {
   margin: 10px;
   width: 150px;
-  padding: 10px;
 }
 
-.dropDown1 {
-  height: 50px;
+.dropDown1 label,
+.dropDown2 label {
+  display: block;
+  margin-top: 6%;
+  margin-left: 10%;
+  text-align: left;
+  width: 150px;
 }
 
-.dropDown2 {
-  height: 50px;
+.dropDown1 select,
+.dropDown2 select {
+  display: block;
+  text-align: left;
+  width: 125px;
+  margin: 5% auto;
 }

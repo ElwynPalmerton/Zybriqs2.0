@@ -12,7 +12,7 @@
 
 input[type=range] {
   -webkit-appearance: none;
-  width: 70%;
+  width: 75%;
   /* margin: 10px 10% 10px 5%; */
   text-align: left;
 }
