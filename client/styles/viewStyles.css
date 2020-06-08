@@ -11,30 +11,3 @@ main {
   padding: 0 10px;
   color: #dddddd
 }
-
-/*Header Styles  */
-
-nav {
-  background: black;
-}
-
-nav ul {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0;
-}
-
-nav li {
-  list-style-type: none;
-  display: inline-block;
-  margin: 0 10px 0 0;
-}
-
-nav a {
-  color: #dddddd;
-  font-size: 18px;
-  background: #222222;
-  text-decoration: none;
-  padding: 10px;
-  display: block;
-}
