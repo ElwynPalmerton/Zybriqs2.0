@@ -11,7 +11,7 @@ const {
 router.get("/", (req, res) => {
   res.render("pages/login", {
     user: req.user,
-    msg: "Please login: ",
+    msg: "Login: ",
     cameFrom: "loginRoute",
   });
 });
