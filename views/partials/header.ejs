@@ -12,8 +12,11 @@
   <title></title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="../styles/headerStyle.css" />
-  <link rel="stylesheet" type="text/css" href="../styles/viewStyles.css" />
+
+  <link rel="stylesheet" type="text/css" href="styles/stylesheet.css" />
+  <link rel="stylesheet" type="text/css" href="styles/layout2.css" />
+  <link rel="stylesheet" type="text/css" href="styles/sliderStyles.css" />
+  <link rel="stylesheet" type="text/css" href="styles/headerStyle.css" />
   <!-- BootStrap  -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -21,15 +24,15 @@
 </head>
 
 <header>
+  <nav class="navbar navbar-expand-sm navbar-dark">
 
-  <nav class="navbar">
 
-    <ul class="navbar-nav">
-      <li class="nav=item">
-        <a class="nav-link" href="/">
-          <h1> Zybriqs </h1>
-        </a>
-      </li>
+    <a class="navbar-brand" href="/">
+      Zybriqs
+    </a>
+
+
+    <ul class="navbar-nav ml-auto">
       <% if (user) { %>
       <li class="nav=item">
         <a class="nav-link" href="/logout">Logout</span></a>

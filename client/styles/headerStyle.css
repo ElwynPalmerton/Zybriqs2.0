@@ -57,8 +57,17 @@ nav a {
   margin-right: 30px;
 }
 
-#navItemWrapper {
-  max-width: 1027px;
-  margin: 0 auto;
+
 
 } */
+
+
+
+
+nav {
+  background: #151517;
+}
+
+.navbar-brand {
+  color: #888888 !important;
+}

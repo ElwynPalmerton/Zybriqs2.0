@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  background: #222222;
+  background: #222222 !important;
   color: #ddd;
 }
 
@@ -64,11 +64,17 @@ button {
 
   outline: none;
 
-  border-radius: 8px;
+  border-radius: 8px !important;
   border: #3f5a63 1px solid;
 
   height: 40px;
   vertical-align: middle;
+}
+
+button:focus,
+button:active {
+  outline: none !important;
+  box-shadow: none;
 }
 
 /* CARDS and card elemetns  */
