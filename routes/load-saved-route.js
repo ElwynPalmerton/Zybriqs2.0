@@ -26,6 +26,7 @@ router.get("/", (req, res) => {
         }
 
         res.render("pages/listSaved", {
+          user: req.user,
           zibNames: zibNames,
           zibIds: zibIds,
         });
@@ -41,6 +42,7 @@ router.get("/", (req, res) => {
   } else {
     res.cameFrom = "loadRoute";
     res.render("pages/login", {
+      user: req.user,
       msg: "You must be logged in to restore your save Zybriqses.",
       cameFrom: "loadRoute",
     });

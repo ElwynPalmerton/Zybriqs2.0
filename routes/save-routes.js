@@ -20,6 +20,7 @@ saveRoutes.post("/", (req, res) => {
   //This just sends a success message.
   //The get /saveName route is handling the naming.
   res.send({
+    user: req.user,
     message: "Success",
   });
 });
@@ -36,6 +37,7 @@ saveRoutes.get("/saveOver", (req, res) => {
   }
 
   res.render("pages/saveOver", {
+    user: req.user,
     zibNames: zibNames,
     zibIds: zibIds,
   });
@@ -55,6 +57,7 @@ saveRoutes.post("/saveOver", (req, res) => {
     zyb.state = req.session.state;
     zyb.save().then((savedZyb) => {
       res.render("pages/saveSuccess.ejs", {
+        user: req.user,
         message: "Success",
         id: savedZyb.id,
       });
@@ -153,6 +156,7 @@ saveRoutes.post("/saveZibriq", (req, res) => {
             .save()
             .then((user) => {
               res.render("pages/saveSuccess.ejs", {
+                user: req.user,
                 message: "Success",
                 id: tempZ.id,
               });

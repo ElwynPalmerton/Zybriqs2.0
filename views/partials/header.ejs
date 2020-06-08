@@ -14,40 +14,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="../styles/headerStyle.css" />
   <link rel="stylesheet" type="text/css" href="../styles/viewStyles.css" />
+  <!-- BootStrap  -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 </head>
 
 <header>
-  <nav>
-    <div id="navItemWrapper">
+  <nav class="navbar">
 
-      <ul>
-        <li>
-
+    <ul>
+      <li>
 
 
-          <a href="/">
-            <h1> Zybriqs </h1>
-          </a>
-        </li>
-      </ul>
-      <ul>
-        <% if (user) { %>
-        <li>
-          <a href="/logout">Logout</a>
-        </li>
-        <% } else if (!user) { %>
-        <li>
-          <a href="/login">Login</a>
-        </li>
-        <li>
-          <a href="/register">Register</a>
-        </li>
-        <% } %>
-        <li>
-          <a href="/About">About</a>
-        </li>
-      </ul>
-    </div>
+
+        <a href="/">
+          <h1> Zybriqs </h1>
+        </a>
+      </li>
+      <% if (user) { %>
+      <li>
+        <a href="/logout">Logout</span></a>
+      </li>
+      <% } else if (!user) { %>
+      <li>
+        <a href="/login">Login</a>
+      </li>
+      <li>
+        <a href="/register">Register</a>
+      </li>
+      <% } %>
+      <li>
+        <a href="/About">About</a>
+      </li>
+    </ul>
   </nav>
 </header>

@@ -91,7 +91,9 @@ app.use("/restore", restoreRoutes);
 
 app.get("/restore", (req, res) => {
   // res.sendFile(path.join(__dirname, "client", "index.html"));
-  res.render('index');
+  res.render('pages/index', {
+    user: req.user,
+  });
   //I don't know how to reference the __dirname to a differenct folder using this command or whatever it is I need to do.
 });
 
