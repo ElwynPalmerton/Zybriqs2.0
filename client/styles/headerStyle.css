@@ -11,14 +11,23 @@ nav {
 }
 
 h1 {
+  margin: 0px;
   margin-left: 0px;
   padding: 0px;
 }
 
+h1:hover {
+  color: red;
+}
+
+a:hover {
+  color: red;
+}
+
 nav ul {
   color: #bbb;
-  max-width: 960px;
-  margin: 0 auto;
+  max-width: 1027px;
+  margin: 10px auto;
   padding: 0;
   display: inline-block;
 }

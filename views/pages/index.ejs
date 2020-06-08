@@ -68,8 +68,9 @@
 
 <body>
 
-  <header>
+  <%-include('../partials/header') -%>
 
+  <!-- <header>
     <nav>
       <div id="navItemWrapper">
 
@@ -79,9 +80,11 @@
           </li>
         </ul>
         <ul>
+          <% if (user) { %>
           <li>
             <a href="/logout">Logout</a>
           </li>
+          <% } %>
           <li>
             <a href="/login">Login</a>
           </li>
@@ -93,10 +96,8 @@
           </li>
         </ul>
       </div>
-
     </nav>
-
-  </header>
+  </header> -->
 
   <div id=outsideWrapper>
     <div class="grid" id="wrapper">
@@ -162,7 +163,7 @@
 
       <!-- ------------------------------------ PHYSICS SLIDERS -------------------- -->
 
-      <%-include('../partials/header') -%>
+
 
       <Card class="sliderSet2 controller">
         <div class="physicsSliders">

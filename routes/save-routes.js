@@ -99,11 +99,13 @@ saveRoutes.get("/", (req, res) => {
         req.session.exists = false;
       } //This is probably a terrible
       res.render("pages/saveName", {
+        user: req.user,
         message: msg,
       });
     }
   } else {
     res.render("pages/login", {
+      user: req.user,
       msg: "You must be logged in to save your Zybriqs.",
       cameFrom: "saveRoute",
     });

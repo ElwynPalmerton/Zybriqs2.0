@@ -78,7 +78,10 @@ let tempZybriq; //I probably don't need this.
 
 /////////////ROOT///////////////
 app.get("/", (req, res) => {
-
+  console.log('rendering');
+  res.render('pages/index', {
+    user: req.user,
+  });
   //res.sendFile(path.join(__dirname, "client", "index.html"));
 });
 //register routes.

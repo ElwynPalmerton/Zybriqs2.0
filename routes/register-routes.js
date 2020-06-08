@@ -7,6 +7,7 @@ const Zybriq = require('../models/zybriqs-model');
 
 router.get("/", (req, res) => {
   res.render("pages/register", {
+    user: req.user,
     msg: "Please enter user data to register: ",
   });
 });
