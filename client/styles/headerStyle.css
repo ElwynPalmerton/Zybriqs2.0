@@ -59,14 +59,35 @@ nav a {
 
 
 
-} */
+ */
 
 
 
+
+a {
+  font-family: "Montserrat", sans-serif;
+}
 
 nav {
+  padding-left: 8px !important;
+}
+
+a:hover {
+  color: #2459bd !important;
+}
+
+#navContainer {
+  max-width: 980px;
+  height: 56px;
+  margin: 0 auto;
   background: #151517;
 }
+
+header {
+  background: #151517;
+}
+
+
 
 .navbar-brand {
   color: #888888 !important;
