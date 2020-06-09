@@ -1,0 +1,49 @@
+p,
+h1,
+h2 {
+  color: #aaa;
+}
+
+p {
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
+
+}
+
+h1 {
+  margin-top: 50px !important;
+}
+
+.container {
+  width: 500px !important;
+  margin: 50px auto !important;
+  text-align: center;
+}
+
+label {
+  width: 200px;
+  margin-right: 30px;
+}
+
+input {
+  margin-bottom: 23px !important;
+}
+
+button {
+  width: 200px;
+  height: 120px !important;
+  margin: 30px auto !important;
+}
+
+form {
+  width: 350px;
+  text-align: center;
+}
+
+
+.optionDiv {
+  width: 200px;
+  padding: 20px;
+  margin: 0 auto;
+  text-align: left;
+}

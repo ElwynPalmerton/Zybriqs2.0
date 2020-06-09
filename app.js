@@ -10,6 +10,10 @@ const passportLocalMongoose = require("passport-local-mongoose");
 //mongo store.
 const mongoStore = require("connect-mongo")(session);
 
+
+const app = express();
+
+
 //routes
 const registerRoutes = require("./routes/register-routes");
 const restoreRoutes = require("./routes/restore-routes");
@@ -23,9 +27,11 @@ const {
   zybriqSchema
 } = require("./models/zybriqs-model");
 
-const app = express();
+
 
 app.use(express.static(__dirname + "/client"));
+
+// app.use('/client', express.static(__dirname + "/client"));
 
 
 app.set("view engine", "ejs");
@@ -109,6 +115,50 @@ app.use("/delete", deleteRoutes);
 app.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
+});
+
+///Save over existing Zybriq.
+app.get("/saveOver", (req, res) => {
+  //Gets a list of all saved Zybriqs and sends it to the pages/saveOver.ejs view.
+  let zibNames = [];
+  let zibIds = [];
+
+  for (let zib of req.user.Zybriqs) {
+    zibNames.push(zib.name);
+    zibIds.push(zib._id);
+  }
+
+  console.log("Rendering maxiumum Zybs");
+
+  res.render("pages/saveOver.ejs", {
+    user: req.user,
+    zibNames: zibNames,
+    zibIds: zibIds,
+  });
+});
+
+
+
+app.get("/success", (req, res) => {
+  res.render("pages/saveSuccess", {
+    user: req.user,
+    message: "Success",
+    id: req.user.tempID,
+  });
+});
+
+
+app.get("/registerSuccess", (req, res) => {
+  console.log("in registerSuccess route.");
+
+  console.log("isAuth ", req.isAuthenticated());
+  if (req.isAuthenticated()) {
+    res.render("pages/registerSuccess", {
+      user: req.user,
+    });
+  } else {
+    res.redirect("/login");
+  }
 });
 
 app.get("/getValue", (req, res) => {

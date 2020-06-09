@@ -8,17 +8,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- <link rel="stylesheet" href=""> -->
 
+  <style>
+    p {
+      color: #aaa;
+    }
+
+    p {
+      margin-top: 15px !important;
+      margin-bottom: 15px !important;
+
+    }
+
+
+    .container {
+      width: 500px !important;
+      margin: 50px auto !important;
+      text-align: center;
+    }
+
+
+
+    input {
+      margin-bottom: 23px !important;
+    }
+
+    button {
+      width: 300px;
+      height: 150px !important;
+      margin: 30px auto !important;
+    }
+
+    form {
+      width: 350px;
+      text-align: center;
+    }
+
+
+    .optionDiv {
+      width: 200px;
+      padding: 20px;
+      margin: 0 auto;
+      text-align: left;
+    }
+  </style>
+
 </head>
 
 <body>
 
   <%-include('../partials/header') -%>
   <main>
-    <p>Your Zybriqs has been saved. Click below to return to Zybriqs.</p>
-    <form action="/loadState" method="post">
-      <input hidden name="name" value="<%=id%>">
-      <button>Return to your Zybriq</button>
-    </form>
+    <div class="container">
+
+      <p>Your Zybriqs has been saved. Click below to return to Zybriqs.</p>
+      <form action="/loadState" method="post">
+        <input hidden name="name" value="<%=id%>">
+        <button>Return to your Zybriq</button>
+      </form>
+    </div>
   </main>
 </body>
 

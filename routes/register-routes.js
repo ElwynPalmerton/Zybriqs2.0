@@ -12,16 +12,18 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/success", (req, res) => {
-  console.log("in registerSuccess route.");
+// router.get("/success", (req, res) => {
+//   console.log("in registerSuccess route.");
 
-  console.log("isAuth ", req.isAuthenticated());
-  if (req.isAuthenticated()) {
-    res.render("pages/registerSuccess");
-  } else {
-    res.redirect("/login");
-  }
-});
+//   console.log("isAuth ", req.isAuthenticated());
+//   if (req.isAuthenticated()) {
+//     res.render("pages/registerSuccess", {
+//       user: req.user,
+//     });
+//   } else {
+//     res.redirect("/login");
+//   }
+// });
 
 router.post("/", (req, res) => {
   let username = req.body.username;
@@ -38,10 +40,12 @@ router.post("/", (req, res) => {
   }).then((foundUser) => {
     if (foundUser) {
       res.render("pages/register", {
+        user: req.user,
         msg: "That user is already registered. Please choose a different user name.",
       });
     } else if (password1 !== password2) {
       res.render("pages/register", {
+        user: req.user,
         msg: "Passwords must match.",
       });
     } else {
@@ -56,7 +60,7 @@ router.post("/", (req, res) => {
             res.redirect("/login");
           } else {
             passport.authenticate("local")(req, res, function () {
-              res.redirect("/register/success");
+              res.redirect("/registerSuccess");
             });
           }
         }

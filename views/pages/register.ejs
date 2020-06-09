@@ -27,7 +27,7 @@
     }
 
     .container {
-      width: 200px !important;
+      width: 300px !important;
       margin: 0 auto !important;
     }
 
@@ -60,23 +60,29 @@
 
   <%-include('../partials/header') -%>
   <main>
-    <form action="/register" method="post">
+    <div class="container">
+      <form action="/register" method="post">
 
-      <p> <%= msg %> </p>
-      <label for="username">Name:</label>
-      <input name="username" placeholder="name">
-      </br>
-      <label for="email">Email:</label>
-      <input name="email" placeholder="email">
-      </br>
-      <label for="password">Password</label>
-      <input name="password" type="password" placeholder="Password">
-      </br>
-      <label for="password2">Password</label>
-      <input name="password_two" type="password" placeholder="Re-enter Password">
-      </br>
-      <button type="submit">Register</button>
-    </form>
+        <p> <%= msg %> </p>
+        <label for="username">Name:</label>
+        </br>
+        <input name="username" placeholder="name">
+        </br>
+        <label for="email">Email:</label>
+        </br>
+        <input name="email" placeholder="email">
+        </br>
+        <label for="password">Password</label>
+        </br>
+        <input name="password" type="password" placeholder="Password">
+        </br>
+        <label for="password2">Password</label>
+        </br>
+        <input name="password_two" type="password" placeholder="Re-enter Password">
+        </br>
+        <button type="submit">Register</button>
+      </form>
+    </div>
   </main>
 </body>
 

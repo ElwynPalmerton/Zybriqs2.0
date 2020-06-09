@@ -7,25 +7,87 @@
   <meta name="description" content="ejs page">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- <link rel="stylesheet" href=""> -->
+
+  <style>
+    p,
+    h1,
+    h2 {
+      color: #aaa;
+    }
+
+    p {
+      margin-top: 15px !important;
+      margin-bottom: 15px !important;
+
+    }
+
+    h1 {
+      margin-top: 50px !important;
+    }
+
+    .container {
+      width: 500px !important;
+      margin: 50px auto !important;
+      text-align: center;
+    }
+
+    label {
+      width: 200px;
+      margin-right: 30px;
+    }
+
+    input {
+      margin-bottom: 23px !important;
+    }
+
+    button {
+      width: 200px;
+      height: 120px !important;
+      margin: 30px auto !important;
+    }
+
+    form {
+      width: 350px;
+      text-align: center;
+    }
+
+
+    .optionDiv {
+      width: 200px;
+      padding: 20px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    label {
+      font-size: 1.2em !important;
+    }
+  </style>
 </head>
 
 <body>
 
+
   <%-include('../partials/header') -%>
   <main>
+    <div class="container">
 
-    <h1> Delete a Zybs </h1>
-    <p><%=msg%></p>
+      <h1> Delete existing Zybriqses </h1>
+      <p><%=msg%></p>
 
-    <form action="/delete" method="post">
-      <% for (let i = 0; i < zibNames.length; i++) { %>
-      <input type="checkbox" name="zName" id="<%=zibNames[i]%>" value="<%=zibIds[i]%>">
-      <label for="<%=zibNames[i]%>"> <%=zibNames[i] %></label>
-      </br>
-      <% } %>
-      <button type="submit" name="deleteZyb">Delete Selected Zybriqses</button>
-    </form>
+      <form action="/delete" method="post">
+        <div class="optionDiv">
 
+          <% for (let i = 0; i < zibNames.length; i++) { %>
+          <input type="checkbox" name="zName" id="<%=zibNames[i]%>" value="<%=zibIds[i]%>">
+          <label for="<%=zibNames[i]%>"> <%=zibNames[i] %></label>
+          </br>
+          <% } %>
+        </div>
+        <button type="submit" name="deleteZyb">Delete Selected Zybriqses</button>
+      </form>
+
+    </div>
   </main>
 
 </body>

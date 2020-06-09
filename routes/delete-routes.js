@@ -25,18 +25,20 @@ router.get('/', (req, res) => {
       zibIds.push(zib._id);
     }
 
-    let msg = "Please select which Zybriqses you would like to delete."
+    let msg = "Please select any Zybriqses you would like to delete."
     if (zibNames.length === 0) {
       msg = "You do not have any saved Zybriqses to delete."
     };
 
     res.render("pages/delete", {
+      user: req.user,
       zibNames: zibNames,
       zibIds: zibIds,
       msg: msg,
     });
   } else {
     res.render("pages/login", {
+      user: req.user,
       msg: "You must be logged in to save your Zybriqs.",
       cameFrom: "deleteRoute",
       //Don't forget to change this to delete route.

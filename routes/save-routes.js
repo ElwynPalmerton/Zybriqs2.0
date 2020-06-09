@@ -1,6 +1,7 @@
 const saveRoutes = require("express").Router();
 const passport = require("passport");
 const path = require("path");
+const express = require("express");
 const session = require("express-session");
 const User = require("../models/mongoose-model");
 const passportLocalMongoose = require("passport-local-mongoose");
@@ -32,22 +33,24 @@ saveRoutes.post("/", (req, res) => {
 });
 
 ///Save over existing Zybriq.
-saveRoutes.get("/saveOver", (req, res) => {
-  //Gets a list of all saved Zybriqs and sends it to the pages/saveOver.ejs view.
-  let zibNames = [];
-  let zibIds = [];
+// saveRoutes.get("/saveOver", (req, res) => {
+//   //Gets a list of all saved Zybriqs and sends it to the pages/saveOver.ejs view.
+//   let zibNames = [];
+//   let zibIds = [];
 
-  for (let zib of req.user.Zybriqs) {
-    zibNames.push(zib.name);
-    zibIds.push(zib._id);
-  }
+//   for (let zib of req.user.Zybriqs) {
+//     zibNames.push(zib.name);
+//     zibIds.push(zib._id);
+//   }
 
-  res.render("pages/saveOver", {
-    user: req.user,
-    zibNames: zibNames,
-    zibIds: zibIds,
-  });
-});
+//   console.log("Rendering maxiumum Zybs");
+
+//   res.render("pages/saveOver.ejs", {
+//     user: req.user,
+//     zibNames: zibNames,
+//     zibIds: zibIds,
+//   });
+// });
 
 
 
@@ -62,11 +65,12 @@ saveRoutes.post("/saveOver", (req, res) => {
   }).then((zyb) => {
     zyb.state = req.session.state;
     zyb.save().then((savedZyb) => {
-      res.render("pages/saveSuccess.ejs", {
-        user: req.user,
-        message: "Success",
-        id: savedZyb.id,
-      });
+      res.redirect('/success');
+      // res.render("pages/saveSuccess.ejs", {
+      //   user: req.user,
+      //   message: "Success",
+      //   id: savedZyb.id,
+      // });
     });
   });
 });
@@ -98,13 +102,13 @@ saveRoutes.get("/", (req, res) => {
     //CHeck this here and created redirect to Delete a Zybriqs.
     //Or let them replace a Zybriq.
     if (req.user.Zybriqs.length >= maxZybs) {
-      res.redirect("/saveName/saveOver");
+      res.redirect("/saveOver");
       res.end();
     } else {
       let msg;
-      msg = "Please name your Zybriq";
+      msg = "Please name your Zybriq:";
       if (req.session.exists === true) {
-        msg = "That Zybriq already exists.";
+        msg = "That Zybriq already exists. Choose a new name:";
         req.session.exists = false;
       } //This is probably a terrible
       res.render("pages/saveName", {
@@ -161,11 +165,14 @@ saveRoutes.post("/saveZibriq", (req, res) => {
           currentUser
             .save()
             .then((user) => {
-              res.render("pages/saveSuccess.ejs", {
-                user: req.user,
-                message: "Success",
-                id: tempZ.id,
-              });
+
+              req.user.tempID = tempZ.id;
+              res.redirect('/success');
+              // res.render("pages/saveSuccess", {
+              //   user: req.user,
+              //   message: "Success",
+              //   id: tempZ.id,
+              // });
             })
             .catch((err) => {
               console.log(err);

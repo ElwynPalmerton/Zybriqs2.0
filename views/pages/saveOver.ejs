@@ -7,30 +7,92 @@
   <meta name="description" content="ejs page">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- <link rel="stylesheet" href=""> -->
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+  <style>
+    p {
+      color: #aaa;
+    }
+
+    p {
+      margin-top: 15px !important;
+      margin-bottom: 15px !important;
+
+    }
+
+    h1 {
+      margin-top: 50px !important;
+    }
+
+    .container {
+      width: 500px !important;
+      margin: 50px auto !important;
+      text-align: center;
+    }
+
+    label {
+      width: 200px;
+      margin-right: 30px;
+    }
+
+    input {
+      margin-bottom: 23px !important;
+    }
+
+    button {
+      width: 200px;
+      margin: 30px auto !important;
+    }
+
+    form {
+      width: 350px;
+      text-align: center;
+    }
+
+
+    .optionDiv {
+      width: 200px;
+      padding: 20px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    label {
+      font-size: 1.2em !important;
+    }
+  </style>
+
+
 </head>
 
 <body>
-
-  <%-include('../partials/header') -%>
   <main>
+    <%-include('../partials/header') -%>
+    <div class="container">
 
-    <h1> Maximum Zybs </h1>
-    <p>You have reached the maximum number of Zybriqses</p>
-    <p>Please select a Zybriqs below to save over.</p>
+      <p>You have reached the maximum number of Zybriqses. </p>
+      <p>You can only have three saved Zybriqses.</p>
+      <p>Please select a Zybriqs below to save over.</p>
 
-    <form action="/saveName/saveOver" method="post">
-      <% for (let i = 0; i < zibNames.length; i++) { %>
-      <input type="radio" name="zName" id="<%=zibNames[i]%>" value="<%=zibIds[i]%>">
-      <label for="<%=zibNames[i]%>"> <%=zibNames[i] %></label>
-      </br>
-      <% } %>
-      <button type="submit" name="restoreZib">SAVE</button>
-    </form>
-    <p>Or click here to delete an existing Zybriq</p>
-    <form action="/delete" method="get">
-      <button type="submit">Delete Zybriqses</button>
-    </form>
+      <form action="/saveName/saveOver" method="post">
+        <div class="optionDiv">
 
+          <% for (let i = 0; i < zibNames.length; i++) { %>
+          <input type="radio" name="zName" id="<%=zibNames[i]%>" value="<%=zibIds[i]%>">
+          <label for="<%=zibNames[i]%>"> <%=zibNames[i] %></label>
+          </br>
+          <% } %>
+        </div>
+        <button type="submit" name="restoreZib">SAVE</button>
+      </form>
+      <p>Or click below to delete an existing Zybriq:</p>
+      <form action="/delete" method="get">
+        <button type="submit">Delete Zybriqses</button>
+      </form>
+
+    </div>
   </main>
 
 </body>

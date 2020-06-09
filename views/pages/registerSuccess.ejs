@@ -7,17 +7,52 @@
   <meta name="description" content="ejs page">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- <link rel="stylesheet" href=""> -->
+  <style>
+    p,
+    h3 {
+      color: #aaa;
+    }
+
+    p {
+      margin-top: 15px !important;
+      margin-bottom: 15px !important;
+
+    }
+
+    h3 {
+      margin: 60px !important;
+    }
+
+    .container {
+      width: 500px !important;
+      margin: 0 auto !important;
+      text-align: center;
+    }
+
+
+    button {
+      width: 150px !important;
+      height: 100px !important;
+      margin: 60px auto !important;
+    }
+  </style>
+
 </head>
+
+
+
 
 <body>
 
   <%-include('../partials/header') -%>
   <main>
+    <div class="container">
 
-    <h1> You are now registered </h1>
-    <form action="/" method="get">
-      <button type="submit">Return to your Zybriq</button>
-    </form>
+      <h3> You are now registered </h3>
+      <form action="/" method="get">
+        <button type="submit">Return to your Zybriq</button>
+      </form>
+    </div>
   </main>
 </body>
 
