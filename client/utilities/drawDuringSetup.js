@@ -6,10 +6,6 @@ function drawElementsDuringSetup() {
 
   backgroundArray[0].displayDimmed();
 
-  for (let j = 0; j < blocks.length; j++) {
-    blocks[j].displayDimmed();
-  }
-
   balls.forEach((ball) => {
     ball.displayDimmed();
   })
@@ -22,6 +18,11 @@ function drawElementsDuringSetup() {
   reverseLiquids.forEach((reverseLiquid) => {
     reverseLiquid.displayDimmed();
   })
+
+  for (let j = 0; j < blocks.length; j++) {
+    blocks[j].displayDimmed();
+  }
+
   if (drawButtonOn === true) {
     document.body.querySelector('canvas').style.cursor = "crosshair";
   }

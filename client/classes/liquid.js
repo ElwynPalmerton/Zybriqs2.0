@@ -101,11 +101,13 @@ class Liquid {
 
   displayRemoveButton() {
     const xBoxSize = 15;
-    stroke(150);
+    stroke(66, 7, 100, 1);
     strokeWeight(2);
     noFill();
 
     rect(this.start.x * scl, this.start.y * scl, xBoxSize, xBoxSize);
+    line(this.start.x * scl, this.start.y * scl, this.start.x * scl + xBoxSize, this.start.y * scl + xBoxSize)
+    line(this.start.x * scl + xBoxSize, this.start.y * scl, this.start.x * scl, this.start.y * scl + xBoxSize)
 
   }
 

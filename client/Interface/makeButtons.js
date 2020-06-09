@@ -372,7 +372,7 @@ function makeZenModeButtons() {
 
   zenButton.addEventListener('click', (e) => {
 
-    let elem = document.querySelector('#wrapper');
+    let elem = document.querySelector('canvas');
     resetButtons();
 
     //fullScreen = true;
