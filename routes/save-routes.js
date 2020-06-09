@@ -12,6 +12,12 @@ const {
 
 const maxZybs = 3;
 
+
+
+// app.use(express.static(__dirname + "/client"));
+
+
+
 // Initial route
 // for saving Zybriqs 's.
 // //Front-end sends the Zybriq data here with the $.post.
@@ -109,7 +115,7 @@ saveRoutes.get("/", (req, res) => {
   } else {
     res.render("pages/login", {
       user: req.user,
-      msg: "You must be logged in to save your Zybriqs.",
+      msg: "Login:",
       cameFrom: "saveRoute",
     });
   }

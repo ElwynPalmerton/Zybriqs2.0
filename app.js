@@ -27,6 +27,7 @@ const app = express();
 
 app.use(express.static(__dirname + "/client"));
 
+
 app.set("view engine", "ejs");
 
 app.use(
