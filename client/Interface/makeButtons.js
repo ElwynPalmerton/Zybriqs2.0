@@ -11,7 +11,7 @@ function makeButtons() {
   makeRemoveBallsButton();
   //makeResetButtons();
   makeNumbersButtons(playButton);
-  //makeZenModeButtons()
+  makeZenModeButtons()
   makeInfoButton();
   //makeFullscreenButtons()
   appendClassNames();
@@ -27,6 +27,9 @@ function lastActive() {
 
 function keyboardResponse(playButton) {
   document.addEventListener('keypress', e => {
+
+    console.log(e.which);
+
     if (keyCode === 80) {
       console.log("pressed P");
       for (let i = 0; i < qty; i++) {
@@ -38,8 +41,13 @@ function keyboardResponse(playButton) {
     if (keyCode === 32) {
       console.log('Pressed spacebar')
       pausePlay(playButton);
-
     }
+
+    if (keyCode === 27) {
+      console.log("Pressed escape");
+      //initializeCanvas(initHeight, initWidth, setScale3);
+    }
+
   })
 }
 
@@ -358,75 +366,78 @@ function makeInfoButton() {
 //   console.log('hello');
 // })
 
-// function makeZenModeButtons() {
-//   let zenButton = document.getElementById('newZenModeButton')
-//   buttons.push(zenButton);
+function makeZenModeButtons() {
+  let zenButton = document.getElementById('newZenModeButton')
+  buttons.push(zenButton);
 
-//   zenButton.addEventListener('click', (e) => {
-//     e.stopPropagation();
-//     let elem = document.querySelector('body');
-//     resetButtons();
+  zenButton.addEventListener('click', (e) => {
 
-//     fullScreen = false;
-//     initializeCanvas(initWidth, initHeight, setScale);
-//     openFullScreen();
-
-//     function openFullScreen() {
-//       if (elem.requestFullscreen) {
-//         elem.requestFullscreen();
-//       } else if (elem.mozRequestFullScreen) {
-//         /* Firefox */
-//         elem.mozRequestFullScreen();
-//       } else if (elem.webkitRequestFullscreen) {
-//         /* Chrome, Safari & Opera */
-//         elem.webkitRequestFullscreen();
-//       } else if (elem.msRequestFullscreen) {
-//         /* IE/Edge */
-//         elem.msRequestFullscreen();
-//       }
-//       if (run === false) {
-//         drawElementsDuringSetup();
-//       }
-//     }
-//     //I don't need this line for this function: objectType = "Reverse Drag";
-//   });
-// }
-
-
-function makeFullscreenButtons() {
-  //I need to fix the background for this one too.
-  //It also doesn't actually fullScreen because  is still being
-  //...calculated for the height of the buttonDiv.
-  let fullscreenButton = createButton("Fullscreen");
-  buttonContainer.appendChild(fullscreenButton.elt);
-  buttons.push(fullscreenButton.elt);
-
-  fullscreenButton.mouseClicked((e) => {
-    e.stopPropagation();
-    fullScreen = true;
-    let elt = document.querySelector('body');
+    let elem = document.querySelector('#wrapper');
     resetButtons();
-    fullscreenButton.elt.className = "active";
-    initializeCanvas(initWidth, initHeight, setScale);
+
+    //fullScreen = true;
     openFullScreen();
 
     function openFullScreen() {
-      if (elt.requestFullscreen) {
-        elt.requestFullscreen();
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+        initializeCanvas(initWidth, initHeight, fullscreenScale);
       } else if (elem.mozRequestFullScreen) {
         /* Firefox */
-        elt.mozRequestFullScreen();
+        elem.mozRequestFullScreen();
+        initializeCanvas(initWidth, initHeight, fullscreenScale);
       } else if (elem.webkitRequestFullscreen) {
         /* Chrome, Safari & Opera */
-        elt.webkitRequestFullscreen();
+        elem.webkitRequestFullscreen();
+        initializeCanvas(initWidth, initHeight, fullscreenScale);
       } else if (elem.msRequestFullscreen) {
         /* IE/Edge */
-        elt.msRequestFullscreen();
+        elem.msRequestFullscreen();
+        initializeCanvas(initWidth, initHeight, fullscreenScale);
+      }
+      if (run === false) {
+        drawElementsDuringSetup();
       }
     }
     //I don't need this line for this function: objectType = "Reverse Drag";
   });
 }
+
+
+// function makeFullscreenButtons() {
+//   //I need to fix the background for this one too.
+//   //It also doesn't actually fullScreen because  is still being
+//   //...calculated for the height of the buttonDiv.
+//   let fullscreenButton = createButton("Fullscreen");
+//   buttonContainer.appendChild(fullscreenButton.elt);
+//   buttons.push(fullscreenButton.elt);
+
+//   fullscreenButton.mouseClicked((e) => {
+//     e.stopPropagation();
+//     fullScreen = true;
+//     let elt = document.querySelector('body');
+//     resetButtons();
+//     fullscreenButton.elt.className = "active";
+//     initializeCanvas(initWidth, initHeight, setScale3);
+//     openFullScreen();
+
+//     function openFullScreen() {
+//       if (elt.requestFullscreen) {
+//         elt.requestFullscreen();
+//       } else if (elem.mozRequestFullScreen) {
+//         /* Firefox */
+//         elt.mozRequestFullScreen();
+//       } else if (elem.webkitRequestFullscreen) {
+//         /* Chrome, Safari & Opera */
+//         elt.webkitRequestFullscreen();
+//       } else if (elem.msRequestFullscreen) {
+//         /* IE/Edge */
+//         elt.msRequestFullscreen();
+//       }
+//     }
+//     //I don't need this line for this function: objectType = "Reverse Drag";
+//   });
+// }
 
 
 

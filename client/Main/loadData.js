@@ -28,6 +28,9 @@ function reset() {
 
 function loadSessionState() {
 
+  // if the user is not logged in it should return the default object.
+
+
   const url = '/saveName/session';
 
   $.get(url, function (data) {

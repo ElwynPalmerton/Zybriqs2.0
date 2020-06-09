@@ -66,32 +66,59 @@ function initializeCanvas(startWidth, startHeight, calcScale) {
 }
 
 //This should go in a utilities folder.
+// function createResizeListener() {
+//   var resizeTimer;
+//   window.addEventListener("resize", () => {
+//     clearTimeout(resizeTimer);
+//     resizeTimer = setTimeout(
+//       initializeCanvas(initWidth, initHeight, setScale3),
+//       500
+//     );
+//     if (run === false) {
+//       drawElementsDuringSetup()
+//     }
+//   });
+//   initializeCanvas(initWidth, initHeight, setScale3);
+//   //Add the setTimeout trick in here.
+// }
+
+
+
 function createResizeListener() {
-  var resizeTimer;
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(
-      initializeCanvas(initWidth, initHeight, setScale3),
-      500
-    );
-    if (run === false) {
-      drawElementsDuringSetup()
+  document.addEventListener('fullscreenchange', exitHandler);
+  document.addEventListener('webkitfullscreenchange', exitHandler);
+  document.addEventListener('mozfullscreenchange', exitHandler);
+  document.addEventListener('MSFullscreenChange', exitHandler);
+
+
+  function exitHandler() {
+    console.log('Exiting');
+
+    if (fullScreen === false) {
+      fullScreen = true;
+      //console.log('reinitializing');
+    } else if (fullScreen === true) {
+      fullScreen = false;
+      initializeCanvas(initWidth, initHeight, setScale3);
     }
-  });
-  initializeCanvas(initWidth, initHeight, setScale3);
-  //Add the setTimeout trick in here.
+
+    console.log(fullScreen);
+  }
+
+
 }
 
 ///////SETUP///////
 
-
 function setup() {
+
 
   colorMode(HSB);
 
   //setup canvas.
   initializeCanvas(initWidth, initHeight, setScale3);
-  //createResizeListener();
+  createResizeListener();
+
 
   const urlParams = new URLSearchParams(window.location.search)
   savedZib = urlParams.get('savedZib');
