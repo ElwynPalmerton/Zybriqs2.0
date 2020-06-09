@@ -165,6 +165,12 @@ app.get("/getValue", (req, res) => {
   console.log(req.session);
 });
 
+app.get("/about", (req, res) => {
+  res.render('pages/about', {
+    user: req.user,
+  });
+})
+
 //This is called form listSaved.ejs after the radio button for the saved Zibriq is selected.
 //Redirects to /restre?savedZib=  _ID.
 app.post("/loadState", (req, res) => {

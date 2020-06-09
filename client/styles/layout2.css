@@ -24,6 +24,7 @@
 #colorPalette {
   float: right;
   fill: #555;
+  margin-left: 2px;
 }
 
 /* Right column  */
@@ -33,6 +34,8 @@
   grid-row: 1;
   justify-self: left;
   padding-bottom: -5px;
+  padding-left: 3px;
+  padding-right: 0px;
   ;
 }
 
@@ -40,6 +43,7 @@
   /* border: 1px solid red; */
   color: #777;
   display: grid;
+  grid-row-gap: 0.2em;
   grid-column-gap: .25em;
   grid-template-columns: 30% 70%;
   grid-template-rows: 1fr 1fr;
