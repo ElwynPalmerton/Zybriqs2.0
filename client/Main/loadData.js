@@ -36,7 +36,6 @@ function loadSessionState() {
   const url = '/saveName/session';
 
   $.get(url, function (data) {
-    console.log('session data: ', data);
 
     newSessionState = JSON.parse(data);
     initializeObjects(newSessionState);

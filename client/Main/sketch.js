@@ -1,11 +1,10 @@
 //Zibriqs by Elwyn Palmerton
 //
-//import Mover from 'mover.js';
 //
-//Objects: Balls, liquids/reverseLiquid     //Add Blocks.
+//
 
 
-
+//Object variables:
 const balls = [];
 var qty = 3; //I can remove this after I change setup to just respond to the initialization object.
 const reverseLiquids = [];
@@ -47,6 +46,7 @@ let fullScreen = false;
 var buttons = [];
 var run = true;
 var scl;
+var gridActive = false;
 
 function initializeCanvas(startWidth, startHeight, calcScale) {
   //Remove any canvas children in the canvasContainer.
@@ -64,24 +64,6 @@ function initializeCanvas(startWidth, startHeight, calcScale) {
   let container = document.getElementById("canvasContainer");
   container.appendChild(cnv.elt);
 }
-
-//This should go in a utilities folder.
-// function createResizeListener() {
-//   var resizeTimer;
-//   window.addEventListener("resize", () => {
-//     clearTimeout(resizeTimer);
-//     resizeTimer = setTimeout(
-//       initializeCanvas(initWidth, initHeight, setScale3),
-//       500
-//     );
-//     if (run === false) {
-//       drawElementsDuringSetup()
-//     }
-//   });
-//   initializeCanvas(initWidth, initHeight, setScale3);
-//   //Add the setTimeout trick in here.
-// }
-
 
 
 function createResizeListener() {
@@ -133,8 +115,8 @@ function setup() {
 
 
   if (savedZib) {
-    //loadData actually calls initializeObjects. I am not
-    //why this is even working.
+    //loadData calls initializeObjects.
+    //Why does this work this way? Object assignment?
     //Why isn't it being over-ridden by the call to 
     //initializeObjects(defaultObject2) below.
     let savedZybObject = loadData(savedZib);
@@ -165,7 +147,6 @@ function setup() {
     let body = document.body;
     body.addEventListener('mouseup', () => {
       submitSession();
-      console.log('mouse Event!!!!');
     })
   }
   addSessionUpdateListener();

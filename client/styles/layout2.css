@@ -109,6 +109,6 @@ select {
   grid-gap: 1em;
   justify-self: start;
   /* justify-content: center; */
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(13, 1fr);
   width: 800px;
 }

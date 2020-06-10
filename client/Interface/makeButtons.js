@@ -13,9 +13,9 @@ function makeButtons() {
   makeNumbersButtons(playButton);
   makeZenModeButtons()
   makeInfoButton();
-  //makeFullscreenButtons()
   appendClassNames();
   keyboardResponse(playButton);
+  activateGrid();
 }
 
 function lastActive() {
@@ -404,41 +404,6 @@ function makeZenModeButtons() {
 }
 
 
-// function makeFullscreenButtons() {
-//   //I need to fix the background for this one too.
-//   //It also doesn't actually fullScreen because  is still being
-//   //...calculated for the height of the buttonDiv.
-//   let fullscreenButton = createButton("Fullscreen");
-//   buttonContainer.appendChild(fullscreenButton.elt);
-//   buttons.push(fullscreenButton.elt);
-
-//   fullscreenButton.mouseClicked((e) => {
-//     e.stopPropagation();
-//     fullScreen = true;
-//     let elt = document.querySelector('body');
-//     resetButtons();
-//     fullscreenButton.elt.className = "active";
-//     initializeCanvas(initWidth, initHeight, setScale3);
-//     openFullScreen();
-
-//     function openFullScreen() {
-//       if (elt.requestFullscreen) {
-//         elt.requestFullscreen();
-//       } else if (elem.mozRequestFullScreen) {
-//         /* Firefox */
-//         elt.mozRequestFullScreen();
-//       } else if (elem.webkitRequestFullscreen) {
-//         /* Chrome, Safari & Opera */
-//         elt.webkitRequestFullscreen();
-//       } else if (elem.msRequestFullscreen) {
-//         /* IE/Edge */
-//         elt.msRequestFullscreen();
-//       }
-//     }
-//     //I don't need this line for this function: objectType = "Reverse Drag";
-//   });
-// }
-
 
 
 function resetButtons() { //Change name to clearButtons();
@@ -500,5 +465,23 @@ function appendClassNames() {
   for (let i = 4; i < buttons.length; i++) {
     buttons[i].classList.add("btn-row-2");
   }
+}
+
+
+function activateGrid() {
+  gridButton = document.getElementById('activateGrid');
+  gridButton.addEventListener('click', () => {
+    if (gridActive === false) {
+      gridActive = true;
+      gridButton.className = "active";
+      if (run === false) {
+        drawElementsDuringSetup();
+      }
+    } else if (gridActive === true) {
+      gridActive = false;
+      gridButton.className = "notActive";
+      drawElementsDuringSetup();
+    }
+  });
 
 }
