@@ -93,6 +93,7 @@ class Liquid {
 
   displayNumber(number) {
     textSize(16);
+    noStroke();
     fill(20);
     var insetX = 10;
     var insetY = 20;

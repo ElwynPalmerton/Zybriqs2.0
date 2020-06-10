@@ -100,6 +100,9 @@ function createResizeListener() {
     } else if (fullScreen === true) {
       fullScreen = false;
       initializeCanvas(initWidth, initHeight, setScale3);
+      if (run === false) {
+        drawElementsDuringSetup();
+      }
     }
 
     console.log(fullScreen);

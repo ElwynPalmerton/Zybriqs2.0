@@ -256,15 +256,18 @@
             <path d="M19 13H5v-2h14v2z" />
             <path d="M0 0h24v24H0z" fill="none" /></svg>
         </button>
-        <button onmouseover="nhpup.popup('Add ball.');" id="newAddBallButton">
+
+        <!-- Add ball  -->
+        <button class="changeBalls" onmouseover="nhpup.popup('Add ball.');" id="newAddBallButton">
           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
             <path d="M0 0h24v24H0z" fill="none" />
             <path
               d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
           </svg>
         </button>
+
         <!-- Remove Ball  -->
-        <button onmouseover="nhpup.popup('Remove ball.');" id="newRemoveBallButton">
+        <button class="changeBalls" onmouseover="nhpup.popup('Remove ball.');" id="newRemoveBallButton">
           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
             <path d="M0 0h24v24H0z" fill="none" />
             <path
@@ -273,7 +276,6 @@
         <button onmouseover="nhpup.popup('Show/Hide pop-up hints. ');" id="newNumbersButton">#</button>
 
         <!-- Fullscreen  -->
-
         <button name="fullscreen" onmouseover="nhpup.popup('Fullscreen.');" id="newZenModeButton">
           <svg class="notActive" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
             <path d="M0 0h24v24H0z" fill="none" />
@@ -282,7 +284,6 @@
         </button>
 
         <!-- Info  -->
-
         <button id="newInfoButton">
           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
             <path d="M0 0h24v24H0z" fill="none" />
@@ -291,36 +292,17 @@
           </svg></button>
 
         <!-- Save  -->
-        <!-- Save  -->
-        <!-- Save  -->
-        <!-- Save  -->
-
         <button class="notActive" class="upload" onclick="submitData()">
-          <i class="fa fa-floppy-o floppy" aria-hidden="true"></i>
-          <!--           
-          <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            x="0px" y="0px" viewBox="0 0 27 27 " height="24" width="24" <g>
-            <g id="c180_disquette">
-              <path d="M25.508,0.633H2.206C0.986,0.633,0,1.617,0,2.836v22.042c0,1.215,0.986,2.202,2.206,2.202h22.068l3.439-3.399V2.836
-			C27.714,1.617,26.727,0.633,25.508,0.633z M23.781,25.998H4.021v-10.11H23.77L23.781,25.998z M23.924,14.681H3.793V3.062h20.131
-			V14.681z" />
-              <path
-                d="M14.013,13.236h8.314V4.355h-8.314H13.7H5.39v8.881h8.31H14.013z M13.214,12.41H6.187V5.178h7.027V12.41z" />
-            </g>
-            <g id="Capa_1_218_">
-            </g> -->
-
-          </svg>
-
-
+          <i class="floppy far fa-save"></i>
         </button>
 
-        <!-- End save button   -->
         <!-- Load  -->
         <form action="/loadSavedNames" method="get">
           <button id="loadButton" onclick="" class="download">
 
-            <i class="fas fa-file-download download"></i>
+
+            <i class="far fa-arrow-alt-circle-down download"></i>
+            <!-- <i class="fas fa-file-download download"></i> -->
           </button>
           <!-- loadData() is in "restoreState" -->
           <!-- I can probably delete this now.  -->

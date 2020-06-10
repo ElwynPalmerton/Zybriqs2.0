@@ -143,11 +143,11 @@ label {
 
 .floppy {
   margin-top: 3px;
-  font-size: 1.30em;
+  font-size: 1.40em;
 }
 
 .download {
-  font-size: 1.1em;
+  font-size: 1.15em;
 }
 
 .sliderIcons {
@@ -159,13 +159,6 @@ i {
   margin-top: 2px;
   font-size: 1.25em;
 }
-
-/* 
-.floppy {
-  width: 100px;
-  height: 24px;
-
-} */
 
 .active {
   background: #222225;
