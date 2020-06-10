@@ -17,6 +17,7 @@ function loadData(zibID) {
     console.log("Loading state in loadData: ", newStateJSON);
 
     initializeObjects(newStateJSON);
+    submitSession(); //Sends the session data to the server (saveState.js.)
     return newStateJSON;
   })
 }
@@ -27,6 +28,7 @@ function reset() {
 }
 
 function loadSessionState() {
+  //This is called from setup() in Sketch.js.
 
   // if the user is not logged in it should return the default object.
 
@@ -34,7 +36,7 @@ function loadSessionState() {
   const url = '/saveName/session';
 
   $.get(url, function (data) {
-    //console.log('session data: ', data);
+    console.log('session data: ', data);
 
     newSessionState = JSON.parse(data);
     initializeObjects(newSessionState);

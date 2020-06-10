@@ -17,11 +17,6 @@ function applyColors() {
   }
 
 
-
-
-
-
-
   balls.forEach((ball, i) => {
     let index = i % palette.balls.length;
     ball.color = Object.assign({}, palette.balls[index]);

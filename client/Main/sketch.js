@@ -111,9 +111,12 @@ function createResizeListener() {
 
 }
 
+
+
 ///////SETUP///////
 
 function setup() {
+
 
 
   colorMode(HSB);
@@ -157,5 +160,15 @@ function setup() {
   createController();
   //Read the initial color values from the controller.
   readController();
+
+  function addSessionUpdateListener() {
+    let body = document.body;
+    body.addEventListener('mouseup', () => {
+      submitSession();
+      console.log('mouse Event!!!!');
+    })
+  }
+  addSessionUpdateListener();
+
 
 }

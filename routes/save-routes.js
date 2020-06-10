@@ -21,7 +21,9 @@ const maxZybs = 3;
 
 // Initial route
 // for saving Zybriqs 's.
-// //Front-end sends the Zybriq data here with the $.post.
+// Front-end sends sends a post request of the Zybriq state here //////from submitData (in loadData.js);
+
+
 saveRoutes.post("/", (req, res) => {
   req.session.state = req.body.state;
   //This just sends a success message.
@@ -75,22 +77,28 @@ saveRoutes.post("/saveOver", (req, res) => {
   });
 });
 
-saveRoutes.post('/session', (req, res) => {
-  req.session.state = req.body.state;
 
-  console.log('in session route: ', req.session.state);
-
-  //req.session.state = req.body.state;
-  //console.log(req.session.state);
-  res.send('success');
-  res.end();
-})
+//I think that this is a vestigial duplicate of the "/saveName" route
+//which can be deleted.
+//
+// saveRoutes.post('/session', (req, res) => {
+//   req.session.state = req.body.state;
+//   res.send('success');
+//   res.end();
+// })
 
 saveRoutes.get('/session', (req, res) => {
-  console.log("in saveName/session", req.session.state);
-  let state = JSON.parse(req.session.state);
-  let prettyState = JSON.stringify(state, null, 2);
-  res.send(req.session.state);
+  console.log("Auth: ", req.isAuthenticaled);
+
+  if (req.isAuthenticated()) {
+    console.log("in saveName/session", req.session.state);
+    let state = JSON.parse(req.session.state);
+    console.log('Sending session:', state);
+    res.send(req.session.state);
+  } else {
+    console.log('Sending null session.');
+    res.send(null);
+  }
 })
 
 

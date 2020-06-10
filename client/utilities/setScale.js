@@ -91,8 +91,6 @@ function fullscreenScale() {
   let cw = document.body.clientWidth;
   let ch = document.body.clientHeight;
 
-
-
   let scale = screen.availHeight / initHeight;
 
   console.log("clienHeight in fullscreen: ", ch);

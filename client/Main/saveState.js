@@ -17,6 +17,24 @@ function submitData() {
   });
 }
 
+function submitSession() {
+
+  let stateData = saveState();
+
+  let stateJSON = JSON.stringify(stateData);
+
+  const url = "/saveName";
+
+  const data = {
+    name: "Zybriqs5",
+    state: stateJSON,
+  };
+
+  $.post(url, data, function (data, status) {
+    console.log(`${data} and status is ${status}`);
+  });
+}
+
 
 function saveState() {
   state = {};
