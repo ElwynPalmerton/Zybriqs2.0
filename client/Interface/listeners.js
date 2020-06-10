@@ -57,8 +57,65 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
       endRect.x < width &&
       endRect.y < height
     ) {
+
+
+
       //Make a minimum size for rectangles using an if-then statement here (and a pop-up?)
       //Instead of "Outline" the class type should be a varible which is passed in from listeners.
+      //
+
+
+
+      //Snap to grid.
+
+      if (gridActive) {
+        let gridSize = 25;
+        gridSize *= scl;
+
+        startRect.x = parseInt(startRect.x)
+
+        let offset = startRect.x % gridSize;
+        //25 is the value of gridSize in the background class.
+
+        if (offset <= gridSize / 2) {
+          startRect.x -= offset;
+        } else {
+          startRect.x += gridSize - offset;
+        }
+
+        endRect.x = parseInt(endRect.x);
+
+        let offsetXEnd = endRect.x % gridSize;
+
+        if (offsetXEnd <= gridSize / 2) {
+          endRect.x -= offsetXEnd;
+        } else {
+          endRect.x += gridSize - offsetXEnd;
+        }
+
+        startRect.y = parseInt(startRect.y);
+
+        let offsetYStart = startRect.y % gridSize;
+
+        if (offsetYStart <= gridSize / 2) {
+          startRect.y -= offsetYStart
+        } else {
+          startRect.y += gridSize - offsetYStart;
+        }
+
+        endRect.y = parseInt(endRect.y);
+
+        let offsetYEnd = endRect.y % gridSize;
+
+        if (offsetYEnd <= gridSize / 2) {
+          endRect.y -= offsetYEnd;
+        } else {
+          endRect.y += gridSize - offsetYEnd;
+        }
+      }
+
+      //End of snap-to-grid
+
 
       if (run === false) { //Only lets it add blocks when the program is paused.
 
