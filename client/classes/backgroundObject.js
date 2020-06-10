@@ -11,9 +11,10 @@ class backgroundObject {
   }
 
   display() {
-    let c = this.color;
-    c.a = parseInt(c.a);
-    let p5bgColor = color(c.h, c.s, c.l, c.a);
+    let backgroundColor = this.color;
+    // c.a = parseInt(c.a);
+    // console.log("Background color alpha: ", backgroundColor.a)
+    let p5bgColor = color(backgroundColor.h, backgroundColor.s, backgroundColor.l, parseFloat(backgroundColor.a));
     background(p5bgColor);
   }
 
@@ -25,7 +26,8 @@ class backgroundObject {
       a
     } = this.color;
 
-    let p5Color = color(h, s - dimAmt, l, parseFloat(a));
+    //let p5Color = color(h, s - dimAmt, l, parseFloat(a));
+    let p5Color = color(h, s - dimAmt, l, a);
     background(p5Color);
   }
 

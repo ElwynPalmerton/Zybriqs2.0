@@ -68,6 +68,7 @@ function setScale2() {
   return scale;
 }
 
+//Clear out setScale1 and 2.
 
 function setScale3() {
   //if ((screen.availHeight || screen.height - 30) <= window.innerHeight) 
@@ -75,13 +76,9 @@ function setScale3() {
   let cw = document.body.clientWidth;
   let ch = document.body.clientHeight;
 
-  console.log("clientHeight: ", ch);
-  console.log("clientWidth: ", cw);
-  // console.log("initHeight", initHeight);
-  // console.log("initWidth", initWidth);
+  //Default scale
   let scale = 0.8;
-  //Calculate scale
-  console.log("Standard scale: ", scale);
+
   return scale;
 
 
@@ -92,13 +89,6 @@ function fullscreenScale() {
   let ch = document.body.clientHeight;
 
   let scale = screen.availHeight / initHeight;
-
-  console.log("clienHeight in fullscreen: ", ch);
-  console.log("clientWidth in fullscreen: ", cw);
-  // console.log("initHeight", initHeight);
-  // console.log("initWidth", initWidth);
-  console.log("scale in fullscreen: ", scale);
-
 
   return scale;
 }
