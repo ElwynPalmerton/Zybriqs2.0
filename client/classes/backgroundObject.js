@@ -29,7 +29,7 @@ class backgroundObject {
 
       let gridSize = 25;
       //Calculate gridSize as an even interval?
-      stroke(0, 0, 50, 1);
+      stroke(0, 0, 100, 0.1);
       strokeWeight(1);
       noFill();
 
