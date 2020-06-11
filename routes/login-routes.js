@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
+const session = require("express-session");
 const User = require('../models/mongoose-model');
 const passportLocalMongoose = require('passport-local-mongoose');
 const {
@@ -11,7 +12,7 @@ const {
 router.get("/", (req, res) => {
   res.render("pages/login", {
     user: req.user,
-    msg: "Login: ",
+    msg: "",
     cameFrom: "loginRoute",
   });
 });
@@ -22,11 +23,17 @@ router.post("/", (req, res) => {
     password: req.body.password,
   });
 
-  req.login(user, function (err) {
-    if (err) {
-      console.log(err);
-    } else {
-      passport.authenticate("local")(req, res, function () {
+
+  passport.authenticate("local", {
+      successRedirect: "/",
+      failureRedirect: "/login",
+    })
+    (req, res, function () {
+
+      console.log('authenticated: ');
+      console.log(req.isAuthenticated);
+      console.log(req.user);
+      if (req.isAuthenticated) {
         var cameFrom = req.body.cameFrom;
         if (cameFrom === "loadRoute") {
           res.redirect("/loadSavedNames");
@@ -38,9 +45,11 @@ router.post("/", (req, res) => {
           res.redirect("/");
           //Ad a flag to the request object? and check for it here?
         }
-      });
-    }
-  });
+      } else {
+        res.redirect("/login");
+      }
+    });
+
 });
 
 module.exports = router;

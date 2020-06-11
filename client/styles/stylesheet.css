@@ -209,3 +209,7 @@ form {
   width: 100%;
   margin: 0;
 }
+
+#numbersButton {
+  font-size: 1.3em;
+}

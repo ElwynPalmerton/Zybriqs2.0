@@ -1,9 +1,10 @@
-const router = require('express').Router();
-const passport = require('passport');
-const session = require('express-session');
-const User = require('../models/mongoose-model');
-const passportLocalMongoose = require('passport-local-mongoose');
-const Zybriq = require('../models/zybriqs-model');
+const router = require("express").Router();
+const passport = require("passport");
+const session = require("express-session");
+const User = require("../models/mongoose-model");
+const passportLocalMongoose = require("passport-local-mongoose");
+const Zybriq = require("../models/zybriqs-model");
+const validator = require("email-validator");
 
 router.get("/", (req, res) => {
   res.render("pages/register", {
@@ -36,22 +37,29 @@ router.post("/", (req, res) => {
   //If pw's match then it registers the user and redirects.
 
   User.findOne({
-    username: username
+    username: username,
   }).then((foundUser) => {
     if (foundUser) {
       res.render("pages/register", {
         user: req.user,
-        msg: "That user is already registered. Please choose a different user name.",
+        msg:
+          "That user is already registered. Please choose a different user name.",
       });
     } else if (password1 !== password2) {
       res.render("pages/register", {
         user: req.user,
         msg: "Passwords must match.",
       });
+    } else if (!validator.validate(email)) {
+      res.render("pages/register", {
+        user: req.user,
+        msg: "You must enter a valid email.",
+      });
     } else {
-      User.register({
+      User.register(
+        {
           username: username,
-          email: email
+          email: email,
         },
         password1,
         function (err, user) {
@@ -65,7 +73,6 @@ router.post("/", (req, res) => {
           }
         }
       );
-
     } //end of else.
   }); //end of User.findOne.
 }); //end app.post

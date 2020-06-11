@@ -272,8 +272,12 @@
             <path d="M0 0h24v24H0z" fill="none" />
             <path
               d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-          </svg></button>
-        <button onmouseover="nhpup.popup('Show/Hide pop-up hints. ');" id="newNumbersButton">#</button>
+          </svg>
+        </button>
+
+        <!-- Numbers  -->
+        <button onmouseover="nhpup.popup('Show/Hide pop-up hints. ');" id="newNumbersButton"><span
+            id="numbersButton">#</span></button>
 
         <!-- Fullscreen  -->
         <button name="fullscreen" onmouseover="nhpup.popup('Fullscreen.');" id="newZenModeButton">
@@ -310,7 +314,7 @@
           <!-- reset() is in Main/loadData.js -->
         </form>
         <button id="activateGrid">
-          grid
+          <i class="fas fa-border-all"></i>
         </button>
 
 
