@@ -13,9 +13,7 @@ const passportLocalMongoose = require("passport-local-mongoose");
 //mongo store.
 const mongoStore = require("connect-mongo")(session);
 
-
 const app = express();
-
 
 //routes
 const registerRoutes = require("./routes/register-routes");
@@ -30,12 +28,9 @@ const {
   zybriqSchema
 } = require("./models/zybriqs-model");
 
-
-
 app.use(express.static(__dirname + "/client"));
 
 // app.use('/client', express.static(__dirname + "/client"));
-
 
 app.set("view engine", "ejs");
 
@@ -48,9 +43,9 @@ app.use(
 app.use(
   session({
     store: new mongoStore({
-      url: process.env.DATABASE_URL,
+      url: "mongodb+srv://Elwyn-admin:O2DTmaWFbLETKnsj@cluster0-svbll.mongodb.net/Zybriqs",
     }),
-    secret: process.env.SECRET,
+    //secret: process.env.SECRET,
     resave: true,
     saveUninitialized: false,
     cookie: {
@@ -67,11 +62,14 @@ let db;
 
 mongoose
   // .connect("mongodb://localhost:27017/zybriqsDB", {
-  .connect("mongodb+srv://Elwyn-admin:O2DTmaWFbLETKnsj@cluster0-svbll.mongodb.net/Zybriqs?retryWrites=true&w=majority", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(dbConnection => {
+  .connect(
+    "mongodb+srv://Elwyn-admin:O2DTmaWFbLETKnsj@cluster0-svbll.mongodb.net/Zybriqs", {
+      // .connect("mongodb+srv://Elwyn-admin:O2DTmaWFbLETKnsj@cluster0-svbll.mongodb.net/Zybriqs?retryWrites=true&w=majority", {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
+  .then((dbConnection) => {
     db = dbConnection;
   })
   .catch((error) => {
@@ -89,8 +87,8 @@ let tempZybriq; //I probably don't need this.
 
 /////////////ROOT///////////////
 app.get("/", (req, res) => {
-  console.log('rendering');
-  res.render('pages/index', {
+  console.log("rendering");
+  res.render("pages/index", {
     user: req.user,
   });
   //res.sendFile(path.join(__dirname, "client", "index.html"));
@@ -102,7 +100,7 @@ app.use("/restore", restoreRoutes);
 
 app.get("/restore", (req, res) => {
   // res.sendFile(path.join(__dirname, "client", "index.html"));
-  res.render('pages/index', {
+  res.render("pages/index", {
     user: req.user,
   });
   //I don't know how to reference the __dirname to a differenct folder using this command or whatever it is I need to do.
@@ -142,8 +140,6 @@ app.get("/saveOver", (req, res) => {
   });
 });
 
-
-
 app.get("/success", (req, res) => {
   res.render("pages/saveSuccess", {
     user: req.user,
@@ -151,7 +147,6 @@ app.get("/success", (req, res) => {
     id: req.user.tempID,
   });
 });
-
 
 app.get("/registerSuccess", (req, res) => {
   console.log("in registerSuccess route.");
@@ -171,10 +166,10 @@ app.get("/getValue", (req, res) => {
 });
 
 app.get("/about", (req, res) => {
-  res.render('pages/about', {
+  res.render("pages/about", {
     user: req.user,
   });
-})
+});
 
 //This is called form listSaved.ejs after the radio button for the saved Zibriq is selected.
 //Redirects to /restre?savedZib=  _ID.
@@ -189,13 +184,12 @@ app.post("/loadState", (req, res) => {
 //Listening for port.
 let port = process.env.PORT;
 
-if (port == null || port == "") {
-  port = 8000;
-}
+// if (port == null || port == "") {
+//   port = 8000;
+// }
 
 app.listen(port, function () {
-  console.log('Server has started.')
+  console.log("Server has started.");
 });
-
 
 //app.listen(3000, console.log("Running server on port 3000"));
