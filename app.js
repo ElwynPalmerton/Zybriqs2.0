@@ -1,3 +1,6 @@
+//https://whispering-castle-65063.herokuapp.com/
+// https://git.heroku.com/whispering-castle-65063.git
+
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
@@ -63,7 +66,8 @@ app.use(passport.session());
 let db;
 
 mongoose
-  .connect("mongodb://localhost:27017/zybriqsDB", {
+  // .connect("mongodb://localhost:27017/zybriqsDB", {
+  .connect("mongodb+srv://Elwyn-admin:O2DTmaWFbLETKnsj@cluster0-svbll.mongodb.net/Zybriqs?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -182,4 +186,16 @@ app.post("/loadState", (req, res) => {
   res.redirect("restore?savedZib=" + savedZybriq);
 }); //End of /loadState.
 
-app.listen(3000, console.log("Running server on port 3000"));
+//Listening for port.
+let port = process.env.PORT;
+
+if (port == null || port == "") {
+  port = 8000;
+}
+
+app.listen(port, function () {
+  console.log('Server has started.')
+});
+
+
+//app.listen(3000, console.log("Running server on port 3000"));
