@@ -36,11 +36,26 @@
   <script src="utilities/makeRectangle.js"></script>
   <script src="utilities/drawDuringSetup.js"></script>
   <script src="utilities/setScale.js"></script>
-  <!-- Color and Design Presets  -->
+  <script src="utilities/output.js"></script>
+  <!-- Design Presets  -->
   <script src="designPresets/defaultObject.js"></script>
   <script src="designPresets/defaultObject2.js"></script>
+  <script src="designPresets/castle.js"></script>
+  <script src="designPresets/jazz.js"></script>
+  <script src="designPresets/laszlo.js"></script>
+  <script src="designPresets/malevich.js"></script>
+  <script src="designPresets/plinko.js"></script>
+  <script src="designPresets/tetris.js"></script>
+  <script src="designPresets/joe.js"></script>
+  <script src="designPresets/house.js"></script>
+
+  <!-- Color presets 
+    -->
   <script src="colorPresets/B&W.js"></script>
   <script src="colorPresets/Rainbow.js"></script>
+  <script src="colorPresets/underwater.js"></script>
+  <script src="colorPresets/acid.js"></script>
+  <script src="colorPresets/maraschino.js"></script>
   <!-- Main -->
   <script src="Main/sketch.js"></script>
   <script src="Main/draw.js"></script>
@@ -206,8 +221,16 @@
         <label for="Presets">Layout Presets:</label>
         <select onchange="reInitialize()" id="designPresets">
           <option>-</option>
-          <option value="defaultObject">default1</option>
-          <option value="defaultObject2">default2</option>
+          <option value="defaultObject">Basic</option>
+          <option value="defaultObject2">Standard</option>
+          <option value="castle">Castle</option>
+          <option value="jazz">Jazz</option>
+          <option value="laszlo">Laszlo</option>
+          <option value="malevich">Malevich</option>
+          <option value="plinko">Plinko</option>
+          <option value="tetris">Tetris</option>
+          <option value="joe">Joe</option>
+          <option value="house">House</option>
         </select>
       </Card>
 
@@ -217,6 +240,9 @@
           <option>-</option>
           <option value="B&W">B&W</option>
           <option value="Rainbow">Rainbow</option>
+          <option value="underwater">Underwater</option>
+          <option value="acid">Acid</option>
+          <option value="maraschino">Maraschino</option>
         </select>
       </Card>
 
@@ -303,10 +329,9 @@
         <!-- Load  -->
         <form action="/loadSavedNames" method="get">
           <button id="loadButton" onclick="" class="download">
-
-
             <i class="far fa-arrow-alt-circle-down download"></i>
             <!-- <i class="fas fa-file-download download"></i> -->
+
           </button>
           <!-- loadData() is in "restoreState" -->
           <!-- I can probably delete this now.  -->
@@ -317,6 +342,10 @@
           <i class="fas fa-border-all"></i>
         </button>
 
+
+        <button onclick="outputJSON()">
+          output
+        </button>
 
       </div> <!-- End Button Container -->
 

@@ -3,7 +3,6 @@
 //
 //
 
-
 //Object variables:
 const balls = [];
 var qty = 3; //I can remove this after I change setup to just respond to the initialization object.
@@ -12,7 +11,6 @@ const liquids = [];
 const backgroundArray = [];
 var blocks = [];
 let objectType;
-
 
 //Display variables:
 const dimAmt = 30;
@@ -31,11 +29,11 @@ const windC = 0.05;
 let intensityInput = 50;
 let directionInput = 0;
 
-//Grid parameters   
+//Grid parameters
 var cnv;
 const initWidth = 1000;
 const initHeight = 800;
-const minSize = 50;
+const minSize = 24;
 
 //Interface variables
 let infoPopup = false;
@@ -65,17 +63,13 @@ function initializeCanvas(startWidth, startHeight, calcScale) {
   container.appendChild(cnv.elt);
 }
 
-
 function createResizeListener() {
-  document.addEventListener('fullscreenchange', exitHandler);
-  document.addEventListener('webkitfullscreenchange', exitHandler);
-  document.addEventListener('mozfullscreenchange', exitHandler);
-  document.addEventListener('MSFullscreenChange', exitHandler);
-
+  document.addEventListener("fullscreenchange", exitHandler);
+  document.addEventListener("webkitfullscreenchange", exitHandler);
+  document.addEventListener("mozfullscreenchange", exitHandler);
+  document.addEventListener("MSFullscreenChange", exitHandler);
 
   function exitHandler() {
-    console.log('Exiting');
-
     if (fullScreen === false) {
       fullScreen = true;
       //console.log('reinitializing');
@@ -86,38 +80,29 @@ function createResizeListener() {
         drawElementsDuringSetup();
       }
     }
-
-    console.log(fullScreen);
   }
-
-
 }
-
-
 
 ///////SETUP///////
 
+
+
 function setup() {
-
-
-
   colorMode(HSB);
 
   //setup canvas.
   initializeCanvas(initWidth, initHeight, setScale3);
   createResizeListener();
 
-
-  const urlParams = new URLSearchParams(window.location.search)
-  savedZib = urlParams.get('savedZib');
+  const urlParams = new URLSearchParams(window.location.search);
+  savedZib = urlParams.get("savedZib");
 
   let zibState = Object.assign({}, defaultObject2);
-
 
   if (savedZib) {
     //loadData calls initializeObjects.
     //Why does this work this way? Object assignment?
-    //Why isn't it being over-ridden by the call to 
+    //Why isn't it being over-ridden by the call to
     //initializeObjects(defaultObject2) below.
     let savedZybObject = loadData(savedZib);
     //Instead of calling initializeObjects from loadData, it should return the value.
@@ -131,11 +116,6 @@ function setup() {
     // }
   }
 
-
-
-
-
-
   initializeObjects(defaultObject2);
   //Initialize the interface.
   makeButtons();
@@ -145,11 +125,9 @@ function setup() {
 
   function addSessionUpdateListener() {
     let body = document.body;
-    body.addEventListener('mouseup', () => {
+    body.addEventListener("mouseup", () => {
       submitSession();
-    })
+    });
   }
   addSessionUpdateListener();
-
-
 }

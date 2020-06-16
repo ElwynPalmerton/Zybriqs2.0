@@ -1,4 +1,5 @@
-function listeners() { //listeners gets called from the makeBlockButton and the MakeDragButton
+function listeners() {
+  //listeners gets called from the makeBlockButton and the MakeDragButton
   drawElementsDuringSetup();
   //showNumbers();
 
@@ -16,7 +17,7 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
     }
   }
 
-  let cnv = document.getElementById('canvasContainer')
+  let cnv = document.getElementById("canvasContainer");
   //document.addEventListener("mousedown", onMouseDown);
   cnv.addEventListener("mousedown", onMouseDown);
 
@@ -45,7 +46,6 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
     //...Which means which means that I should check to see if isDrawing
     //... is... already... false?
 
-
     isDrawing = false;
     if (
       startRect.x > 0 &&
@@ -57,14 +57,9 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
       endRect.x < width &&
       endRect.y < height
     ) {
-
-
-
       //Make a minimum size for rectangles using an if-then statement here (and a pop-up?)
       //Instead of "Outline" the class type should be a varible which is passed in from listeners.
       //
-
-
 
       //Snap to grid.
 
@@ -72,7 +67,7 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
         let gridSize = 25;
         gridSize *= scl;
 
-        startRect.x = parseInt(startRect.x)
+        startRect.x = parseInt(startRect.x);
 
         let offset = startRect.x % gridSize;
         //25 is the value of gridSize in the background class.
@@ -98,7 +93,7 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
         let offsetYStart = startRect.y % gridSize;
 
         if (offsetYStart <= gridSize / 2) {
-          startRect.y -= offsetYStart
+          startRect.y -= offsetYStart;
         } else {
           startRect.y += gridSize - offsetYStart;
         }
@@ -116,11 +111,16 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
 
       //End of snap-to-grid
 
-
-      if (run === false) { //Only lets it add blocks when the program is paused.
+      if (run === false) {
+        //Only lets it add blocks when the program is paused.
 
         if (objectType === "Drag") {
-          let newLiquid = new Liquid(startRect, endRect, dragCoefficient, defaultDragColor);
+          let newLiquid = new Liquid(
+            startRect,
+            endRect,
+            dragCoefficient,
+            defaultDragColor
+          );
           if (newLiquid.width > minSize && newLiquid.height > minSize) {
             liquids.push(newLiquid);
             //This should return an object of the type passed into listeners();
@@ -137,16 +137,24 @@ function listeners() { //listeners gets called from the makeBlockButton and the 
           createController();
           updateSliders2();
         } else if (objectType === "Reverse Drag") {
-          let newAccelerator = new Liquid(startRect, endRect, -dragCoefficient, defaultAccelColor);
-          if (newAccelerator.width > minSize && newAccelerator.height > minSize) {
+          let newAccelerator = new Liquid(
+            startRect,
+            endRect,
+            -dragCoefficient,
+            defaultAccelColor
+          );
+          if (
+            newAccelerator.width > minSize &&
+            newAccelerator.height > minSize
+          ) {
             reverseLiquids.push(newAccelerator);
             clearDuplicates();
             createController();
             updateSliders2();
           }
         }
-        drawElementsDuringSetup() //This function is in the file utilities/drawDuringSetup();
-      };
+        drawElementsDuringSetup(); //This function is in the file utilities/drawDuringSetup();
+      }
     } //End of if stmt which checsk the edges of the box.
-  }) //End event listener ('mouseup').
+  }); //End event listener ('mouseup').
 } //End listeners().

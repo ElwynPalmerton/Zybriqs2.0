@@ -77,6 +77,7 @@ function initializeObjects(settings) {
 }
 
 function reInitialize() {
+  console.log('reinitializing')
   let designPreset = document.querySelector("#designPresets");
   let objName = designPreset.value;
 
@@ -86,6 +87,30 @@ function reInitialize() {
       break;
     case "defaultObject2":
       initializeObjects(defaultObject2);
+      break;
+    case "castle":
+      initializeObjects(castle);
+      break;
+    case "jazz":
+      initializeObjects(jazz);
+      break;
+    case "laszlo":
+      initializeObjects(laszlo);
+      break;
+    case "malevich":
+      initializeObjects(malevich);
+      break;
+    case "plinko":
+      initializeObjects(plinko);
+      break;
+    case "tetris":
+      initializeObjects(tetris);
+      break;
+    case "joe":
+      initializeObjects(joe);
+      break;
+    case "house":
+      initializeObjects(house);
       break;
     default:
       // Do nothing.

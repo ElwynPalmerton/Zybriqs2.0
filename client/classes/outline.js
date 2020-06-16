@@ -1,4 +1,5 @@
-class Outline { //Change name to Block.
+class Outline {
+  //Change name to Block.
   constructor(start, end, color) {
     //Color variables.
     //Color variables.
@@ -12,7 +13,6 @@ class Outline { //Change name to Block.
     Object.assign(thisColor, assignColor);
     this.color = thisColor;
 
-
     //I think that this has to be before the assignments below.
     this.start = start; //Vector.
     this.end = end; //Vector.
@@ -20,42 +20,18 @@ class Outline { //Change name to Block.
     this.width = Math.abs(this.start.x - this.end.x);
     this.height = Math.abs(this.start.y - this.end.y);
 
-    //This is weird, rewrite this:
-    if (this.start.x < this.end.x) {
-      if (this.start.y < this.end.y) {
-        //Bottom-right - do nothing.
-      } else {
-        //top-right
-        //this.start.x = this.start.x
-        let tempY = this.start.y;
-        this.start.y = this.end.y
-        this.end.y = tempY;
-      }
-    } else {
-      //left-side
-      if (this.start.y < this.end.y) {
-        //bottom-left
-        let tempX = this.start.x;
-        this.start.x = this.end.x;
-        this.end.x = tempX;
-      } else {
-        //top-left
-        let tempX = this.start.x;
-        let tempY = this.start.y;
-
-        this.start.x = this.end.x;
-        this.start.y = this.end.y;
-
-        this.end.x = tempX;
-        this.end.y = tempY;
-      }
+    if (this.start.x > this.end.x) {
+      let tempX = this.start.x;
+      this.start.x = this.end.x;
+      this.end.x = tempX;
     }
 
-
-    //this.drawStart = this.start;
-
+    if (this.start.y > this.end.y) {
+      let tempY = this.start.y;
+      this.start.y = this.end.y;
+      this.end.y = tempY;
+    }
   }
-
 
   update(end) {
     this.end = end; //|| this.start;
@@ -77,14 +53,17 @@ class Outline { //Change name to Block.
       a
     } = this.color;
 
-
-
     let p5Color = color(h, s - dimAmt, l, parseFloat(a));
     stroke(p5Color);
     strokeWeight(5);
     //fill(fColor);
     noFill();
-    rect(this.start.x * scl, this.start.y * scl, this.width * scl, this.height * scl);
+    rect(
+      this.start.x * scl,
+      this.start.y * scl,
+      this.width * scl,
+      this.height * scl
+    );
   }
 
   // display(c, fColor) {
@@ -103,23 +82,40 @@ class Outline { //Change name to Block.
     strokeWeight(5);
     //fill(fColor);
     noFill();
-    rect(this.start.x * scl, this.start.y * scl, this.width * scl, this.height * scl);
+    rect(
+      this.start.x * scl,
+      this.start.y * scl,
+      this.width * scl,
+      this.height * scl
+    );
   }
 
   displayNumber(number) {
     textSize(16);
-    text(number, this.start.x * scl, this.start.y * scl);
+    noStroke();
+    fill(20);
+    textSize(16);
+    text("b" + number, this.start.x * scl, this.start.y * scl);
   }
 
   displayRemoveButton() {
-
     const xBoxSize = 15;
     stroke(66, 7, 100, 1);
     strokeWeight(2);
     noFill();
     // noFill();
     rect(this.start.x * scl, this.start.y * scl, xBoxSize, xBoxSize);
-    line(this.start.x * scl, this.start.y * scl, this.start.x * scl + xBoxSize, this.start.y * scl + xBoxSize)
-    line(this.start.x * scl + xBoxSize, this.start.y * scl, this.start.x * scl, this.start.y * scl + xBoxSize)
+    line(
+      this.start.x * scl,
+      this.start.y * scl,
+      this.start.x * scl + xBoxSize,
+      this.start.y * scl + xBoxSize
+    );
+    line(
+      this.start.x * scl + xBoxSize,
+      this.start.y * scl,
+      this.start.x * scl,
+      this.start.y * scl + xBoxSize
+    );
   }
 }

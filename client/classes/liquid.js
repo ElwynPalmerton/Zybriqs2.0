@@ -1,8 +1,5 @@
 class Liquid {
-
   constructor(start, end, c, color) {
-
-
     start.x = start.x / scl;
     start.y = start.y / scl;
     end.x = end.x / scl;
@@ -19,7 +16,6 @@ class Liquid {
     //Coefficient of drag.
     this.c = c || 0.3;
 
-
     //positioning.
     this.start = start; //Vector.
     this.end = end; //Vector.
@@ -28,38 +24,21 @@ class Liquid {
     this.height = Math.abs(this.start.y - this.end.y);
 
     //This is weird, rewrite this:
-    if (this.start.x < this.end.x) {
-      if (this.start.y < this.end.y) {
-        //rect(this.start.x, this.start.y, this.width, this.height);
-      } else {
-        // this.start.x = this.start.x
-        //idk?
-        let tempY = this.start.y
-        this.start.y = this.end.y
-        this.end.y = tempY;
-        //rect(this.start.x, this.end.y, this.width, this.height);
-      }
-    } else {
-      if (this.start.y < this.end.y) {
-        //bottom-left
-        let tempX = this.start.x;
-        this.start.x = this.end.x;
-        this.end.x = tempX;
-        //rect(this.end.x, this.start.y, this.width, this.height);
-      } else {
-        let tempX = this.start.x;
-        let tempY = this.start.y;
 
-        this.start.x = this.end.x;
-        this.start.y = this.end.y;
-
-        this.end.x = tempX;
-        this.end.y = tempY;
-        //rect(this.end.x, this.end.y, this.width, this.height);
-      }
+    if (this.start.x > this.end.x) {
+      let tempX = this.start.x;
+      this.start.x = this.end.x;
+      this.end.x = tempX;
     }
-  } //End constructor
 
+    if (this.start.y > this.end.y) {
+      let tempY = this.start.y;
+      this.start.y = this.end.y;
+      this.end.y = tempY;
+    }
+
+
+  } //End constructor
 
   displayDimmed() {
     let {
@@ -72,10 +51,13 @@ class Liquid {
     let p5Color = color(h, s - dimAmt, l, parseFloat(a));
     noStroke();
     fill(p5Color);
-    rect(this.start.x * scl, this.start.y * scl, this.width * scl, this.height * scl);
+    rect(
+      this.start.x * scl,
+      this.start.y * scl,
+      this.width * scl,
+      this.height * scl
+    );
   }
-
-
 
   display(c) {
     let {
@@ -88,7 +70,12 @@ class Liquid {
     let p5Color = color(h, s, l, parseFloat(a));
     noStroke();
     fill(p5Color);
-    rect(this.start.x * scl, this.start.y * scl, this.width * scl, this.height * scl);
+    rect(
+      this.start.x * scl,
+      this.start.y * scl,
+      this.width * scl,
+      this.height * scl
+    );
   }
 
   displayNumber(number) {
@@ -107,9 +94,17 @@ class Liquid {
     noFill();
 
     rect(this.start.x * scl, this.start.y * scl, xBoxSize, xBoxSize);
-    line(this.start.x * scl, this.start.y * scl, this.start.x * scl + xBoxSize, this.start.y * scl + xBoxSize)
-    line(this.start.x * scl + xBoxSize, this.start.y * scl, this.start.x * scl, this.start.y * scl + xBoxSize)
-
+    line(
+      this.start.x * scl,
+      this.start.y * scl,
+      this.start.x * scl + xBoxSize,
+      this.start.y * scl + xBoxSize
+    );
+    line(
+      this.start.x * scl + xBoxSize,
+      this.start.y * scl,
+      this.start.x * scl,
+      this.start.y * scl + xBoxSize
+    );
   }
-
 } //End liquid.

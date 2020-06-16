@@ -12,6 +12,15 @@ function applyColors() {
     case "Rainbow":
       palette = rainbow;
       break;
+    case "underwater":
+      palette = underwater;
+      break;
+    case "acid":
+      palette = acid;
+      break;
+    case "maraschino":
+      palette = maraschino;
+      break;
     default:
       // Do nothing.
   }
