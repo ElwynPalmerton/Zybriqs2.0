@@ -80,18 +80,16 @@ saveRoutes.post("/saveOver", (req, res) => {
 
 
 saveRoutes.get('/session', (req, res) => {
-  //console.log("Auth: ", req.isAuthenticaled);
-
   if (req.isAuthenticated()) {
-    console.log("in saveName/session", req.session.state);
+    //console.log("in saveName/session", req.session.state);
     let state = JSON.parse(req.session.state);
-    console.log('Sending session:', state);
+    //console.log('Sending session:', state);
     res.send(req.session.state);
   } else {
     //req.logout();
     //req.session.destroy();
     // res.redirect("/");
-    console.log('Sending null session.');
+    //console.log('Sending null session.');
     res.send(null);
   }
 })

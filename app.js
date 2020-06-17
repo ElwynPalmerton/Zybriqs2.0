@@ -91,7 +91,7 @@ let tempZybriq; //I probably don't need this.
 
 /////////////ROOT///////////////
 app.get("/", (req, res) => {
-  console.log("rendering");
+  // console.log("rendering");
   res.render("pages/index", {
     user: req.user,
   });
