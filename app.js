@@ -8,6 +8,7 @@ const ejs = require("ejs");
 const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
+const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 
 //mongo store.
@@ -40,12 +41,16 @@ app.use(
   })
 );
 
+
+
+let db;
+
 app.use(
   session({
+    secret: process.env.SECRET,
     store: new mongoStore({
-      url: "mongodb+srv://Elwyn-admin:O2DTmaWFbLETKnsj@cluster0-svbll.mongodb.net/Zybriqs",
+      url: "mongodb+srv://Elwyn-admin:O2DTmaWFbLETKnsj@cluster0-svbll.mongodb.net/Zybriqs?retryWrites=true&w=majority",
     }),
-    //secret: process.env.SECRET,
     resave: true,
     saveUninitialized: false,
     cookie: {
@@ -58,12 +63,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-let db;
-
 mongoose
   // .connect("mongodb://localhost:27017/zybriqsDB", {
   .connect(
-    "mongodb+srv://Elwyn-admin:O2DTmaWFbLETKnsj@cluster0-svbll.mongodb.net/Zybriqs", {
+    "mongodb+srv://Elwyn-admin:O2DTmaWFbLETKnsj@cluster0-svbll.mongodb.net/Zybriqs?retryWrites=true&w=majority", {
       // .connect("mongodb+srv://Elwyn-admin:O2DTmaWFbLETKnsj@cluster0-svbll.mongodb.net/Zybriqs?retryWrites=true&w=majority", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -75,6 +78,8 @@ mongoose
   .catch((error) => {
     console.log("Mongo connection error:", error);
   });
+
+
 
 mongoose.set("useCreateIndex", true);
 
