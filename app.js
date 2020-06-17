@@ -49,7 +49,8 @@ app.use(
     store: new mongoStore({
       url: "mongodb+srv://Elwyn-admin:O2DTmaWFbLETKnsj@cluster0-svbll.mongodb.net/Zybriqs?retryWrites=true&w=majority",
     }),
-    secret: process.env.SECRET,
+    // secret: process.env.SECRET,
+    secret: "Dumb secret",
     resave: true,
     saveUninitialized: false,
     cookie: {
