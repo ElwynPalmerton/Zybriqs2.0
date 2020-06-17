@@ -338,7 +338,7 @@ function makeInfoButton() {
 
   //infoPopup = true;
   let infoButton = document.getElementById('newInfoButton');
-  infoButton.className = "notActive"
+  infoButton.className = "active"
   //buttons.push(numbersButton);
   infoButton.addEventListener('click', (e) => {
 

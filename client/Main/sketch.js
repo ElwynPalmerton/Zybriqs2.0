@@ -36,7 +36,7 @@ const initHeight = 800;
 const minSize = 24;
 
 //Interface variables
-let infoPopup = false;
+let infoPopup = true;
 var drawButtonOn = false;
 var removeButtonOn = false;
 let zenMode = false;

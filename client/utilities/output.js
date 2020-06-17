@@ -6,7 +6,6 @@ function outputJSON() {
 
   let colorStateJSON = JSON.parse(stateText);
 
-
   // console.log(colorState);
 
   let balls = [];
@@ -40,23 +39,10 @@ function outputJSON() {
   colorArray.blocks = blocks;
   colorArray.backgroundColor = colorStateJSON.backgroundColor;
 
-
   colorArray = JSON.stringify(colorArray);
   let colorArrayString = colorArray.replace(/\"/g, "");
 
-
-
   console.log(colorArrayString);
-
-
-
-
-
-
-
-
-
-
 }
 
 
