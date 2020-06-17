@@ -8,7 +8,6 @@ const ejs = require("ejs");
 const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
-const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 
 //mongo store.
