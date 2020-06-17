@@ -78,17 +78,9 @@ saveRoutes.post("/saveOver", (req, res) => {
 });
 
 
-//I think that this is a vestigial duplicate of the "/saveName" route
-//which can be deleted.
-//
-// saveRoutes.post('/session', (req, res) => {
-//   req.session.state = req.body.state;
-//   res.send('success');
-//   res.end();
-// })
 
 saveRoutes.get('/session', (req, res) => {
-  console.log("Auth: ", req.isAuthenticaled);
+  //console.log("Auth: ", req.isAuthenticaled);
 
   if (req.isAuthenticated()) {
     console.log("in saveName/session", req.session.state);
@@ -96,8 +88,8 @@ saveRoutes.get('/session', (req, res) => {
     console.log('Sending session:', state);
     res.send(req.session.state);
   } else {
-    req.logout();
-    req.session.destroy();
+    //req.logout();
+    //req.session.destroy();
     // res.redirect("/");
     console.log('Sending null session.');
     res.send(null);

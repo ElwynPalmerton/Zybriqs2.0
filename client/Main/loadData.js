@@ -15,9 +15,10 @@ function loadData(zibID) {
   $.post(url, requestData, function (data, status) {
     newStateJSON = JSON.parse(data);
     console.log("Loading state in loadData: ", newStateJSON);
-
-    initializeObjects(newStateJSON);
-    submitSession(); //Sends the session data to the server (saveState.js.)
+    if (newStateJSON) {
+      initializeObjects(newStateJSON);
+      submitSession(); //Sends the session data to the server (saveState.js.)
+    }
     return newStateJSON;
   })
 }
@@ -36,9 +37,10 @@ function loadSessionState() {
   const url = '/saveName/session';
 
   $.get(url, function (data) {
-
-    newSessionState = JSON.parse(data);
-    initializeObjects(newSessionState);
+    if (data) {
+      newSessionState = JSON.parse(data);
+      initializeObjects(newSessionState);
+    }
     //newSessionState = JSON.parse 
 
   })

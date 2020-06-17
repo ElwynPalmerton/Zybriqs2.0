@@ -46,10 +46,10 @@ let db;
 
 app.use(
   session({
-    secret: process.env.SECRET,
     store: new mongoStore({
       url: "mongodb+srv://Elwyn-admin:O2DTmaWFbLETKnsj@cluster0-svbll.mongodb.net/Zybriqs?retryWrites=true&w=majority",
     }),
+    secret: process.env.SECRET,
     resave: true,
     saveUninitialized: false,
     cookie: {
@@ -188,9 +188,9 @@ app.post("/loadState", (req, res) => {
 //Listening for port.
 let port = process.env.PORT;
 
-// if (port == null || port == "") {
-//   port = 8000;
-// }
+if (port == null || port == "") {
+  port = 3000;
+}
 
 app.listen(port, function () {
   console.log("Server has started.");
