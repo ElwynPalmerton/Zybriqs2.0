@@ -7,8 +7,8 @@ let tetris = {
   }],
   blocks: [{
     color: {
-      h: 0,
-      s: 68,
+      h: 360,
+      s: 78,
       l: 70,
       a: 1
     },
@@ -233,7 +233,7 @@ let tetris = {
   }, {
     color: {
       h: 229,
-      s: 70,
+      s: 61,
       l: 70,
       a: 1
     },
@@ -264,9 +264,9 @@ let tetris = {
   }],
   accel: [{
     color: {
-      h: 200,
+      h: 210,
       s: 100,
-      l: 40,
+      l: 70,
       a: 0.5
     },
     start: {
