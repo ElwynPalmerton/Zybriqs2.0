@@ -33,7 +33,8 @@ function initializeObjects(settings) {
       liquidStart,
       liquidEnd,
       dragCoefficient,
-      settings.drag[i].color
+      settings.drag[i].color,
+      "d"
     );
     liquids.push(liquid);
   }
@@ -57,7 +58,8 @@ function initializeObjects(settings) {
       reverseLiquidStart,
       reverseLiquidEnd,
       -dragCoefficient,
-      settings.accel[i].color
+      settings.accel[i].color,
+      "a"
     );
     reverseLiquids.push(reverseLiquid);
   }

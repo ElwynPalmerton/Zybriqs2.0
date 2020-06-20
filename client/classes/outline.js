@@ -95,7 +95,7 @@ class Outline {
     noStroke();
     fill(20);
     textSize(16);
-    text("b" + number, this.start.x * scl, this.start.y * scl);
+    text("b." + number, this.start.x * scl, this.start.y * scl);
   }
 
   displayRemoveButton() {

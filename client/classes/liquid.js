@@ -1,9 +1,10 @@
 class Liquid {
-  constructor(start, end, c, color) {
+  constructor(start, end, c, color, prefix) {
     start.x = start.x / scl;
     start.y = start.y / scl;
     end.x = end.x / scl;
     end.y = end.y / scl;
+    this.prefix = prefix;
 
     //Color variables.
     let assignColor = color || defaultColor;
@@ -84,7 +85,7 @@ class Liquid {
     fill(20);
     var insetX = 10;
     var insetY = 20;
-    text(number, this.start.x * scl + insetX, this.start.y * scl + insetY);
+    text(this.prefix + '.' + number, this.start.x * scl + insetX, this.start.y * scl + insetY);
   }
 
   displayRemoveButton() {

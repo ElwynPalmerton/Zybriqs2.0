@@ -119,7 +119,8 @@ function listeners() {
             startRect,
             endRect,
             dragCoefficient,
-            defaultDragColor
+            defaultDragColor,
+            "a"
           );
           if (newLiquid.width > minSize && newLiquid.height > minSize) {
             liquids.push(newLiquid);
@@ -141,7 +142,8 @@ function listeners() {
             startRect,
             endRect,
             -dragCoefficient,
-            defaultAccelColor
+            defaultAccelColor,
+            "d"
           );
           if (
             newAccelerator.width > minSize &&
