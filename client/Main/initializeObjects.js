@@ -105,8 +105,8 @@ function reInitialize() {
     case "plinko":
       initializeObjects(plinko);
       break;
-    case "tetris":
-      initializeObjects(tetris);
+    case "blocky":
+      initializeObjects(blocky);
       break;
     case "joe":
       initializeObjects(joe);
