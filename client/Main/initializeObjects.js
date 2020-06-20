@@ -114,6 +114,9 @@ function reInitialize() {
     case "house":
       initializeObjects(house);
       break;
+    case "nagy":
+      initializeObjects(nagy);
+      break;
     default:
       // Do nothing.
   }
