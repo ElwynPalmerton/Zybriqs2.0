@@ -20,39 +20,53 @@ const maxZybs = 3;
 
 
 // Initial route
-// for saving Zybriqs 's.
-// Front-end sends sends a post request of the Zybriq state here //////from submitData (in loadData.js);
-
+// for saving Zybriqses.
+// Front-end js sends sends a post request of the Zybriq state here ////// from submitData (in loadData.js);
 
 saveRoutes.post("/", (req, res) => {
   req.session.state = req.body.state;
-  //This just sends a success message.
-  //The get /saveName route is handling the naming.
+  //This just saves the state to the session variable so that it is available on the server after the user has logged in and chosen a name to save it under.
+  //The get /saveName route below is handling the naming.
   res.send({
     user: req.user,
     message: "Success",
   });
 });
 
-///Save over existing Zybriq.
-// saveRoutes.get("/saveOver", (req, res) => {
-//   //Gets a list of all saved Zybriqs and sends it to the pages/saveOver.ejs view.
-//   let zibNames = [];
-//   let zibIds = [];
 
-//   for (let zib of req.user.Zybriqs) {
-//     zibNames.push(zib.name);
-//     zibIds.push(zib._id);
-//   }
+//The save button calls the submitData() function in
+//saveState.js which then uses Window.location.assign('/saveName');
 
-//   console.log("Rendering maxiumum Zybs");
+saveRoutes.get("/", (req, res) => {
+  if (req.isAuthenticated()) {
+    //CHeck this here and created redirect to Delete a Zybriqs.
+    //Or let them replace a Zybriq.
+    if (req.user.Zybriqs.length >= maxZybs) {
+      res.redirect("/saveOver");
+      res.end();
+    } else {
+      let msg;
+      msg = "Please name your Zybriq:";
+      if (req.session.exists === true) {
+        //req.session.exists is assigned true if the /saveZybriq route tries to save the current Zybriq over an existing name.
+        msg = "That Zybriq already exists. Choose a new name:";
+        req.session.exists = false;
+      } //This is probably a terrible
+      res.render("pages/saveName", {
+        //pages/saveName takes a name as an input and sends the name to /saveZybriq to save the current Zybriq to mongo.
+        user: req.user,
+        message: msg,
+      });
+    }
+  } else {
+    res.render("pages/login", {
+      user: req.user,
+      msg: "You must be logged in to save your Zybriq.",
+      cameFrom: "saveRoute",
+    });
+  }
+});
 
-//   res.render("pages/saveOver.ejs", {
-//     user: req.user,
-//     zibNames: zibNames,
-//     zibIds: zibIds,
-//   });
-// });
 
 
 
@@ -81,50 +95,13 @@ saveRoutes.post("/saveOver", (req, res) => {
 
 saveRoutes.get('/session', (req, res) => {
   if (req.isAuthenticated()) {
-    //console.log("in saveName/session", req.session.state);
     let state = JSON.parse(req.session.state);
-    //console.log('Sending session:', state);
     res.send(req.session.state);
   } else {
-    //req.logout();
-    //req.session.destroy();
-    // res.redirect("/");
-    //console.log('Sending null session.');
     res.send(null);
   }
 })
 
-
-//The save button calls the submitData() function in
-//saveState.js which then uses Window.location.assign('/saveName');
-//Called from submitData() with assign();
-saveRoutes.get("/", (req, res) => {
-  if (req.isAuthenticated()) {
-    //CHeck this here and created redirect to Delete a Zybriqs.
-    //Or let them replace a Zybriq.
-    if (req.user.Zybriqs.length >= maxZybs) {
-      res.redirect("/saveOver");
-      res.end();
-    } else {
-      let msg;
-      msg = "Please name your Zybriq:";
-      if (req.session.exists === true) {
-        msg = "That Zybriq already exists. Choose a new name:";
-        req.session.exists = false;
-      } //This is probably a terrible
-      res.render("pages/saveName", {
-        user: req.user,
-        message: msg,
-      });
-    }
-  } else {
-    res.render("pages/login", {
-      user: req.user,
-      msg: "You must be logged in to save your Zybriq.",
-      cameFrom: "saveRoute",
-    });
-  }
-});
 
 //Called from the form in saveName.ejs.
 //Receives the Zybriqs name and saves it to the database.

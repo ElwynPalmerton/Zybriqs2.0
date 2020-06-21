@@ -179,9 +179,11 @@ app.get("/about", (req, res) => {
 //This is called form listSaved.ejs after the radio button for the saved Zibriq is selected.
 //Redirects to /restre?savedZib=  _ID.
 app.post("/loadState", (req, res) => {
-  //console.log('In /loadState');
 
   let savedZybriq = req.body.name;
+  //This re-routes from saveZybriq as req.user.tempID to saveSuccess
+  //and then here but I could just use req.session to store it and
+  //avoid all the spaghetti.
 
   res.redirect("restore?savedZib=" + savedZybriq);
 }); //End of /loadState.

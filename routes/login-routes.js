@@ -30,9 +30,9 @@ router.post("/", (req, res) => {
     })
     (req, res, function () {
 
-      console.log('authenticated: ');
-      console.log(req.isAuthenticated);
-      console.log(req.user);
+      // console.log('authenticated: ');
+      // console.log(req.isAuthenticated);
+      // console.log(req.user);
       if (req.isAuthenticated) {
         var cameFrom = req.body.cameFrom;
         if (cameFrom === "loadRoute") {

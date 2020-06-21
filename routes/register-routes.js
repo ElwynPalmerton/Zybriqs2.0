@@ -13,18 +13,6 @@ router.get("/", (req, res) => {
   });
 });
 
-// router.get("/success", (req, res) => {
-//   console.log("in registerSuccess route.");
-
-//   console.log("isAuth ", req.isAuthenticated());
-//   if (req.isAuthenticated()) {
-//     res.render("pages/registerSuccess", {
-//       user: req.user,
-//     });
-//   } else {
-//     res.redirect("/login");
-//   }
-// });
 
 router.post("/", (req, res) => {
   let username = req.body.username;
@@ -42,8 +30,7 @@ router.post("/", (req, res) => {
     if (foundUser) {
       res.render("pages/register", {
         user: req.user,
-        msg:
-          "That user is already registered. Please choose a different user name.",
+        msg: "That user is already registered. Please choose a different user name.",
       });
     } else if (password1 !== password2) {
       res.render("pages/register", {
@@ -56,8 +43,7 @@ router.post("/", (req, res) => {
         msg: "You must enter a valid email.",
       });
     } else {
-      User.register(
-        {
+      User.register({
           username: username,
           email: email,
         },
