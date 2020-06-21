@@ -180,10 +180,14 @@ app.get("/about", (req, res) => {
 //Redirects to /restre?savedZib=  _ID.
 app.post("/loadState", (req, res) => {
 
-  let savedZybriq = req.body.name;
-  //This re-routes from saveZybriq as req.user.tempID to saveSuccess
-  //and then here but I could just use req.session to store it and
+  let savedZybriq = req.body.name;  //This is the mongo ID for the current Zybriq.
+  //This is re-rerouted from saveZybriq as req.user.tempID to saveSuccess and then retrieved here and sent to restore.
+  //but I should (???)just use req.session to store it and
   //avoid all the spaghetti.
+  //
+  //!!!!!!!!!!!!!!!
+  //Save it to req.session.zybID in /saveZybriq (save-routes.js).
+  //and then just use that here.
 
   res.redirect("restore?savedZib=" + savedZybriq);
 }); //End of /loadState.

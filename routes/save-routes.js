@@ -109,7 +109,8 @@ saveRoutes.post("/saveZibriq", (req, res) => {
   if (req.isAuthenticated()) {
     let zName = req.body.zName;
 
-    req.session.exists = false;
+    req.session.exists = false; //Assumes that the name is not taken already and then checks for it in the database.
+
 
     User.find({
       $and: [{
@@ -127,7 +128,7 @@ saveRoutes.post("/saveZibriq", (req, res) => {
       if (foundZyb.length !== 0) {
         res.redirect("/saveName");
         req.session.exists = true;
-        exists = true;
+        exists = true; //This is redundant. Delete?
       } else {
         const tempZ = new Zybriq({
           name: req.body.zName,
@@ -135,6 +136,8 @@ saveRoutes.post("/saveZibriq", (req, res) => {
         });
 
         tempZ.save();
+        //Zybriq and User are both mongoose models.
+        //This saves the Zybriq and then User.findOne saves that Zybriq to the array of Zybriqs on that user's db item.
 
         User.findOne({
             username: req.user.username,
@@ -145,7 +148,7 @@ saveRoutes.post("/saveZibriq", (req, res) => {
               .save()
               .then((user) => {
 
-                req.user.tempID = tempZ.id;
+                req.user.tempID = tempZ.id;  //Where is this used?
                 res.redirect('/success');
                 // res.render("pages/saveSuccess", {
                 //   user: req.user,

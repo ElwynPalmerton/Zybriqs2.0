@@ -13,10 +13,11 @@ const {
 
 //The restore  GET route is in app.js. I couldn't get it to work through this router... something to do with the directory naming. I think that it was rendering the html but couldn't find the static files. But, anyhoo...
 //The GET route sends the index.ejs file 
-//This POST request comes from the front-end js and 
+//This POST request comes from the front-end (loadData.js) js and 
 //sends the state data.
 //restore POST route.
 //loadData in loadData.js is called from sketch.js. This initialized the restored Zybriq state.
+
 router.post("/", (req, res) => {
   let id = req.body.zibID;
 
