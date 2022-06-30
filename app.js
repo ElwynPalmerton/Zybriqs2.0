@@ -23,10 +23,7 @@ const loadSavedRoutes = require("./routes/load-saved-route");
 const deleteRoutes = require("./routes/delete-routes");
 const saveRoutes = require("./routes/save-routes");
 const User = require("./models/mongoose-model");
-const {
-  Zybriq,
-  zybriqSchema
-} = require("./models/zybriqs-model");
+const { Zybriq, zybriqSchema } = require("./models/zybriqs-model");
 
 app.use(express.static(__dirname + "/client"));
 
@@ -40,17 +37,15 @@ app.use(
   })
 );
 
-
-
 let db;
 
 app.use(
   session({
     store: new mongoStore({
-      url: "mongodb+srv://Elwyn-admin:O2DTmaWFbLETKnsj@cluster0-svbll.mongodb.net/Zybriqs?retryWrites=true&w=majority",
+      url: process.env.DATABASE_URL,
     }),
     // secret: process.env.SECRET,
-    secret: "Dumb secret",
+    secret: process.env.SECRET,
     resave: true,
     saveUninitialized: false,
     cookie: {
@@ -64,22 +59,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 mongoose
-  // .connect("mongodb://localhost:27017/zybriqsDB", {
-  .connect(
-    "mongodb+srv://Elwyn-admin:O2DTmaWFbLETKnsj@cluster0-svbll.mongodb.net/Zybriqs?retryWrites=true&w=majority", {
-      // .connect("mongodb+srv://Elwyn-admin:O2DTmaWFbLETKnsj@cluster0-svbll.mongodb.net/Zybriqs?retryWrites=true&w=majority", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  )
+  .connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then((dbConnection) => {
     db = dbConnection;
   })
   .catch((error) => {
     console.log("Mongo connection error:", error);
   });
-
-
 
 mongoose.set("useCreateIndex", true);
 
@@ -179,8 +168,7 @@ app.get("/about", (req, res) => {
 //This is called form listSaved.ejs after the radio button for the saved Zibriq is selected.
 //Redirects to /restre?savedZib=  _ID.
 app.post("/loadState", (req, res) => {
-
-  let savedZybriq = req.body.name;  //This is the mongo ID for the current Zybriq.
+  let savedZybriq = req.body.name; //This is the mongo ID for the current Zybriq.
   //This is re-rerouted from saveZybriq as req.user.tempID to saveSuccess and then retrieved here and sent to restore.
   //but I should (???)just use req.session to store it and
   //avoid all the spaghetti.
