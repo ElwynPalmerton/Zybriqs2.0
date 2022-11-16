@@ -1,21 +1,16 @@
 function makeRectangle(start, end) {
-
   let c = {
     h: 35,
     s: 100,
     l: 80,
-    a: 1
+    a: 1,
   };
 
   let rCol = color(c.h, c.s, c.l, c.a);
 
-
-
-
   stroke(rCol);
   strokeWeight(5);
   noFill();
-  //let drawStart = createVector(0, 0);
 
   let height, width;
 
@@ -35,4 +30,4 @@ function makeRectangle(start, end) {
       rect(end.x, end.y, width, height);
     }
   }
-};
+}
