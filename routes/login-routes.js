@@ -1,13 +1,9 @@
-const router = require('express').Router();
-const passport = require('passport');
+const router = require("express").Router();
+const passport = require("passport");
 const session = require("express-session");
-const User = require('../models/mongoose-model');
-const passportLocalMongoose = require('passport-local-mongoose');
-const {
-  Zybriq,
-  zybriqsSchema
-} = require('../models/zybriqs-model');
-
+const User = require("../models/mongoose-model");
+const passportLocalMongoose = require("passport-local-mongoose");
+const { Zybriq, zybriqsSchema } = require("../models/zybriqs-model");
 
 router.get("/", (req, res) => {
   res.render("pages/login", {
@@ -23,33 +19,25 @@ router.post("/", (req, res) => {
     password: req.body.password,
   });
 
-
   passport.authenticate("local", {
-      successRedirect: "/",
-      failureRedirect: "/login",
-    })
-    (req, res, function () {
-
-      // console.log('authenticated: ');
-      // console.log(req.isAuthenticated);
-      // console.log(req.user);
-      if (req.isAuthenticated) {
-        var cameFrom = req.body.cameFrom;
-        if (cameFrom === "loadRoute") {
-          res.redirect("/loadSavedNames");
-        } else if (cameFrom === "saveRoute") {
-          res.redirect("/saveName");
-        } else if (cameFrom === "deleteRoute") {
-          res.redirect('/delete');
-        } else {
-          res.redirect("/");
-          //Ad a flag to the request object? and check for it here?
-        }
+    successRedirect: "/",
+    failureRedirect: "/login",
+  })(req, res, function () {
+    if (req.isAuthenticated) {
+      var cameFrom = req.body.cameFrom;
+      if (cameFrom === "loadRoute") {
+        res.redirect("/loadSavedNames");
+      } else if (cameFrom === "saveRoute") {
+        res.redirect("/saveName");
+      } else if (cameFrom === "deleteRoute") {
+        res.redirect("/delete");
       } else {
-        res.redirect("/login");
+        res.redirect("/");
       }
-    });
-
+    } else {
+      res.redirect("/login");
+    }
+  });
 });
 
 module.exports = router;

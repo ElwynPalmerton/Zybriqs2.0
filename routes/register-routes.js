@@ -13,16 +13,11 @@ router.get("/", (req, res) => {
   });
 });
 
-
 router.post("/", (req, res) => {
   let username = req.body.username;
   let email = req.body.email;
   let password1 = req.body.password;
   let password2 = req.body.password_two;
-
-  //find the username and see if they exist already.
-  //If not, checks to see if the passwords match.
-  //If pw's match then it registers the user and redirects.
 
   User.findOne({
     username: username,
@@ -43,7 +38,8 @@ router.post("/", (req, res) => {
         msg: "You must enter a valid email.",
       });
     } else {
-      User.register({
+      User.register(
+        {
           username: username,
           email: email,
         },
@@ -59,8 +55,8 @@ router.post("/", (req, res) => {
           }
         }
       );
-    } //end of else.
-  }); //end of User.findOne.
-}); //end app.post
+    }
+  });
+});
 
 module.exports = router;

@@ -1,9 +1,5 @@
 class Outline {
-  //Change name to Block.
   constructor(start, end, color) {
-    //Color variables.
-    //Color variables.
-
     start.x = start.x / scl;
     start.y = start.y / scl;
     end.x = end.x / scl;
@@ -13,7 +9,6 @@ class Outline {
     Object.assign(thisColor, assignColor);
     this.color = thisColor;
 
-    //I think that this has to be before the assignments below.
     this.start = start; //Vector.
     this.end = end; //Vector.
 
@@ -34,24 +29,14 @@ class Outline {
   }
 
   update(end) {
-    this.end = end; //|| this.start;
+    this.end = end;
 
     this.width = Math.abs(this.start.x - this.end.x);
     this.height = Math.abs(this.start.y - this.end.y);
-
-    // if (this.start.x > this.end.x) this.start.x = this.end.x;
-    // if (this.start.y > this.end.y) this.start.y = this.end.y;
   }
 
   displayDimmed(c, fColor) {
-    //refactor to put all of the position stuff into the update function?
-    //Make an if-then which does noFill() during setup and fill during run.
-    let {
-      h,
-      s,
-      l,
-      a
-    } = this.color;
+    let { h, s, l, a } = this.color;
 
     let p5Color = color(h, s - dimAmt, l, parseFloat(a));
     stroke(p5Color);
@@ -66,21 +51,12 @@ class Outline {
     );
   }
 
-  // display(c, fColor) {
   display() {
-    //refactor to put all of the position stuff into the update function?
-    //Make an if-then which does noFill() during setup and fill during run.
-    let {
-      h,
-      s,
-      l,
-      a
-    } = this.color;
+    let { h, s, l, a } = this.color;
 
     let p5Color = color(h, s, l, parseFloat(a));
     stroke(p5Color);
     strokeWeight(5);
-    //fill(fColor);
     noFill();
     rect(
       this.start.x * scl,
@@ -103,7 +79,6 @@ class Outline {
     stroke(66, 7, 100, 1);
     strokeWeight(2);
     noFill();
-    // noFill();
     rect(this.start.x * scl, this.start.y * scl, xBoxSize, xBoxSize);
     line(
       this.start.x * scl,

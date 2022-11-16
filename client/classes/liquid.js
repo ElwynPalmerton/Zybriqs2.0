@@ -6,25 +6,17 @@ class Liquid {
     end.y = end.y / scl;
     this.prefix = prefix;
 
-    //Color variables.
     let assignColor = color || defaultColor;
     let thisColor = {};
     Object.assign(thisColor, assignColor);
     this.color = thisColor;
-
-    // this.p5Color = color(this.color.h, this.color.s, this.color.l, this.color.a);
-
-    //Coefficient of drag.
     this.c = c || 0.3;
 
-    //positioning.
     this.start = start; //Vector.
     this.end = end; //Vector.
 
     this.width = Math.abs(this.start.x - this.end.x);
     this.height = Math.abs(this.start.y - this.end.y);
-
-    //This is weird, rewrite this:
 
     if (this.start.x > this.end.x) {
       let tempX = this.start.x;
@@ -37,17 +29,10 @@ class Liquid {
       this.start.y = this.end.y;
       this.end.y = tempY;
     }
-
-
-  } //End constructor
+  }
 
   displayDimmed() {
-    let {
-      h,
-      s,
-      l,
-      a
-    } = this.color;
+    let { h, s, l, a } = this.color;
 
     let p5Color = color(h, s - dimAmt, l, parseFloat(a));
     noStroke();
@@ -61,12 +46,7 @@ class Liquid {
   }
 
   display(c) {
-    let {
-      h,
-      s,
-      l,
-      a
-    } = this.color;
+    let { h, s, l, a } = this.color;
 
     let p5Color = color(h, s, l, parseFloat(a));
     noStroke();
@@ -85,7 +65,11 @@ class Liquid {
     fill(20);
     var insetX = 10;
     var insetY = 20;
-    text(this.prefix + '.' + number, this.start.x * scl + insetX, this.start.y * scl + insetY);
+    text(
+      this.prefix + "." + number,
+      this.start.x * scl + insetX,
+      this.start.y * scl + insetY
+    );
   }
 
   displayRemoveButton() {

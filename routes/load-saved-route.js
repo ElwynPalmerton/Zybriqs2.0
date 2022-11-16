@@ -2,21 +2,12 @@ const router = require("express").Router();
 const passport = require("passport");
 const User = require("../models/mongoose-model");
 const passportLocalMongoose = require("passport-local-mongoose");
-const {
-  Zybriq,
-  zybriqsSchema
-} = require("../models/zybriqs-model");
+const { Zybriq, zybriqsSchema } = require("../models/zybriqs-model");
 
 router.get("/", (req, res) => {
-  //console.log("in load Data");
   if (req.isAuthenticated()) {
-    Zybriq.find({
-        // name: "HelloThere",
-      })
+    Zybriq.find({})
       .then((foundZybriq) => {
-        // console.log(foundZybriq[1].name);
-        // console.log(foundZybriq[1].state);
-
         let zibNames = [];
         let zibIds = [];
 
@@ -30,15 +21,10 @@ router.get("/", (req, res) => {
           zibNames: zibNames,
           zibIds: zibIds,
         });
-
-        //res.render
-        //Create the res.render fild under l
-
-        //res.send(foundZybriq.state);
       })
       .catch((err) => {
         console.log(err);
-      }); //end of findOne.
+      });
   } else {
     res.cameFrom = "loadRoute";
     res.render("pages/login", {
