@@ -22,6 +22,8 @@ class Mover {
     this.acceleration.mult(0);
   }
 
+  applyForce(force) {
+    let f = p5.Vector.div(force, this.mass);
     this.acceleration.add(f);
   }
 
@@ -44,7 +46,6 @@ class Mover {
     drg.mult(dragMagnitude);
 
     this.applyForce(drg);
-    //see p. 84 of The Nature of Code.
   }
 
   checkEdges(width, height) {
@@ -79,73 +80,49 @@ class Mover {
 
   collides(b) {
     var clearance = 1;
-    //Checks to see if the mover ("ball[i]) has collided with the element b.
-    //Outline paramenters:
-    //  this.start
-    //  this.end
-    //  this.width
-    //  this.height
-    //Mover has:
-    // this.location
-    // this.size (diameter);
-    //
-    //
-
-    //Write one and then see if it works.
-    //LEFT EDGE
     if (this.location.x < b.start.x) {
-      //Cicle is left of the left edge.  LEFT EDGE IS WORKING.
       if (
-        this.location.y >= b.start.y && // Circle CENTER is BELOW the TOP edge.
-        this.location.y <= b.start.y + b.height && //Circle CENTER is ABOVE the BOTTOM edge.
+        this.location.y >= b.start.y &&
+        this.location.y <= b.start.y + b.height &&
         b.start.x - this.location.x <= this.size / 2
       ) {
-        //Distance form circle CENTER to LEFT edge is LESS than its RADIUS.
-        //console.log("Collides!");
         this.velocity.x *= -1;
         this.location.x = b.start.x - this.size / 2 - clearance;
       }
-      //RIGHT EDGE
     } else if (this.location.x > b.start.x + b.width) {
-      //Circle is right of the right edge.
       if (
-        this.location.y >= b.start.y && //Circle center is below the top edge.
-        this.location.y <= b.start.y + b.height && //Circle center is above the bottom edge.
-        this.location.x - this.size / 2 <= b.start.x + b.width ///THIS!!!???
+        this.location.y >= b.start.y &&
+        this.location.y <= b.start.y + b.height &&
+        this.location.x - this.size / 2 <= b.start.x + b.width
       ) {
-        //Distance of the circle center from the RIGHT edge.
-        //console.log("Collides!");
         this.velocity.x *= -1;
         this.location.x = b.start.x + b.width + this.size / 2 + clearance;
       }
     }
+
     //TOP EDGE
     if (this.location.y < b.start.y) {
-      // Circle is above the top edge. TOP EDGE IS WORKING
       if (
         this.location.x > b.start.x &&
         this.location.x < b.start.x + b.width &&
         b.start.y - this.location.y <= this.size / 2
       ) {
-        //console.log("Collides!");
         this.velocity.y *= -1;
         this.location.y = b.start.y - this.size / 2 - clearance;
       }
+
       //BOTTOM EDGE
     } else if (this.location.y > b.start.y + b.height) {
-      //Circle is below the bottom edge.
       if (
         this.location.x >= b.start.x &&
         this.location.x <= b.start.x + b.width &&
         this.location.y - this.size / 2 <= b.start.y + b.height ///this.size / 2)
       ) {
-        //console.log("Collides!");
         this.velocity.y *= -1;
         this.location.y = b.start.y + b.height + this.size / 2 + clearance;
       }
     }
 
-    //Top-left corner
     if (
       dist(this.location.x, this.location.y, b.start.x, b.start.y) <=
       this.size / 2
@@ -180,7 +157,7 @@ class Mover {
       this.velocity.y = Math.abs(this.velocity.y);
     }
     //if the distance from the circle center to each corner is less than the size, reverse the x and wide velocities.
-  } //End of collides.
+  }
 
   displayDimmed() {
     let { h, s, l, a } = this.color;

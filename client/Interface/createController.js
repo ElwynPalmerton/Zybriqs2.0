@@ -1,5 +1,4 @@
 function addOptions(objects) {
-
   let numberSelector = document.getElementById("numberSelector");
 
   while (numberSelector.options.length > 0) {
@@ -13,11 +12,9 @@ function addOptions(objects) {
   }
 }
 
-
 function createController() {
-
-  let objectSelect = document.getElementById('objectSelector');
-  let numberSel = document.getElementById('numberSelector');
+  let objectSelect = document.getElementById("objectSelector");
+  let numberSel = document.getElementById("numberSelector");
 
   let obj = objectSelect.value;
   let objArray = getObjectArray(obj);
@@ -28,18 +25,11 @@ function createController() {
   } else {
     modifySliders();
   }
-
-
-} //End of createController.
-
+}
 
 function readSliders(objectNumber) {
-
-
-  let numberSelector = document.getElementById('numberSelector');
-  let objectSelector = document.getElementById('objectSelector');
-
-
+  let numberSelector = document.getElementById("numberSelector");
+  let objectSelector = document.getElementById("objectSelector");
   let hSlider = document.querySelector(".combinedSliders .hSlider");
 
   hSlider.addEventListener("input", () => {
@@ -47,7 +37,6 @@ function readSliders(objectNumber) {
     let objects = getObjectArray(objectSelector.value);
     objects[objectNumber].color.h = hSlider.value;
   });
-
 
   let sSlider = document.querySelector(".combinedSliders .sSlider");
 
@@ -76,26 +65,24 @@ function readSliders(objectNumber) {
 
 function readController() {
   //Gets the type of object being modified.
-  let objectSelector = document.getElementById('objectSelector');
+  let objectSelector = document.getElementById("objectSelector");
   let objects = getObjectArray(objectSelector.value);
 
   //Gets the number of the object
   let objectNumber = 0;
   objectNumber = numberSelector.value;
 
-  readSliders(objectNumber, objects)
+  readSliders(objectNumber, objects);
 }
 
-
 function modifySliders(newColor) {
-
   if (newColor === undefined) {
     newColor = {
       h: 180,
       s: 50,
       l: 50,
-      a: .5
-    }
+      a: 0.5,
+    };
   }
 
   let hSlider = document.querySelector(".combinedSliders .hSlider");
@@ -110,12 +97,9 @@ function modifySliders(newColor) {
 }
 
 function updateSliders() {
-  //updateSliders() is called from the onchange in the index.html file.
-  //updateSldiers() is the same as updateSliders2 except that it calls
-  // createController();
   createController();
 
-  let objectSelector = document.getElementById('objectSelector');
+  let objectSelector = document.getElementById("objectSelector");
   let objects = getObjectArray(objectSelector.value);
   let objectNumber = 0;
   objectNumber = numberSelector.value;
@@ -125,45 +109,31 @@ function updateSliders() {
   } else {
     modifySliders();
   }
-
 }
 
 function updateSliders2() {
-  //updateSliders2 is the same as updateSliders() except that
-  //... it does NOT call createController() because there was
-  //... an issue where it would reset to the first object selection every time.
-
-  //createController();
-
-  let objectSelector = document.getElementById('objectSelector');
-
+  let objectSelector = document.getElementById("objectSelector");
   let objects = getObjectArray(objectSelector.value);
-
   let objectNumber = 0;
+
   objectNumber = numberSelector.value;
   if (objects.length > 0) {
     modifySliders(objects[objectNumber].color);
   } else {
     modifySliders();
   }
-
 }
-
 
 function getObjectArray(obj) {
   let objArray = [];
   if (obj === "Balls") {
     objArray = balls;
-    //readColorSliders2(numberSelector, "#combinedSliders", balls);
   } else if (obj === "Drag") {
     objArray = liquids;
-    //readColorSliders2(numberSelector, "#combinedSliders", liquids);
   } else if (obj === "Accelerator") {
     objArray = reverseLiquids;
-    //readColorSliders2(numberSelector, "#combinedSliders", reverseLiquids);
   } else if (obj === "Blocks") {
     objArray = blocks;
-    //readColorSliders2(numberSelector, "#combinedSliders", blocks);
   } else if (obj === "Background") {
     objArray = backgroundArray;
   }
