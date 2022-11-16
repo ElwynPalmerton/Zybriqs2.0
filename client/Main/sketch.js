@@ -1,11 +1,7 @@
 //Zibriqs by Elwyn Palmerton
-//
-//
-//
 
-//Object variables:
 const balls = [];
-var qty = 3; //I can remove this after I change setup to just respond to the initialization object.
+var qty = 3;
 const reverseLiquids = [];
 const liquids = [];
 const backgroundArray = [];
@@ -17,14 +13,13 @@ const dimAmt = 30;
 
 //Force variabes;
 let xOff = 0;
-let friction; //Can this be a variable inside of the mover class???
+let friction;
 let dragCoefficient = 0.01;
 const acceleratorCoefficient = 0.01;
 const gravityConstant = 0.05;
-let gForce = 0.12; //gForce = 0.12
+let gForce = 0.12;
 const minMass = 0.5;
 const maxMass = 2.0;
-//Wind Variables:
 const windC = 0.05;
 let intensityInput = 50;
 let directionInput = 0;
@@ -47,18 +42,10 @@ var scl;
 var gridActive = false;
 
 function initializeCanvas(startWidth, startHeight, calcScale) {
-  //Remove any canvas children in the canvasContainer.
-
-  scl = calcScale(); //setScale is passed into initializeCanvas.
-
+  scl = calcScale();
   cnv = createCanvas(startWidth * scl, startHeight * scl);
-
   let currentWidth = startWidth * scl;
   let btns = document.getElementsByClassName("buttons");
-
-  // btns.style.width = currentWidth + "px";
-
-  //cnv = createCanvas(startWidth, startHeight);
   let container = document.getElementById("canvasContainer");
   container.appendChild(cnv.elt);
 }
@@ -72,7 +59,6 @@ function createResizeListener() {
   function exitHandler() {
     if (fullScreen === false) {
       fullScreen = true;
-      //console.log('reinitializing');
     } else if (fullScreen === true) {
       fullScreen = false;
       initializeCanvas(initWidth, initHeight, setScale3);
@@ -83,44 +69,24 @@ function createResizeListener() {
   }
 }
 
-///////SETUP///////
-
-
-
 function setup() {
   colorMode(HSB);
-
-  //setup canvas.
   initializeCanvas(initWidth, initHeight, setScale3);
   createResizeListener();
-
   const urlParams = new URLSearchParams(window.location.search);
   savedZib = urlParams.get("savedZib");
-
   let zibState = Object.assign({}, defaultObject2);
 
   if (savedZib) {
-    //loadData calls initializeObjects.
-    //Why does this work this way? Object assignment?
-    //Why isn't it being over-ridden by the call to
-    //initializeObjects(defaultObject2) below.
     let savedZybObject = loadData(savedZib);
-    //Instead of calling initializeObjects from loadData, it should return the value.
     zibState = Object.assign({}, savedZybObject);
   } else {
     loadSessionState();
-    // if (newSessionState !== null) {
-    //   zibState = Object.assign({}, newSessionState);
-    //   console.log('session zib state: ', zibState);
-    //   //This should use object.assign??? (Here and above?)
-    // }
   }
 
   initializeObjects(defaultObject2);
-  //Initialize the interface.
   makeButtons();
   createController();
-  //Read the initial color values from the controller.
   readController();
 
   function addSessionUpdateListener() {
