@@ -9,16 +9,8 @@ function initializeObjects(settings) {
     let ball = new Mover(random(initWidth), initHeight / 5, settings.balls[i]);
     balls.push(ball);
   }
-
-  //Create the background object using settings.backColor[0];
-  //console.log(settings.backgroundColor[0]);
-  //console.log("settings.backgroundColor", settings.backgroundColor);
   let bgObject = new backgroundObject(settings.backgroundColor[0]);
   backgroundArray.push(bgObject);
-
-  //Initialize the drag elements.
-  //Add (liquid) start and end to the default object.
-  //Test to see if it works with a different object.
 
   for (let i = 0; i < settings.drag.length; i++) {
     let startY = settings.drag[i].start.y;
@@ -38,12 +30,6 @@ function initializeObjects(settings) {
     );
     liquids.push(liquid);
   }
-
-
-  //Add (reverseLiquid) start and end to the default object.
-  //
-  //Loop over setting.dragColor.length.
-  //Create the object and push it to liquids.
 
   for (let i = 0; i < settings.accel.length; i++) {
     let startX = settings.accel[i].start.x;
@@ -79,7 +65,7 @@ function initializeObjects(settings) {
 }
 
 function reInitialize() {
-  console.log('reinitializing')
+  console.log("reinitializing");
   let designPreset = document.querySelector("#designPresets");
   let objName = designPreset.value;
 
@@ -118,6 +104,6 @@ function reInitialize() {
       initializeObjects(nagy);
       break;
     default:
-      // Do nothing.
+    // Do nothing.
   }
 }
