@@ -1,11 +1,7 @@
 function submitData() {
-
   let stateData = saveState();
-
   let stateJSON = JSON.stringify(stateData);
-
   const url = "/saveName";
-
   const data = {
     name: "Zybriqs5",
     state: stateJSON,
@@ -18,13 +14,9 @@ function submitData() {
 }
 
 function submitSession() {
-
   let stateData = saveState();
-
   let stateJSON = JSON.stringify(stateData);
-
   const url = "/saveName";
-
   const data = {
     name: "Zybriqs5",
     state: stateJSON,
@@ -34,7 +26,6 @@ function submitSession() {
     console.log(`${data} and status is ${status}`);
   });
 }
-
 
 function saveState() {
   state = {};
@@ -92,24 +83,13 @@ function saveState() {
     accelArray.push(aReverseLiquid);
   });
 
-
   state.balls = ballColors;
   state.blocks = blockArray;
   state.drag = dragArray;
   state.accel = accelArray;
 
-
-  //backgroundArray[0] contains backgroundObject which contains the
-  //backgroundColor. So, the code below takes the color from the backgroundobject held at backgroundArray[0], and puts
-  //...the color object into the stateBackgroundArray.
-  //So, state.backgroundColor contains an array which holds one
-  //color object.
-
   let stateBackgroundArray = [];
-
   stateBackgroundArray.push(backgroundArray[0].color);
-
   state.backgroundColor = stateBackgroundArray;
-
   return state;
 }
