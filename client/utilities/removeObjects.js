@@ -1,9 +1,7 @@
 function mouseClicked() {
-  //if mouseX, mouseY is in the removeBox.
   let x = mouseX;
   let y = mouseY;
   if (removeButtonOn) {
-
     removeObjects(liquids, x, y);
     removeObjects(reverseLiquids, x, y);
     removeObjects(blocks, x, y);
@@ -13,18 +11,16 @@ function mouseClicked() {
 function removeObjects(objArray, x, y) {
   for (let i = 0; i < objArray.length; i++) {
     let l = objArray[i];
-    if (x > l.start.x * scl &&
+    if (
+      x > l.start.x * scl &&
       x < l.start.x * scl + 15 &&
       y > l.start.y * scl &&
-      y < l.start.y * scl + 15) {
-
+      y < l.start.y * scl + 15
+    ) {
       objArray.splice(i, 1);
-
       createController();
       updateSliders2();
-
       showRemoveButtons();
-
     }
   }
 }
@@ -32,20 +28,16 @@ function removeObjects(objArray, x, y) {
 function showRemoveButtons() {
   drawElementsDuringSetup();
   liquids.forEach((liquid) => {
-    liquid.displayRemoveButton(); //Liquid and reverseLiquid should be in the same array. See above?
-  })
-  //liquid.displayRemoveButton();
+    liquid.displayRemoveButton();
+  });
   reverseLiquids.forEach((r) => {
     r.displayRemoveButton();
-  })
+  });
 
   blocks.forEach((r) => {
     r.displayRemoveButton();
-  })
+  });
 }
-
-
-
 
 function removeAll() {
   liquids.forEach((l) => {
@@ -66,5 +58,3 @@ function removeAll() {
 
   removeBalls();
 }
-
-//Refactor this so that it passes in the correct object?
