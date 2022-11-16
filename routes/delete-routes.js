@@ -38,7 +38,6 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  //This is an array of zyb Id's.
   let itemsToBeDeleted = [];
   let deleteArray = req.body.zName;
 

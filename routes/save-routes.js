@@ -43,7 +43,6 @@ saveRoutes.get("/", (req, res) => {
 });
 
 saveRoutes.post("/saveOver", (req, res) => {
-  //Takes the user selected/previously saves Zybriq and overwrites it with the current state.
   let zybID = req.body.zName;
 
   let username = req.user.username;
